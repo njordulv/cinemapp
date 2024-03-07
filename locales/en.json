@@ -1,0 +1,22 @@
+{
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "Page Not Found"
+  },
+  "NotFoundPage": {
+    "title": "404",
+    "description": "Page not found",
+    "back": "Back"
+  },
+  "LocaleLayout": {
+    "title": "CinemApp",
+    "description": "Next.js CinemApp"
+  },
+  "PageLayout": {
+    "title": "CinemApp"
+  },
+  "Home": {
+    "title": "Welcome to the CinemApp",
+    "description": "Next.js CinemApp"
+  }
+}
