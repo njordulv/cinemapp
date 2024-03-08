@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { unstable_setRequestLocale } from 'next-intl/server'
+import { CustomButton } from '@/components/UI/CustomButton'
 import Image from 'next/image'
-import { Button } from '@nextui-org/button'
 
 type Props = {
   params: { locale: string }
@@ -11,6 +11,7 @@ export default function Home({ params: { locale } }: Props) {
   unstable_setRequestLocale(locale)
 
   const t = useTranslations('Home')
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -18,7 +19,7 @@ export default function Home({ params: { locale } }: Props) {
           Get started by editing&nbsp;
           <code className="font-mono font-bold">src/app/page.tsx</code>
         </p>
-        <Button className="bg-blue text-white">Press me</Button>
+        <CustomButton color="blue">Press me</CustomButton>
         <h2>{t('title')}</h2>
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
