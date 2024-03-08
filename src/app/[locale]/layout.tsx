@@ -4,6 +4,7 @@ import { Slabo_27px } from 'next/font/google'
 import { locales } from '@/config'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import NextIntlProvider from '@/providers/NextIntlProvider'
+import UIProvider from '@/providers/UIProvider'
 
 const slabo = Slabo_27px({
   weight: '400',
@@ -47,14 +48,16 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={slabo.className}>
-        <NextIntlProvider
-          locale={locale}
-          messages={messages}
-          timeZone="Europe/Berlin"
-          now={new Date()}
-        >
-          {children}
-        </NextIntlProvider>
+        <UIProvider>
+          <NextIntlProvider
+            locale={locale}
+            messages={messages}
+            timeZone="Europe/Berlin"
+            now={new Date()}
+          >
+            {children}
+          </NextIntlProvider>
+        </UIProvider>
       </body>
     </html>
   )

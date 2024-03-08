@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { unstable_setRequestLocale } from 'next-intl/server'
 import Image from 'next/image'
+import { Button } from '@nextui-org/button'
 
 type Props = {
   params: { locale: string }
@@ -17,7 +18,7 @@ export default function Home({ params: { locale } }: Props) {
           Get started by editing&nbsp;
           <code className="font-mono font-bold">src/app/page.tsx</code>
         </p>
-        <h1>asdsdsdd</h1>
+        <Button className="bg-blue text-white">Press me</Button>
         <h2>{t('title')}</h2>
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
