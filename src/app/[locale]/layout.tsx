@@ -1,12 +1,12 @@
 import { ReactNode } from 'react'
 import { notFound } from 'next/navigation'
-import { Slabo_27px } from 'next/font/google'
+import { Roboto_Condensed } from 'next/font/google'
 import { locales } from '@/config'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import NextIntlProvider from '@/providers/NextIntlProvider'
 import UIProvider from '@/providers/UIProvider'
 
-const slabo = Slabo_27px({
+const slabo = Roboto_Condensed({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',

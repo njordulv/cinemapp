@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import { nextui } from '@nextui-org/theme'
+import plugin from 'tailwindcss/plugin'
 
 const config: Config = {
   content: [
@@ -15,6 +16,11 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      textShadow: {
+        sm: '0 0 2px rgba(0,0,0,.8)',
+        DEFAULT: '0 2px 4px 1px rgba(0,0,0,.8)',
+        lg: '0 8px 16px 1px rgba(0,0,0,.8)',
+      },
       colors: {
         background: 'var(--background)',
         blue: 'var(--blue)',
@@ -24,6 +30,16 @@ const config: Config = {
   plugins: [
     nextui({
       addCommonColors: true,
+    }),
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
     }),
   ],
 }
