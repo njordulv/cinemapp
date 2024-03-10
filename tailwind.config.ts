@@ -17,7 +17,7 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       textShadow: {
-        sm: '0 0 2px rgba(0,0,0,.8)',
+        sm: '1px 1px 1px rgba(0,0,0,.6)',
         DEFAULT: '0 2px 4px 1px rgba(0,0,0,.8)',
         lg: '0 8px 16px 1px rgba(0,0,0,.8)',
       },

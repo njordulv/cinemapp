@@ -21,6 +21,7 @@ export default function VoteAverage({ vote }: Props) {
           value={voteValue}
           strokeWidth={2}
           showValueLabel={true}
+          aria-label={`Rating: ${voteValue}%`}
         />
       </CardBody>
     </Card>

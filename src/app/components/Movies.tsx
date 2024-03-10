@@ -15,22 +15,22 @@ interface Movie {
 }
 
 export default function Movies() {
-  const [movies, setMovies] = useState<Movie[]>([])
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
-  const [loading, setLoading] = useState<boolean>(true)
+  const [movies, setMovies] = useState<Movie[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      const res = await fetch('/api/popular')
-      const data = await res.json()
-      setMovies(data.results)
-      setLoading(false)
-    }
-    fetchMovies()
+    fetch('/api/popular')
+      .then((response) => response.json())
+      .then((data) => setMovies(data.results))
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false))
   }, [])
 
   return (
     <>
+      {error && <h1 className="heading">This is an error - {error}</h1>}
       {loading ? (
         <>
           {[...Array(20)].map((_, index) => (

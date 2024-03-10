@@ -21,6 +21,7 @@ export default function VoteDisabled() {
           value={0}
           strokeWidth={2}
           showValueLabel={false}
+          aria-label={`Disable rating`}
         />
         <CardFooter className="justify-center items-center pt-0 absolute top-[9px]">
           <Chip
