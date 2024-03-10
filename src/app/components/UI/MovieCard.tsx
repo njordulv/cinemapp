@@ -1,6 +1,7 @@
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
+import formatReleaseDate from '@/utils/formatReleaseDate'
 
 interface Movie {
   id: number
@@ -18,6 +19,8 @@ export default function MovieCard({
   release_date,
   vote_average,
 }: Movie) {
+  const formattedReleaseDate = formatReleaseDate(release_date)
+
   return (
     <Card isFooterBlurred radius="lg" className="border-none">
       <Image alt={title} className="object-cover" src={image} width="100%" />
@@ -26,7 +29,7 @@ export default function MovieCard({
           {title}
         </div>
         <div className="text-tiny text-white/80 text-shadow-sm">
-          {release_date}
+          {formattedReleaseDate}
         </div>
         {vote_average ? <VoteAverage vote={vote_average} /> : <VoteDisabled />}
       </CardFooter>
