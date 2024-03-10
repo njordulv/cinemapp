@@ -2,23 +2,14 @@ import { Card, CardFooter, Image } from '@nextui-org/react'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import formatReleaseDate from '@/utils/formatReleaseDate'
-
-interface Movie {
-  id: number
-  title: string
-  overview: string
-  release_date: string
-  poster_path?: string
-  image?: string
-  vote_average?: number
-}
+import MovieData from '@/types/movieData'
 
 export default function MovieCard({
   title,
   image,
   release_date,
   vote_average,
-}: Movie) {
+}: MovieData) {
   const formattedReleaseDate = formatReleaseDate(release_date)
 
   return (

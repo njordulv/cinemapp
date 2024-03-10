@@ -3,20 +3,11 @@
 import { useState, useEffect } from 'react'
 import MovieCard from '@/components/UI/MovieCard'
 import MovieSkeleton from '@/components/UI/MovieSkeleton'
-
-interface Movie {
-  id: number
-  title: string
-  overview: string
-  release_date: string
-  poster_path?: string
-  image?: string
-  vote_average?: number
-}
+import MovieData from '@/types/movieData'
 
 export default function Movies() {
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
-  const [movies, setMovies] = useState<Movie[]>([])
+  const [movies, setMovies] = useState<MovieData[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 

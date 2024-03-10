@@ -21,7 +21,8 @@
       "@/*": ["./*"],
       "@/components/*": ["./src/app/components/*"],
       "@/providers/*": ["./src/app/lib/providers/*"],
-      "@/utils/*": ["./src/app/utils/*"]
+      "@/utils/*": ["./src/app/utils/*"],
+      "@/types/*": ["./src/app/types/*"]
     }
   },
   "include": [

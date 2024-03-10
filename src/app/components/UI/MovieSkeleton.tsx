@@ -1,4 +1,3 @@
-import React from 'react'
 import { Card, Skeleton } from '@nextui-org/react'
 
 export default function MovieSkeleton() {
