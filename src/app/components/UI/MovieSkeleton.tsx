@@ -2,9 +2,9 @@ import { Card, Skeleton } from '@nextui-org/react'
 
 export default function MovieSkeleton() {
   return (
-    <Card isFooterBlurred radius="lg" className="border-none min-h-[500px]">
+    <Card radius="lg" className="border-none">
       <Skeleton className="rounded-lg">
-        <div className="h-9 rounded-lg bg-default-300"></div>
+        <div className="h-24 rounded-lg bg-default-300"></div>
       </Skeleton>
       <div className="space-y-3">
         <Skeleton className="w-3/5 rounded-lg">
