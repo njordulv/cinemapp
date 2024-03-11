@@ -1,17 +1,11 @@
-import { unstable_setRequestLocale } from 'next-intl/server'
+import SingleMovieData from '@/types/SingleMovieData'
 
-interface Params {
-  quizSlug: string
-  locale: string
-}
-
-type Props = {
-  params: Params
-}
-
-export default function QuizPage({ params }: Props) {
-  const { locale } = params
-  unstable_setRequestLocale(locale)
-
-  return <h1>asdsdsds</h1>
+export default function page({ id, title }: SingleMovieData) {
+  return (
+    <div>
+      <h1>There is</h1>
+      <h2>{title}</h2>
+      <p>{id}</p>
+    </div>
+  )
 }
