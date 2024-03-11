@@ -9,14 +9,13 @@ export default function VoteAverage({ vote }: Props) {
 
   return (
     <Card className="w-[40px] h-[40px] p-0 border-none bg-black bg-opacity-70 absolute rounded-full top-[50%] right-[3px] mt-[-20px]">
-      <CardBody className="justify-center items-center pt-[4px]">
+      <CardBody className="justify-center items-center">
         <CircularProgress
           classNames={{
             svg: 'w-8 h-8 drop-shadow-md',
             indicator: 'stroke-cyan-500',
             track: 'stroke-white/30',
-            value:
-              'text-[12px] absolute top-[7px] left-0 right-0 font-semibold text-white',
+            value: 'text-[12px] font-semibold text-white',
           }}
           value={voteValue}
           strokeWidth={2}
