@@ -8,15 +8,9 @@
   --white: #fff;
   --blue: #5ba69e;
   --blue-dark: #2c736c;
-  --yellow: #dedf40;
-  --green: #62cb5c;
-  --green-light: #8aed85;
-  --pink: #d367c1;
-  --red: #e74c3c;
-  --orange: orange;
   --black: #0d0000;
   --dark: #212b3d;
-  --dark2: #124340;
+  --darker: #124340;
   --grey: #ccc;
   background-color: var(--background);
 }
