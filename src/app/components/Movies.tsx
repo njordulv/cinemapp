@@ -31,8 +31,6 @@ export default function Movies() {
     setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev))
   }
 
-  const color = 'black'
-
   return (
     <>
       {error && <h1 className="heading">This is an error - {error}</h1>}
