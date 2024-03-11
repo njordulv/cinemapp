@@ -1,10 +1,13 @@
 import { Card, Skeleton } from '@nextui-org/react'
+import { BsFillFileImageFill } from 'react-icons/bs'
 
 export default function MovieSkeleton() {
   return (
-    <Card className="w-full space-y-2 p-2" radius="lg">
+    <Card className="w-full space-y-2 p-2 opacity-35" radius="lg">
       <Skeleton className="rounded-lg">
-        <div className="h-[271px] rounded-lg"></div>
+        <div className="h-[271px] rounded-lg">
+          <BsFillFileImageFill size={108} />
+        </div>
       </Skeleton>
       <div className="max-w-[300px] w-full flex items-center gap-3">
         <div className="w-full flex flex-col gap-2">
