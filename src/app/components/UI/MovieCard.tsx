@@ -1,4 +1,6 @@
 import { Card, CardFooter, Image } from '@nextui-org/react'
+import { useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import formatReleaseDate from '@/utils/formatReleaseDate'
@@ -6,12 +8,15 @@ import MovieData from '@/types/movieData'
 const NO_IMAGE = '/no-image.svg'
 
 export default function MovieCard({
+  id,
   title,
   image,
   release_date,
   vote_average,
 }: MovieData) {
   const formattedReleaseDate = formatReleaseDate(release_date)
+  const router = useRouter()
+  const locale = useLocale()
 
   return (
     <Card
@@ -19,6 +24,9 @@ export default function MovieCard({
       isPressable
       radius="lg"
       className="border-none bg-content-none bg-blueDark"
+      onPress={() => {
+        router.push(`${locale}/movie/${id}`)
+      }}
     >
       <Image
         className="object-cover"
