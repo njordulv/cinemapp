@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { useLocale } from 'next-intl'
+import { useDispatch } from '@/redux/store'
+import { setMovie } from '@/redux/slices/movieSlice'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import formatReleaseDate from '@/utils/formatReleaseDate'
 import MovieData from '@/types/movieData'
-import SingleMovieData from '@/types/SingleMovieData'
 const NO_IMAGE = '/no-image.svg'
 
 export default function MovieCard({
@@ -17,10 +18,11 @@ export default function MovieCard({
   vote_average,
 }: MovieData) {
   const formattedReleaseDate = formatReleaseDate(release_date)
+  const dispatch = useDispatch()
   const router = useRouter()
   const locale = useLocale()
-  const [movie, setMovie] = useState<SingleMovieData | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [movieDetails, setMovieDetails] = useState(null)
 
   useEffect(() => {
     fetch(`/api/movie/${id}`)
@@ -30,12 +32,14 @@ export default function MovieCard({
         }
         return response.json()
       })
-      .then((data) => setMovie(data))
+      .then((data) => {
+        setMovieDetails(data)
+      })
       .catch((error) => setError(error.message))
-  }, [id])
+  }, [id, dispatch])
 
   const pageHandler = () => {
-    console.log(movie)
+    dispatch(setMovie(movieDetails))
     router.push(`${locale}/movie/${id}`)
   }
 
@@ -59,7 +63,7 @@ export default function MovieCard({
         fallbackSrc={NO_IMAGE}
         alt={title}
       />
-      <CardFooter className="p-3 py-1 h-auto flex flex-col items-start color-inherit subpixel-antialiased bg-background/10 backdrop-blur-[2px] backdrop-saturate-100 backdrop-contrast-125 before:bg-white/10 border-white/20 border-1 overflow-hidden absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+      <CardFooter className="p-3 py-1 h-auto flex flex-col items-start text-left color-inherit subpixel-antialiased bg-background/10 backdrop-blur-[2px] backdrop-saturate-100 backdrop-contrast-125 before:bg-white/10 border-white/20 border-1 overflow-hidden absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
         <div className="text-white/80 text-[14px] text-shadow-sm pr-8">
           {title}
         </div>

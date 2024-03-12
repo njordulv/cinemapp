@@ -2,9 +2,7 @@ import { NextResponse } from 'next/server'
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
