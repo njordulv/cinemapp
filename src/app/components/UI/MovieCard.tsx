@@ -64,13 +64,30 @@ export default function MovieCard({
         alt={title}
       />
       <CardFooter className="p-3 py-1 h-auto flex flex-col items-start text-left color-inherit subpixel-antialiased bg-background/10 backdrop-blur-[2px] backdrop-saturate-100 backdrop-contrast-125 before:bg-white/10 border-white/20 border-1 overflow-hidden absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-        <div className="text-white/80 text-[14px] text-shadow-sm pr-8">
+        <div className="text-white/80 text-[14px] leading-[18px] text-shadow-sm pr-8">
           {title}
         </div>
         <div className="text-tiny text-white/80 text-shadow-sm">
           {formattedReleaseDate}
         </div>
-        {vote_average ? <VoteAverage vote={vote_average} /> : <VoteDisabled />}
+        <div className="absolute top-[50%] right-[3px] mt-[-20px]">
+          {vote_average ? (
+            <VoteAverage
+              vote={vote_average}
+              card="w-[40px] h-[40px]"
+              size="w-8 h-8 drop-shadow-md"
+              strokeWidth={2}
+              text="text-[12px]"
+            />
+          ) : (
+            <VoteDisabled
+              card="w-[40px] h-[40px]"
+              size="w-8 h-8 drop-shadow-md"
+              strokeWidth={2}
+              text="text-[12px] top-[-3px] relative"
+            />
+          )}
+        </div>
       </CardFooter>
     </Card>
   )

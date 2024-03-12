@@ -2,20 +2,21 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  background-size: cover;
 
-  &:after {
-    background-color: rgba(0, 0, 0, 0.3);
-    content: '';
+  &_back {
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
-    display: block;
+    background-size: cover;
+    filter: brightness(0.65) opacity(0.9);
   }
-
   &_wrapper {
     z-index: 1;
+  }
+
+  &_average {
+    display: flex;
   }
 }

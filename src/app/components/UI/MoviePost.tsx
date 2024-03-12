@@ -28,14 +28,15 @@ const MoviePost = () => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundImage: movie.backdrop_path
-            ? `url(${BASE_IMAGE_URL}original/${movie.backdrop_path})`
-            : `url(${NO_IMAGE})`,
-        }}
-        className={styles.singleHero}
-      >
+      <div className={styles.singleHero}>
+        <div
+          style={{
+            backgroundImage: movie.backdrop_path
+              ? `url(${BASE_IMAGE_URL}original/${movie.backdrop_path})`
+              : `url(${NO_IMAGE})`,
+          }}
+          className={styles.singleHero_back}
+        ></div>
         <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto py-20">
           <div
             className={`grid lg:grid-cols-[1fr_3fr] gap-10 items-center ${styles.singleHero_wrapper}`}
@@ -68,14 +69,30 @@ const MoviePost = () => {
                   <ul className="flex gap-2">{renderList(movie.genres)}</ul>
                 </div>
               </div>
-              {movie.vote_average ? (
-                <VoteAverage vote={movie.vote_average} />
-              ) : (
-                <VoteDisabled />
-              )}
-              <div className="italic font-thin text-[18px]">
-                Tagline: {movie.tagline}
+              <div className={styles.singleHero_average}>
+                {movie.vote_average ? (
+                  <VoteAverage
+                    vote={movie.vote_average}
+                    card="w-[63px] h-[63px]"
+                    size="w-14 h-14 drop-shadow-md"
+                    strokeWidth={2}
+                    text="text-[19px]"
+                  />
+                ) : (
+                  <VoteDisabled
+                    card="w-[63px] h-[63px]"
+                    size="w-14 h-14 drop-shadow-md"
+                    strokeWidth={2}
+                    text="text-[19px] top-[3px] relative"
+                  />
+                )}
               </div>
+              {movie.tagline && (
+                <div className="italic font-thin text-[18px]">
+                  {movie.tagline}
+                </div>
+              )}
+
               <div>
                 <h3 className="mb-3">Overview:</h3>
                 <p>{movie.overview}</p>
