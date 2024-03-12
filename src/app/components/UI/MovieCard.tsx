@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { useLocale } from 'next-intl'
@@ -5,6 +6,7 @@ import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import formatReleaseDate from '@/utils/formatReleaseDate'
 import MovieData from '@/types/movieData'
+import SingleMovieData from '@/types/SingleMovieData'
 const NO_IMAGE = '/no-image.svg'
 
 export default function MovieCard({
@@ -17,6 +19,29 @@ export default function MovieCard({
   const formattedReleaseDate = formatReleaseDate(release_date)
   const router = useRouter()
   const locale = useLocale()
+  const [movie, setMovie] = useState<SingleMovieData | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetch(`/api/movie/${id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch data')
+        }
+        return response.json()
+      })
+      .then((data) => setMovie(data))
+      .catch((error) => setError(error.message))
+  }, [id])
+
+  const pageHandler = () => {
+    console.log(movie)
+    router.push(`${locale}/movie/${id}`)
+  }
+
+  if (error) {
+    return <h1>There is an error - {error}</h1>
+  }
 
   return (
     <Card
@@ -24,9 +49,7 @@ export default function MovieCard({
       isPressable
       radius="lg"
       className="border-none bg-content-none bg-blueDark"
-      onPress={() => {
-        router.push(`${locale}/movie/${id}`)
-      }}
+      onPress={pageHandler}
     >
       <Image
         className="object-cover"

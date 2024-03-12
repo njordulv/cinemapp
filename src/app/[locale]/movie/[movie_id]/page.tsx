@@ -1,3 +1,5 @@
+'use client'
+
 import SingleMovieData from '@/types/SingleMovieData'
 
 export default function page({ id, title }: SingleMovieData) {
