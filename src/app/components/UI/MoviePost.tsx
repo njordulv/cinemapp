@@ -3,10 +3,10 @@
 import { useSelector } from '@/redux/store'
 import { selectMovie } from '@/redux/slices/movieSlice'
 import { Image } from '@nextui-org/react'
-import {
-  formatReleaseDateAlt,
-  formatReleaseYear,
-} from '@/src/app/utils/formatDate'
+import VoteAverage from './VoteAverage'
+import VoteDisabled from './VoteDisabled'
+import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
+import styles from '@/styles/singleMovie.module.scss'
 
 const MoviePost = () => {
   const movie = useSelector(selectMovie)
@@ -34,11 +34,14 @@ const MoviePost = () => {
             ? `url(${BASE_IMAGE_URL}original/${movie.backdrop_path})`
             : `url(${NO_IMAGE})`,
         }}
-        className="w-full bg-cover"
+        className={styles.singleHero}
       >
-        <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto py-24">
-          <div className="grid lg:grid-cols-[1fr_3fr] gap-10 items-center">
+        <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto py-20">
+          <div
+            className={`grid lg:grid-cols-[1fr_3fr] gap-10 items-center ${styles.singleHero_wrapper}`}
+          >
             <Image
+              shadow="md"
               className="object-cover"
               src={
                 movie.poster_path
@@ -65,6 +68,11 @@ const MoviePost = () => {
                   <ul className="flex gap-2">{renderList(movie.genres)}</ul>
                 </div>
               </div>
+              {movie.vote_average ? (
+                <VoteAverage vote={movie.vote_average} />
+              ) : (
+                <VoteDisabled />
+              )}
               <div className="italic font-thin text-[18px]">
                 Tagline: {movie.tagline}
               </div>
