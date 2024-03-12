@@ -2,6 +2,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  margin-bottom: 30px;
 
   &_back {
     position: absolute;
@@ -16,7 +17,46 @@
     z-index: 1;
   }
 
+  &_info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    > *:not(:first-child) {
+      position: relative;
+      &:before {
+        position: absolute;
+        left: -10px;
+        top: 0px;
+        content: '•';
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+
   &_average {
     display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &_list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 5px;
+
+    li {
+      position: relative;
+      &:after {
+        content: ',';
+        position: relative;
+      }
+      &:last-child {
+        &:after {
+          display: none;
+        }
+      }
+    }
   }
 }

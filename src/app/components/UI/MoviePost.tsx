@@ -6,6 +6,7 @@ import { Image } from '@nextui-org/react'
 import VoteAverage from './VoteAverage'
 import VoteDisabled from './VoteDisabled'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
+import { convertMinToHrs } from '@/utils/formatRuntime'
 import styles from '@/styles/singleMovie.module.scss'
 
 const MoviePost = () => {
@@ -56,17 +57,20 @@ const MoviePost = () => {
             />
             <div className="flex flex-col gap-4">
               <div>
-                <h1 className="flex mb-0 gap-2">
+                <h1 className="flex mb-0 gap-2 text-shadow-sm">
                   {movie.title}
-                  <span className="font-thin">
+                  <span className="font-thin opacity-80">
                     ({formatReleaseYear(movie.release_date)})
                   </span>
                 </h1>
-                <div className="flex gap-3">
+                <div className={styles.singleHero_info}>
                   <div className="uppercase">
                     {formatReleaseDateAlt(movie.release_date)}
                   </div>
-                  <ul className="flex gap-2">{renderList(movie.genres)}</ul>
+                  <ul className={styles.singleHero_list}>
+                    {renderList(movie.genres)}
+                  </ul>
+                  <div>{convertMinToHrs(movie.runtime)}</div>
                 </div>
               </div>
               <div className={styles.singleHero_average}>
@@ -86,17 +90,19 @@ const MoviePost = () => {
                     text="text-[19px] top-[3px] relative"
                   />
                 )}
+                User Score
               </div>
               {movie.tagline && (
-                <div className="italic font-thin text-[18px]">
+                <div className="italic font-thin text-[18px] text-shadow-sm opacity-80">
                   {movie.tagline}
                 </div>
               )}
-
-              <div>
-                <h3 className="mb-3">Overview:</h3>
-                <p>{movie.overview}</p>
-              </div>
+              {movie.overview && (
+                <div className="text-shadow-sm">
+                  <h3 className="mb-1">Overview:</h3>
+                  <p>{movie.overview}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -109,7 +115,6 @@ const MoviePost = () => {
       <p>Popularity: {movie.popularity}</p>
       <p>Budget: {movie.budget}</p>
       <p>Revenue: {movie.revenue}</p>
-      <p>Runtime: {movie.runtime}</p>
       <p>Status: {movie.status}</p>
 
       <p>Video: {movie.video ? 'Yes' : 'No'}</p>
