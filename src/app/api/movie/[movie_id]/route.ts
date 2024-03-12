@@ -11,7 +11,6 @@ export async function GET(
   { params }: { params: { movie_id: string } }
 ) {
   const { movie_id } = params
-  console.log('Movie ID:', movie_id)
 
   try {
     const response = await fetch(

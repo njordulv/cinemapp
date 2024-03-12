@@ -5,6 +5,7 @@ import { locales } from '@/config'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import NextIntlProvider from '@/providers/NextIntlProvider'
 import UIProvider from '@/providers/UIProvider'
+import StoreProvider from '@/providers/StoreProvider'
 
 const slabo = Roboto_Condensed({
   weight: '400',
@@ -49,14 +50,16 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <body className={slabo.className}>
         <UIProvider>
-          <NextIntlProvider
-            locale={locale}
-            messages={messages}
-            timeZone="Europe/Berlin"
-            now={new Date()}
-          >
-            {children}
-          </NextIntlProvider>
+          <StoreProvider>
+            <NextIntlProvider
+              locale={locale}
+              messages={messages}
+              timeZone="Europe/Berlin"
+              now={new Date()}
+            >
+              {children}
+            </NextIntlProvider>
+          </StoreProvider>
         </UIProvider>
       </body>
     </html>
