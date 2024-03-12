@@ -6,7 +6,7 @@ import { useDispatch } from '@/redux/store'
 import { setMovie } from '@/redux/slices/movieSlice'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
-import formatReleaseDate from '@/utils/formatReleaseDate'
+import { formatReleaseDate } from '@/src/app/utils/formatDate'
 import MovieData from '@/types/movieData'
 const NO_IMAGE = '/no-image.svg'
 

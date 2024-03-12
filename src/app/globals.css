@@ -31,3 +31,22 @@ body {
   color: var(--color);
   background-color: var(--background);
 }
+
+h1 {
+  font-size: 42px;
+  line-height: 50px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 20px;
+}
