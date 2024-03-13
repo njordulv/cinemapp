@@ -3,6 +3,7 @@
 import { useSelector } from '@/redux/store'
 import { selectMovie } from '@/redux/slices/movieSlice'
 import { Image } from '@nextui-org/react'
+import { TbWorldWww } from 'react-icons/tb'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import Cast from '@/components/UI/Cast'
@@ -103,6 +104,14 @@ const MoviePost = () => {
                   <h3 className="mb-1">Overview:</h3>
                   <p>{movie.overview}</p>
                 </div>
+              )}
+              {movie.homepage && (
+                <a
+                  href={movie.homepage}
+                  className="flex items-center gap-1 font-thin hover:text-cyan-500"
+                >
+                  <TbWorldWww size={18} /> {movie.homepage}
+                </a>
               )}
             </div>
           </div>

@@ -34,6 +34,7 @@ const Cast = () => {
     return (
       <CustomButton
         color="blue"
+        size="md"
         className="absolute bottom-0 left-[10px] z-10 text-2xl text-dark"
         onClick={onClick}
       >
@@ -47,7 +48,8 @@ const Cast = () => {
     return (
       <CustomButton
         color="blue"
-        className="absolute bottom-0 left-[100px] text-2xl text-dark"
+        size="md"
+        className="absolute bottom-0 left-[86px] text-2xl text-dark"
         onClick={onClick}
       >
         <GoChevronRight />
