@@ -5,7 +5,7 @@ import { selectMovie } from '@/redux/slices/movieSlice'
 import { Image } from '@nextui-org/react'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
-import Cast from './Cast'
+import Cast from '@/components/UI/Cast'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import { convertMinToHrs } from '@/utils/formatRuntime'
 import styles from '@/styles/singleMovie.module.scss'
@@ -108,38 +108,41 @@ const MoviePost = () => {
           </div>
         </div>
       </div>
-      <Cast />
-      <p>Rating: {movie.vote_average}</p>
-      <p>Vote Count: {movie.vote_count}</p>
-      <p>Adult: {movie.adult ? 'Yes' : 'No'}</p>
-      <p>Original Language: {movie.original_language}</p>
-      <p>Original Title: {movie.original_title}</p>
-      <p>Popularity: {movie.popularity}</p>
-      <p>Budget: {movie.budget}</p>
-      <p>Revenue: {movie.revenue}</p>
-      <p>Status: {movie.status}</p>
+      <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto py-10">
+        <h3 className="mb-1">Cast:</h3>
+        <Cast />
+        <p>Rating: {movie.vote_average}</p>
+        <p>Vote Count: {movie.vote_count}</p>
+        <p>Adult: {movie.adult ? 'Yes' : 'No'}</p>
+        <p>Original Language: {movie.original_language}</p>
+        <p>Original Title: {movie.original_title}</p>
+        <p>Popularity: {movie.popularity}</p>
+        <p>Budget: {movie.budget}</p>
+        <p>Revenue: {movie.revenue}</p>
+        <p>Status: {movie.status}</p>
 
-      <p>Video: {movie.video ? 'Yes' : 'No'}</p>
-      <p>
-        Homepage: <a href={movie.homepage}>{movie.homepage}</a>
-      </p>
-      <p>
-        IMDb ID:{' '}
-        <a href={`https://www.imdb.com/title/${movie.imdb_id}`}>
-          {movie.imdb_id}
-        </a>
-      </p>
-      <div>
-        Production Companies:
-        <ul>{renderList(movie.production_companies)}</ul>
-      </div>
-      <div>
-        Production Countries:
-        <ul>{renderList(movie.production_countries, 'name')}</ul>
-      </div>
-      <div>
-        Spoken Languages:
-        <ul>{renderList(movie.spoken_languages, 'english_name')}</ul>
+        <p>Video: {movie.video ? 'Yes' : 'No'}</p>
+        <p>
+          Homepage: <a href={movie.homepage}>{movie.homepage}</a>
+        </p>
+        <p>
+          IMDb ID:{' '}
+          <a href={`https://www.imdb.com/title/${movie.imdb_id}`}>
+            {movie.imdb_id}
+          </a>
+        </p>
+        <div>
+          Production Companies:
+          <ul>{renderList(movie.production_companies)}</ul>
+        </div>
+        <div>
+          Production Countries:
+          <ul>{renderList(movie.production_countries, 'name')}</ul>
+        </div>
+        <div>
+          Spoken Languages:
+          <ul>{renderList(movie.spoken_languages, 'english_name')}</ul>
+        </div>
       </div>
     </>
   )
