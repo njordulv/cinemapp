@@ -2,7 +2,7 @@ import MoviePost from '@/components/UI/MoviePost'
 
 export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="flex flex-col items-center place-content-center min-h-96">
       <MoviePost />
     </main>
   )

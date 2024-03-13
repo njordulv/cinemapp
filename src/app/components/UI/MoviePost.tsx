@@ -11,10 +11,10 @@ import { selectMovie } from '@/redux/slices/movieSlice'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import Cast from '@/components/UI/Cast'
+import { CustomButton } from '@/components/UI/CustomButton'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import { convertMinToHrs } from '@/utils/formatRuntime'
 import styles from '@/styles/singleMovie.module.scss'
-import { CustomButton } from './CustomButton'
 
 const MoviePost = () => {
   const movie = useSelector(selectMovie)
@@ -86,24 +86,26 @@ const MoviePost = () => {
                   <div>{convertMinToHrs(movie.runtime)}</div>
                 </div>
               </div>
-              <div className={styles.singleHero_average}>
-                {movie.vote_average ? (
-                  <VoteAverage
-                    vote={movie.vote_average}
-                    card="w-[63px] h-[63px]"
-                    size="w-14 h-14 drop-shadow-md"
-                    strokeWidth={2}
-                    text="text-[19px]"
-                  />
-                ) : (
-                  <VoteDisabled
-                    card="w-[63px] h-[63px]"
-                    size="w-14 h-14 drop-shadow-md"
-                    strokeWidth={2}
-                    text="text-[19px] top-[3px] relative"
-                  />
-                )}
-                <span className="text-shadow-sm">User Score</span>
+              <div className="flex gap-4">
+                <div className={styles.singleHero_average}>
+                  {movie.vote_average ? (
+                    <VoteAverage
+                      vote={movie.vote_average}
+                      card="w-[63px] h-[63px]"
+                      size="w-14 h-14 drop-shadow-md"
+                      strokeWidth={2}
+                      text="text-[19px]"
+                    />
+                  ) : (
+                    <VoteDisabled
+                      card="w-[63px] h-[63px]"
+                      size="w-14 h-14 drop-shadow-md"
+                      strokeWidth={2}
+                      text="text-[19px] top-[3px] relative"
+                    />
+                  )}
+                  <span className="text-shadow-sm">User Score</span>
+                </div>
               </div>
               {movie.tagline && (
                 <div className="italic font-thin text-[18px] text-shadow-sm opacity-80">
@@ -120,6 +122,8 @@ const MoviePost = () => {
                 <div>
                   <Link
                     href={movie.homepage}
+                    target="
+                    _blank"
                     className="inline-flex items-center gap-1 font-thin hover:text-cyan-500 text-shadow-sm"
                   >
                     <TbWorldWww size={24} /> {movie.title}
@@ -130,6 +134,8 @@ const MoviePost = () => {
                 <div>
                   <Link
                     href={`https://www.imdb.com/title/${movie.imdb_id}`}
+                    target="
+                    _blank"
                     className="inline-flex items-center gap-1 font-thin hover:text-cyan-500 text-shadow-sm"
                   >
                     <LiaImdb size={24} /> IMDb
@@ -165,15 +171,21 @@ const MoviePost = () => {
         <p>Video: {movie.video ? 'Yes' : 'No'}</p>
         <div>
           Production Companies:
-          <ul>{renderList(movie.production_companies)}</ul>
+          <div className={styles.singleHero_list}>
+            {renderList(movie.production_companies)}
+          </div>
         </div>
         <div>
           Production Countries:
-          <ul>{renderList(movie.production_countries, 'name')}</ul>
+          <div className={styles.singleHero_list}>
+            {renderList(movie.production_countries, 'name')}
+          </div>
         </div>
         <div>
           Spoken Languages:
-          <ul>{renderList(movie.spoken_languages, 'english_name')}</ul>
+          <div className={styles.singleHero_list}>
+            {renderList(movie.spoken_languages, 'english_name')}
+          </div>
         </div>
       </div>
     </>

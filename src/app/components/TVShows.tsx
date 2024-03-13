@@ -1,0 +1,61 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import MovieCard from '@/components/UI/MovieCard'
+import MovieData from '@/types/movieData'
+import MovieSkeleton from '@/components/UI/MovieSkeleton'
+import MoviePagination from '@/components/UI/MoviePagination'
+
+const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
+const NO_IMAGE = '/no-image.svg'
+
+export default function TVShows() {
+  const [movies, setMovies] = useState<MovieData[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+
+  useEffect(() => {
+    fetch(`/api/tv/popular?page=${currentPage}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch data')
+        }
+        return response.json()
+      })
+      .then((data) => setMovies(data.results))
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false))
+  }, [currentPage])
+
+  return (
+    <>
+      {error && <h1 className="heading">This is an error - {error}</h1>}
+      <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-5 lg:text-left gap-4">
+        {loading ? (
+          <>
+            {[...Array(20)].map((_, index) => (
+              <MovieSkeleton key={index} />
+            ))}
+          </>
+        ) : (
+          movies.map((movie) => (
+            <MovieCard
+              {...movie}
+              image={
+                movie.poster_path
+                  ? `${BASE_IMAGE_URL}${movie.poster_path}`
+                  : NO_IMAGE
+              }
+              key={movie.id}
+            />
+          ))
+        )}
+      </div>
+      <MoviePagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+    </>
+  )
+}
