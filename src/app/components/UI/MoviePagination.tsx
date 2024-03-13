@@ -22,7 +22,7 @@ export default function MoviePagination({
 
   return (
     <div className="mb-32 flex text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:text-left items-center justify-center gap-4 my-8">
-      <CustomButton color="blue" onClick={prevPage}>
+      <CustomButton color="primary" onClick={prevPage}>
         Prev
       </CustomButton>
       <Pagination
@@ -37,7 +37,7 @@ export default function MoviePagination({
           cursor: 'bg-blue text-white font-bold shadow-none rounded-lg',
         }}
       />
-      <CustomButton color="blue" onClick={nextPage}>
+      <CustomButton color="primary" onClick={nextPage}>
         Next
       </CustomButton>
     </div>

@@ -43,6 +43,20 @@ interface Cast {
   order: number
 }
 
+interface Crew {
+  adult: boolean
+  gender: number
+  id: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string
+  credit_id: number
+  department: string
+  job: string
+}
+
 interface SingleMovieData {
   adult: boolean
   backdrop_path: string
@@ -70,6 +84,7 @@ interface SingleMovieData {
   vote_average: number
   vote_count: number
   cast: Cast[]
+  crew: Crew[]
 }
 
 export default SingleMovieData

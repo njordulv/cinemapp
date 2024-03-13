@@ -1,18 +1,25 @@
 'use client'
 
+import Link from 'next/link'
+import { Image, Chip } from '@nextui-org/react'
+import { useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
+import { TbWorldWww } from 'react-icons/tb'
+import { LiaImdb } from 'react-icons/lia'
 import { useSelector } from '@/redux/store'
 import { selectMovie } from '@/redux/slices/movieSlice'
-import { Image } from '@nextui-org/react'
-import { TbWorldWww } from 'react-icons/tb'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import Cast from '@/components/UI/Cast'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import { convertMinToHrs } from '@/utils/formatRuntime'
 import styles from '@/styles/singleMovie.module.scss'
+import { CustomButton } from './CustomButton'
 
 const MoviePost = () => {
   const movie = useSelector(selectMovie)
+  const router = useRouter()
+  const locale = useLocale()
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
   const NO_IMAGE = '/no-image.svg'
 
@@ -27,7 +34,11 @@ const MoviePost = () => {
   }
 
   const renderList = (items: ListItem[], key: keyof ListItem = 'name') =>
-    items.map((item, index) => <li key={item.id || index}>{item[key]}</li>)
+    items.map((item, index) => (
+      <Chip size="sm" key={item.id || index}>
+        {item[key]}
+      </Chip>
+    ))
 
   return (
     <>
@@ -59,7 +70,7 @@ const MoviePost = () => {
             />
             <div className="flex flex-col gap-4">
               <div>
-                <h1 className="flex mb-0 gap-2 text-shadow-sm">
+                <h1 className="flex mb-1 gap-2 text-shadow-sm">
                   {movie.title}
                   <span className="font-thin opacity-80">
                     ({formatReleaseYear(movie.release_date)})
@@ -69,9 +80,9 @@ const MoviePost = () => {
                   <div className="uppercase">
                     {formatReleaseDateAlt(movie.release_date)}
                   </div>
-                  <ul className={styles.singleHero_list}>
+                  <div className={styles.singleHero_list}>
                     {renderList(movie.genres)}
-                  </ul>
+                  </div>
                   <div>{convertMinToHrs(movie.runtime)}</div>
                 </div>
               </div>
@@ -92,7 +103,7 @@ const MoviePost = () => {
                     text="text-[19px] top-[3px] relative"
                   />
                 )}
-                User Score
+                <span className="text-shadow-sm">User Score</span>
               </div>
               {movie.tagline && (
                 <div className="italic font-thin text-[18px] text-shadow-sm opacity-80">
@@ -106,20 +117,42 @@ const MoviePost = () => {
                 </div>
               )}
               {movie.homepage && (
-                <a
-                  href={movie.homepage}
-                  className="flex items-center gap-1 font-thin hover:text-cyan-500"
-                >
-                  <TbWorldWww size={18} /> {movie.homepage}
-                </a>
+                <div>
+                  <Link
+                    href={movie.homepage}
+                    className="inline-flex items-center gap-1 font-thin hover:text-cyan-500 text-shadow-sm"
+                  >
+                    <TbWorldWww size={24} /> {movie.title}
+                  </Link>
+                </div>
+              )}
+              {movie.imdb_id && (
+                <div>
+                  <Link
+                    href={`https://www.imdb.com/title/${movie.imdb_id}`}
+                    className="inline-flex items-center gap-1 font-thin hover:text-cyan-500 text-shadow-sm"
+                  >
+                    <LiaImdb size={24} /> IMDb
+                  </Link>
+                </div>
               )}
             </div>
           </div>
         </div>
       </div>
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto py-10">
-        <h3 className="mb-1">Cast:</h3>
-        <Cast />
+        <div className="relative">
+          <h3>Cast:</h3>
+          <Cast />
+          <div className="absolute right-[10px] bottom-0">
+            <CustomButton
+              color="primary"
+              onClick={() => router.push(`/${locale}/movie/${movie.id}/crew`)}
+            >
+              Crew
+            </CustomButton>
+          </div>
+        </div>
         <p>Rating: {movie.vote_average}</p>
         <p>Vote Count: {movie.vote_count}</p>
         <p>Adult: {movie.adult ? 'Yes' : 'No'}</p>
@@ -129,17 +162,7 @@ const MoviePost = () => {
         <p>Budget: {movie.budget}</p>
         <p>Revenue: {movie.revenue}</p>
         <p>Status: {movie.status}</p>
-
         <p>Video: {movie.video ? 'Yes' : 'No'}</p>
-        <p>
-          Homepage: <a href={movie.homepage}>{movie.homepage}</a>
-        </p>
-        <p>
-          IMDb ID:{' '}
-          <a href={`https://www.imdb.com/title/${movie.imdb_id}`}>
-            {movie.imdb_id}
-          </a>
-        </p>
         <div>
           Production Companies:
           <ul>{renderList(movie.production_companies)}</ul>

@@ -1,7 +1,7 @@
 'use client'
 
 import Slider from 'react-slick'
-import { Card, Image, CardFooter } from '@nextui-org/react'
+import { Card, Image, CardBody, CardFooter } from '@nextui-org/react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { useSelector } from '@/redux/store'
 import { selectMovie } from '@/redux/slices/movieSlice'
@@ -33,7 +33,7 @@ const Cast = () => {
     const { onClick } = props
     return (
       <CustomButton
-        color="blue"
+        color="primary"
         size="md"
         className="absolute bottom-0 left-[10px] z-10 text-2xl text-dark"
         onClick={onClick}
@@ -47,7 +47,7 @@ const Cast = () => {
     const { onClick } = props
     return (
       <CustomButton
-        color="blue"
+        color="primary"
         size="md"
         className="absolute bottom-0 left-[86px] text-2xl text-dark"
         onClick={onClick}
@@ -88,30 +88,24 @@ const Cast = () => {
       {movie.cast.map((actor: CastItem, index: number) => (
         <div className="slide-item" key={actor.id || index}>
           <div className="slide-inner">
-            <Card
-              isFooterBlurred
-              radius="sm"
-              className="border-none bg-content-none bg-blueDark"
-            >
-              <Image
-                shadow="md"
-                radius="sm"
-                className="object-cover"
-                src={
-                  actor.profile_path
-                    ? `${BASE_IMAGE_URL}w300/${actor.profile_path}`
-                    : NO_IMAGE
-                }
-                width={148}
-                height={222}
-                fallbackSrc={NO_IMAGE}
-                alt={actor.name || 'Unknown'}
-              />
-              <CardFooter className="flex flex-col items-start before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-md rounded-md bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-                <p className="text-tiny text-white/80 font-bold">
-                  {actor.name}
-                </p>
-                <p className="text-tiny text-white/80 text-left">
+            <Card shadow="md" key={index} className=" bg-cyan-100">
+              <CardBody className="overflow-visible p-0">
+                <Image
+                  shadow="sm"
+                  radius="md"
+                  width="100%"
+                  className="w-full object-cover h-[140px] rounded-b-none"
+                  src={
+                    actor.profile_path
+                      ? `${BASE_IMAGE_URL}w300/${actor.profile_path}`
+                      : NO_IMAGE
+                  }
+                  alt={actor.name || 'Unknown'}
+                />
+              </CardBody>
+              <CardFooter className="flex flex-col text-small items-start p-2">
+                <b className="text-[15px]">{actor.name}</b>
+                <p className="text-default-500 text-[14px]">
                   {actor.character}
                 </p>
               </CardFooter>
