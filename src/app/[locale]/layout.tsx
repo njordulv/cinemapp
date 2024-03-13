@@ -8,7 +8,7 @@ import UIProvider from '@/providers/UIProvider'
 import StoreProvider from '@/providers/StoreProvider'
 
 const slabo = Roboto_Condensed({
-  weight: '400',
+  weight: ['400', '700'],
   subsets: ['latin'],
   display: 'swap',
 })

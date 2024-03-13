@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation'
 import { useLocale } from 'next-intl'
 import { useDispatch } from '@/redux/store'
 import { setMovie } from '@/redux/slices/movieSlice'
+import { formatReleaseDate } from '@/src/app/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
-import { formatReleaseDate } from '@/src/app/utils/formatDate'
 import MovieData from '@/types/movieData'
 const NO_IMAGE = '/no-image.svg'
 
@@ -17,10 +17,10 @@ export default function MovieCard({
   release_date,
   vote_average,
 }: MovieData) {
-  const formattedReleaseDate = formatReleaseDate(release_date)
   const dispatch = useDispatch()
   const router = useRouter()
   const locale = useLocale()
+  const formattedReleaseDate = formatReleaseDate(release_date)
   const [error, setError] = useState<string | null>(null)
   const [movieDetails, setMovieDetails] = useState(null)
 

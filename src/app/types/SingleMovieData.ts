@@ -28,6 +28,21 @@ interface SpokenLanguage {
   name: string
 }
 
+interface Cast {
+  adult: boolean
+  gender: number
+  id: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string
+  cast_id: number
+  character: string
+  credit_id: string
+  order: number
+}
+
 interface SingleMovieData {
   adult: boolean
   backdrop_path: string
@@ -54,6 +69,7 @@ interface SingleMovieData {
   video: boolean
   vote_average: number
   vote_count: number
+  cast: Cast[]
 }
 
 export default SingleMovieData

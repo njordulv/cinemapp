@@ -11,11 +11,23 @@ export async function GET(
   const { movie_id } = params
 
   try {
-    const response = await fetch(
+    const movieResponse = await fetch(
       `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}`
     )
-    const data = await response.json()
-    return NextResponse.json(data)
+    const movieData = await movieResponse.json()
+
+    const creditsResponse = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${API_KEY}`
+    )
+    const creditsData = await creditsResponse.json()
+
+    const combinedData = {
+      ...movieData,
+      cast: creditsData.cast,
+      crew: creditsData.crew,
+    }
+
+    return NextResponse.json(combinedData)
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 })
   }

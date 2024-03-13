@@ -3,8 +3,9 @@
 import { useSelector } from '@/redux/store'
 import { selectMovie } from '@/redux/slices/movieSlice'
 import { Image } from '@nextui-org/react'
-import VoteAverage from './VoteAverage'
-import VoteDisabled from './VoteDisabled'
+import VoteAverage from '@/components/UI/VoteAverage'
+import VoteDisabled from '@/components/UI/VoteDisabled'
+import Cast from './Cast'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import { convertMinToHrs } from '@/utils/formatRuntime'
 import styles from '@/styles/singleMovie.module.scss'
@@ -107,6 +108,7 @@ const MoviePost = () => {
           </div>
         </div>
       </div>
+      <Cast />
       <p>Rating: {movie.vote_average}</p>
       <p>Vote Count: {movie.vote_count}</p>
       <p>Adult: {movie.adult ? 'Yes' : 'No'}</p>
