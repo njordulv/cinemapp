@@ -54,3 +54,7 @@ p {
 a {
   transition: all 0.3s ease;
 }
+
+header {
+  max-width: 1170px !important;
+}
