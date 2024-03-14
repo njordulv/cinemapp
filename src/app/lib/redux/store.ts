@@ -16,10 +16,12 @@ import {
 } from 'react-redux'
 import movieReducer from '@/redux/slices/movieSlice'
 import tvReducer from '@/redux/slices/tvSlice'
+import personReducer from '@/redux/slices/personSlice'
 
 const rootReducer = combineReducers({
   movie: movieReducer,
   tv: tvReducer,
+  person: personReducer,
 })
 
 const createNoopStorage = () => {

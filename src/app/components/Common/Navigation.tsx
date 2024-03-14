@@ -98,7 +98,7 @@ export default function Navigation() {
           </DropdownMenu>
         </Dropdown>
         <NavbarItem isActive>
-          <Link href="#" aria-current="page">
+          <Link href="/person" aria-current="page">
             People
           </Link>
         </NavbarItem>
@@ -117,7 +117,7 @@ export default function Navigation() {
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem key="People">
-          <Link href="#" aria-current="page">
+          <Link href="/person" aria-current="page">
             People
           </Link>
         </NavbarMenuItem>
