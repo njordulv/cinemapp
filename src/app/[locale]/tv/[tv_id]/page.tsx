@@ -1,9 +1,9 @@
-import MoviePost from '@/components/UI/MoviePost'
+import TVPost from '@/components/UI/TVPost'
 
 export default function Page() {
   return (
     <main className="flex flex-col items-center place-content-center min-h-96 py-12">
-      <MoviePost />
+      <TVPost />
     </main>
   )
 }

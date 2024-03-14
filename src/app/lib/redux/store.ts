@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import movieReducer from '@/redux/slices/movieSlice'
+import tvReducer from '@/redux/slices/tvSlice'
 import {
   useSelector as useReduxSelector,
   useDispatch as useReduxDispatch,
@@ -8,6 +9,7 @@ import {
 export const reduxStore = configureStore({
   reducer: {
     movie: movieReducer,
+    tv: tvReducer,
   },
 })
 

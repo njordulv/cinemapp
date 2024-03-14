@@ -68,12 +68,14 @@ interface SingleMovieData {
   imdb_id: string
   original_language: string
   original_title: string
+  original_name: string
   overview: string
   popularity: number
   poster_path: string
   production_companies: ProductionCompany[]
   production_countries: ProductionCountry[]
   release_date: string
+  first_air_date: string
   revenue: number
   runtime: number
   spoken_languages: SpokenLanguage[]
