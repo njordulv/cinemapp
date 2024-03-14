@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
-import { useLocale } from 'next-intl'
 import { useDispatch } from '@/redux/store'
 import { setMovie } from '@/redux/slices/movieSlice'
 import { formatReleaseDate } from '@/src/app/utils/formatDate'
@@ -19,7 +18,6 @@ export default function MovieCard({
 }: MovieData) {
   const dispatch = useDispatch()
   const router = useRouter()
-  const locale = useLocale()
   const formattedReleaseDate = formatReleaseDate(release_date)
   const [error, setError] = useState<string | null>(null)
   const [movieDetails, setMovieDetails] = useState(null)
@@ -40,7 +38,7 @@ export default function MovieCard({
 
   const pageHandler = () => {
     dispatch(setMovie(movieDetails))
-    router.push(`${locale}/movie/${id}`)
+    router.push(`/movie/${id}`)
   }
 
   if (error) {

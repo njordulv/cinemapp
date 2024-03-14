@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
-import { useLocale } from 'next-intl'
 import { useDispatch } from '@/redux/store'
 import { setTV } from '@/redux/slices/tvSlice'
 import { formatReleaseDate } from '@/src/app/utils/formatDate'
@@ -19,7 +18,6 @@ export default function TVCard({
 }: TVData) {
   const dispatch = useDispatch()
   const router = useRouter()
-  const locale = useLocale()
   const formattedReleaseDate = formatReleaseDate(first_air_date)
   const [error, setError] = useState<string | null>(null)
   const [tvDetails, setTVDetails] = useState(null)
@@ -40,7 +38,7 @@ export default function TVCard({
 
   const pageHandler = () => {
     dispatch(setTV(tvDetails))
-    router.push(`/${locale}/tv/${id}`)
+    router.push(`/tv/${id}`)
   }
 
   if (error) {

@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { useLocale } from 'next-intl'
 import { useState } from 'react'
 import {
   Navbar,
@@ -22,7 +21,6 @@ import Logo from '@/components/Common/Logo'
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const locale = useLocale()
   const icons = {
     chevron: <IoIosArrowDown fill="currentColor" size={16} />,
   }
@@ -67,7 +65,7 @@ export default function Navigation() {
               key="autoscaling"
               className="text-soft data-[hover=true]:bg-transparent data-[hover=true]:text-white"
             >
-              <Link href={`/${locale}/`}>Popular</Link>
+              <Link href="/">Popular</Link>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -95,7 +93,7 @@ export default function Navigation() {
               key="Popular TV Shows"
               className="text-soft data-[hover=true]:bg-transparent data-[hover=true]:text-white"
             >
-              <Link href={`/${locale}/tv/`}>Popular</Link>
+              <Link href={`/tv`}>Popular</Link>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -109,12 +107,12 @@ export default function Navigation() {
 
       <NavbarMenu>
         <NavbarMenuItem key="Popular Movies">
-          <Link href={`/${locale}/`} aria-current="page">
+          <Link href="/" aria-current="page">
             Popular Movies
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem key="Popular TV Shows">
-          <Link href={`/${locale}/tv/`} aria-current="page">
+          <Link href="/tv" aria-current="page">
             Popular TV Shows
           </Link>
         </NavbarMenuItem>

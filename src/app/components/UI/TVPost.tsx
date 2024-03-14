@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { Image, Chip } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
-import { useLocale } from 'next-intl'
 import { TbWorldWww } from 'react-icons/tb'
 import { LiaImdb } from 'react-icons/lia'
 import { useSelector } from '@/redux/store'
@@ -18,7 +17,6 @@ import styles from '@/styles/singleMovie.module.scss'
 const TVPost = () => {
   const tv = useSelector(selectTV)
   const router = useRouter()
-  const locale = useLocale()
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
   const NO_IMAGE = '/no-image.svg'
 
@@ -151,7 +149,7 @@ const TVPost = () => {
           <div className="absolute right-[10px] bottom-0">
             <CustomButton
               color="primary"
-              onClick={() => router.push(`/${locale}/tv/${tv.id}/crew`)}
+              onClick={() => router.push(`/tv/${tv.id}/crew`)}
             >
               Crew
             </CustomButton>
