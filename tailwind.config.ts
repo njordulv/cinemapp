@@ -27,6 +27,7 @@ const config: Config = {
         blueDark: 'var(--blue-dark)',
         dark: 'var(--dark)',
         darker: 'var(--darker)',
+        soft: 'var(--soft)',
       },
     },
   },

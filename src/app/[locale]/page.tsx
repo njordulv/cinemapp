@@ -12,7 +12,7 @@ export default function Home({ params: { locale } }: Props) {
   const t = useTranslations('Home')
 
   return (
-    <main className="flex flex-col items-center place-content-center min-h-96 py-12">
+    <main className="flex flex-col items-center place-content-center min-h-96">
       <Movies />
     </main>
   )

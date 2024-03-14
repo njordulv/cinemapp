@@ -6,9 +6,10 @@ import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import NextIntlProvider from '@/providers/NextIntlProvider'
 import UIProvider from '@/providers/UIProvider'
 import StoreProvider from '@/providers/StoreProvider'
+import Header from '@/components/Common/Header'
 
 const slabo = Roboto_Condensed({
-  weight: ['300', '400', '700'],
+  weight: ['100', '300', '400', '700'],
   subsets: ['latin'],
   display: 'swap',
 })
@@ -57,6 +58,7 @@ export default async function LocaleLayout({
               timeZone="Europe/Berlin"
               now={new Date()}
             >
+              <Header />
               {children}
             </NextIntlProvider>
           </StoreProvider>
