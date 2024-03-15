@@ -97,8 +97,8 @@ export default function Navigation() {
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
-        <NavbarItem isActive>
-          <Link href="/person" aria-current="page">
+        <NavbarItem>
+          <Link href="/person" className="hover:text-soft text-small">
             People
           </Link>
         </NavbarItem>
@@ -107,19 +107,13 @@ export default function Navigation() {
 
       <NavbarMenu>
         <NavbarMenuItem key="Popular Movies">
-          <Link href="/" aria-current="page">
-            Popular Movies
-          </Link>
+          <Link href="/">Popular Movies</Link>
         </NavbarMenuItem>
         <NavbarMenuItem key="Popular TV Shows">
-          <Link href="/tv" aria-current="page">
-            Popular TV Shows
-          </Link>
+          <Link href="/tv">Popular TV Shows</Link>
         </NavbarMenuItem>
         <NavbarMenuItem key="People">
-          <Link href="/person" aria-current="page">
-            People
-          </Link>
+          <Link href="/person">People</Link>
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>

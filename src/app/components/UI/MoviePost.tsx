@@ -144,9 +144,9 @@ const MoviePost = () => {
           </div>
         </div>
       </div>
-      <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto py-10">
+      <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
         <div className="relative">
-          <h3>Cast:</h3>
+          <h3 className="flex self-start font-medium mb-6 text-4xl">Cast:</h3>
           <Cast />
           <div className="absolute right-[10px] bottom-0">
             <CustomButton

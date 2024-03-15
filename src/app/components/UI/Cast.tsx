@@ -94,7 +94,7 @@ const Cast = () => {
                   shadow="sm"
                   radius="md"
                   width="100%"
-                  className="w-full object-cover h-[140px] rounded-b-none"
+                  className="w-full object-cover rounded-b-none"
                   src={
                     actor.profile_path
                       ? `${BASE_IMAGE_URL}w300/${actor.profile_path}`

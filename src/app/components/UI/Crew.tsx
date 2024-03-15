@@ -18,7 +18,7 @@ const Crew = () => {
   const NO_IMAGE = '/no-image.svg'
 
   return (
-    <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-8 lg:text-left gap-4 m-auto">
+    <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-7 lg:text-left gap-4 m-auto">
       {movie &&
         movie.crew &&
         movie.crew.map((member: CrewItem, index: number) => (
@@ -28,7 +28,7 @@ const Crew = () => {
                 shadow="sm"
                 radius="md"
                 width="100%"
-                className="w-full object-cover h-[140px] rounded-b-none"
+                className="w-full object-cover rounded-b-none"
                 src={
                   member.profile_path
                     ? `${BASE_IMAGE_URL}w300/${member.profile_path}`

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import PersonCard from '@/components/UI/PersonCard'
 import PersonData from '@/types/PersonData'
-import MovieSkeleton from '@/components/UI/MovieSkeleton'
+import PersonSkeleton from '@/components/UI/PersonSkeleton'
 import MoviePagination from '@/components/UI/MoviePagination'
 
 const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
@@ -35,7 +35,7 @@ export default function Persons() {
         {loading ? (
           <>
             {[...Array(20)].map((_, index) => (
-              <MovieSkeleton key={index} />
+              <PersonSkeleton key={index} />
             ))}
           </>
         ) : (

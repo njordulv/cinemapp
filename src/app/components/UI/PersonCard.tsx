@@ -42,34 +42,6 @@ export default function PersonCard({
   }
 
   return (
-    // <Card
-    //   isFooterBlurred
-    //   isPressable
-    //   radius="lg"
-    //   className="border-none bg-content-none bg-blueDark"
-    //   onPress={pageHandler}
-    // >
-    //   <Image
-    //     className="object-cover"
-    //     src={profile_path}
-    //     width={220}
-    //     height={330}
-    //     fallbackSrc={NO_IMAGE}
-    //     alt={name}
-    //   />
-    //   <CardFooter className="p-3 py-1 h-auto flex flex-col items-start text-left color-inherit subpixel-antialiased bg-background/10 backdrop-blur-[2px] backdrop-saturate-100 backdrop-contrast-125 before:bg-white/10 border-white/20 border-1 overflow-hidden absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-    //     <div className="text-white/80 text-[14px] leading-[18px] text-shadow-sm pr-8">
-    //       {name}
-    //     </div>
-    //     <div className="text-tiny text-white/80 text-shadow-sm">
-    //       {known_for_department}
-    //     </div>
-    //     <div className="text-tiny text-white/80 text-shadow-sm">
-    //       Popularity: {popularity.toFixed(2)}
-    //     </div>
-    //   </CardFooter>
-    // </Card>
-
     <Card
       shadow="md"
       className=" bg-cyan-100"
