@@ -3,6 +3,7 @@ import { Card, CardBody, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { useDispatch } from '@/redux/store'
 import { setPerson } from '@/redux/slices/personSlice'
+import KnownFor from '@/components/UI/KnownFor'
 import PersonData from '@/types/PersonData'
 const NO_IMAGE = '/no-image.svg'
 
@@ -10,8 +11,7 @@ export default function PersonCard({
   id,
   name,
   profile_path,
-  known_for_department,
-  popularity,
+  known_for,
 }: PersonData) {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -59,12 +59,9 @@ export default function PersonCard({
           alt={name || 'Unknown'}
         />
       </CardBody>
-      <CardFooter className="flex flex-col text-small items-start p-2">
+      <CardFooter className="flex flex-col text-small items-start gap-2 p-2">
         <b className="text-[15px]">{name}</b>
-        <p className="text-default-500 text-[14px]">{known_for_department}</p>
-        <p className="text-default-500 text-[14px]">
-          Popularity: {popularity.toFixed(2)}
-        </p>
+        {known_for && <KnownFor items={known_for} />}
       </CardFooter>
     </Card>
   )

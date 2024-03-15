@@ -98,7 +98,10 @@ export default function Navigation() {
           </DropdownMenu>
         </Dropdown>
         <NavbarItem>
-          <Link href="/person" className="hover:text-soft text-small">
+          <Link
+            href="/person"
+            className="hover:text-soft text-small font-normal"
+          >
             People
           </Link>
         </NavbarItem>

@@ -6,7 +6,7 @@ import Navigation from './components/Common/Navigation'
 import './globals.css'
 
 const slabo = Roboto_Condensed({
-  weight: ['100', '300', '400', '700'],
+  weight: ['100', '300', '400', '600'],
   subsets: ['latin'],
   display: 'swap',
 })
