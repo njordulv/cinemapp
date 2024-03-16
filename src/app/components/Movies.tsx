@@ -55,6 +55,7 @@ export default function Movies() {
       <MoviePagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
+        total={500}
       />
     </>
   )

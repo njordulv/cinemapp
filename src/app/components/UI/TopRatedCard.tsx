@@ -2,28 +2,28 @@ import { useState, useEffect } from 'react'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { useDispatch } from '@/redux/store'
-import { setTV } from '@/redux/slices/tvSlice'
+import { setTopRated } from '@/redux/slices/topRatedSlice'
 import { formatReleaseDate } from '@/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
-import TVData from '@/types/TVData'
+import TopRatedData from '@/types/TopRatedData'
 const NO_IMAGE = '/no-image.svg'
 
-export default function TVCard({
+export default function TopRatedCard({
   id,
-  name,
+  title,
   image,
-  first_air_date,
+  release_date,
   vote_average,
-}: TVData) {
+}: TopRatedData) {
   const dispatch = useDispatch()
   const router = useRouter()
-  const formattedReleaseDate = formatReleaseDate(first_air_date)
+  const formattedReleaseDate = formatReleaseDate(release_date)
   const [error, setError] = useState<string | null>(null)
-  const [tvDetails, setTVDetails] = useState(null)
+  const [topRatedDetails, setTopRatedDetails] = useState(null)
 
   useEffect(() => {
-    fetch(`/api/tv/${id}`)
+    fetch(`/api/top_rated/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')
@@ -31,18 +31,18 @@ export default function TVCard({
         return response.json()
       })
       .then((data) => {
-        setTVDetails(data)
+        setTopRatedDetails(data)
       })
       .catch((error) => setError(error.message))
   }, [id, dispatch])
 
   const pageHandler = () => {
-    dispatch(setTV(tvDetails))
-    router.push(`/tv/${id}`)
+    dispatch(setTopRated(topRatedDetails))
+    router.push(`/movie/${id}`)
   }
 
   if (error) {
-    return <h1>There is an error - {error}</h1>
+    return <div>There is an error - {error}</div>
   }
 
   return (
@@ -59,11 +59,11 @@ export default function TVCard({
         width={220}
         height={330}
         fallbackSrc={NO_IMAGE}
-        alt={name}
+        alt={title}
       />
       <CardFooter className="p-3 py-1 h-auto flex flex-col items-start text-left color-inherit subpixel-antialiased bg-background/10 backdrop-blur-[2px] backdrop-saturate-100 backdrop-contrast-125 before:bg-white/10 border-white/20 border-1 overflow-hidden absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-        <div className="text-white/80 text-[14px] leading-[18px] text-shadow-sm pr-8">
-          {name}
+        <div className="text-white text-[14px] leading-[18px] text-shadow-sm pr-8">
+          {title}
         </div>
         <div className="text-tiny text-white/80 text-shadow-sm">
           {formattedReleaseDate}

@@ -23,7 +23,7 @@ const Crew = () => {
         movie.crew &&
         movie.crew.map((member: CrewItem, index: number) => (
           <Card shadow="md" key={index} className=" bg-cyan-100">
-            <CardBody className="overflow-visible p-0">
+            <CardBody className="overflow-visible p-0 flex-none">
               <Image
                 shadow="sm"
                 radius="md"

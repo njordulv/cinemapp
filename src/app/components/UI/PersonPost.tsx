@@ -87,7 +87,6 @@ const PersonPost = () => {
                 <div>{popularity.toFixed(0)}</div>
               </div>
             )}
-
             {homepage && (
               <div className="flex gap-1 items-center">
                 <b>Wesite:</b>

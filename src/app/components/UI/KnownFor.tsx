@@ -6,7 +6,7 @@ interface KnownForProps {
 }
 
 const KnownFor: React.FC<KnownForProps> = ({ items }) => (
-  <div className="flex items-start gap-1 flex-wrap">
+  <div className="flex items-start gap-2 flex-wrap">
     {items.map((item, index) => (
       <Chip size="sm" key={index}>
         {item?.name}

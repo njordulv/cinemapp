@@ -48,7 +48,7 @@ export default function PersonCard({
       isPressable
       onPress={pageHandler}
     >
-      <CardBody className="overflow-visible p-0">
+      <CardBody className="overflow-visible p-0 flex-none">
         <Image
           shadow="sm"
           radius="md"

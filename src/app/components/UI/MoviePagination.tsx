@@ -3,21 +3,21 @@ import { CustomButton } from '@/components/UI/CustomButton'
 
 interface PaginationProps {
   currentPage: number
+  total: number
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
 
 export default function MoviePagination({
   currentPage,
   setCurrentPage,
+  total,
 }: PaginationProps) {
-  const totalPages = 500
-
   const prevPage = () => {
     setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))
   }
 
   const nextPage = () => {
-    setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev))
+    setCurrentPage((prev) => (prev < total ? prev + 1 : prev))
   }
 
   return (
@@ -27,7 +27,7 @@ export default function MoviePagination({
       </CustomButton>
       <Pagination
         showShadow
-        total={totalPages}
+        total={total}
         page={currentPage}
         onChange={(page) => setCurrentPage(page)}
         classNames={{

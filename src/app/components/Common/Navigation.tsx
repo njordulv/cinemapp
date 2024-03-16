@@ -62,10 +62,16 @@ export default function Navigation() {
             }}
           >
             <DropdownItem
-              key="autoscaling"
+              key="popular movies"
               className="text-soft data-[hover=true]:bg-transparent data-[hover=true]:text-white"
             >
               <Link href="/">Popular</Link>
+            </DropdownItem>
+            <DropdownItem
+              key="top rated movies"
+              className="text-soft data-[hover=true]:bg-transparent data-[hover=true]:text-white"
+            >
+              <Link href="/top_rated">Top Rated</Link>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
