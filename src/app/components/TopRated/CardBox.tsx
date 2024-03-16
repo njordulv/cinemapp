@@ -2,28 +2,28 @@ import { useState, useEffect } from 'react'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { useDispatch } from '@/redux/store'
-import { setMovie } from '@/redux/slices/movieSlice'
+import { setTopRated } from '@/redux/slices/topRatedSlice'
 import { formatReleaseDate } from '@/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
-import MovieData from '@/types/movieData'
+import TopRatedData from '@/types/TopRatedData'
 const NO_IMAGE = '/no-image.svg'
 
-export default function MovieCard({
+export default function CardBox({
   id,
   title,
   image,
   release_date,
   vote_average,
-}: MovieData) {
+}: TopRatedData) {
   const dispatch = useDispatch()
   const router = useRouter()
   const formattedReleaseDate = formatReleaseDate(release_date)
   const [error, setError] = useState<string | null>(null)
-  const [movieDetails, setMovieDetails] = useState(null)
+  const [topRatedDetails, setTopRatedDetails] = useState(null)
 
   useEffect(() => {
-    fetch(`/api/movie/${id}`)
+    fetch(`/api/top_rated/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')
@@ -31,18 +31,18 @@ export default function MovieCard({
         return response.json()
       })
       .then((data) => {
-        setMovieDetails(data)
+        setTopRatedDetails(data)
       })
       .catch((error) => setError(error.message))
   }, [id, dispatch])
 
   const pageHandler = () => {
-    dispatch(setMovie(movieDetails))
+    dispatch(setTopRated(topRatedDetails))
     router.push(`/movie/${id}`)
   }
 
   if (error) {
-    return <h1>There is an error - {error}</h1>
+    return <div>There is an error - {error}</div>
   }
 
   return (

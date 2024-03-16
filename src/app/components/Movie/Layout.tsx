@@ -1,29 +1,29 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import TopRatedCard from '@/components/UI/TopRatedCard'
-import TopRatedData from '@/types/TopRatedData'
-import MovieSkeleton from '@/components/UI/MovieSkeleton'
-import MoviePagination from '@/components/UI/MoviePagination'
+import MovieData from '@/types/movieData'
+import SkeletonBox from '@/components/UI/SkeletonBox'
+import CardBox from '@/components/Movie/CardBox'
+import Paginate from '@/components/UI/Paginate'
 
 const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
 const NO_IMAGE = '/no-image.svg'
 
-export default function TopRated() {
-  const [topRated, setTopRated] = useState<TopRatedData[]>([])
+export default function Layout() {
+  const [movies, setMovies] = useState<MovieData[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
-    fetch(`/api/top_rated?page=${currentPage}`)
+    fetch(`/api/popular?page=${currentPage}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')
         }
         return response.json()
       })
-      .then((data) => setTopRated(data.results))
+      .then((data) => setMovies(data.results))
       .catch((error) => setError(error.message))
       .finally(() => setLoading(false))
   }, [currentPage])
@@ -35,27 +35,27 @@ export default function TopRated() {
         {loading ? (
           <>
             {[...Array(20)].map((_, index) => (
-              <MovieSkeleton key={index} />
+              <SkeletonBox key={index} />
             ))}
           </>
         ) : (
-          topRated.map((topRated) => (
-            <TopRatedCard
-              {...topRated}
+          movies.map((movie) => (
+            <CardBox
+              {...movie}
               image={
-                topRated.poster_path
-                  ? `${BASE_IMAGE_URL}${topRated.poster_path}`
+                movie.poster_path
+                  ? `${BASE_IMAGE_URL}${movie.poster_path}`
                   : NO_IMAGE
               }
-              key={topRated.id}
+              key={movie.id}
             />
           ))
         )}
       </div>
-      <MoviePagination
+      <Paginate
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        total={462}
+        total={500}
       />
     </>
   )

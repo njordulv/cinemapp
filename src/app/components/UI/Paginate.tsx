@@ -1,17 +1,17 @@
 import { Pagination } from '@nextui-org/react'
 import { CustomButton } from '@/components/UI/CustomButton'
 
-interface PaginationProps {
+interface PaginateProps {
   currentPage: number
   total: number
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function MoviePagination({
+const Paginate: React.FC<PaginateProps> = ({
   currentPage,
   setCurrentPage,
   total,
-}: PaginationProps) {
+}) => {
   const prevPage = () => {
     setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))
   }
@@ -43,3 +43,5 @@ export default function MoviePagination({
     </div>
   )
 }
+
+export default Paginate

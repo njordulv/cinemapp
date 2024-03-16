@@ -7,7 +7,7 @@ import KnownFor from '@/components/UI/KnownFor'
 import PersonData from '@/types/PersonData'
 const NO_IMAGE = '/no-image.svg'
 
-export default function PersonCard({
+export default function CardBox({
   id,
   name,
   profile_path,

@@ -1,4 +1,4 @@
-import Persons from '@/components/Persons'
+import Layout from '@/components/Person/Layout'
 
 export default function Page() {
   return (
@@ -6,7 +6,7 @@ export default function Page() {
       <h1 className="flex self-start font-medium mb-6 text-4xl">
         Popular People
       </h1>
-      <Persons />
+      <Layout />
     </main>
   )
 }

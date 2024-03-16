@@ -1,4 +1,4 @@
-import TopRated from '@/components/TopRated'
+import Layout from '@/components/TopRated/Layout'
 
 export default function Page() {
   return (
@@ -6,7 +6,7 @@ export default function Page() {
       <h1 className="flex self-start font-medium mb-6 text-4xl">
         Top Rated Movies
       </h1>
-      <TopRated />
+      <Layout />
     </main>
   )
 }

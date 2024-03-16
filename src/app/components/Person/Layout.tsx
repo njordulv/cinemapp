@@ -1,29 +1,29 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import MovieCard from '@/components/UI/MovieCard'
-import MovieData from '@/types/movieData'
-import MovieSkeleton from '@/components/UI/MovieSkeleton'
-import MoviePagination from '@/components/UI/MoviePagination'
+import PersonData from '@/types/PersonData'
+import SkeletonBox from '@/components/Person/SkeletonBox'
+import CardBox from '@/components/Person/CardBox'
+import Paginate from '@/components/UI/Paginate'
 
 const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
 const NO_IMAGE = '/no-image.svg'
 
-export default function Movies() {
-  const [movies, setMovies] = useState<MovieData[]>([])
+export default function Layout() {
+  const [persons, setPersons] = useState<PersonData[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
-    fetch(`/api/popular?page=${currentPage}`)
+    fetch(`/api/person/popular?page=${currentPage}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')
         }
         return response.json()
       })
-      .then((data) => setMovies(data.results))
+      .then((data) => setPersons(data.results))
       .catch((error) => setError(error.message))
       .finally(() => setLoading(false))
   }, [currentPage])
@@ -35,24 +35,24 @@ export default function Movies() {
         {loading ? (
           <>
             {[...Array(20)].map((_, index) => (
-              <MovieSkeleton key={index} />
+              <SkeletonBox key={index} />
             ))}
           </>
         ) : (
-          movies.map((movie) => (
-            <MovieCard
-              {...movie}
-              image={
-                movie.poster_path
-                  ? `${BASE_IMAGE_URL}${movie.poster_path}`
+          persons.map((person) => (
+            <CardBox
+              {...person}
+              profile_path={
+                person.profile_path
+                  ? `${BASE_IMAGE_URL}${person.profile_path}`
                   : NO_IMAGE
               }
-              key={movie.id}
+              key={person.id}
             />
           ))
         )}
       </div>
-      <MoviePagination
+      <Paginate
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         total={500}

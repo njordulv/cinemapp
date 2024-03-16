@@ -14,7 +14,7 @@ import { CustomButton } from '@/components/UI/CustomButton'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import styles from '@/styles/singleMovie.module.scss'
 
-const TVPost = () => {
+const Post = () => {
   const tv = useSelector(selectTV)
   const router = useRouter()
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
@@ -188,4 +188,4 @@ const TVPost = () => {
   )
 }
 
-export default TVPost
+export default Post

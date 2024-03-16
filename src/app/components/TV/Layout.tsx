@@ -1,29 +1,29 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import PersonCard from '@/components/UI/PersonCard'
-import PersonData from '@/types/PersonData'
-import PersonSkeleton from '@/components/UI/PersonSkeleton'
-import MoviePagination from '@/components/UI/MoviePagination'
+import TVData from '@/types/TVData'
+import SkeletonBox from '@/components/UI/SkeletonBox'
+import CardBox from '@/components/TV/CardBox'
+import Paginate from '@/components/UI/Paginate'
 
 const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
 const NO_IMAGE = '/no-image.svg'
 
-export default function Persons() {
-  const [persons, setPersons] = useState<PersonData[]>([])
+export default function Layout() {
+  const [tvShow, setTVShows] = useState<TVData[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
-    fetch(`/api/person/popular?page=${currentPage}`)
+    fetch(`/api/tv?page=${currentPage}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')
         }
         return response.json()
       })
-      .then((data) => setPersons(data.results))
+      .then((data) => setTVShows(data.results))
       .catch((error) => setError(error.message))
       .finally(() => setLoading(false))
   }, [currentPage])
@@ -35,26 +35,25 @@ export default function Persons() {
         {loading ? (
           <>
             {[...Array(20)].map((_, index) => (
-              <PersonSkeleton key={index} />
+              <SkeletonBox key={index} />
             ))}
           </>
         ) : (
-          persons.map((person) => (
-            <PersonCard
-              {...person}
-              profile_path={
-                person.profile_path
-                  ? `${BASE_IMAGE_URL}${person.profile_path}`
-                  : NO_IMAGE
+          tvShow.map((tv) => (
+            <CardBox
+              {...tv}
+              image={
+                tv.poster_path ? `${BASE_IMAGE_URL}${tv.poster_path}` : NO_IMAGE
               }
-              key={person.id}
+              key={tv.id}
             />
           ))
         )}
       </div>
-      <MoviePagination
+      <Paginate
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
+        total={500}
       />
     </>
   )
