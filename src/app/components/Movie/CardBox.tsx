@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
-import { useDispatch } from '@/redux/store'
-import { setMovie } from '@/redux/slices/movieSlice'
 import { formatReleaseDate } from '@/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
@@ -16,7 +14,6 @@ export default function CardBox({
   release_date,
   vote_average,
 }: MovieData) {
-  const dispatch = useDispatch()
   const router = useRouter()
   const formattedReleaseDate = formatReleaseDate(release_date)
   const [error, setError] = useState<string | null>(null)
@@ -26,7 +23,6 @@ export default function CardBox({
     fetch(
       `/api/movies?endpoint=movie/${id}&combinedEndpoint=movie/${id}/credits`
     )
-    fetch(`/api/movie/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')
@@ -37,10 +33,9 @@ export default function CardBox({
         setMovieDetails(data)
       })
       .catch((error) => setError(error.message))
-  }, [id, dispatch])
+  }, [id])
 
   const pageHandler = () => {
-    dispatch(setMovie(movieDetails))
     router.push(`/movie/${id}`)
   }
 

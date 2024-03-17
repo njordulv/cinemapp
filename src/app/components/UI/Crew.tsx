@@ -1,8 +1,6 @@
 'use client'
 
 import { Card, Image, CardFooter, CardBody } from '@nextui-org/react'
-import { useSelector } from '@/redux/store'
-import { selectMovie } from '@/redux/slices/movieSlice'
 
 interface CrewItem {
   id?: number
@@ -13,7 +11,7 @@ interface CrewItem {
 }
 
 const Crew = () => {
-  const movie = useSelector(selectMovie)
+  // const movie = useSelector(selectMovie)
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
   const NO_IMAGE = '/no-image.svg'
 

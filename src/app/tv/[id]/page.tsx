@@ -1,28 +1,42 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { Image, Chip } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
-import { TbWorldWww } from 'react-icons/tb'
-import { LiaImdb } from 'react-icons/lia'
-import { useSelector } from '@/redux/store'
-import { selectTV } from '@/redux/slices/tvSlice'
+import SingleMovieData from '@/types/SingleMovieData'
+import Loading from '@/src/app/loading'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
-import Cast from '@/components/UI/Cast'
 import { CustomButton } from '@/components/UI/CustomButton'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
+import { TbWorldWww } from 'react-icons/tb'
+import { LiaImdb } from 'react-icons/lia'
 import styles from '@/styles/singleMovie.module.scss'
 
-const Post = () => {
-  const tv = useSelector(selectTV)
+export default function Post({ params }: { params: { id: string } }) {
   const router = useRouter()
+  const [movieData, setTVData] = useState<SingleMovieData | null>(null)
+  const [error, setError] = useState('')
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
   const NO_IMAGE = '/no-image.svg'
 
-  if (!tv) {
-    return <div>Loading or no tv selected...</div>
-  }
+  useEffect(() => {
+    const { id } = params
+
+    fetch(`/api/movies?endpoint=tv/${id}&combinedEndpoint=tv/${id}/credits`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch movie data')
+        }
+        return response.json()
+      })
+      .then((data) => {
+        setTVData(data)
+      })
+
+      .catch((error) => setError(error.message))
+  }, [params.id])
 
   type ListItem = {
     id?: number
@@ -37,13 +51,21 @@ const Post = () => {
       </Chip>
     ))
 
+  if (error) {
+    return <div>Error: {error}</div>
+  }
+
+  if (!movieData) {
+    return <Loading />
+  }
+
   return (
     <>
       <div className={styles.singleHero}>
         <div
           style={{
-            backgroundImage: tv.backdrop_path
-              ? `url(${BASE_IMAGE_URL}original/${tv.backdrop_path})`
+            backgroundImage: movieData.backdrop_path
+              ? `url(${BASE_IMAGE_URL}original/${movieData.backdrop_path})`
               : `url(${NO_IMAGE})`,
           }}
           className={styles.singleHero_back}
@@ -56,37 +78,37 @@ const Post = () => {
               shadow="md"
               className="object-cover"
               src={
-                tv.poster_path
-                  ? `${BASE_IMAGE_URL}w300/${tv.poster_path}`
+                movieData.poster_path
+                  ? `${BASE_IMAGE_URL}w300/${movieData.poster_path}`
                   : NO_IMAGE
               }
               width={300}
               height={450}
               fallbackSrc={NO_IMAGE}
-              alt={tv.original_name}
+              alt={movieData.title}
             />
             <div className="flex flex-col gap-4">
               <div>
                 <h1 className="flex mb-1 gap-2 text-shadow-sm">
-                  {tv.original_name}
+                  {movieData.original_name}
                   <span className="font-thin opacity-80">
-                    ({formatReleaseYear(tv.first_air_date)})
+                    ({formatReleaseYear(movieData.first_air_date)})
                   </span>
                 </h1>
                 <div className={styles.singleHero_info}>
                   <div className="uppercase">
-                    {formatReleaseDateAlt(tv.first_air_date)}
+                    {formatReleaseDateAlt(movieData.first_air_date)}
                   </div>
                   <div className={styles.singleHero_list}>
-                    {renderList(tv.genres)}
+                    {renderList(movieData.genres)}
                   </div>
                 </div>
               </div>
               <div className="flex gap-4">
                 <div className={styles.singleHero_average}>
-                  {tv.vote_average ? (
+                  {movieData.vote_average ? (
                     <VoteAverage
-                      vote={tv.vote_average}
+                      vote={movieData.vote_average}
                       card="w-[63px] h-[63px]"
                       size="w-14 h-14 drop-shadow-md"
                       strokeWidth={2}
@@ -103,33 +125,33 @@ const Post = () => {
                   <span className="text-shadow-sm">User Score</span>
                 </div>
               </div>
-              {tv.tagline && (
+              {movieData.tagline && (
                 <div className="italic font-thin text-[18px] text-shadow-sm opacity-80">
-                  {tv.tagline}
+                  {movieData.tagline}
                 </div>
               )}
-              {tv.overview && (
+              {movieData.overview && (
                 <div className="text-shadow-sm">
                   <h3 className="mb-1">Overview:</h3>
-                  <p>{tv.overview}</p>
+                  <p>{movieData.overview}</p>
                 </div>
               )}
-              {tv.homepage && (
+              {movieData.homepage && (
                 <div>
                   <Link
-                    href={tv.homepage}
+                    href={movieData.homepage}
                     target="
                     _blank"
                     className="inline-flex items-center gap-1 font-thin hover:text-cyan-500 text-shadow-sm"
                   >
-                    <TbWorldWww size={24} /> {tv.original_name}
+                    <TbWorldWww size={24} /> {movieData.original_name}
                   </Link>
                 </div>
               )}
-              {tv.imdb_id && (
+              {movieData.imdb_id && (
                 <div>
                   <Link
-                    href={`https://www.imdb.com/title/${tv.imdb_id}`}
+                    href={`https://www.imdb.com/title/${movieData.imdb_id}`}
                     target="
                     _blank"
                     className="inline-flex items-center gap-1 font-thin hover:text-cyan-500 text-shadow-sm"
@@ -144,48 +166,47 @@ const Post = () => {
       </div>
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
         <div className="relative">
-          <h3>Cast:</h3>
-          <Cast />
+          <h3 className="flex self-start font-medium mb-6 text-4xl">Cast:</h3>
+          {/* <Cast cast={cast} /> */}
+
           <div className="absolute right-[10px] bottom-0">
             <CustomButton
               color="primary"
-              onClick={() => router.push(`/tv/${tv.id}/crew`)}
+              onClick={() => router.push(`/tv/${movieData.id}/crew`)}
             >
               Crew
             </CustomButton>
           </div>
         </div>
-        <p>Rating: {tv.vote_average}</p>
-        <p>Vote Count: {tv.vote_count}</p>
-        <p>Adult: {tv.adult ? 'Yes' : 'No'}</p>
-        <p>Original Language: {tv.original_language}</p>
-        <p>Original Title: {tv.original_title}</p>
-        <p>Popularity: {tv.popularity}</p>
-        <p>Budget: {tv.budget}</p>
-        <p>Revenue: {tv.revenue}</p>
-        <p>Status: {tv.status}</p>
-        <p>Video: {tv.video ? 'Yes' : 'No'}</p>
+        <p>Rating: {movieData.vote_average}</p>
+        <p>Vote Count: {movieData.vote_count}</p>
+        <p>Adult: {movieData.adult ? 'Yes' : 'No'}</p>
+        <p>Original Language: {movieData.original_language}</p>
+        <p>Original Title: {movieData.original_title}</p>
+        <p>Popularity: {movieData.popularity}</p>
+        <p>Budget: {movieData.budget}</p>
+        <p>Revenue: {movieData.revenue}</p>
+        <p>Status: {movieData.status}</p>
+        <p>Video: {movieData.video ? 'Yes' : 'No'}</p>
         <div>
           Production Companies:
           <div className={styles.singleHero_list}>
-            {renderList(tv.production_companies)}
+            {renderList(movieData.production_companies)}
           </div>
         </div>
         <div>
           Production Countries:
           <div className={styles.singleHero_list}>
-            {renderList(tv.production_countries, 'name')}
+            {renderList(movieData.production_countries, 'name')}
           </div>
         </div>
         <div>
           Spoken Languages:
           <div className={styles.singleHero_list}>
-            {renderList(tv.spoken_languages, 'english_name')}
+            {renderList(movieData.spoken_languages, 'english_name')}
           </div>
         </div>
       </div>
     </>
   )
 }
-
-export default Post

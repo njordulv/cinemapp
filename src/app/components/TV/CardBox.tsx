@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
-import { useDispatch } from '@/redux/store'
-import { setTV } from '@/redux/slices/tvSlice'
 import { formatReleaseDate } from '@/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
@@ -16,14 +14,13 @@ export default function TVCard({
   first_air_date,
   vote_average,
 }: TVData) {
-  const dispatch = useDispatch()
   const router = useRouter()
   const formattedReleaseDate = formatReleaseDate(first_air_date)
   const [error, setError] = useState<string | null>(null)
   const [tvDetails, setTVDetails] = useState(null)
 
   useEffect(() => {
-    fetch(`api/movies?endpoint=tv/${id}&combinedEndpoints=tv/credits`)
+    fetch(`api/movies?endpoint=tv/${id}&combinedEndpoints=tv/${id}/credits`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')
@@ -34,10 +31,9 @@ export default function TVCard({
         setTVDetails(data)
       })
       .catch((error) => setError(error.message))
-  }, [id, dispatch])
+  }, [id])
 
   const pageHandler = () => {
-    dispatch(setTV(tvDetails))
     router.push(`/tv/${id}`)
   }
 

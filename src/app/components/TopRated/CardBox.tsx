@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
-import { useDispatch } from '@/redux/store'
-import { setTopRated } from '@/redux/slices/topRatedSlice'
 import { formatReleaseDate } from '@/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
@@ -16,7 +14,6 @@ export default function CardBox({
   release_date,
   vote_average,
 }: TopRatedData) {
-  const dispatch = useDispatch()
   const router = useRouter()
   const formattedReleaseDate = formatReleaseDate(release_date)
   const [error, setError] = useState<string | null>(null)
@@ -24,7 +21,7 @@ export default function CardBox({
 
   useEffect(() => {
     fetch(
-      `api/movies?endpoint=movie/top_rated/${id}&combinedEndpoints=top_rated/credits`
+      `api/movies?endpoint=movie/top_rated/${id}&combinedEndpoints=top_rated/${id}/credits`
     )
       .then((response) => {
         if (!response.ok) {
@@ -36,10 +33,9 @@ export default function CardBox({
         setTopRatedDetails(data)
       })
       .catch((error) => setError(error.message))
-  }, [id, dispatch])
+  }, [id])
 
   const pageHandler = () => {
-    dispatch(setTopRated(topRatedDetails))
     router.push(`/movie/${id}`)
   }
 

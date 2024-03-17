@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 import { Roboto_Condensed } from 'next/font/google'
 import UIProvider from '@/providers/UIProvider'
-import StoreProvider from '@/providers/StoreProvider'
 import Navigation from './components/Common/Navigation'
 import './globals.css'
 
@@ -20,10 +19,8 @@ export default async function Layout({ children }: Props) {
     <html lang="en">
       <body className={slabo.className}>
         <UIProvider>
-          <StoreProvider>
-            <Navigation />
-            {children}
-          </StoreProvider>
+          <Navigation />
+          {children}
         </UIProvider>
       </body>
     </html>

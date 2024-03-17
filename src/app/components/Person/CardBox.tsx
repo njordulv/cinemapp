@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Card, CardBody, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
-import { useDispatch } from '@/redux/store'
-import { setPerson } from '@/redux/slices/personSlice'
 import KnownFor from '@/components/UI/KnownFor'
 import PersonData from '@/types/PersonData'
 const NO_IMAGE = '/no-image.svg'
@@ -13,7 +11,6 @@ export default function CardBox({
   profile_path,
   known_for,
 }: PersonData) {
-  const dispatch = useDispatch()
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
   const [personDetails, setPersonDetails] = useState<PersonData | null>(null)
@@ -30,10 +27,9 @@ export default function CardBox({
         setPersonDetails(data)
       })
       .catch((error) => setError(error.message))
-  }, [id, dispatch])
+  }, [id])
 
   const pageHandler = () => {
-    dispatch(setPerson(personDetails))
     router.push(`/person/${id}`)
   }
 
