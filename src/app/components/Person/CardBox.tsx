@@ -19,7 +19,7 @@ export default function CardBox({
   const [personDetails, setPersonDetails] = useState<PersonData | null>(null)
 
   useEffect(() => {
-    fetch(`/api/person/${id}`)
+    fetch(`/api/movies?endpoint=person/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')

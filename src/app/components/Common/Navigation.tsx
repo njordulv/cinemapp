@@ -71,7 +71,7 @@ export default function Navigation() {
               key="top rated movies"
               className="text-soft data-[hover=true]:bg-transparent data-[hover=true]:text-white"
             >
-              <Link href="/top_rated">Top Rated</Link>
+              <Link href="/top-rated">Top Rated</Link>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>

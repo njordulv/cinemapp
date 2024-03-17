@@ -23,7 +23,7 @@ export default function TVCard({
   const [tvDetails, setTVDetails] = useState(null)
 
   useEffect(() => {
-    fetch(`/api/tv/${id}`)
+    fetch(`api/movies?endpoint=tv/${id}&combinedEndpoints=tv/credits`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')

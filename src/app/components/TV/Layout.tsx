@@ -16,7 +16,7 @@ export default function Layout() {
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
-    fetch(`/api/tv?page=${currentPage}`)
+    fetch(`/api/movies?endpoint=tv/popular&page=${currentPage}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')

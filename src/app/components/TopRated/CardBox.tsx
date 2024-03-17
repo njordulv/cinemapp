@@ -23,7 +23,9 @@ export default function CardBox({
   const [topRatedDetails, setTopRatedDetails] = useState(null)
 
   useEffect(() => {
-    fetch(`/api/top_rated/${id}`)
+    fetch(
+      `api/movies?endpoint=movie/top_rated/${id}&combinedEndpoints=top_rated/credits`
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch data')

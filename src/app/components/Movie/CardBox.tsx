@@ -23,6 +23,9 @@ export default function CardBox({
   const [movieDetails, setMovieDetails] = useState(null)
 
   useEffect(() => {
+    fetch(
+      `/api/movies?endpoint=movie/${id}&combinedEndpoint=movie/${id}/credits`
+    )
     fetch(`/api/movie/${id}`)
       .then((response) => {
         if (!response.ok) {
