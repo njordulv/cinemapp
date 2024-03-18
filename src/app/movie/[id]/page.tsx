@@ -11,10 +11,9 @@ import {
   CardBody,
   ScrollShadow,
 } from '@nextui-org/react'
-import { BiDollar } from 'react-icons/bi'
 import { TbWorldWww } from 'react-icons/tb'
 import { LiaImdb } from 'react-icons/lia'
-import { LuChevronsDown, LuChevronsUp } from 'react-icons/lu'
+import { BsCurrencyDollar } from 'react-icons/bs'
 import SingleMovieData from '@/types/SingleMovieData'
 import Loading from '@/src/app/loading'
 import VoteAverage from '@/components/UI/VoteAverage'
@@ -88,7 +87,7 @@ export default function Post({ params }: { params: { id: string } }) {
             className={`grid lg:grid-cols-[1fr_3fr] gap-10 items-center ${styles.singleHero_wrapper}`}
           >
             <Image
-              shadow="md"
+              shadow="lg"
               className="object-cover"
               src={
                 movieData.poster_path
@@ -142,7 +141,7 @@ export default function Post({ params }: { params: { id: string } }) {
                   <div className="flex flex-col">
                     <span className="text-shadow-sm font-normal">Budget:</span>
                     <span className="text-shadow-sm flex items-center">
-                      <BiDollar />
+                      <BsCurrencyDollar />
                       {formatBudget(movieData.budget)}
                     </span>
                   </div>
@@ -151,19 +150,8 @@ export default function Post({ params }: { params: { id: string } }) {
                   <div className="flex flex-col">
                     <span className="text-shadow-sm font-normal">Revenue:</span>
                     <div className="text-shadow-sm flex items-center">
-                      {movieData.revenue < movieData.budget ? (
-                        <>
-                          <LuChevronsDown className="text-pink" />
-                          <BiDollar />
-                          {formatBudget(movieData.revenue)}
-                        </>
-                      ) : (
-                        <>
-                          <LuChevronsUp className="text-emerald-600" />
-                          <BiDollar />
-                          {formatBudget(movieData.revenue)}
-                        </>
-                      )}
+                      <BsCurrencyDollar />
+                      {formatBudget(movieData.revenue)}
                     </div>
                   </div>
                 )}

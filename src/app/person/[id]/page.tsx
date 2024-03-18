@@ -81,7 +81,11 @@ export default function Post({ params }: { params: { id: string } }) {
                 <b>Birthday:</b>
                 <div>
                   {formatReleaseDate(birthday)} (
-                  {calculateAge({ birthdayType: birthday })} years old)
+                  {calculateAge({
+                    birthdayType: birthday,
+                    deathdayType: deathday,
+                  })}
+                  years old)
                 </div>
               </div>
             )}

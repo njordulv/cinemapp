@@ -23,6 +23,7 @@ const config: Config = {
       colors: {
         transp: 'var(--transparent)',
         background: 'var(--background)',
+        special: 'var(--special)',
         blue: 'var(--blue)',
         blueDark: 'var(--blue-dark)',
         pink: 'var(--pink)',

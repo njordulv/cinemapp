@@ -22,7 +22,7 @@ export default function VoteDisabled({ card, size, strokeWidth, text }: Props) {
         <CircularProgress
           classNames={{
             svg: size,
-            indicator: 'stroke-cyan-500',
+            indicator: 'stroke-cyan-600',
             track: 'stroke-white/50',
             value: `font-semibold text-white`,
           }}
