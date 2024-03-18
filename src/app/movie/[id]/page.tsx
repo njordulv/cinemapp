@@ -11,6 +11,10 @@ import {
   CardBody,
   ScrollShadow,
 } from '@nextui-org/react'
+import { BiDollar } from 'react-icons/bi'
+import { TbWorldWww } from 'react-icons/tb'
+import { LiaImdb } from 'react-icons/lia'
+import { LuChevronsDown, LuChevronsUp } from 'react-icons/lu'
 import SingleMovieData from '@/types/SingleMovieData'
 import Loading from '@/src/app/loading'
 import VoteAverage from '@/components/UI/VoteAverage'
@@ -19,8 +23,7 @@ import Cast from '@/components/UI/Cast'
 import Crew from '@/components/UI/Crew'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import { convertMinToHrs } from '@/utils/formatRuntime'
-import { TbWorldWww } from 'react-icons/tb'
-import { LiaImdb } from 'react-icons/lia'
+import formatBudget from '@/utils/formatBudget'
 import styles from '@/styles/singleMovie.module.scss'
 
 export default function Post({ params }: { params: { id: string } }) {
@@ -115,7 +118,7 @@ export default function Post({ params }: { params: { id: string } }) {
                   <div>{convertMinToHrs(movieData.runtime)}</div>
                 </div>
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-5 items-center">
                 <div className={styles.singleHero_average}>
                   {movieData.vote_average ? (
                     <VoteAverage
@@ -135,6 +138,35 @@ export default function Post({ params }: { params: { id: string } }) {
                   )}
                   <span className="text-shadow-sm">User Score</span>
                 </div>
+                {movieData.budget > 0 && (
+                  <div className="flex flex-col">
+                    <span className="text-shadow-sm font-normal">Budget:</span>
+                    <span className="text-shadow-sm flex items-center">
+                      <BiDollar />
+                      {formatBudget(movieData.budget)}
+                    </span>
+                  </div>
+                )}
+                {movieData.revenue > 0 && (
+                  <div className="flex flex-col">
+                    <span className="text-shadow-sm font-normal">Revenue:</span>
+                    <div className="text-shadow-sm flex items-center">
+                      {movieData.revenue < movieData.budget ? (
+                        <>
+                          <LuChevronsDown className="text-pink" />
+                          <BiDollar />
+                          {formatBudget(movieData.revenue)}
+                        </>
+                      ) : (
+                        <>
+                          <LuChevronsUp className="text-emerald-600" />
+                          <BiDollar />
+                          {formatBudget(movieData.revenue)}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
               {movieData.tagline && (
                 <div className="italic font-thin text-[18px] text-shadow-sm opacity-80">
@@ -183,6 +215,7 @@ export default function Post({ params }: { params: { id: string } }) {
               variant="bordered"
               aria-label="Options"
               classNames={{
+                panel: 'px-0',
                 tabList: 'border-soft border-1',
                 cursor: '',
                 tab: 'text-[17px] px-6 font-normal',
@@ -199,7 +232,7 @@ export default function Post({ params }: { params: { id: string } }) {
                 </Card>
               </Tab>
               <Tab key="crew" title="Crew">
-                <Card className="bg-blueDar">
+                <Card className="bg-blueDark">
                   <CardBody>
                     <ScrollShadow className="h-[500px]" isEnabled={false}>
                       <Crew crew={movieData.credits.crew} />
@@ -221,7 +254,6 @@ export default function Post({ params }: { params: { id: string } }) {
         <p>Original Language: {movieData.original_language}</p>
         <p>Original Title: {movieData.original_title}</p>
         <p>Popularity: {movieData.popularity}</p>
-        <p>Budget: {movieData.budget}</p>
         <p>Revenue: {movieData.revenue}</p>
         <p>Status: {movieData.status}</p>
         <p>Video: {movieData.video ? 'Yes' : 'No'}</p>

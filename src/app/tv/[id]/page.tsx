@@ -179,6 +179,7 @@ export default function Post({ params }: { params: { id: string } }) {
               variant="bordered"
               aria-label="Options"
               classNames={{
+                panel: 'px-0',
                 tabList: 'border-soft border-1',
                 cursor: '',
                 tab: 'text-[17px] px-6 font-normal',
@@ -195,7 +196,7 @@ export default function Post({ params }: { params: { id: string } }) {
                 </Card>
               </Tab>
               <Tab key="crew" title="Crew">
-                <Card className="bg-blueDar">
+                <Card className="bg-blueDark">
                   <CardBody>
                     <ScrollShadow className="h-[500px]" isEnabled={false}>
                       <Crew crew={movieData.credits.crew} />
