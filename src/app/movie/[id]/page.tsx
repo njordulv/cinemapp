@@ -2,14 +2,21 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { Image, Chip } from '@nextui-org/react'
-import { useRouter } from 'next/navigation'
+import {
+  Image,
+  Chip,
+  Tabs,
+  Tab,
+  Card,
+  CardBody,
+  ScrollShadow,
+} from '@nextui-org/react'
 import SingleMovieData from '@/types/SingleMovieData'
 import Loading from '@/src/app/loading'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import Cast from '@/components/UI/Cast'
-import { CustomButton } from '@/components/UI/CustomButton'
+import Crew from '@/components/UI/Crew'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import { convertMinToHrs } from '@/utils/formatRuntime'
 import { TbWorldWww } from 'react-icons/tb'
@@ -17,7 +24,6 @@ import { LiaImdb } from 'react-icons/lia'
 import styles from '@/styles/singleMovie.module.scss'
 
 export default function Post({ params }: { params: { id: string } }) {
-  const router = useRouter()
   const [movieData, setMovieData] = useState<SingleMovieData | null>(null)
   const [error, setError] = useState('')
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
@@ -171,14 +177,42 @@ export default function Post({ params }: { params: { id: string } }) {
       </div>
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
         <div className="relative">
-          {movieData.credits.cast && <Cast cast={movieData.credits.cast} />}
-          <div className="absolute right-[10px] bottom-0">
-            <CustomButton
-              color="primary"
-              onClick={() => router.push(`/movie/${movieData.id}/crew`)}
+          <div className="flex w-full flex-col">
+            <Tabs
+              key="bordered"
+              variant="bordered"
+              aria-label="Options"
+              classNames={{
+                tabList: 'border-soft border-1',
+                cursor: '',
+                tab: 'text-[17px] px-6 font-normal',
+                tabContent: 'text-soft',
+              }}
             >
-              Crew
-            </CustomButton>
+              <Tab key="cast" title="Cast">
+                <Card className="bg-blueDark">
+                  <CardBody>
+                    {movieData.credits.cast && (
+                      <Cast cast={movieData.credits.cast} />
+                    )}
+                  </CardBody>
+                </Card>
+              </Tab>
+              <Tab key="crew" title="Crew">
+                <Card className="bg-blueDar">
+                  <CardBody>
+                    <ScrollShadow className="h-[500px]" isEnabled={false}>
+                      <Crew crew={movieData.credits.crew} />
+                    </ScrollShadow>
+                  </CardBody>
+                </Card>
+              </Tab>
+              <Tab key="videos" title="Videos" isDisabled>
+                <Card className="bg-blueDark">
+                  <CardBody></CardBody>
+                </Card>
+              </Tab>
+            </Tabs>
           </div>
         </div>
         <p>Rating: {movieData.vote_average}</p>

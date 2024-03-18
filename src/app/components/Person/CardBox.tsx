@@ -38,12 +38,7 @@ export default function CardBox({
   }
 
   return (
-    <Card
-      shadow="md"
-      className=" bg-cyan-100"
-      isPressable
-      onPress={pageHandler}
-    >
+    <Card shadow="md" className="bg-white" isPressable onPress={pageHandler}>
       <CardBody className="overflow-visible p-0 flex-none">
         <Image
           shadow="sm"

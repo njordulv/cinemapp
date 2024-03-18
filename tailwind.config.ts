@@ -12,9 +12,8 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        mainBg:
+          'linear-gradient(0deg, rgba(27,60,89,1) 0%, rgba(84,108,140,1) 23%, rgba(66,91,140,1) 41%, rgba(166,86,123,1) 66%, rgba(191,90,117,1) 85%);',
       },
       textShadow: {
         sm: '1px 1px 0 rgba(0,0,0,.65)',
@@ -22,11 +21,14 @@ const config: Config = {
         lg: '0 8px 16px 1px rgba(0,0,0,.8)',
       },
       colors: {
+        transp: 'var(--transparent)',
         background: 'var(--background)',
         blue: 'var(--blue)',
         blueDark: 'var(--blue-dark)',
+        pink: 'var(--pink)',
         dark: 'var(--dark)',
         darker: 'var(--darker)',
+        green: 'var(--green)',
         soft: 'var(--soft)',
       },
     },

@@ -41,7 +41,7 @@ export default function Navigation() {
         <Logo />
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <Dropdown className="bg-darker rounded-md">
+        <Dropdown className="bg-black rounded-md">
           <NavbarItem>
             <DropdownTrigger>
               <Button
@@ -75,7 +75,7 @@ export default function Navigation() {
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
-        <Dropdown className="bg-darker rounded-md">
+        <Dropdown className="bg-black rounded-md">
           <NavbarItem>
             <DropdownTrigger>
               <Button

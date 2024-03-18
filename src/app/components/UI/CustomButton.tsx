@@ -5,11 +5,11 @@ import { extendVariants, Button } from '@nextui-org/react'
 export const CustomButton = extendVariants(Button, {
   variants: {
     color: {
-      primary: 'bg-[#5ba69e] text-[#012623]',
-      white: 'bg-[#5ba69e] text-[#fff]',
+      primary: 'bg-[var(--blue)] text-[#fff]',
+      white: 'bg-[var(--pink)] text-[#fff]',
     },
     isDisabled: {
-      true: 'bg-[#5ba69e] text-[#fff] opacity-50 cursor-not-allowed',
+      true: 'bg-[var(--blue)] text-[#fff] opacity-50 cursor-not-allowed',
     },
     size: {
       xs: 'px-unit-2 min-w-unit-12 h-unit-6 text-tiny gap-unit-1 rounded-small',
@@ -25,7 +25,7 @@ export const CustomButton = extendVariants(Button, {
     {
       isDisabled: true,
       color: 'primary',
-      class: 'bg-[#5ba69e]/70 opacity-50 text-[#fff]',
+      class: 'bg-[var(--blue)]/70 opacity-50 text-[#fff]',
     },
   ],
 })

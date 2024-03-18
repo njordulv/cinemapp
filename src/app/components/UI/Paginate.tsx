@@ -33,7 +33,7 @@ const Paginate: React.FC<PaginateProps> = ({
         classNames={{
           base: 'px-0',
           wrapper: 'gap-1 overflow-visible h-8 rounded border border-divider',
-          item: 'w-9 h-9 text-small bg-blueDark rounded-lg text-dark',
+          item: 'w-9 h-9 text-small bg-blueDark rounded-lg text-white data-[hover]:text-black hover:bg-green',
           cursor: 'bg-blue text-white font-bold shadow-none rounded-lg',
         }}
       />

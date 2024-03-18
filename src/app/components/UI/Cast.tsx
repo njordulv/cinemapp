@@ -34,7 +34,7 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
       <CustomButton
         color="primary"
         size="md"
-        className="absolute bottom-0 left-[10px] z-10 text-2xl text-dark"
+        className="absolute bottom-0 left-[10px] z-10 text-2xl text-white"
         onClick={onClick}
       >
         <GoChevronLeft />
@@ -48,7 +48,7 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
       <CustomButton
         color="primary"
         size="md"
-        className="absolute bottom-0 left-[86px] text-2xl text-dark"
+        className="absolute bottom-0 left-[86px] text-2xl text-white"
         onClick={onClick}
       >
         <GoChevronRight />
@@ -59,7 +59,7 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
   const settings = {
     centerMode: false,
     infinite: false,
-    slidesToShow: 7,
+    slidesToShow: 6,
     slidesToScroll: 2,
     speed: 700,
     autoplay: false,
@@ -83,45 +83,42 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
   }
 
   return (
-    <>
-      <h3 className="flex self-start font-medium mb-6 text-4xl">Cast:</h3>
-      <Slider {...settings}>
-        {cast.map((actor: CastList, index: number) => (
-          <div className="slide-item" key={actor.id || index}>
-            <div className="slide-inner">
-              <Card
-                isPressable
-                shadow="md"
-                key={index}
-                className=" bg-cyan-100"
-                onPress={() => router.push(`/person/${actor.id}`)}
-              >
-                <CardBody className="overflow-visible p-0">
-                  <Image
-                    shadow="sm"
-                    radius="md"
-                    width="100%"
-                    className="w-full object-cover rounded-b-none"
-                    src={
-                      actor.profile_path
-                        ? `${BASE_IMAGE_URL}w300/${actor.profile_path}`
-                        : NO_IMAGE
-                    }
-                    alt={actor.name || 'Unknown'}
-                  />
-                </CardBody>
-                <CardFooter className="flex flex-col text-small items-start p-2">
-                  <b className="text-[15px]">{actor.name}</b>
-                  <p className="text-default-500 text-[14px]">
-                    {actor.character}
-                  </p>
-                </CardFooter>
-              </Card>
-            </div>
+    <Slider {...settings}>
+      {cast.map((actor: CastList, index: number) => (
+        <div className="slide-item" key={actor.id || index}>
+          <div className="slide-inner">
+            <Card
+              isPressable
+              shadow="md"
+              key={index}
+              className="bg-soft"
+              onPress={() => router.push(`/person/${actor.id}`)}
+            >
+              <CardBody className="overflow-visible p-0">
+                <Image
+                  shadow="sm"
+                  radius="md"
+                  width="100%"
+                  className="w-full object-cover rounded-b-none"
+                  src={
+                    actor.profile_path
+                      ? `${BASE_IMAGE_URL}w300/${actor.profile_path}`
+                      : NO_IMAGE
+                  }
+                  alt={actor.name || 'Unknown'}
+                />
+              </CardBody>
+              <CardFooter className="flex flex-col text-small items-start p-2">
+                <b className="text-[15px] text-left">{actor.name}</b>
+                <p className="text-[14px] text-left leading-[18px]">
+                  {actor.character}
+                </p>
+              </CardFooter>
+            </Card>
           </div>
-        ))}
-      </Slider>
-    </>
+        </div>
+      ))}
+    </Slider>
   )
 }
 
