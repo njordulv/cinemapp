@@ -57,6 +57,11 @@ interface Crew {
   job: string
 }
 
+interface Credits {
+  cast: Cast[]
+  crew: Crew[]
+}
+
 interface SingleMovieData {
   adult: boolean
   backdrop_path: string
@@ -85,6 +90,7 @@ interface SingleMovieData {
   video: boolean
   vote_average: number
   vote_count: number
+  credits: Credits
   cast: Cast[]
   crew: Crew[]
 }

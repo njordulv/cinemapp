@@ -17,7 +17,7 @@ type Props = {
 export default async function Layout({ children }: Props) {
   return (
     <html lang="en">
-      <body className={slabo.className}>
+      <body className={`${slabo.className}`}>
         <UIProvider>
           <Navigation />
           {children}

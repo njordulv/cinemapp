@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react'
 import { Image, Link } from '@nextui-org/react'
 import { LiaImdb } from 'react-icons/lia'
-import Loading from '@/src/app/loading'
 import { formatReleaseDate } from '@/utils/formatDate'
-import calculateAge from '@/utils/calculateAge'
 import PersonData from '@/types/PersonData'
+import calculateAge from '@/utils/calculateAge'
+import Loading from '@/src/app/loading'
 
 export default function Post({ params }: { params: { id: string } }) {
   const [personData, setPersonData] = useState<PersonData | null>(null)

@@ -8,6 +8,7 @@ import SingleMovieData from '@/types/SingleMovieData'
 import Loading from '@/src/app/loading'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
+import Cast from '@/components/UI/Cast'
 import { CustomButton } from '@/components/UI/CustomButton'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import { convertMinToHrs } from '@/utils/formatRuntime'
@@ -26,7 +27,7 @@ export default function Post({ params }: { params: { id: string } }) {
     const { id } = params
 
     fetch(
-      `/api/movies?endpoint=movie/${id}&combinedEndpoint=movie/${id}/credits`
+      `/api/movies?endpoint=movie/${id}&combinedEndpoints=movie/${id}/credits`
     )
       .then((response) => {
         if (!response.ok) {
@@ -170,9 +171,7 @@ export default function Post({ params }: { params: { id: string } }) {
       </div>
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
         <div className="relative">
-          <h3 className="flex self-start font-medium mb-6 text-4xl">Cast:</h3>
-          {/* <Cast cast={cast} /> */}
-
+          {movieData.credits.cast && <Cast cast={movieData.credits.cast} />}
           <div className="absolute right-[10px] bottom-0">
             <CustomButton
               color="primary"

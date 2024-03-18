@@ -3,31 +3,28 @@
 import Slider from 'react-slick'
 import { Card, Image, CardBody, CardFooter } from '@nextui-org/react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
-import { useSelector } from '@/redux/store'
-import { selectMovie } from '@/redux/slices/movieSlice'
 import { CustomButton } from '@/components/UI/CustomButton'
 import '@/styles/slick.scss'
 import '@/styles/slick-theme.scss'
 
-interface CastItem {
+interface CastList {
   id?: number
   name?: string
   character?: string
   profile_path?: string
 }
 
+interface CastProps {
+  cast: CastList[]
+}
+
 interface ArrowProps {
   onClick: () => void
 }
 
-const Cast = () => {
-  const movie = useSelector(selectMovie)
+const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
   const NO_IMAGE = '/no-image.svg'
-
-  if (!movie) {
-    return <div>No movie selected</div>
-  }
 
   function PrevArrow(props: ArrowProps) {
     const { onClick } = props
@@ -84,36 +81,39 @@ const Cast = () => {
   }
 
   return (
-    <Slider {...settings}>
-      {movie.cast.map((actor: CastItem, index: number) => (
-        <div className="slide-item" key={actor.id || index}>
-          <div className="slide-inner">
-            <Card shadow="md" key={index} className=" bg-cyan-100">
-              <CardBody className="overflow-visible p-0">
-                <Image
-                  shadow="sm"
-                  radius="md"
-                  width="100%"
-                  className="w-full object-cover rounded-b-none"
-                  src={
-                    actor.profile_path
-                      ? `${BASE_IMAGE_URL}w300/${actor.profile_path}`
-                      : NO_IMAGE
-                  }
-                  alt={actor.name || 'Unknown'}
-                />
-              </CardBody>
-              <CardFooter className="flex flex-col text-small items-start p-2">
-                <b className="text-[15px]">{actor.name}</b>
-                <p className="text-default-500 text-[14px]">
-                  {actor.character}
-                </p>
-              </CardFooter>
-            </Card>
+    <>
+      <h3 className="flex self-start font-medium mb-6 text-4xl">Cast:</h3>
+      <Slider {...settings}>
+        {cast.map((actor: CastList, index: number) => (
+          <div className="slide-item" key={actor.id || index}>
+            <div className="slide-inner">
+              <Card shadow="md" key={index} className=" bg-cyan-100">
+                <CardBody className="overflow-visible p-0">
+                  <Image
+                    shadow="sm"
+                    radius="md"
+                    width="100%"
+                    className="w-full object-cover rounded-b-none"
+                    src={
+                      actor.profile_path
+                        ? `${BASE_IMAGE_URL}w300/${actor.profile_path}`
+                        : NO_IMAGE
+                    }
+                    alt={actor.name || 'Unknown'}
+                  />
+                </CardBody>
+                <CardFooter className="flex flex-col text-small items-start p-2">
+                  <b className="text-[15px]">{actor.name}</b>
+                  <p className="text-default-500 text-[14px]">
+                    {actor.character}
+                  </p>
+                </CardFooter>
+              </Card>
+            </div>
           </div>
-        </div>
-      ))}
-    </Slider>
+        ))}
+      </Slider>
+    </>
   )
 }
 

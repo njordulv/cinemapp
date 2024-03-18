@@ -1,11 +1,11 @@
 .logo {
-  color: #d3b88c;
+  color: var(--blue);
   position: relative;
   display: flex;
   align-items: center;
   font-weight: 100;
   overflow: hidden;
-  padding: 2px 2px 0 0;
+  padding: 2px 5px 0 0;
   font-size: 30px;
   line-height: 26px;
   letter-spacing: -1px;
@@ -13,13 +13,14 @@
   &:after {
     content: '';
     position: absolute;
-    background: grey;
+    background: currentColor;
+    background-repeat: no-repeat;
     width: 100%;
-    height: 34px;
-    left: 7px;
+    height: 35px;
+    left: -1px;
     top: -22px;
     z-index: 1;
-    transform: rotate(13deg);
-    mix-blend-mode: color-dodge;
+    transform: rotate(12deg);
+    mix-blend-mode: plus-lighter;
   }
 }
