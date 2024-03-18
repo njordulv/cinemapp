@@ -1,6 +1,7 @@
 'use client'
 
 import Slider from 'react-slick'
+import { useRouter } from 'next/navigation'
 import { Card, Image, CardBody, CardFooter } from '@nextui-org/react'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import { CustomButton } from '@/components/UI/CustomButton'
@@ -23,6 +24,7 @@ interface ArrowProps {
 }
 
 const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
+  const router = useRouter()
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
   const NO_IMAGE = '/no-image.svg'
 
@@ -87,7 +89,13 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
         {cast.map((actor: CastList, index: number) => (
           <div className="slide-item" key={actor.id || index}>
             <div className="slide-inner">
-              <Card shadow="md" key={index} className=" bg-cyan-100">
+              <Card
+                isPressable
+                shadow="md"
+                key={index}
+                className=" bg-cyan-100"
+                onPress={() => router.push(`/person/${actor.id}`)}
+              >
                 <CardBody className="overflow-visible p-0">
                   <Image
                     shadow="sm"

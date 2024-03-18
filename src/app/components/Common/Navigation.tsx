@@ -63,13 +63,13 @@ export default function Navigation() {
           >
             <DropdownItem
               key="popular movies"
-              className="text-soft data-[hover=true]:bg-transparent data-[hover=true]:text-white"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-soft"
             >
               <Link href="/">Popular</Link>
             </DropdownItem>
             <DropdownItem
               key="top rated movies"
-              className="text-soft data-[hover=true]:bg-transparent data-[hover=true]:text-white"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-soft"
             >
               <Link href="/top-rated">Top Rated</Link>
             </DropdownItem>
@@ -97,7 +97,7 @@ export default function Navigation() {
           >
             <DropdownItem
               key="Popular TV Shows"
-              className="text-soft data-[hover=true]:bg-transparent data-[hover=true]:text-white"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-soft"
             >
               <Link href={`/tv`}>Popular</Link>
             </DropdownItem>
