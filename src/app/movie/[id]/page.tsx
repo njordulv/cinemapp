@@ -197,14 +197,14 @@ export default function Post({ params }: { params: { id: string } }) {
         </div>
       </div>
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
-        <div className="relative">
-          <div className="flex w-full flex-col">
+        <div className="grid lg:grid-cols-[3fr_1fr] gap-3">
+          <section className="flex w-full flex-col relative overflow-hidden">
             <Tabs
               key="bordered"
               variant="bordered"
               aria-label="Options"
               classNames={{
-                panel: 'px-0',
+                panel: 'px-0 pb-0',
                 tabList: 'border-transpLight border-1',
                 cursor: '',
                 tab: 'text-[17px] px-6 font-normal',
@@ -242,29 +242,31 @@ export default function Post({ params }: { params: { id: string } }) {
                 href={`/movie/${movieData.id}/videos`}
               ></Tab>
             </Tabs>
-          </div>
-        </div>
-        <p>Rating: {movieData.vote_average}</p>
-        <p>Vote Count: {movieData.vote_count}</p>
-        <p>Popularity: {movieData.popularity}</p>
-        <p>Status: {movieData.status}</p>
-        <div>
-          Production Companies:
-          <div className={styles.singleHero_list}>
-            {renderList(movieData.production_companies)}
-          </div>
-        </div>
-        <div>
-          Production Countries:
-          <div className={styles.singleHero_list}>
-            {renderList(movieData.production_countries, 'name')}
-          </div>
-        </div>
-        <div>
-          Spoken Languages:
-          <div className={styles.singleHero_list}>
-            {renderList(movieData.spoken_languages, 'english_name')}
-          </div>
+          </section>
+          <aside>
+            <p>Rating: {movieData.vote_average}</p>
+            <p>Vote Count: {movieData.vote_count}</p>
+            <p>Popularity: {movieData.popularity}</p>
+            <p>Status: {movieData.status}</p>
+            <div>
+              Production Companies:
+              <div className={styles.singleHero_list}>
+                {renderList(movieData.production_companies)}
+              </div>
+            </div>
+            <div>
+              Production Countries:
+              <div className={styles.singleHero_list}>
+                {renderList(movieData.production_countries, 'name')}
+              </div>
+            </div>
+            <div>
+              Spoken Languages:
+              <div className={styles.singleHero_list}>
+                {renderList(movieData.spoken_languages, 'english_name')}
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </>

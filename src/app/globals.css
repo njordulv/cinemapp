@@ -70,3 +70,9 @@ a {
 header {
   max-width: 1170px !important;
 }
+
+aside {
+  background-color: var(--blue-dark);
+  padding: 15px;
+  border-radius: 12px;
+}

@@ -59,7 +59,7 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
   const settings = {
     centerMode: false,
     infinite: false,
-    slidesToShow: 6,
+    slidesToShow: 5,
     slidesToScroll: 2,
     speed: 700,
     autoplay: false,
