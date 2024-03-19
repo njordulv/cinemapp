@@ -21,7 +21,6 @@ const config: Config = {
         lg: '0 8px 16px 1px rgba(0,0,0,.8)',
       },
       colors: {
-        transp: 'var(--transparent)',
         background: 'var(--background)',
         special: 'var(--special)',
         blue: 'var(--blue)',
@@ -31,6 +30,9 @@ const config: Config = {
         darker: 'var(--darker)',
         green: 'var(--green)',
         soft: 'var(--soft)',
+        grey: 'var(--grey)',
+        transp: 'var(--transparent)',
+        transpLight: 'var(--transparentLight)',
       },
     },
   },

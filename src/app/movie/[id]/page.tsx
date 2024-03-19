@@ -20,6 +20,7 @@ import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import Cast from '@/components/UI/Cast'
 import Crew from '@/components/UI/Crew'
+import MovieVideos from '@/components/Video/MovieVideos'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import { convertMinToHrs } from '@/utils/formatRuntime'
 import formatBudget from '@/utils/formatBudget'
@@ -204,7 +205,7 @@ export default function Post({ params }: { params: { id: string } }) {
               aria-label="Options"
               classNames={{
                 panel: 'px-0',
-                tabList: 'border-soft border-1',
+                tabList: 'border-transpLight border-1',
                 cursor: '',
                 tab: 'text-[17px] px-6 font-normal',
                 tabContent: 'text-soft',
@@ -222,29 +223,31 @@ export default function Post({ params }: { params: { id: string } }) {
               <Tab key="crew" title="Crew">
                 <Card className="bg-blueDark">
                   <CardBody>
-                    <ScrollShadow className="h-[500px]" isEnabled={false}>
+                    <ScrollShadow className="h-[420px]" isEnabled={false}>
                       <Crew crew={movieData.credits.crew} />
                     </ScrollShadow>
                   </CardBody>
                 </Card>
               </Tab>
-              <Tab key="videos" title="Videos" isDisabled>
+              <Tab key="trailers" title="Trailers">
                 <Card className="bg-blueDark">
-                  <CardBody></CardBody>
+                  <CardBody>
+                    <MovieVideos movieId={movieData.id} />
+                  </CardBody>
                 </Card>
               </Tab>
+              <Tab
+                key="allVideos"
+                title="All Videos"
+                href={`/movie/${movieData.id}/videos`}
+              ></Tab>
             </Tabs>
           </div>
         </div>
         <p>Rating: {movieData.vote_average}</p>
         <p>Vote Count: {movieData.vote_count}</p>
-        <p>Adult: {movieData.adult ? 'Yes' : 'No'}</p>
-        <p>Original Language: {movieData.original_language}</p>
-        <p>Original Title: {movieData.original_title}</p>
         <p>Popularity: {movieData.popularity}</p>
-        <p>Revenue: {movieData.revenue}</p>
         <p>Status: {movieData.status}</p>
-        <p>Video: {movieData.video ? 'Yes' : 'No'}</p>
         <div>
           Production Companies:
           <div className={styles.singleHero_list}>

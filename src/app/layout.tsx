@@ -16,8 +16,8 @@ type Props = {
 
 export default async function Layout({ children }: Props) {
   return (
-    <html lang="en">
-      <body className={`${slabo.className} bg-background`}>
+    <html lang="en" className="bg-background">
+      <body className={`${slabo.className}`}>
         <UIProvider>
           <Navigation />
           {children}

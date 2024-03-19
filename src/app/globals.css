@@ -13,9 +13,10 @@
   --black: #1a191c;
   --dark: #212b3d;
   --darker: #162222;
-  --grey: #ccc;
+  --grey: #ddd;
   --soft: #e0b6bd;
   --transparent: rgba(0, 0, 0, 0.2);
+  --transparentLight: rgba(255, 255, 255, 0.3);
   --gradient-1: 'linear-gradient(to right, rgba(2, 0, 18, 1) 0%, 8%, rgba(100, 6, 45, 1) 16%, 19%, rgba(177, 13, 72, 1) 23%, 33.5%, rgba(117, 14, 72, 1) 43.5%, 46%, rgba(91, 12, 66, 1) 48%, 53%, rgba(67, 13, 66, 1) 58%, 64.6%, rgba(57, 17, 81, 1) 71%, 73.8%, rgba(46, 17, 81, 1) 77%, 80%, rgba(23, 10, 54, 1) 84%, 92%, rgba(2, 0, 18, 1) 100%)';
   --gradient-2: 'linear-gradient(0deg, rgba(27,60,89,1) 0%, rgba(84,108,140,1) 23%, rgba(66,91,140,1) 41%, rgba(166,86,123,1) 66%, rgba(191,90,117,1) 85%)';
 }

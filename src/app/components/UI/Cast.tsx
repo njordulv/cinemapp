@@ -91,7 +91,7 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
               isPressable
               shadow="md"
               key={index}
-              className="bg-soft"
+              className="bg-grey"
               onPress={() => router.push(`/person/${actor.id}`)}
             >
               <CardBody className="overflow-visible p-0">
