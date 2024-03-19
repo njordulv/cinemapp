@@ -20,7 +20,7 @@ import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import Cast from '@/components/UI/Cast'
 import Crew from '@/components/UI/Crew'
-import MovieVideos from '@/components/Video/MovieVideos'
+import VideoTab from '@/components/Video/VideoTab'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import { convertMinToHrs } from '@/utils/formatRuntime'
 import formatBudget from '@/utils/formatBudget'
@@ -232,7 +232,7 @@ export default function Post({ params }: { params: { id: string } }) {
               <Tab key="trailers" title="Trailers">
                 <Card className="bg-blueDark">
                   <CardBody>
-                    <MovieVideos movieId={movieData.id} />
+                    <VideoTab movieId={movieData.id} />
                   </CardBody>
                 </Card>
               </Tab>

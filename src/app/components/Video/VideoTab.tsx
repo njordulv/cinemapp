@@ -1,22 +1,11 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import YouTube from 'react-youtube'
 import { Spinner } from '@nextui-org/react'
+import YouTube from 'react-youtube'
+import VideoData from '@/src/app/types/videoData'
 
-type VideoProps = {
-  movieId?: number
-  iso_639_1?: string
-  iso_3166_1?: string
-  name?: string
-  key?: string
-  site?: string
-  size?: number
-  type?: string
-  official?: boolean
-  published_at?: string
-  id?: string
-}
-
-const MovieVideos: React.FC<VideoProps> = ({ movieId }: VideoProps) => {
+const VideoTab: React.FC<VideoData> = ({ movieId }: VideoData) => {
   const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -45,11 +34,10 @@ const MovieVideos: React.FC<VideoProps> = ({ movieId }: VideoProps) => {
       {loading ? (
         <Spinner color="default" size="lg" className="place-content-center" />
       ) : videos.length > 0 ? (
-        videos.slice(0, 2).map((video: VideoProps, index: number) => (
+        videos.slice(0, 2).map((video: VideoData, index: number) => (
           <YouTube
             videoId={video.key}
             id={`youtube-player-${index}`}
-            className=""
             iframeClassName="rounded-lg"
             title={video.name}
             key={video.id || index}
@@ -70,10 +58,10 @@ const MovieVideos: React.FC<VideoProps> = ({ movieId }: VideoProps) => {
           />
         ))
       ) : (
-        <div className="text-2xl text-soft">No videos available</div>
+        <div className="text-xl text-soft">No videos available</div>
       )}
     </div>
   )
 }
 
-export default MovieVideos
+export default VideoTab

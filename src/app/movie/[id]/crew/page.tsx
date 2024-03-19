@@ -50,7 +50,7 @@ export default function Crew({ params }: { params: { id: string } }) {
       <h1 className="flex self-start font-medium mb-6 text-4xl">Crew:</h1>
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-7 lg:text-left gap-4 m-auto">
         {crewData.map((member: Crew, index: number) => (
-          <Card shadow="md" key={index} className=" bg-soft">
+          <Card shadow="md" key={index} className=" bg-grey">
             <CardBody className="overflow-visible p-0 flex-none">
               <Image
                 shadow="sm"
