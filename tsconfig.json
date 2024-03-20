@@ -23,6 +23,7 @@
       "@/providers/*": ["./src/app/lib/providers/*"],
       "@/redux/*": ["./src/app/lib/redux/*"],
       "@/utils/*": ["./src/app/utils/*"],
+      "@/hooks/*": ["./src/app/hooks/*"],
       "@/styles/*": ["./src/app/styles/*"],
       "@/types/*": ["./src/app/types/*"]
     }

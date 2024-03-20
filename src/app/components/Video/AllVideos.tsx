@@ -1,21 +1,18 @@
 'use client'
 
-import useSWR from 'swr'
 import { Card, CardFooter, CardBody } from '@nextui-org/react'
+import useFetcher from '@/hooks/useFetcher'
 import VideoData from '@/types/videoData'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 import YoutubeUI from '@/components/UI/YoutubeUI'
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
-
 export default function AllVideos({ params }: { params: { id: string } }) {
-  const { data, error, isLoading } = useSWR(
-    `/api/movies?endpoint=movie/${params.id}/videos`,
-    fetcher
-  )
+  const { data, isLoading, isError } = useFetcher({
+    endpoint: `/api/movies?endpoint=movie/${params.id}/videos`,
+  })
 
-  if (error) return <Error errorText={error.message} />
+  if (isError) return <Error errorText={isError.message} />
 
   if (isLoading) return <Loader />
 
