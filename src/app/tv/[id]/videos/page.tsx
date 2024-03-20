@@ -6,5 +6,5 @@ export default function Page({
   params: { id: string }
   contentType: { type: string }
 }) {
-  return <AllVideos params={params} contentType={{ type: 'movie' }} />
+  return <AllVideos params={params} contentType={{ type: 'tv' }} />
 }

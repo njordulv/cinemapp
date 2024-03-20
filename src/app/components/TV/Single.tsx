@@ -47,7 +47,6 @@ export default function Single({ params }: { params: { id: string } }) {
     imdb_id,
     vote_count,
     spoken_languages,
-    original_language,
     production_countries,
     production_companies,
     status,
@@ -124,7 +123,7 @@ export default function Single({ params }: { params: { id: string } }) {
               <Tab
                 key="allVideos"
                 title="All Videos"
-                href={`/movie/${id}/videos`}
+                href={`/tv/${id}/videos`}
               ></Tab>
             </Tabs>
           </section>
