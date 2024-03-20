@@ -25,7 +25,7 @@ type ListItem = {
 
 export default function Single({ params }: { params: { id: string } }) {
   const { data, isError, isLoading } = useFetcher({
-    endpoint: `/api/movies?endpoint=movie/${params.id}&combinedEndpoints=movie/${params.id}/credits`,
+    endpoint: `/api/movies?endpoint=tv/${params.id}&combinedEndpoints=tv/${params.id}/credits`,
   })
 
   if (isError) return <Error errorText={isError.message} />
@@ -33,7 +33,7 @@ export default function Single({ params }: { params: { id: string } }) {
 
   const {
     id,
-    title,
+    name,
     genres,
     vote_average,
     backdrop_path,
@@ -45,13 +45,14 @@ export default function Single({ params }: { params: { id: string } }) {
     overview,
     homepage,
     imdb_id,
-    runtime,
     vote_count,
     spoken_languages,
+    original_language,
     production_countries,
     production_companies,
     status,
     popularity,
+    first_air_date,
   } = data
 
   const renderList = (items: ListItem[], key: keyof ListItem = 'name') =>
@@ -62,12 +63,14 @@ export default function Single({ params }: { params: { id: string } }) {
       </Chip>
     ))
 
-  const isMovie = true
+  const isMovie = false
 
   return (
     <>
       <Hero
-        title={title}
+        name={name}
+        genres={genres}
+        vote_average={vote_average}
         backdrop_path={backdrop_path}
         poster_path={poster_path}
         release_date={release_date}
@@ -75,11 +78,9 @@ export default function Single({ params }: { params: { id: string } }) {
         revenue={revenue}
         tagline={tagline}
         overview={overview}
-        genres={genres}
-        vote_average={vote_average}
         homepage={homepage}
         imdb_id={imdb_id}
-        runtime={runtime}
+        first_air_date={first_air_date}
         isMovie={isMovie}
       />
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">

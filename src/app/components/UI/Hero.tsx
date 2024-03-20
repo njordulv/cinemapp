@@ -6,7 +6,6 @@ import { BsCurrencyDollar } from 'react-icons/bs'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
-import { convertMinToHrs } from '@/utils/formatRuntime'
 import formatBudget from '@/utils/formatBudget'
 import HeroData from '@/types/HeroData'
 import styles from '@/styles/singleMovie.module.scss'
@@ -19,6 +18,7 @@ type ListItem = {
 
 export default function Hero({
   title,
+  name,
   backdrop_path,
   poster_path,
   release_date,
@@ -30,7 +30,8 @@ export default function Hero({
   vote_average,
   homepage,
   imdb_id,
-  runtime,
+  first_air_date,
+  isMovie,
 }: HeroData) {
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
@@ -66,24 +67,27 @@ export default function Hero({
             width={300}
             height={450}
             fallbackSrc={NO_IMAGE}
-            alt={title}
+            alt={isMovie ? title : name}
           />
           <div className="flex flex-col gap-4">
             <div>
               <h1 className="flex mb-1 gap-2 text-shadow-sm">
-                {title}
+                {isMovie ? title : name}
                 <span className="font-thin opacity-80">
-                  ({formatReleaseYear(release_date)})
+                  {formatReleaseYear(
+                    isMovie ? release_date ?? '' : first_air_date ?? ''
+                  )}
                 </span>
               </h1>
               <div className={styles.singleHero_info}>
                 <div className="uppercase">
-                  {formatReleaseDateAlt(release_date)}
+                  {formatReleaseDateAlt(
+                    isMovie ? release_date ?? '' : first_air_date ?? ''
+                  )}
                 </div>
                 <div className={styles.singleHero_list}>
                   {renderList(genres)}
                 </div>
-                <div>{convertMinToHrs(runtime)}</div>
               </div>
             </div>
             <div className="flex gap-5 items-center">
@@ -144,7 +148,7 @@ export default function Hero({
                 _blank"
                   className="inline-flex items-center gap-1 font-thin hover:text-cyan-500 text-shadow-sm"
                 >
-                  <TbWorldWww size={24} /> {title}
+                  <TbWorldWww size={24} /> {isMovie ? title : name}
                 </Link>
               </div>
             )}
