@@ -52,6 +52,7 @@ export default function Post({ params }: { params: { id: string } }) {
   }
 
   const renderList = (items: ListItem[], key: keyof ListItem = 'name') =>
+    items &&
     items.map((item, index) => (
       <Chip size="sm" key={item.id || index}>
         {item[key]}
