@@ -1,3 +1,11 @@
+interface CreatedBy {
+  id: number
+  credit_id: string
+  name: string
+  gender: number
+  profile_path: string
+}
+
 interface HeroData {
   title?: string
   name?: string
@@ -15,6 +23,7 @@ interface HeroData {
   runtime?: number
   first_air_date?: string
   isMovie: boolean
+  created_by?: CreatedBy[]
 }
 
 export default HeroData

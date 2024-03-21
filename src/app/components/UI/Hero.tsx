@@ -5,6 +5,7 @@ import { LiaImdb } from 'react-icons/lia'
 import { BsCurrencyDollar } from 'react-icons/bs'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
+import Creator from '@/components/UI/Creator'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import formatBudget from '@/utils/formatBudget'
 import HeroData from '@/types/HeroData'
@@ -32,6 +33,7 @@ export default function Hero({
   imdb_id,
   first_air_date,
   isMovie,
+  created_by,
 }: HeroData) {
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
@@ -164,6 +166,7 @@ export default function Hero({
                 </Link>
               </div>
             )}
+            {isMovie ? '' : <Creator created_by={created_by} />}
           </div>
         </div>
       </div>

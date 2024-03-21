@@ -14,7 +14,7 @@ const Season: React.FC<SeasonProps> = ({ id, seasons }) => {
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
   const NO_IMAGE = '/no-image.svg'
 
-  return seasons.map((season: SeasonsData, index: number) => (
+  return seasons.slice(0, 5).map((season: SeasonsData, index: number) => (
     <Card
       isPressable
       shadow="md"

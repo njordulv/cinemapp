@@ -4,8 +4,8 @@ import { Divider } from '@nextui-org/react'
 import useFetcher from '@/hooks/useFetcher'
 import Hero from '@/components/UI/Hero'
 import TabsContent from '@/components/UI/TabsContent'
-import ListRenderer from '@/components/UI/ListRenderer'
 import SeasonsTabs from '@/components/TV/SeasonsTabs'
+import ListRenderer from '@/components/UI/ListRenderer'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 import styles from '@/styles/singleMovie.module.scss'
@@ -43,7 +43,7 @@ export default function Single({ params }: Props) {
     status,
     popularity,
     first_air_date,
-    seasons,
+    created_by,
   } = data
 
   const isMovie = false
@@ -65,6 +65,7 @@ export default function Single({ params }: Props) {
         imdb_id={imdb_id}
         first_air_date={first_air_date}
         isMovie={isMovie}
+        created_by={created_by}
       />
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
         <div className="grid lg:grid-cols-[3fr_1fr] gap-3">
