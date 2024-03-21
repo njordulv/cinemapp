@@ -1,20 +1,11 @@
 'use client'
 
-import {
-  Chip,
-  Tabs,
-  Tab,
-  Card,
-  CardBody,
-  ScrollShadow,
-} from '@nextui-org/react'
+import { Chip } from '@nextui-org/react'
 import useFetcher from '@/hooks/useFetcher'
 import Hero from '@/components/UI/Hero'
+import TabsContent from '@/components/UI/TabsContent'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
-import Cast from '@/components/UI/Cast'
-import Crew from '@/components/UI/Crew'
-import VideoTab from '@/components/Video/VideoTab'
 import styles from '@/styles/singleMovie.module.scss'
 
 type ListItem = {
@@ -23,7 +14,12 @@ type ListItem = {
   english_name?: string
 }
 
-export default function Single({ params }: { params: { id: string } }) {
+interface Props {
+  params: { id: string }
+  contentType: string
+}
+
+export default function Single({ params }: Props) {
   const { data, isError, isLoading } = useFetcher({
     endpoint: `/api/movies?endpoint=movie/${params.id}&combinedEndpoints=movie/${params.id}/credits`,
   })
@@ -68,6 +64,8 @@ export default function Single({ params }: { params: { id: string } }) {
     <>
       <Hero
         title={title}
+        genres={genres}
+        vote_average={vote_average}
         backdrop_path={backdrop_path}
         poster_path={poster_path}
         release_date={release_date}
@@ -75,8 +73,6 @@ export default function Single({ params }: { params: { id: string } }) {
         revenue={revenue}
         tagline={tagline}
         overview={overview}
-        genres={genres}
-        vote_average={vote_average}
         homepage={homepage}
         imdb_id={imdb_id}
         runtime={runtime}
@@ -85,47 +81,7 @@ export default function Single({ params }: { params: { id: string } }) {
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
         <div className="grid lg:grid-cols-[3fr_1fr] gap-3">
           <section className="flex w-full flex-col relative overflow-hidden">
-            <Tabs
-              key="bordered"
-              variant="bordered"
-              aria-label="Options"
-              classNames={{
-                panel: 'px-0 pb-0',
-                tabList: 'border-transpLight border-1',
-                cursor: '',
-                tab: 'text-[17px] px-6 font-normal',
-                tabContent: 'text-soft',
-              }}
-            >
-              <Tab key="cast" title="Cast">
-                <Card className="bg-blueDark">
-                  <CardBody>
-                    {data.credits.cast && <Cast cast={data.credits.cast} />}
-                  </CardBody>
-                </Card>
-              </Tab>
-              <Tab key="crew" title="Crew">
-                <Card className="bg-blueDark">
-                  <CardBody>
-                    <ScrollShadow className="h-[420px]" isEnabled={false}>
-                      {data.credits.crew && <Crew crew={data.credits.crew} />}
-                    </ScrollShadow>
-                  </CardBody>
-                </Card>
-              </Tab>
-              <Tab key="trailers" title="Trailers">
-                <Card className="bg-blueDark">
-                  <CardBody>
-                    <VideoTab movieId={id} contentType={'movie'} />
-                  </CardBody>
-                </Card>
-              </Tab>
-              <Tab
-                key="allVideos"
-                title="All Videos"
-                href={`/movie/${id}/videos`}
-              ></Tab>
-            </Tabs>
+            <TabsContent id={params.id} data={data} contentType={'movie'} />
           </section>
           <aside>
             <div>
