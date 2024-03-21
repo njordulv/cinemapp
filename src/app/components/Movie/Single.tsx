@@ -1,18 +1,12 @@
 'use client'
 
-import { Chip } from '@nextui-org/react'
 import useFetcher from '@/hooks/useFetcher'
 import Hero from '@/components/UI/Hero'
 import TabsContent from '@/components/UI/TabsContent'
+import ListRenderer from '@/components/UI/ListRenderer'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 import styles from '@/styles/singleMovie.module.scss'
-
-type ListItem = {
-  id?: number
-  name?: string
-  english_name?: string
-}
 
 interface Props {
   params: { id: string }
@@ -28,7 +22,6 @@ export default function Single({ params }: Props) {
   if (isLoading || !data) return <Loader />
 
   const {
-    id,
     title,
     genres,
     vote_average,
@@ -49,14 +42,6 @@ export default function Single({ params }: Props) {
     status,
     popularity,
   } = data
-
-  const renderList = (items: ListItem[], key: keyof ListItem = 'name') =>
-    items &&
-    items.map((item, index) => (
-      <Chip size="sm" key={item.id || index}>
-        {item[key]}
-      </Chip>
-    ))
 
   const isMovie = true
 
@@ -99,19 +84,19 @@ export default function Single({ params }: Props) {
             <div>
               <b>Production Companies:</b>
               <div className={styles.singleHero_list}>
-                {renderList(production_companies)}
+                <ListRenderer items={production_companies} keyName="name" />
               </div>
             </div>
             <div>
               <b>Production Countries:</b>
               <div className={styles.singleHero_list}>
-                {renderList(production_countries, 'name')}
+                <ListRenderer items={production_countries} keyName="name" />
               </div>
             </div>
             <div>
               <b>Spoken Languages:</b>
               <div className={styles.singleHero_list}>
-                {renderList(spoken_languages, 'english_name')}
+                <ListRenderer items={spoken_languages} keyName="english_name" />
               </div>
             </div>
           </aside>
