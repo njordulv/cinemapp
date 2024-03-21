@@ -9,11 +9,11 @@ import YoutubeUI from '@/components/UI/YoutubeUI'
 
 interface AllVideosProps {
   params: { id: string }
-  contentType: { type: string }
+  contentType: string
 }
 
 export default function AllVideos({ params, contentType }: AllVideosProps) {
-  const endpointType = `/api/movies?endpoint=${contentType.type}/${params.id}/videos`
+  const endpointType = `/api/movies?endpoint=${contentType}/${params.id}/videos`
   const { data, isLoading, isError } = useFetcher({ endpoint: endpointType })
 
   if (isError) return <Error errorText={isError.message} />

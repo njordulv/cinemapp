@@ -108,7 +108,7 @@ export default function Single({ params }: { params: { id: string } }) {
                 <Card className="bg-blueDark">
                   <CardBody>
                     <ScrollShadow className="h-[420px]" isEnabled={false}>
-                      <Crew crew={data.credits.crew} />
+                      {data.credits.crew && <Crew crew={data.credits.crew} />}
                     </ScrollShadow>
                   </CardBody>
                 </Card>
@@ -116,7 +116,7 @@ export default function Single({ params }: { params: { id: string } }) {
               <Tab key="trailers" title="Trailers">
                 <Card className="bg-blueDark">
                   <CardBody>
-                    <VideoTab movieId={id} />
+                    <VideoTab movieId={id} contentType={'tv'} />
                   </CardBody>
                 </Card>
               </Tab>
