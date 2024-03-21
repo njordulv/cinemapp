@@ -1,9 +1,11 @@
 'use client'
 
+import { Divider } from '@nextui-org/react'
 import useFetcher from '@/hooks/useFetcher'
 import Hero from '@/components/UI/Hero'
 import TabsContent from '@/components/UI/TabsContent'
 import ListRenderer from '@/components/UI/ListRenderer'
+import SeasonsTabs from '@/components/TV/SeasonsTabs'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 import styles from '@/styles/singleMovie.module.scss'
@@ -41,6 +43,7 @@ export default function Single({ params }: Props) {
     status,
     popularity,
     first_air_date,
+    seasons,
   } = data
 
   const isMovie = false
@@ -67,6 +70,8 @@ export default function Single({ params }: Props) {
         <div className="grid lg:grid-cols-[3fr_1fr] gap-3">
           <section className="flex w-full flex-col relative overflow-hidden">
             <TabsContent id={params.id} data={data} contentType={'tv'} />
+            <Divider className="my-10 bg-blueDark" />
+            <SeasonsTabs id={params.id} data={data} />
           </section>
           <aside>
             <div>

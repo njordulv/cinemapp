@@ -1,6 +1,5 @@
 import { Tabs, Tab, Card, CardBody, ScrollShadow } from '@nextui-org/react'
 import CreditsData from '@/types/CreditsData'
-import VideoData from '@/types/videoData'
 import Cast from '@/components/UI/Cast'
 import Crew from '@/components/UI/Crew'
 import VideoTab from '@/components/Video/VideoTab'
