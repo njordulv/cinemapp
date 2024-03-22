@@ -11,6 +11,7 @@ interface Props {
   name: string
   date: string
   vote_average: number | undefined
+  seasonNumber?: number
 }
 
 const MainCard: React.FC<Props> = ({
@@ -20,6 +21,7 @@ const MainCard: React.FC<Props> = ({
   name,
   date,
   vote_average,
+  seasonNumber,
 }: Props) => {
   const router = useRouter()
   const formattedReleaseDate = formatReleaseDate(date)
@@ -27,7 +29,12 @@ const MainCard: React.FC<Props> = ({
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   const pageHandler = () => {
-    router.push(`/${type}/${id}`)
+    const basePath = `/${type}/${id}`
+    const fullPath =
+      type === 'tv' && seasonNumber !== undefined
+        ? `${basePath}/season/${seasonNumber}`
+        : basePath
+    router.push(fullPath)
   }
 
   return (

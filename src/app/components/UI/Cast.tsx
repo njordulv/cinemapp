@@ -25,8 +25,8 @@ interface ArrowProps {
 
 const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
   const router = useRouter()
-  const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
-  const NO_IMAGE = '/no-image.svg'
+  const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
+  const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   function PrevArrow(props: ArrowProps) {
     const { onClick } = props

@@ -31,6 +31,7 @@ export default function AllSeasons({ params }: AllVideosProps) {
             name={season.name}
             date={season.air_date}
             vote_average={season.vote_average}
+            seasonNumber={season.season_number}
           />
         ))}
       </div>

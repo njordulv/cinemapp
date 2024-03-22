@@ -22,8 +22,8 @@ interface CrewProps {
 }
 
 const Crew: React.FC<CrewProps> = ({ crew }) => {
-  const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
-  const NO_IMAGE = '/no-image.svg'
+  const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
+  const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   return (
     <Table isCompact isStriped radius="sm" aria-label="Crew table">

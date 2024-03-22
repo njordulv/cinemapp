@@ -6,14 +6,13 @@ import SkeletonBox from '@/components/UI/SkeletonBox'
 import CardBox from '@/components/TV/CardBox'
 import Paginate from '@/components/UI/Paginate'
 
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
-const NO_IMAGE = '/no-image.svg'
-
 export default function Layout() {
   const [tvShow, setTVShows] = useState<TVData[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+  const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
+  const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   useEffect(() => {
     fetch(`/api/movies?endpoint=tv/popular&page=${currentPage}`)

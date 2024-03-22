@@ -12,8 +12,8 @@ interface SeasonProps {
 
 const Season: React.FC<SeasonProps> = ({ id, seasons }) => {
   const router = useRouter()
-  const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
-  const NO_IMAGE = '/no-image.svg'
+  const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
+  const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   return seasons.slice(0, 5).map((season: SeasonsData, index: number) => (
     <Card
@@ -21,7 +21,7 @@ const Season: React.FC<SeasonProps> = ({ id, seasons }) => {
       shadow="md"
       key={season.id || index}
       className="bg-grey"
-      onPress={() => router.push(`/tv/${id}/seasons/${season.season_number}`)}
+      onPress={() => router.push(`/tv/${id}/season/${season.season_number}`)}
     >
       <CardBody className="overflow-visible p-0">
         <Image
