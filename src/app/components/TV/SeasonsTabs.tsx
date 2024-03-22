@@ -1,6 +1,7 @@
 import { Tabs, Tab, Card, CardBody } from '@nextui-org/react'
 import SeasonsData from '@/types/SeasonsData'
 import Season from '@/components/UI/Season'
+import LastSeason from '@/components/TV/LastSeason'
 
 interface DataMovie {
   id: string
@@ -34,7 +35,9 @@ export default function SeasonsTabs({ id, data }: DataMovie) {
       </Tab>
       <Tab key="last" title="Last Season">
         <Card className="bg-blueDark">
-          <CardBody></CardBody>
+          <CardBody>
+            {data.seasons && <LastSeason id={id} seasons={data.seasons} />}
+          </CardBody>
         </Card>
       </Tab>
       <Tab

@@ -26,12 +26,7 @@ const Crew: React.FC<CrewProps> = ({ crew }) => {
   const NO_IMAGE = '/no-image.svg'
 
   return (
-    <Table
-      isCompact
-      isStriped
-      radius="sm"
-      aria-label="Example static collection table"
-    >
+    <Table isCompact isStriped radius="sm" aria-label="Crew table">
       <TableHeader>
         <TableColumn className="text-md">Name</TableColumn>
         <TableColumn className="text-md">Department</TableColumn>

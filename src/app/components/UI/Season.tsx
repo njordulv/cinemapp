@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { Card, Image, CardBody, CardFooter } from '@nextui-org/react'
 import SeasonsData from '@/types/SeasonsData'
+import { formatReleaseYear } from '@/utils/formatDate'
 
 interface SeasonProps {
   seasons: SeasonsData[]
@@ -36,11 +37,16 @@ const Season: React.FC<SeasonProps> = ({ id, seasons }) => {
           alt={season.name || 'Unknown'}
         />
       </CardBody>
-      <CardFooter className="flex flex-col text-small items-start p-2">
+      <CardFooter className="flex flex-col text-small items-stretch p-2">
         <b className="text-[15px] text-left">{season.name}</b>
-        <p className="text-[14px] text-left leading-[18px]">
-          {season.episode_count} Episodes
-        </p>
+        <div className="flex justify-between gap-2">
+          <span className="text-[14px] leading-[18px]">
+            {season.episode_count} Episodes
+          </span>
+          <span className="text-[14px] leading-[18px]">
+            {formatReleaseYear(season.air_date)}
+          </span>
+        </div>
       </CardFooter>
     </Card>
   ))
