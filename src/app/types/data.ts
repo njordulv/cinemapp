@@ -74,17 +74,17 @@ export interface Cast {
 }
 
 export interface Crew {
-  adult: boolean
-  gender: number
-  id: number
-  known_for_department: string
-  name: string
-  original_name: string
-  popularity: number
-  profile_path: string
-  credit_id: number
-  department: string
-  job: string
+  adult?: boolean
+  gender?: number
+  id?: number
+  known_for_department?: string
+  name?: string
+  original_name?: string
+  popularity?: number
+  profile_path?: string
+  credit_id?: number
+  department?: string
+  job?: string
 }
 
 export interface Credits {
@@ -104,25 +104,7 @@ export interface Movie {
   vote_average?: number
 }
 
-export interface Person {
-  adult: boolean
-  gender: number
-  id: number
-  known_for_department: string
-  name: string
-  original_name: string
-  popularity: number
-  profile_path: string
-  known_for: KnownFor[]
-  place_of_birth: string
-  biography: string
-  birthday: string
-  deathday: null
-  homepage: string
-  imdb_id: string
-}
-
-export interface KnownFor {
+export interface Known {
   adult: boolean
   backdrop_path: string
   id: number
@@ -139,6 +121,24 @@ export interface KnownFor {
   video: boolean
   vote_average: number
   vote_count: number
+}
+
+export interface Person {
+  adult: boolean
+  gender: number
+  id: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string
+  known_for: Known[]
+  place_of_birth: string
+  biography: string
+  birthday: string
+  deathday: null
+  homepage: string
+  imdb_id: string
 }
 
 export interface Seasons {
@@ -182,7 +182,7 @@ export interface SpokenLanguage {
   name: string
 }
 
-export interface SingleMovie {
+export interface Single {
   adult: boolean
   backdrop_path: string
   belongs_to_collection: Collection
@@ -225,7 +225,7 @@ export interface TopRated {
   vote_average?: number
 }
 
-export interface Video {
+export interface VideoTypes {
   movieId: number | string
   iso_639_1?: string
   iso_3166_1?: string
@@ -239,4 +239,25 @@ export interface Video {
   id?: string
   iframe?: string
   isMovie: boolean
+}
+
+export interface ItemsList {
+  id?: number
+  name?: string
+  english_name?: string
+}
+
+export interface CardTypes {
+  id: number | string
+  type: string
+  image: string | undefined
+  name: string
+  date: string
+  vote_average: number | undefined
+  seasonNumber?: number
+}
+
+export interface Human {
+  birthdayType: string
+  deathdayType?: string | null
 }

@@ -2,11 +2,11 @@
 
 import { useRouter } from 'next/navigation'
 import { Card, Image, CardBody, CardFooter } from '@nextui-org/react'
-import SeasonsData from '@/types/SeasonsData'
+import { Seasons } from '@/types/data'
 import { formatReleaseYear } from '@/utils/formatDate'
 
 interface SeasonProps {
-  seasons: SeasonsData[]
+  seasons: Seasons[]
   id: string
 }
 
@@ -15,7 +15,7 @@ const Season: React.FC<SeasonProps> = ({ id, seasons }) => {
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
-  return seasons.slice(0, 5).map((season: SeasonsData, index: number) => (
+  return seasons.slice(0, 5).map((season: Seasons, index: number) => (
     <Card
       isPressable
       shadow="md"

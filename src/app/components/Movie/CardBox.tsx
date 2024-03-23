@@ -1,5 +1,5 @@
 import useFetcher from '@/hooks/useFetcher'
-import MovieData from '@/types/movieData'
+import { Movie } from '@/types/data'
 import MainCard from '@/components/UI/MainCard'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
@@ -10,7 +10,7 @@ export default function CardBox({
   image,
   release_date,
   vote_average,
-}: MovieData) {
+}: Movie) {
   const { data, isLoading, isError } = useFetcher({
     endpoint: `api/movies?endpoint=movie/${id}&combinedEndpoints=movie/${id}/credits`,
   })

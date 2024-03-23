@@ -1,13 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import TVData from '@/types/TVData'
+import { Movie } from '@/types/data'
 import SkeletonBox from '@/components/UI/SkeletonBox'
 import CardBox from '@/components/TV/CardBox'
 import Paginate from '@/components/UI/Paginate'
 
 export default function Layout() {
-  const [tvShow, setTVShows] = useState<TVData[]>([])
+  const [tvShow, setTVShows] = useState<Movie[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)

@@ -1,11 +1,11 @@
 import { Card, Image, CardBody, Chip } from '@nextui-org/react'
 import { IoStarSharp } from 'react-icons/io5'
-import SeasonsData from '@/types/SeasonsData'
+import { Seasons } from '@/types/data'
 import getLastSeason from '@/utils/getLastSeason'
 import { formatReleaseDate } from '@/utils/formatDate'
 
 interface SeasonProps {
-  seasons: SeasonsData[]
+  seasons: Seasons[]
   id: string
 }
 

@@ -1,12 +1,12 @@
 import { Tabs, Tab, Card, CardBody } from '@nextui-org/react'
-import SeasonsData from '@/types/SeasonsData'
+import { Seasons } from '@/types/data'
 import Season from '@/components/UI/Season'
 import LastSeason from '@/components/TV/LastSeason'
 
 interface DataMovie {
   id: string
   data: {
-    seasons: SeasonsData[]
+    seasons: Seasons[]
   }
 }
 

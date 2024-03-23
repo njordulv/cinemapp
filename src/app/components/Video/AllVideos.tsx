@@ -3,7 +3,7 @@
 import { Card, CardFooter, CardBody } from '@nextui-org/react'
 import useFetcher from '@/hooks/useFetcher'
 import type { ParamsWithId } from '@/types/params'
-import VideoData from '@/types/videoData'
+import { VideoTypes } from '@/types/data'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 import YoutubeUI from '@/components/UI/YoutubeUI'
@@ -26,7 +26,7 @@ export default function AllVideos({ params, contentType }: AllVideosProps) {
       <h1 className="flex self-start font-medium mb-6 text-4xl">Videos</h1>
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left gap-4 m-auto">
         {data.results &&
-          data.results.map((video: VideoData, index: number) => (
+          data.results.map((video: VideoTypes, index: number) => (
             <Card shadow="md" key={index} className="bg-grey">
               <CardBody className="overflow-visible p-0 flex-none">
                 <YoutubeUI

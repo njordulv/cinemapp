@@ -7,18 +7,10 @@ import {
   TableCell,
   User,
 } from '@nextui-org/react'
-
-interface CrewList {
-  id?: number
-  name?: string
-  department?: string
-  profile_path?: string
-  job?: string
-  known_for_department?: string
-}
+import { Crew } from '@/types/data'
 
 interface CrewProps {
-  crew: CrewList[]
+  crew: Crew[]
 }
 
 const Crew: React.FC<CrewProps> = ({ crew }) => {
@@ -34,7 +26,7 @@ const Crew: React.FC<CrewProps> = ({ crew }) => {
       </TableHeader>
       <TableBody>
         {crew &&
-          crew.map((member: CrewList, index: number) => (
+          crew.map((member: Crew, index: number) => (
             <TableRow key={`${member.id}${index}`}>
               <TableCell className="flex">
                 <User

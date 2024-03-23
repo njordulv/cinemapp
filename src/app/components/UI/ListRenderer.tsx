@@ -1,14 +1,9 @@
 import { Chip } from '@nextui-org/react'
-
-type ListItem = {
-  id?: number
-  name?: string
-  english_name?: string
-}
+import { ItemsList } from '@/types/data'
 
 type Props = {
-  items: ListItem[]
-  keyName: keyof ListItem
+  items: ItemsList[]
+  keyName: keyof ItemsList
 }
 
 const ListRenderer: React.FC<Props> = ({ items, keyName = 'name' }) => {

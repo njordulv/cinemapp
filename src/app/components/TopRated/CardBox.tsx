@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
+import { TopRated } from '@/types/data'
 import { formatReleaseDate } from '@/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
-import TopRatedData from '@/types/TopRatedData'
-const NO_IMAGE = '/no-image.svg'
 
 export default function CardBox({
   id,
@@ -13,11 +12,12 @@ export default function CardBox({
   image,
   release_date,
   vote_average,
-}: TopRatedData) {
+}: TopRated) {
   const router = useRouter()
   const formattedReleaseDate = formatReleaseDate(release_date)
   const [error, setError] = useState<string | null>(null)
   const [topRatedDetails, setTopRatedDetails] = useState(null)
+  const NO_IMAGE = '/no-image.svg'
 
   useEffect(() => {
     fetch(

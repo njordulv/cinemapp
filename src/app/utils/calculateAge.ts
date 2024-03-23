@@ -1,12 +1,9 @@
-type Props = {
-  birthdayType: string
-  deathdayType?: string | null
-}
+import { Human } from '@/types/data'
 
 export default function calculateAge({
   birthdayType,
   deathdayType,
-}: Props): number {
+}: Human): number {
   const birthday = new Date(birthdayType)
   const endDate = deathdayType ? new Date(deathdayType) : new Date()
   let age = endDate.getFullYear() - birthday.getFullYear()

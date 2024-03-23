@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import PersonData from '@/types/PersonData'
+import { Person } from '@/types/data'
 import SkeletonBox from '@/components/Person/SkeletonBox'
 import CardBox from '@/components/Person/CardBox'
 import Paginate from '@/components/UI/Paginate'
@@ -10,7 +10,7 @@ const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w300'
 const NO_IMAGE = '/no-image.svg'
 
 export default function Layout() {
-  const [persons, setPersons] = useState<PersonData[]>([])
+  const [persons, setPersons] = useState<Person[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)

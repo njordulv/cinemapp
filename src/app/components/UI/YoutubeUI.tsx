@@ -2,10 +2,10 @@
 
 import React from 'react'
 import YouTube, { YouTubeProps as YTProps } from 'react-youtube'
-import VideoData from '@/types/videoData'
+import { VideoTypes } from '@/types/data'
 
 interface Props {
-  videoData: VideoData[]
+  videoData: VideoTypes[]
   iframe?: string
 }
 

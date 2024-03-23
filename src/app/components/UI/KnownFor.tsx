@@ -1,11 +1,10 @@
 import { Chip } from '@nextui-org/react'
-import PersonData from '@/types/PersonData'
-
-interface KnownForProps {
-  items: PersonData['known_for']
+import { Person } from '@/types/data'
+interface Props {
+  items: Person['known_for']
 }
 
-const KnownFor: React.FC<KnownForProps> = ({ items }) => (
+const KnownFor: React.FC<Props> = ({ items }) => (
   <div className="flex items-start gap-1 flex-wrap">
     {items.map((item, index) => (
       <Chip size="sm" key={index} className="bg-green text-white">

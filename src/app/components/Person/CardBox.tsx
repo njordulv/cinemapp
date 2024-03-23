@@ -1,19 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Card, CardBody, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
+import { Person } from '@/types/data'
 import KnownFor from '@/components/UI/KnownFor'
-import PersonData from '@/types/PersonData'
 const NO_IMAGE = '/no-image.svg'
 
-export default function CardBox({
-  id,
-  name,
-  profile_path,
-  known_for,
-}: PersonData) {
+export default function CardBox({ id, name, profile_path, known_for }: Person) {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
-  const [personDetails, setPersonDetails] = useState<PersonData | null>(null)
+  const [personDetails, setPersonDetails] = useState<Person | null>(null)
 
   useEffect(() => {
     fetch(`/api/movies?endpoint=person/${id}`)

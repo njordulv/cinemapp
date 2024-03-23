@@ -1,20 +1,11 @@
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
+import { CardTypes } from '@/types/data'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import { formatReleaseDate } from '@/utils/formatDate'
 
-interface Props {
-  id: number | string
-  type: string
-  image: string | undefined
-  name: string
-  date: string
-  vote_average: number | undefined
-  seasonNumber?: number
-}
-
-const MainCard: React.FC<Props> = ({
+const MainCard: React.FC<CardTypes> = ({
   id,
   type,
   image,
@@ -22,7 +13,7 @@ const MainCard: React.FC<Props> = ({
   date,
   vote_average,
   seasonNumber,
-}: Props) => {
+}: CardTypes) => {
   const router = useRouter()
   const formattedReleaseDate = formatReleaseDate(date)
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL

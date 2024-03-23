@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import MovieData from '@/types/movieData'
+import { Movie } from '@/types/data'
 import SkeletonBox from '@/components/UI/SkeletonBox'
 import CardBox from '@/components/Movie/CardBox'
 import Paginate from '@/components/UI/Paginate'
@@ -9,7 +9,7 @@ import Paginate from '@/components/UI/Paginate'
 const NO_IMAGE = '/no-image.svg'
 
 export default function Layout() {
-  const [movies, setMovies] = useState<MovieData[]>([])
+  const [movies, setMovies] = useState<Movie[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)

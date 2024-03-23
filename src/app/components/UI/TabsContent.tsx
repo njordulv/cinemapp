@@ -1,5 +1,5 @@
 import { Tabs, Tab, Card, CardBody, ScrollShadow } from '@nextui-org/react'
-import CreditsData from '@/types/CreditsData'
+import { Credits } from '@/types/data'
 import Cast from '@/components/UI/Cast'
 import Crew from '@/components/UI/Crew'
 import VideoTab from '@/components/UI/VideoTab'
@@ -7,7 +7,7 @@ import VideoTab from '@/components/UI/VideoTab'
 interface DataMovie {
   id: string
   data: {
-    credits: CreditsData
+    credits: Credits
   }
   isMovie: boolean
 }

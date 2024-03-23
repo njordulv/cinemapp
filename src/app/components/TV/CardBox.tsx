@@ -1,5 +1,5 @@
 import useFetcher from '@/hooks/useFetcher'
-import TVData from '@/types/TVData'
+import { Movie } from '@/types/data'
 import MainCard from '@/components/UI/MainCard'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
@@ -10,7 +10,7 @@ export default function TVCard({
   image,
   first_air_date,
   vote_average,
-}: TVData) {
+}: Movie) {
   const { data, isLoading, isError } = useFetcher({
     endpoint: `api/movies?endpoint=tv/${id}&combinedEndpoints=tv/${id}/credits`,
   })

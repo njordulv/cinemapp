@@ -3,7 +3,7 @@
 import { Card, Image, CardBody, Chip } from '@nextui-org/react'
 import { IoStarSharp } from 'react-icons/io5'
 import useFetcher from '@/hooks/useFetcher'
-import EpisodesData from '@/types/EpisodesData'
+import { Episodes } from '@/types/data'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 import { formatReleaseDate } from '@/utils/formatDate'
@@ -17,7 +17,6 @@ export default function SingleSeason({
   const { data, isLoading, isError } = useFetcher({
     endpoint: `/api/movies?endpoint=tv/${id}/season/${sId}`,
   })
-  console.log(params)
 
   if (isError) return <Error errorText={isError.message} />
   if (isLoading) return <Loader />
@@ -29,7 +28,7 @@ export default function SingleSeason({
     <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-6 py-10">
       <h1 className="flex self-start font-medium mb-6 text-4xl">{data.name}</h1>
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto">
-        {data?.episodes?.map((episode: EpisodesData, index: number) => (
+        {data?.episodes?.map((episode: Episodes, index: number) => (
           <Card
             isBlurred
             className="border-none bg-grey"

@@ -3,19 +3,13 @@ import { Image, Chip } from '@nextui-org/react'
 import { TbWorldWww } from 'react-icons/tb'
 import { LiaImdb } from 'react-icons/lia'
 import { BsCurrencyDollar } from 'react-icons/bs'
+import { Hero, ItemsList } from '@/types/data'
+import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import Creator from '@/components/UI/Creator'
-import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import formatBudget from '@/utils/formatBudget'
-import HeroData from '@/types/HeroData'
 import styles from '@/styles/singleMovie.module.scss'
-
-type ListItem = {
-  id?: number
-  name?: string
-  english_name?: string
-}
 
 export default function Hero({
   title,
@@ -34,11 +28,11 @@ export default function Hero({
   first_air_date,
   isMovie,
   created_by,
-}: HeroData) {
+}: Hero) {
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
-  const renderList = (items: ListItem[], key: keyof ListItem = 'name') =>
+  const renderList = (items: ItemsList[], key: keyof ItemsList = 'name') =>
     items &&
     items.map((item, index) => (
       <Chip size="sm" key={item.id || index}>

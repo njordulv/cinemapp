@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import SingleMovieData from '@/types/SingleMovieData'
+import { Single } from '@/types/data'
 
 interface MovieState {
-  currentMovie: SingleMovieData | null
+  currentMovie: Single | null
 }
 
 const initialState: MovieState = {

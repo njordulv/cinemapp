@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import TopRatedData from '@/types/TopRatedData'
+import { TopRated } from '@/types/data'
 import SkeletonBox from '@/components/UI/SkeletonBox'
 import CardBox from '@/components/TopRated/CardBox'
 import Paginate from '@/components/UI/Paginate'
@@ -10,7 +10,7 @@ const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
 const NO_IMAGE = '/no-image.svg'
 
 export default function Layout() {
-  const [topRated, setTopRated] = useState<TopRatedData[]>([])
+  const [topRated, setTopRated] = useState<TopRated[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)

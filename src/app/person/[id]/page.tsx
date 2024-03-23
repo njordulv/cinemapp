@@ -3,13 +3,13 @@
 import { useEffect, useState } from 'react'
 import { Image, Link } from '@nextui-org/react'
 import { LiaImdb } from 'react-icons/lia'
+import { Person } from '@/types/data'
 import { formatReleaseDate } from '@/utils/formatDate'
-import PersonData from '@/types/PersonData'
 import calculateAge from '@/utils/calculateAge'
 import Loading from '@/src/app/loading'
 
 export default function Post({ params }: { params: { id: string } }) {
-  const [personData, setPersonData] = useState<PersonData | null>(null)
+  const [personData, setPersonData] = useState<Person | null>(null)
   const [error, setError] = useState('')
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
   const NO_IMAGE = '/no-image.svg'

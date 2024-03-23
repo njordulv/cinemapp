@@ -2,10 +2,10 @@
 
 import { Spinner } from '@nextui-org/react'
 import YouTube from 'react-youtube'
-import VideoData from '@/types/videoData'
 import useFetcher from '@/hooks/useFetcher'
+import { VideoTypes } from '@/types/data'
 
-const VideoTab: React.FC<VideoData> = ({ movieId }: VideoData) => {
+const VideoTab: React.FC<VideoTypes> = ({ movieId }: VideoTypes) => {
   const endpointType = `/api/movies?endpoint=tv/${movieId}/videos`
   const { data, isLoading, isError } = useFetcher({
     endpoint: endpointType,
@@ -24,7 +24,7 @@ const VideoTab: React.FC<VideoData> = ({ movieId }: VideoData) => {
       ) : isError ? (
         <div className="text-xl text-white">Error loading videos</div>
       ) : videos.length > 0 ? (
-        videos.slice(0, 2).map((video: VideoData, index: number) => (
+        videos.slice(0, 2).map((video: VideoTypes, index: number) => (
           <YouTube
             videoId={video.key}
             id={`youtube-player-${index}`}
