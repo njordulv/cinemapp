@@ -59,7 +59,7 @@ export default function Crew({ params }: { params: { id: string } }) {
                 className="w-full object-cover rounded-b-none"
                 src={
                   member.profile_path
-                    ? `${BASE_IMAGE_URL}w300/${member.profile_path}`
+                    ? `${BASE_IMAGE_URL}w300${member.profile_path}`
                     : NO_IMAGE
                 }
                 alt={member.name || 'Unknown'}

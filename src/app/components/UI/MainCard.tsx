@@ -47,7 +47,7 @@ const MainCard: React.FC<Props> = ({
     >
       <Image
         className="object-cover"
-        src={image ? `${BASE_IMAGE_URL}w300/${image}` : NO_IMAGE}
+        src={image ? `${BASE_IMAGE_URL}w300${image}` : NO_IMAGE}
         alt={name || 'Unknown'}
         width={220}
         height={330}

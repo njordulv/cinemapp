@@ -60,7 +60,7 @@ export default function Post({ params }: { params: { id: string } }) {
             shadow="md"
             className="object-cover"
             src={
-              profile_path ? `${BASE_IMAGE_URL}w300/${profile_path}` : NO_IMAGE
+              profile_path ? `${BASE_IMAGE_URL}w300${profile_path}` : NO_IMAGE
             }
             width={300}
             height={450}

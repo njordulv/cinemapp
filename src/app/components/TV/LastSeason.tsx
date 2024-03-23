@@ -27,7 +27,7 @@ export default function LastSeason({ seasons }: SeasonProps) {
                 shadow="md"
                 src={
                   lastSeason?.poster_path
-                    ? `${BASE_IMAGE_URL}w300/${lastSeason?.poster_path}`
+                    ? `${BASE_IMAGE_URL}w300${lastSeason?.poster_path}`
                     : NO_IMAGE
                 }
                 alt={lastSeason?.name || 'Unknown'}

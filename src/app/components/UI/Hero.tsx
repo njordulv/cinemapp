@@ -51,7 +51,7 @@ export default function Hero({
       <div
         style={{
           backgroundImage: backdrop_path
-            ? `url(${BASE_IMAGE_URL}original/${backdrop_path})`
+            ? `url(${BASE_IMAGE_URL}original${backdrop_path})`
             : `url(${NO_IMAGE})`,
         }}
         className={styles.singleHero_back}
@@ -63,9 +63,7 @@ export default function Hero({
           <Image
             shadow="lg"
             className="object-cover"
-            src={
-              poster_path ? `${BASE_IMAGE_URL}w300/${poster_path}` : NO_IMAGE
-            }
+            src={poster_path ? `${BASE_IMAGE_URL}w300${poster_path}` : NO_IMAGE}
             width={300}
             height={450}
             fallbackSrc={NO_IMAGE}

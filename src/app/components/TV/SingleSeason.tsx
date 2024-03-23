@@ -11,17 +11,19 @@ import { formatReleaseDate } from '@/utils/formatDate'
 export default function SingleSeason({
   params,
 }: {
-  params: { id: string; seasonNumber: string }
+  params: { id: string; sId: number }
 }) {
-  const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
-  const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
-  const { id, seasonNumber } = params
+  const { id, sId } = params
   const { data, isLoading, isError } = useFetcher({
-    endpoint: `/api/movies?endpoint=tv/${id}/season/${seasonNumber}`,
+    endpoint: `/api/movies?endpoint=tv/${id}/season/${sId}`,
   })
+  console.log(params)
 
   if (isError) return <Error errorText={isError.message} />
   if (isLoading) return <Loader />
+
+  const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
+  const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   return (
     <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-6 py-10">
@@ -35,7 +37,7 @@ export default function SingleSeason({
             key={episode.id || index}
           >
             <CardBody>
-              <div className="grid grid-flow-col auto-cols-[minmax(3fr, 8fr)] gap-6 md:gap-4 items-start justify-center">
+              <div className="grid grid-flow-col lg:grid-cols-[3fr_8fr]   gap-6 md:gap-4 items-start justify-center">
                 <div className="relative max-w-[300px]">
                   <Image
                     className="object-cover"
@@ -44,9 +46,10 @@ export default function SingleSeason({
                     shadow="md"
                     src={
                       episode?.still_path
-                        ? `${BASE_IMAGE_URL}w300/${episode?.still_path}`
+                        ? `${BASE_IMAGE_URL}w300${episode?.still_path}`
                         : NO_IMAGE
                     }
+                    fallbackSrc={NO_IMAGE}
                     alt={episode?.name || 'Unknown'}
                   />
                 </div>

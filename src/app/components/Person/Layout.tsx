@@ -6,7 +6,7 @@ import SkeletonBox from '@/components/Person/SkeletonBox'
 import CardBox from '@/components/Person/CardBox'
 import Paginate from '@/components/UI/Paginate'
 
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
+const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w300'
 const NO_IMAGE = '/no-image.svg'
 
 export default function Layout() {

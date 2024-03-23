@@ -7,8 +7,8 @@ import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 import YoutubeUI from '@/components/UI/YoutubeUI'
 
-export default function AllVideos({ params }: { params: { id: string } }) {
-  const endpointType = `/api/movies?endpoint=movie/${params.id}/videos`
+export default function AllVideosTV({ params }: { params: { id: string } }) {
+  const endpointType = `/api/movies?endpoint=tv/${params.id}/videos`
   const { data, isLoading, isError } = useFetcher({ endpoint: endpointType })
 
   if (isError) return <Error errorText={isError.message} />

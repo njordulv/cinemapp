@@ -6,7 +6,6 @@ import SkeletonBox from '@/components/UI/SkeletonBox'
 import CardBox from '@/components/Movie/CardBox'
 import Paginate from '@/components/UI/Paginate'
 
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
 const NO_IMAGE = '/no-image.svg'
 
 export default function Layout() {
@@ -42,11 +41,7 @@ export default function Layout() {
           movies.map((movie) => (
             <CardBox
               {...movie}
-              image={
-                movie.poster_path
-                  ? `${BASE_IMAGE_URL}${movie.poster_path}`
-                  : NO_IMAGE
-              }
+              image={movie.poster_path ? `${movie.poster_path}` : NO_IMAGE}
               key={movie.id}
             />
           ))

@@ -103,7 +103,7 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
                     className="w-full object-cover rounded-b-none"
                     src={
                       actor.profile_path
-                        ? `${BASE_IMAGE_URL}w300/${actor.profile_path}`
+                        ? `${BASE_IMAGE_URL}w300${actor.profile_path}`
                         : NO_IMAGE
                     }
                     alt={actor.name || 'Unknown'}

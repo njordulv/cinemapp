@@ -1,10 +1,9 @@
 import AllVideos from '@/components/Video/AllVideos'
 
-interface AllVideosProps {
+interface Props {
   params: { id: string }
-  contentType: string
 }
 
-export default function Page({ params }: AllVideosProps) {
-  return <AllVideos params={params} contentType={'movie'} />
+export default function Page({ params }: Props) {
+  return <AllVideos params={params} />
 }

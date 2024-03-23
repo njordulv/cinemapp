@@ -31,7 +31,7 @@ const Season: React.FC<SeasonProps> = ({ id, seasons }) => {
           className="w-full object-cover rounded-b-none"
           src={
             season.poster_path
-              ? `${BASE_IMAGE_URL}w300/${season.poster_path}`
+              ? `${BASE_IMAGE_URL}w300${season.poster_path}`
               : NO_IMAGE
           }
           alt={season.name || 'Unknown'}

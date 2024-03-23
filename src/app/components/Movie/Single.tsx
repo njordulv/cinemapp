@@ -2,7 +2,7 @@
 
 import useFetcher from '@/hooks/useFetcher'
 import Hero from '@/components/UI/Hero'
-import TabsContent from '@/components/UI/TabsContent'
+import TabsContent from '@/components/TV/TabsContent'
 import ListRenderer from '@/components/UI/ListRenderer'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
@@ -10,7 +10,6 @@ import styles from '@/styles/singleMovie.module.scss'
 
 interface Props {
   params: { id: string }
-  contentType: string
 }
 
 export default function Single({ params }: Props) {
@@ -66,7 +65,7 @@ export default function Single({ params }: Props) {
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
         <div className="grid lg:grid-cols-[3fr_1fr] gap-3">
           <section className="flex w-full flex-col relative overflow-hidden">
-            <TabsContent id={params.id} data={data} contentType={'movie'} />
+            <TabsContent id={params.id} data={data} />
           </section>
           <aside>
             <div>

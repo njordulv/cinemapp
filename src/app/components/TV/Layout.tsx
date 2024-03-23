@@ -11,7 +11,7 @@ export default function Layout() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
+  const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w300'
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   useEffect(() => {
@@ -41,9 +41,7 @@ export default function Layout() {
           tvShow.map((tv) => (
             <CardBox
               {...tv}
-              image={
-                tv.poster_path ? `${BASE_IMAGE_URL}${tv.poster_path}` : NO_IMAGE
-              }
+              image={tv.poster_path ? `${tv.poster_path}` : NO_IMAGE}
               key={tv.id}
             />
           ))
