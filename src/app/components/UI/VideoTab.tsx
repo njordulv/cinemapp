@@ -5,10 +5,10 @@ import YouTube from 'react-youtube'
 import VideoData from '@/types/videoData'
 import useFetcher from '@/hooks/useFetcher'
 
-const VideoTab: React.FC<VideoData> = ({ movieId }: VideoData) => {
-  const endpointType = `/api/movies?endpoint=tv/${movieId}/videos`
+const VideoTab: React.FC<VideoData> = ({ movieId, isMovie }: VideoData) => {
+  const pageType = isMovie ? 'movie' : 'tv'
   const { data, isLoading, isError } = useFetcher({
-    endpoint: endpointType,
+    endpoint: `/api/movies?endpoint=${pageType}/${movieId}/videos`,
   })
 
   const videos = data?.results || []

@@ -1,9 +1,7 @@
-import AllVideosTV from '@/components/Video/AllVideosTV'
+import AllVideos from '@/components/Video/AllVideos'
+import type { ParamsWithId } from '@/types/params'
 
-interface Props {
-  params: { id: string }
-}
-
-export default function Page({ params }: Props) {
-  return <AllVideosTV params={params} />
+export default function Page({ params }: { params: ParamsWithId }) {
+  const contentType = params.id.includes('/movie/') ? 'movie' : 'tv'
+  return <AllVideos params={params} contentType={contentType} />
 }

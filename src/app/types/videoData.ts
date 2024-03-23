@@ -11,6 +11,6 @@ interface VideoData {
   published_at?: string
   id?: string
   iframe?: string
-  contentType?: string
+  isMovie: boolean
 }
 export default VideoData

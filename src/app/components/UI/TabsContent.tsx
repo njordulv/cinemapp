@@ -2,16 +2,19 @@ import { Tabs, Tab, Card, CardBody, ScrollShadow } from '@nextui-org/react'
 import CreditsData from '@/types/CreditsData'
 import Cast from '@/components/UI/Cast'
 import Crew from '@/components/UI/Crew'
-import VideoTab from '@/components/TV/VideoTab'
+import VideoTab from '@/components/UI/VideoTab'
 
 interface DataMovie {
   id: string
   data: {
     credits: CreditsData
   }
+  isMovie: boolean
 }
 
-export default function TabsContent({ id, data }: DataMovie) {
+export default function TabsContent({ id, data, isMovie }: DataMovie) {
+  const pageType = isMovie ? 'movie' : 'tv'
+
   return (
     <Tabs
       key="bordered"
@@ -44,11 +47,15 @@ export default function TabsContent({ id, data }: DataMovie) {
       <Tab key="trailers" title="Trailers">
         <Card className="bg-blueDark">
           <CardBody>
-            <VideoTab movieId={id} />
+            <VideoTab movieId={id} isMovie={isMovie} />
           </CardBody>
         </Card>
       </Tab>
-      <Tab key="allVideos" title="All Videos" href={`/tv/${id}/videos`}></Tab>
+      <Tab
+        key="allVideos"
+        title="All Videos"
+        href={`/${pageType}/${id}/videos`}
+      ></Tab>
     </Tabs>
   )
 }

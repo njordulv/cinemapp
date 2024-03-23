@@ -2,13 +2,20 @@
 
 import { Card, CardFooter, CardBody } from '@nextui-org/react'
 import useFetcher from '@/hooks/useFetcher'
+import type { ParamsWithId } from '@/types/params'
 import VideoData from '@/types/videoData'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 import YoutubeUI from '@/components/UI/YoutubeUI'
 
-export default function AllVideos({ params }: { params: { id: string } }) {
-  const endpointType = `/api/movies?endpoint=movie/${params.id}/videos`
+interface AllVideosProps {
+  params: ParamsWithId
+  contentType: 'tv' | 'movie'
+}
+
+export default function AllVideos({ params, contentType }: AllVideosProps) {
+  const { id } = params
+  const endpointType = `/api/movies?endpoint=${contentType}/${id}/videos`
   const { data, isLoading, isError } = useFetcher({ endpoint: endpointType })
 
   if (isError) return <Error errorText={isError.message} />
