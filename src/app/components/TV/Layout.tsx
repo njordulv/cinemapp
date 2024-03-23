@@ -11,7 +11,6 @@ export default function Layout() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w300'
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   useEffect(() => {
