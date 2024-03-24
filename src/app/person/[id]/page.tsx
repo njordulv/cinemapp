@@ -1,43 +1,23 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { Image, Link } from '@nextui-org/react'
 import { LiaImdb } from 'react-icons/lia'
-import { Person } from '@/types/data'
+import useFetcher from '@/hooks/useFetcher'
 import { formatReleaseDate } from '@/utils/formatDate'
 import calculateAge from '@/utils/calculateAge'
-import Loading from '@/src/app/loading'
+import Error from '@/components/UI/Error'
+import Loader from '@/components/UI/Loader'
+
+const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
+const NO_IMAGE = '/no-image.svg'
 
 export default function Post({ params }: { params: { id: string } }) {
-  const [personData, setPersonData] = useState<Person | null>(null)
-  const [error, setError] = useState('')
-  const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
-  const NO_IMAGE = '/no-image.svg'
+  const { data, isError, isLoading } = useFetcher({
+    endpoint: `/api/movies?endpoint=person/${params.id}`,
+  })
 
-  useEffect(() => {
-    const { id } = params
-
-    fetch(`/api/movies?endpoint=person/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch movie data')
-        }
-        return response.json()
-      })
-      .then((data) => {
-        setPersonData(data)
-      })
-
-      .catch((error) => setError(error.message))
-  }, [params.id])
-
-  if (error) {
-    return <div>Error: {error}</div>
-  }
-
-  if (!personData) {
-    return <Loading />
-  }
+  if (isError) return <Error errorText={isError.message} />
+  if (isLoading || !data) return <Loader />
 
   const {
     name,
@@ -50,7 +30,7 @@ export default function Post({ params }: { params: { id: string } }) {
     place_of_birth,
     profile_path,
     popularity,
-  } = personData
+  } = data
 
   return (
     <>

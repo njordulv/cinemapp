@@ -6,8 +6,8 @@ import Hero from '@/components/UI/Hero'
 import TabsContent from '@/components/UI/TabsContent'
 import SeasonsTabs from '@/components/TV/SeasonsTabs'
 import ListRenderer from '@/components/UI/ListRenderer'
-import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
+import Loader from '@/components/UI/Loader'
 import styles from '@/styles/singleMovie.module.scss'
 
 interface Props {
