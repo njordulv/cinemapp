@@ -8,10 +8,14 @@ import CardBox from '@/components/TopRated/CardBox'
 import Paginate from '@/components/UI/Paginate'
 import Error from '@/components/UI/Error'
 
-export default function Layout() {
+interface TopRatedProps {
+  type: 'tv' | 'movie'
+}
+
+export default function Layout({ type }: TopRatedProps) {
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isError, isLoading } = useFetcher({
-    endpoint: `/api/movies?endpoint=movie/top_rated&page=${currentPage}`,
+    endpoint: `/api/movies?endpoint=${type}/top_rated&page=${currentPage}`,
   })
   const NO_IMAGE = '/no-image.svg'
 
@@ -30,6 +34,7 @@ export default function Layout() {
           data.results.map((topRated: TopRated) => (
             <CardBox
               {...topRated}
+              type={type}
               image={
                 topRated.poster_path ? `${topRated.poster_path}` : NO_IMAGE
               }

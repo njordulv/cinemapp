@@ -19,7 +19,7 @@ export default function LastSeason({ seasons }: SeasonProps) {
       <Card isBlurred className="border-none bg-grey" shadow="sm">
         <CardBody>
           <div className="grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-start justify-center">
-            <div className="relative col-span-5 md:col-span-4">
+            <div className="relative col-span-5 md:col-span-3">
               <Image
                 className="object-cover"
                 height={180}
@@ -34,7 +34,7 @@ export default function LastSeason({ seasons }: SeasonProps) {
               />
             </div>
 
-            <div className="flex flex-col col-span-7 md:col-span-8">
+            <div className="flex flex-col col-span-7 md:col-span-9">
               <div className="flex justify-between items-start">
                 <div className="flex flex-col gap-0">
                   <h3 className="font-semibold text-foreground/90 mb-2">

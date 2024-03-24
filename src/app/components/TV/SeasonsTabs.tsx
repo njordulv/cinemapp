@@ -15,7 +15,7 @@ export default function SeasonsTabs({ id, data }: DataMovie) {
     <Tabs
       key="bordered"
       variant="bordered"
-      aria-label="Options"
+      aria-label="TV Seasons"
       classNames={{
         panel: 'px-0 pb-0',
         tabList: 'border-transpLight border-1',

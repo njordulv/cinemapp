@@ -101,6 +101,12 @@ export default function Navigation() {
             >
               <Link href={`/tv`}>Popular</Link>
             </DropdownItem>
+            <DropdownItem
+              key="Popular TV Shows"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-special"
+            >
+              <Link href={`/tv/top-rated`}>Top Rated</Link>
+            </DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <NavbarItem>

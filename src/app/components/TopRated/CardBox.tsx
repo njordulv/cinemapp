@@ -3,19 +3,22 @@ import MainCard from '@/components/UI/MainCard'
 
 export default function CardBox({
   id,
+  type,
   title,
+  name,
   image,
   release_date,
+  first_air_date,
   vote_average,
 }: TopRated) {
   return (
     <>
       <MainCard
-        type={'movie'}
+        type={type}
         id={id}
         image={image}
-        name={title}
-        date={release_date}
+        name={type === 'movie' ? title : name}
+        date={type === 'movie' ? release_date : first_air_date}
         vote_average={vote_average}
       />
     </>

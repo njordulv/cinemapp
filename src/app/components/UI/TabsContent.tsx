@@ -19,7 +19,7 @@ export default function TabsContent({ id, data, isMovie }: DataMovie) {
     <Tabs
       key="bordered"
       variant="bordered"
-      aria-label="Options"
+      aria-label={`${pageType} options`}
       classNames={{
         panel: 'px-0 pb-0',
         tabList: 'border-transpLight border-1',
@@ -28,23 +28,23 @@ export default function TabsContent({ id, data, isMovie }: DataMovie) {
         tabContent: 'text-soft',
       }}
     >
-      <Tab key="cast" title="Cast">
+      <Tab key={`${pageType} cast`} title="Cast">
         <Card className="bg-blueDark">
           <CardBody>
             {data.credits.cast && <Cast cast={data.credits.cast} />}
           </CardBody>
         </Card>
       </Tab>
-      <Tab key="crew" title="Crew">
+      <Tab key={`${pageType} crew`} title="Crew">
         <Card className="bg-blueDark">
           <CardBody>
-            <ScrollShadow className="h-[420px]" isEnabled={false}>
+            <ScrollShadow className="h-[318px]" isEnabled={false}>
               {data.credits.crew && <Crew crew={data.credits.crew} />}
             </ScrollShadow>
           </CardBody>
         </Card>
       </Tab>
-      <Tab key="trailers" title="Trailers">
+      <Tab key={`${pageType} trailers`} title="Trailers">
         <Card className="bg-blueDark">
           <CardBody>
             <VideoTab movieId={id} isMovie={isMovie} />
@@ -52,7 +52,7 @@ export default function TabsContent({ id, data, isMovie }: DataMovie) {
         </Card>
       </Tab>
       <Tab
-        key="allVideos"
+        key={`${pageType} all videos`}
         title="All Videos"
         href={`/${pageType}/${id}/videos`}
       ></Tab>

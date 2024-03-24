@@ -217,9 +217,12 @@ export interface Single {
 
 export interface TopRated {
   id: number
+  type: string
   title: string
+  name?: string
   overview: string
   release_date: string
+  first_air_date?: string
   poster_path?: string
   image?: string
   vote_average?: number
