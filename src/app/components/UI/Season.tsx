@@ -40,10 +40,10 @@ const Season: React.FC<SeasonProps> = ({ id, seasons }) => {
       <CardFooter className="flex flex-col text-small items-stretch p-2">
         <b className="text-[15px] text-left">{season.name}</b>
         <div className="flex justify-between gap-2">
-          <span className="text-[14px] leading-[18px]">
+          <span className="text-[14px] leading-[18px] text-left">
             {season.episode_count} Episodes
           </span>
-          <span className="text-[14px] leading-[18px]">
+          <span className="text-[14px] leading-[18px] text-right">
             {formatReleaseYear(season.air_date)}
           </span>
         </div>

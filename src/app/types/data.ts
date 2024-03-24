@@ -251,10 +251,12 @@ export interface CardTypes {
   id: number | string
   type: string
   image: string | undefined
-  name: string
-  date: string
-  vote_average: number | undefined
+  profile_path?: string | undefined
+  name?: string
+  date?: string
+  vote_average?: number | undefined
   seasonNumber?: number
+  known_for?: Known[]
 }
 
 export interface Human {

@@ -19,7 +19,7 @@ export default function VoteAverage({
 
   return (
     <Card
-      className={`${card} p-0 border-none bg-black bg-opacity-70 rounded-full`}
+      className={`${card} p-0 border-none bg-black bg-opacity-70 rounded-full tracking-[-0.5px]`}
     >
       <CardBody className="justify-center items-center">
         <CircularProgress
@@ -27,7 +27,7 @@ export default function VoteAverage({
             svg: size,
             indicator: 'stroke-cyan-600',
             track: 'stroke-white/30',
-            value: `${text} font-semibold text-white`,
+            value: `${text} font-semibold text-white letter-spacing-[-1px]`,
           }}
           value={voteValue}
           strokeWidth={strokeWidth}

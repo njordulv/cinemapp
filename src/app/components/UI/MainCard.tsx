@@ -15,7 +15,6 @@ const MainCard: React.FC<CardTypes> = ({
   seasonNumber,
 }: CardTypes) => {
   const router = useRouter()
-  const formattedReleaseDate = formatReleaseDate(date)
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
@@ -49,7 +48,7 @@ const MainCard: React.FC<CardTypes> = ({
           {name}
         </div>
         <div className="text-tiny text-white/80 text-shadow-sm">
-          {formattedReleaseDate}
+          {formatReleaseDate(date ?? '')}
         </div>
         <div className="absolute top-[50%] right-[3px] mt-[-20px]">
           {vote_average ? (

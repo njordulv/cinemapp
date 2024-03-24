@@ -1,6 +1,8 @@
 function formatReleaseDate(releaseDate: string) {
+  if (!releaseDate || new Date(releaseDate).toString() === 'Invalid Date') {
+    return 'N/A'
+  }
   const date = new Date(releaseDate)
-
   const formattedDate = date.toLocaleString('en-GB', {
     day: '2-digit',
     month: 'short',
@@ -11,6 +13,9 @@ function formatReleaseDate(releaseDate: string) {
 }
 
 function formatReleaseYear(releaseDate: string) {
+  if (!releaseDate || new Date(releaseDate).toString() === 'Invalid Date') {
+    return 'N/A'
+  }
   const date = new Date(releaseDate)
   const formattedYear = date.toLocaleString('en-GB', { year: 'numeric' })
 
@@ -18,6 +23,9 @@ function formatReleaseYear(releaseDate: string) {
 }
 
 function formatReleaseDateAlt(releaseDate: string) {
+  if (!releaseDate || new Date(releaseDate).toString() === 'Invalid Date') {
+    return 'N/A'
+  }
   const date = new Date(releaseDate)
   const formattedDate = date.toLocaleDateString('en-GB', {
     day: '2-digit',

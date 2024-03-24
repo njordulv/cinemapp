@@ -1,54 +1,16 @@
-import { useState, useEffect } from 'react'
-import { Card, CardBody, CardFooter, Image } from '@nextui-org/react'
-import { useRouter } from 'next/navigation'
-import { Person } from '@/types/data'
-import KnownFor from '@/components/UI/KnownFor'
-const NO_IMAGE = '/no-image.svg'
+import { CardTypes } from '@/types/data'
+import PersonCard from '@/components/UI/PersonCard'
 
-export default function CardBox({ id, name, profile_path, known_for }: Person) {
-  const router = useRouter()
-  const [error, setError] = useState<string | null>(null)
-  const [personDetails, setPersonDetails] = useState<Person | null>(null)
-
-  useEffect(() => {
-    fetch(`/api/movies?endpoint=person/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch data')
-        }
-        return response.json()
-      })
-      .then((data) => {
-        setPersonDetails(data)
-      })
-      .catch((error) => setError(error.message))
-  }, [id])
-
-  const pageHandler = () => {
-    router.push(`/person/${id}`)
-  }
-
-  if (error) {
-    return <h1>There is an error - {error}</h1>
-  }
-
+export default function CardBox({ id, name, image, known_for }: CardTypes) {
   return (
-    <Card shadow="md" className="bg-grey" isPressable onPress={pageHandler}>
-      <CardBody className="overflow-visible p-0 flex-none">
-        <Image
-          shadow="sm"
-          radius="md"
-          width="182"
-          className="w-full object-cover h-[240px] rounded-b-none"
-          src={profile_path}
-          fallbackSrc={NO_IMAGE}
-          alt={name || 'Unknown'}
-        />
-      </CardBody>
-      <CardFooter className="flex flex-col text-small items-start gap-2 p-2">
-        <b className="text-[15px]">{name}</b>
-        {known_for && <KnownFor items={known_for} />}
-      </CardFooter>
-    </Card>
+    <>
+      <PersonCard
+        id={id}
+        type={'person'}
+        image={image}
+        name={name}
+        known_for={known_for}
+      />
+    </>
   )
 }
