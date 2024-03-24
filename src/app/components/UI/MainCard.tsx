@@ -33,7 +33,7 @@ const MainCard: React.FC<CardTypes> = ({
       isFooterBlurred
       isPressable
       radius="lg"
-      className="border-none bg-content-none bg-blueDark"
+      className="border-none bg-content-none"
       onPress={pageHandler}
     >
       <Image
