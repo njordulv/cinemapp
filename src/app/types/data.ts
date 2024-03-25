@@ -6,7 +6,7 @@ export interface CreatedBy {
   profile_path: string
 }
 
-export interface Hero {
+export interface HeroTypes {
   title?: string
   name?: string
   backdrop_path: string
@@ -54,11 +54,11 @@ export interface Episodes {
   still_path: string
   vote_average: number
   vote_count: number
-  crew: Crew[]
+  crew: CrewTypes[]
   guest_stars: GuestStars[]
 }
 
-export interface Cast {
+export interface CastTypes {
   adult: boolean
   gender: number
   id: number
@@ -73,7 +73,7 @@ export interface Cast {
   order: number
 }
 
-export interface Crew {
+export interface CrewTypes {
   adult?: boolean
   gender?: number
   id?: number
@@ -88,8 +88,8 @@ export interface Crew {
 }
 
 export interface Credits {
-  cast: Cast[]
-  crew: Crew[]
+  cast: CastTypes[]
+  crew: CrewTypes[]
 }
 
 export interface Movie {
@@ -211,8 +211,8 @@ export interface Single {
   vote_average: number
   vote_count: number
   credits: Credits
-  cast: Cast[]
-  crew: Crew[]
+  cast: CastTypes[]
+  crew: CrewTypes[]
 }
 
 export interface TopRated {
@@ -265,4 +265,16 @@ export interface CardTypes {
 export interface Human {
   birthdayType: string
   deathdayType?: string | null
+}
+
+export interface SearchTypes {
+  backdrop_path: string
+  id: number
+  name?: string
+  title: string
+  overview: string
+  poster_path: string
+  genre_ids: number[]
+  popularity: number
+  release_date: string
 }

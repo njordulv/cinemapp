@@ -3,7 +3,7 @@ import { Image, Chip } from '@nextui-org/react'
 import { TbWorldWww } from 'react-icons/tb'
 import { LiaImdb } from 'react-icons/lia'
 import { BsCurrencyDollar } from 'react-icons/bs'
-import { Hero, ItemsList } from '@/types/data'
+import { HeroTypes, ItemsList } from '@/types/data'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
@@ -28,7 +28,7 @@ export default function Hero({
   first_air_date,
   isMovie,
   created_by,
-}: Hero) {
+}: HeroTypes) {
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 

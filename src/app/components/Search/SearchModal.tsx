@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Modal,
   ModalContent,
@@ -5,10 +7,10 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-  Input,
   Tooltip,
 } from '@nextui-org/react'
 import { IoSearchOutline } from 'react-icons/io5'
+import AutoFill from '@/src/app/components/Search/AutoFill'
 import { CustomButton } from '@/components/UI/CustomButton'
 
 export default function SearchModal() {
@@ -22,7 +24,7 @@ export default function SearchModal() {
         delay={2000}
         className="text-grey text-tiny"
       >
-        <CustomButton color="back" onPress={onOpen} size="circle">
+        <CustomButton color="transp" onPress={onOpen} size="circle">
           <IoSearchOutline size="24" />
         </CustomButton>
       </Tooltip>
@@ -35,18 +37,12 @@ export default function SearchModal() {
             enter: {
               y: 0,
               opacity: 1,
-              transition: {
-                duration: 0.3,
-                ease: 'easeOut',
-              },
+              transition: { duration: 0.3, ease: 'easeOut' },
             },
             exit: {
               y: -30,
               opacity: 0,
-              transition: {
-                duration: 0.2,
-                ease: 'easeIn',
-              },
+              transition: { duration: 0.2, ease: 'easeIn' },
             },
           },
         }}
@@ -55,27 +51,12 @@ export default function SearchModal() {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Look up a film, series, individual...
+                Look up a movie, series, individual...
               </ModalHeader>
               <ModalBody>
-                <Input
-                  isClearable
-                  autoFocus
-                  type="search"
-                  label="Search"
-                  variant="bordered"
-                  labelPlacement="outside"
-                  placeholder="Type to search..."
-                  classNames={{
-                    inputWrapper:
-                      'border-default-600 data-[hover=true]:border-default-500 group-data-[focus=true]:border-default-400 border-small',
-                    label:
-                      'text-default-400 group-data-[filled-within=true]:text-default-500',
-                    input: 'appearance-none',
-                  }}
-                />
+                <AutoFill />
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className="pb-6">
                 <CustomButton color="primary" onPress={onClose} size="md">
                   Search
                 </CustomButton>

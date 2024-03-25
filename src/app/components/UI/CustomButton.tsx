@@ -9,6 +9,7 @@ export const CustomButton = extendVariants(Button, {
       white: 'bg-[var(--pink)] text-[#fff]',
       special: 'bg-[var(--special)] text-[#fff]',
       back: 'bg-[var(--background)] text-[#fff] hover:text-special',
+      transp: 'bg-transparent text-[#fff] hover:text-special',
     },
     isDisabled: {
       true: 'bg-[var(--blue)] text-[#fff] opacity-50 cursor-not-allowed',
