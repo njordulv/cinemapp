@@ -1,15 +1,20 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Autocomplete, AutocompleteItem, Avatar } from '@nextui-org/react'
 import { useAsyncList } from '@react-stately/data'
 import { IoSearchOutline } from 'react-icons/io5'
 import { SearchTypes } from '@/types/data'
 import { formatReleaseYear } from '@/utils/formatDate'
+interface AutoFillProps {
+  onClose: () => void
+}
 
 const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
 const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
-export default function AutoFill() {
+const AutoFill: React.FC<AutoFillProps> = ({ onClose }) => {
+  const router = useRouter()
   let list = useAsyncList<SearchTypes>({
     async load({ signal, filterText }) {
       let res = await fetch(`/api/search?query=${filterText}`, { signal })
@@ -73,7 +78,13 @@ export default function AutoFill() {
     >
       {(item) => (
         <AutocompleteItem key={item.id} textValue={item.title}>
-          <div className="flex justify-between items-center">
+          <div
+            className="flex justify-between items-center"
+            onClick={() => {
+              onClose()
+              router.push(`/movie/${item.id}`)
+            }}
+          >
             <div className="flex gap-2 items-center">
               <Avatar
                 alt={item.name}
@@ -100,3 +111,5 @@ export default function AutoFill() {
     </Autocomplete>
   )
 }
+
+export default AutoFill

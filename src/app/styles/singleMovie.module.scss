@@ -21,17 +21,6 @@
     display: flex;
     align-items: center;
     gap: 15px;
-
-    > *:not(:first-child) {
-      position: relative;
-      &:before {
-        position: absolute;
-        left: -10px;
-        top: 0px;
-        content: '•';
-        color: rgba(255, 255, 255, 0.7);
-      }
-    }
   }
 
   &_average {

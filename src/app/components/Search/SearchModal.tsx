@@ -5,7 +5,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   useDisclosure,
   Tooltip,
 } from '@nextui-org/react'
@@ -14,7 +13,7 @@ import AutoFill from '@/src/app/components/Search/AutoFill'
 import { CustomButton } from '@/components/UI/CustomButton'
 
 export default function SearchModal() {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
@@ -31,7 +30,7 @@ export default function SearchModal() {
       <Modal
         isOpen={isOpen}
         backdrop="blur"
-        onOpenChange={onOpenChange}
+        onClose={onClose}
         motionProps={{
           variants: {
             enter: {
@@ -48,21 +47,14 @@ export default function SearchModal() {
         }}
       >
         <ModalContent className="bg-background">
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Look up a movie, series, individual...
-              </ModalHeader>
-              <ModalBody>
-                <AutoFill />
-              </ModalBody>
-              <ModalFooter className="pb-6">
-                <CustomButton color="primary" onPress={onClose} size="md">
-                  Search
-                </CustomButton>
-              </ModalFooter>
-            </>
-          )}
+          <>
+            <ModalHeader className="flex flex-col gap-1">
+              Look up a movie, series, individual...
+            </ModalHeader>
+            <ModalBody className="pb-16">
+              <AutoFill onClose={onClose} />
+            </ModalBody>
+          </>
         </ModalContent>
       </Modal>
     </>
