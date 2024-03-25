@@ -46,7 +46,7 @@ export default function Layout({ type }: TopRatedProps) {
       <Paginate
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        total={462}
+        total={type === 'movie' ? 462 : 97}
       />
     </>
   )
