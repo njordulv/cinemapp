@@ -36,6 +36,7 @@ const AutoFill: React.FC<AutoFillProps> = ({ onClose }) => {
       placeholder="Type to search..."
       variant="bordered"
       onInputChange={(value) => list.setFilterText(value)}
+      onKeyDown={(e: any) => e.continuePropagation()}
       classNames={{
         base: 'max-w-md',
         listboxWrapper: 'max-h-[320px]',

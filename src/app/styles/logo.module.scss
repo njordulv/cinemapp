@@ -5,22 +5,40 @@
   align-items: center;
   font-weight: 100;
   overflow: hidden;
-  padding: 2px 5px 0 0;
+  padding: 1px 5px;
   font-size: 30px;
   line-height: 26px;
   letter-spacing: -1px;
+  background: -webkit-linear-gradient(-100deg, white 10%, cornflowerblue 80%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  &:before {
+    content: '';
+    position: absolute;
+    background: var(--background);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 29px;
+    left: 2px;
+    top: 15.5px;
+    z-index: 1;
+    transform: rotate(12deg);
+    mix-blend-mode: plus-lighter;
+  }
 
   &:after {
     content: '';
     position: absolute;
-    background: var(--black);
+    background: var(--background);
     background-repeat: no-repeat;
     width: 100%;
-    height: 35px;
-    left: -1px;
-    top: -22px;
+    height: 29px;
+    right: 2px;
+    top: -15.5px;
     z-index: 1;
     transform: rotate(12deg);
-    mix-blend-mode: saturation;
+    mix-blend-mode: color-dodge;
   }
 }
