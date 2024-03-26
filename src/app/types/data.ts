@@ -269,13 +269,15 @@ export interface Human {
 }
 
 export interface SearchTypes {
-  backdrop_path: string
   id: number
-  name?: string
-  title: string
-  overview: string
+  backdrop_path: string
   poster_path: string
+  profile_path?: string
+  title?: string
+  name?: string
+  media_type: string
   genre_ids: number[]
-  popularity: number
-  release_date: string
+  release_date?: string
+  first_air_date?: string
+  known_for_department?: string
 }
