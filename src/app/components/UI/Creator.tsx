@@ -1,5 +1,6 @@
 import { Link } from '@nextui-org/react'
 import { CreatedBy } from '@/types/data'
+
 interface CreatorProps {
   created_by?: CreatedBy[]
 }

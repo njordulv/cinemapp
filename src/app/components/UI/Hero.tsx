@@ -1,13 +1,15 @@
 import Link from 'next/link'
-import { Image, Chip } from '@nextui-org/react'
+import { Image } from '@nextui-org/react'
 import { TbWorldWww } from 'react-icons/tb'
 import { LiaImdb } from 'react-icons/lia'
 import { BsCurrencyDollar } from 'react-icons/bs'
-import { HeroTypes, ItemsList } from '@/types/data'
+import { HeroTypes } from '@/types/data'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
+import ListRenderer from '@/components/UI/ListRenderer'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import Creator from '@/components/UI/Creator'
+import Director from '@/components/UI/Director'
 import formatBudget from '@/utils/formatBudget'
 import styles from '@/styles/singleMovie.module.scss'
 
@@ -28,17 +30,10 @@ export default function Hero({
   first_air_date,
   isMovie,
   created_by,
+  directed_by,
 }: HeroTypes) {
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
-
-  const renderList = (items: ItemsList[], key: keyof ItemsList = 'name') =>
-    items &&
-    items.map((item, index) => (
-      <Chip size="sm" key={item.id || index}>
-        {item[key]}
-      </Chip>
-    ))
 
   return (
     <section className={styles.singleHero}>
@@ -80,7 +75,7 @@ export default function Hero({
                   )}
                 </div>
                 <div className={styles.singleHero_list}>
-                  {renderList(genres)}
+                  <ListRenderer items={genres} keyName="name" />
                 </div>
               </div>
             </div>
@@ -147,7 +142,7 @@ export default function Hero({
               </div>
             )}
             {imdb_id && (
-              <div>
+              <div className="flex flex-row">
                 <Link
                   href={`https://www.imdb.com/title/${imdb_id}`}
                   target="
@@ -158,7 +153,11 @@ export default function Hero({
                 </Link>
               </div>
             )}
-            {isMovie ? '' : <Creator created_by={created_by} />}
+            {isMovie ? (
+              <Director directed_by={directed_by} />
+            ) : (
+              <Creator created_by={created_by} />
+            )}
           </div>
         </div>
       </div>

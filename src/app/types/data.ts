@@ -24,6 +24,7 @@ export interface HeroTypes {
   first_air_date?: string
   isMovie: boolean
   created_by?: CreatedBy[]
+  directed_by?: CrewTypes[]
 }
 
 export interface GuestStars {

@@ -61,6 +61,7 @@ export default function Single({ params }: Props) {
         imdb_id={imdb_id}
         runtime={runtime}
         isMovie={isMovie}
+        directed_by={data.credits.crew}
       />
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
         <div className="grid lg:grid-cols-[3fr_1fr] gap-3">
