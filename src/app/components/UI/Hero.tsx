@@ -60,9 +60,9 @@ export default function Hero({
           />
           <div className="flex flex-col gap-4">
             <div>
-              <h1 className="flex mb-1 gap-2 text-shadow-sm">
+              <h1 className="mb-1 text-shadow-sm inline-block">
                 {isMovie ? title : name}
-                <span className="font-thin opacity-80">
+                <span className="font-thin opacity-80 ml-2">
                   {formatReleaseYear(
                     isMovie ? release_date ?? '' : first_air_date ?? ''
                   )}

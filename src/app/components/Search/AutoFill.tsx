@@ -2,16 +2,11 @@
 
 import { useRouter } from 'next/navigation'
 import { useRef, useEffect } from 'react'
-import {
-  Autocomplete,
-  AutocompleteItem,
-  AutocompleteSection,
-  Avatar,
-} from '@nextui-org/react'
+import { Autocomplete, AutocompleteSection } from '@nextui-org/react'
 import { useAsyncList } from '@react-stately/data'
 import { IoSearchOutline } from 'react-icons/io5'
 import { SearchTypes } from '@/types/data'
-import { formatReleaseYear } from '@/utils/formatDate'
+import { useAutoCompleteItem } from '@/hooks/useAutoCompleteItem'
 
 interface AutoFillProps {
   onClose: () => void
@@ -40,43 +35,6 @@ const AutoFill: React.FC<AutoFillProps> = ({ onClose }) => {
       return { items: json.results }
     },
   })
-
-  const autoCompleteItems = (items: any[], type: string) => {
-    return items
-      ?.filter((item) => item.media_type === type)
-      .map((item) => (
-        <AutocompleteItem
-          key={item.id}
-          onSelect={() => {
-            onClose()
-            router.push(`/${item.media_type}/${item.id}`)
-          }}
-        >
-          <div className="flex gap-2 items-center">
-            <Avatar
-              src={
-                item.poster_path
-                  ? `${BASE_IMAGE_URL}w45${item.poster_path}`
-                  : NO_IMAGE
-              }
-              alt={item.title || item.name}
-              className="flex-shrink-0"
-              radius="sm"
-              size="sm"
-              fallback={NO_IMAGE}
-            />
-            <div className="flex flex-col">
-              <span className="text-small">{item.title || item.name}</span>
-              <span className="text-tiny text-default-400">
-                {formatReleaseYear(
-                  item.release_date || item.first_air_date || ''
-                )}
-              </span>
-            </div>
-          </div>
-        </AutocompleteItem>
-      ))
-  }
 
   return (
     <Autocomplete
@@ -141,7 +99,13 @@ const AutoFill: React.FC<AutoFillProps> = ({ onClose }) => {
             heading: headingClasses,
           }}
         >
-          {autoCompleteItems(list.items || [], type)}
+          {useAutoCompleteItem({
+            items: list.items || [],
+            type,
+            onClose,
+            router,
+            BASE_IMAGE_URL: BASE_IMAGE_URL || NO_IMAGE,
+          })}
         </AutocompleteSection>
       ))}
     </Autocomplete>
