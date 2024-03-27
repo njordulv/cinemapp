@@ -29,7 +29,7 @@ const TopAutoComplete: React.FC = () => {
 
   return (
     <Autocomplete
-      className="max-w-[300px]"
+      className="max-w-[302px]"
       inputValue={list.filterText}
       isLoading={list.isLoading}
       items={list.items || []}

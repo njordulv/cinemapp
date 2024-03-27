@@ -7,6 +7,7 @@ import ListRenderer from '@/components/UI/ListRenderer'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 import styles from '@/styles/singleMovie.module.scss'
+import stylesAside from '@/styles/aside.module.scss'
 
 interface Props {
   params: { id: string }
@@ -64,39 +65,39 @@ export default function Single({ params }: Props) {
         directed_by={data.credits.crew}
       />
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
-        <div className="grid lg:grid-cols-[3fr_1fr] gap-3">
+        <div className="grid lg:grid-cols-[8fr_3fr] gap-3">
           <section className="flex w-full flex-col relative overflow-hidden">
             <TabsContent id={params.id} data={data} isMovie={isMovie} />
           </section>
-          <aside>
-            <div>
-              <b>Rating:</b> {vote_average}
-            </div>
-            <div>
-              <b>Vote Count:</b> {vote_count}
-            </div>
-            <div>
-              <b>Popularity:</b> {popularity}
-            </div>
-            <div>
-              <b>Status:</b> {status}
-            </div>
-            <div>
-              <b>Production Companies:</b>
-              <div className={styles.singleHero_list}>
-                <ListRenderer items={production_companies} keyName="name" />
+          <aside className={stylesAside.aside}>
+            <h2 className="flex py-2 px-3 mb-3 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-transpLight border-1">
+              Information
+            </h2>
+            <div className="flex flex-col gap-4 p-5 rounded-xl bg-blueDark">
+              <div className={stylesAside.aside_item}>
+                <b>Status:</b>
+                <div>{status}</div>
               </div>
-            </div>
-            <div>
-              <b>Production Countries:</b>
-              <div className={styles.singleHero_list}>
-                <ListRenderer items={production_countries} keyName="name" />
+              <div className={stylesAside.aside_item}>
+                <b>Production Companies:</b>
+                <div className={styles.singleHero_list}>
+                  <ListRenderer items={production_companies} keyName="name" />
+                </div>
               </div>
-            </div>
-            <div>
-              <b>Spoken Languages:</b>
-              <div className={styles.singleHero_list}>
-                <ListRenderer items={spoken_languages} keyName="english_name" />
+              <div className={stylesAside.aside_item}>
+                <b>Production Countries:</b>
+                <div className={styles.singleHero_list}>
+                  <ListRenderer items={production_countries} keyName="name" />
+                </div>
+              </div>
+              <div className={stylesAside.aside_item}>
+                <b>Spoken Languages:</b>
+                <div className={styles.singleHero_list}>
+                  <ListRenderer
+                    items={spoken_languages}
+                    keyName="english_name"
+                  />
+                </div>
               </div>
             </div>
           </aside>

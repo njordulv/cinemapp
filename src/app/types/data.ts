@@ -281,3 +281,10 @@ export interface SearchTypes {
   first_air_date?: string
   known_for_department?: string
 }
+
+export interface NetworkTypes {
+  id: number
+  logo_path: string
+  name: string
+  origin_country: string
+}

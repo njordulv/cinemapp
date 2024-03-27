@@ -73,12 +73,6 @@ header {
   max-width: 1170px !important;
 }
 
-aside {
-  background-color: var(--blue-dark);
-  padding: 15px;
-  border-radius: 12px;
-}
-
 input[type='search']::-webkit-search-decoration,
 input[type='search']::-webkit-search-cancel-button,
 input[type='search']::-webkit-search-results-button,
