@@ -17,7 +17,7 @@ import {
   DropdownMenu,
 } from '@nextui-org/react'
 import { IoIosArrowDown } from 'react-icons/io'
-import SearchModal from '@/components/Search/SearchModal'
+import TopAutoComplete from '@/src/app/components/Search/TopAutoComplete'
 import Logo from '@/components/Common/Logo'
 
 export default function Navigation() {
@@ -30,7 +30,7 @@ export default function Navigation() {
     <Navbar
       isBordered
       shouldHideOnScroll
-      // isBlurred={false}
+      isBlurred={false}
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
@@ -121,7 +121,7 @@ export default function Navigation() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <SearchModal />
+        <TopAutoComplete />
       </NavbarContent>
 
       <NavbarMenu>

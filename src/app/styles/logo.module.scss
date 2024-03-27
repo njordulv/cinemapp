@@ -1,5 +1,5 @@
 .logo {
-  color: cornflowerblue;
+  color: var(--special);
   position: relative;
   display: flex;
   align-items: center;
@@ -9,7 +9,11 @@
   font-size: 30px;
   line-height: 26px;
   letter-spacing: -1px;
-  background: -webkit-linear-gradient(-100deg, white 10%, cornflowerblue 80%);
+  background: -webkit-linear-gradient(
+    -100deg,
+    var(--red) 20%,
+    var(--special) 70%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

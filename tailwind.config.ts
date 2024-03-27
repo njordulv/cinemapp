@@ -23,6 +23,8 @@ const config: Config = {
       colors: {
         background: 'var(--background)',
         special: 'var(--special)',
+        red: 'var(--red)',
+        yellow: 'var(--yellow)',
         blue: 'var(--blue)',
         blueDark: 'var(--blue-dark)',
         pink: 'var(--pink)',
