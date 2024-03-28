@@ -1,4 +1,4 @@
-import Layout from '@/components/Movie/Layout'
+import MainLayout from '@/components/UI/MainLayout'
 
 export default function Home() {
   return (
@@ -6,7 +6,7 @@ export default function Home() {
       <h1 className="flex self-start font-medium mb-6 text-4xl">
         Popular Movies
       </h1>
-      <Layout />
+      <MainLayout type="movie" end="/popular" />
     </main>
   )
 }

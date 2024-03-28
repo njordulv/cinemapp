@@ -1,4 +1,4 @@
-import Layout from '@/components/TopRated/Layout'
+import MainLayout from '@/components/UI/MainLayout'
 
 export default function Page() {
   return (
@@ -6,7 +6,7 @@ export default function Page() {
       <h1 className="flex self-start font-medium mb-6 text-4xl">
         Top Rated TV Shows
       </h1>
-      <Layout type="tv" />
+      <MainLayout type="tv" end="/top_rated" />
     </main>
   )
 }

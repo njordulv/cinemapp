@@ -1,4 +1,4 @@
-import Layout from '@/components/TV/Layout'
+import MainLayout from '@/components/UI/MainLayout'
 
 export default function Page() {
   return (
@@ -6,7 +6,7 @@ export default function Page() {
       <h1 className="flex self-start font-medium mb-6 text-4xl">
         TV Shows Airing Today
       </h1>
-      <Layout type="tv" end="airing_today" />
+      <MainLayout type="tv" end="/airing_today" />
     </main>
   )
 }
