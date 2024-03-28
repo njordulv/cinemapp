@@ -8,10 +8,15 @@ import CardBox from '@/components/TV/CardBox'
 import Paginate from '@/components/UI/Paginate'
 import Error from '@/components/UI/Error'
 
-export default function Layout() {
+interface TVProps {
+  type: 'tv' | 'movie'
+  end: 'popular' | 'airing_today'
+}
+
+export default function Layout({ type, end }: TVProps) {
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isError, isLoading } = useFetcher({
-    endpoint: `/api/movies?endpoint=tv/popular&page=${currentPage}`,
+    endpoint: `/api/movies?endpoint=${type}/${end}&page=${currentPage}`,
   })
   const NO_IMAGE = '/no-image.svg'
 
@@ -39,7 +44,7 @@ export default function Layout() {
       <Paginate
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        total={500}
+        total={end === 'popular' ? 500 : 18}
       />
     </>
   )

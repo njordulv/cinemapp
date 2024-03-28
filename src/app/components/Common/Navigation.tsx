@@ -104,10 +104,16 @@ export default function Navigation() {
               <Link href={`/tv`}>Popular</Link>
             </DropdownItem>
             <DropdownItem
-              key="Popular TV Shows"
+              key="Top Rated"
               className="data-[hover=true]:bg-transparent data-[hover=true]:text-special"
             >
               <Link href={`/tv/top-rated`}>Top Rated</Link>
+            </DropdownItem>
+            <DropdownItem
+              key="Airing Today"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-special"
+            >
+              <Link href={`/tv/airing-today`}>Airing Today</Link>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
