@@ -11,6 +11,7 @@ import VoteDisabled from '@/components/UI/VoteDisabled'
 import Creator from '@/components/UI/Creator'
 import Director from '@/components/UI/Director'
 import formatBudget from '@/utils/formatBudget'
+import convertMinToHrs from '@/utils/formatRuntime'
 import styles from '@/styles/singleMovie.module.scss'
 
 export default function Hero({
@@ -19,6 +20,7 @@ export default function Hero({
   backdrop_path,
   poster_path,
   release_date,
+  runtime,
   budget,
   revenue,
   tagline,
@@ -77,6 +79,7 @@ export default function Hero({
                 <div className={styles.singleHero_list}>
                   <ListRenderer items={genres} keyName="name" />
                 </div>
+                {runtime && <div>{convertMinToHrs(runtime)}</div>}
               </div>
             </div>
             <div className="flex gap-5 items-center">

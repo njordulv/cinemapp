@@ -4,4 +4,4 @@ function convertMinToHrs(minutes: number) {
   return `${hours}h ${remainingMinutes}m`
 }
 
-export { convertMinToHrs }
+export default convertMinToHrs
