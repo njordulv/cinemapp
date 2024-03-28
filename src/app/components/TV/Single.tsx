@@ -85,7 +85,7 @@ export default function Single({ params }: Props) {
               {data.networks.logo_path !== null && (
                 <div className={stylesAside.aside_item}>
                   <b>Network:</b>
-                  <div className={styles.singleHero_list}>
+                  <div className={`${styles.singleHero_list} flex-col`}>
                     <NetworkLogo items={data.networks} />
                   </div>
                 </div>

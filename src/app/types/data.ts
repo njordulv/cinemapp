@@ -257,8 +257,10 @@ export interface CardTypes {
   type: string
   image: string | undefined
   profile_path?: string | undefined
+  title?: string
   name?: string
   date?: string
+  dateAir?: string
   vote_average?: number | undefined
   seasonNumber?: number
   known_for?: Known[]

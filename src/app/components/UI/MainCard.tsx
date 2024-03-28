@@ -1,16 +1,19 @@
 import { Card, CardFooter, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { CardTypes } from '@/types/data'
+import { formatReleaseDate } from '@/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
-import { formatReleaseDate } from '@/utils/formatDate'
+import styles from '@/styles/mainCard.module.scss'
 
 const MainCard: React.FC<CardTypes> = ({
   id,
   type,
   image,
+  title,
   name,
   date,
+  dateAir,
   vote_average,
   seasonNumber,
 }: CardTypes) => {
@@ -32,37 +35,38 @@ const MainCard: React.FC<CardTypes> = ({
       isFooterBlurred
       isPressable
       radius="lg"
-      className="border-none bg-content-none"
+      className={styles.card}
       onPress={pageHandler}
+      aria-label={`${type === 'movie' ? title : name}`}
     >
       <Image
-        className="object-cover"
+        className={styles.card__image}
         src={image ? `${BASE_IMAGE_URL}w300${image}` : NO_IMAGE}
-        alt={name || 'Unknown'}
+        alt={type === 'movie' ? title ?? 'Unknown' : name ?? 'Unknown'}
         width={220}
         height={330}
         fallbackSrc={NO_IMAGE}
       />
-      <CardFooter className="p-3 py-1 h-auto flex flex-col items-start text-left color-inherit subpixel-antialiased bg-background/10 backdrop-blur-[2px] backdrop-saturate-100 backdrop-contrast-125 before:bg-white/10 border-white/20 border-1 overflow-hidden absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10 min-h-11">
-        <div className="text-white/80 text-[14px] leading-[18px] text-shadow-sm pr-8">
-          {name}
+      <CardFooter className={styles.card__footer}>
+        <div className={styles.card__title}>
+          {type === 'movie' ? title : name}
         </div>
-        <div className="text-tiny text-white/80 text-shadow-sm">
-          {formatReleaseDate(date ?? '')}
+        <div className={styles.card__date}>
+          {formatReleaseDate(type === 'movie' ? date ?? '' : dateAir ?? '')}
         </div>
-        <div className="absolute top-[50%] right-[3px] mt-[-20px]">
+        <div className={styles.card__vote}>
           {vote_average ? (
             <VoteAverage
               vote={vote_average}
-              card="w-[40px] h-[40px]"
-              size="w-8 h-8 drop-shadow-md"
+              card={styles.card__voteCard}
+              size={styles.card__voteSize}
               strokeWidth={2}
               text="text-[12px]"
             />
           ) : (
             <VoteDisabled
-              card="w-[40px] h-[40px]"
-              size="w-8 h-8 drop-shadow-md"
+              card={styles.card__voteCard}
+              size={styles.card__voteSize}
               strokeWidth={2}
               text="text-[12px] top-[-3px] relative"
             />

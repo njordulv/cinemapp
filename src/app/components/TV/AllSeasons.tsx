@@ -29,7 +29,7 @@ export default function AllSeasons({ params }: AllVideosProps) {
             id={params.id}
             image={season.poster_path}
             name={season.name}
-            date={season.air_date}
+            dateAir={season.air_date}
             vote_average={season.vote_average}
             seasonNumber={season.season_number}
           />

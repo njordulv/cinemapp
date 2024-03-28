@@ -37,10 +37,13 @@ export default function MainLayout({ type, end }: PageProps) {
         ) : data && data.results ? (
           data.results.map((movie: Movie) => (
             <MainCard
+              key={movie.id}
               id={movie.id}
               image={movie.poster_path ? `${movie.poster_path}` : NO_IMAGE}
-              name={movie.title}
+              title={movie.title}
+              name={movie.name}
               date={movie.release_date}
+              dateAir={movie.first_air_date}
               vote_average={movie.vote_average}
               type={type}
             />

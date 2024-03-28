@@ -1,0 +1,63 @@
+.card {
+  border: none;
+  background: transparent;
+
+  &__image {
+    object-fit: cover;
+  }
+
+  &__footer {
+    padding: 0.25rem 0.75rem 0.25rem 0.75rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    color: inherit;
+    font-smooth: subpixel-antialiased;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px) saturate(100%) contrast(125%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    position: absolute;
+    bottom: 0.25rem;
+    width: calc(100% - 0.5rem);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    margin-left: 0.25rem;
+    z-index: 10;
+    min-height: 2.75rem;
+  }
+
+  &__title {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    padding-right: 2rem;
+  }
+
+  &__date {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.75rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  &__vote {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem;
+    transform: translateY(-50%);
+  }
+
+  &__voteCard {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  &__voteSize {
+    width: 2rem;
+    height: 2rem;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+  }
+}

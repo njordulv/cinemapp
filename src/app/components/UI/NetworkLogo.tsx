@@ -16,12 +16,12 @@ const NetworkLogo: React.FC<Props> = ({ items }) => {
           key={item.id || index}
           shadow="none"
           radius="none"
-          className="object-cover"
+          className="object-cover max-h-[50px]"
           src={
             item.logo_path ? `${BASE_IMAGE_URL}w300${item.logo_path}` : NO_IMAGE
           }
-          width={150}
-          height="auto"
+          width="auto"
+          height="50px"
           fallbackSrc={NO_IMAGE}
           alt={item.name}
         />
