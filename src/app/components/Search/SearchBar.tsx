@@ -9,7 +9,7 @@ import { useAutoCompleteItem } from '@/hooks/useAutoCompleteItem'
 const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
 const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
-const TopAutoComplete: React.FC = () => {
+const SearchBar: React.FC = () => {
   const router = useRouter()
   const headingClasses =
     'flex w-full sticky top-1 z-20 py-1.5 px-2 m-0 bg-default-800 shadow-small rounded-small text-grey uppercase'
@@ -98,4 +98,4 @@ const TopAutoComplete: React.FC = () => {
   )
 }
 
-export default TopAutoComplete
+export default SearchBar

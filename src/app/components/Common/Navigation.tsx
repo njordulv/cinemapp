@@ -17,7 +17,7 @@ import {
   DropdownMenu,
 } from '@nextui-org/react'
 import { IoIosArrowDown } from 'react-icons/io'
-import TopAutoComplete from '@/src/app/components/Search/TopAutoComplete'
+import SearchBar from '@/src/app/components/Search/SearchBar'
 import Logo from '@/components/Common/Logo'
 
 export default function Navigation() {
@@ -127,7 +127,7 @@ export default function Navigation() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <TopAutoComplete />
+        <SearchBar />
       </NavbarContent>
 
       <NavbarMenu>
