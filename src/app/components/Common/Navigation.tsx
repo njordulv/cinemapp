@@ -17,7 +17,7 @@ import {
   DropdownMenu,
 } from '@nextui-org/react'
 import { IoIosArrowDown } from 'react-icons/io'
-import SearchBar from '@/src/app/components/Search/SearchBar'
+import SearchBar from '@/components/Search/SearchBar'
 import Logo from '@/components/Common/Logo'
 
 export default function Navigation() {
