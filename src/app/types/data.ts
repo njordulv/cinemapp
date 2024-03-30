@@ -7,6 +7,7 @@ export interface CreatedBy {
 }
 
 export interface HeroTypes {
+  id: number
   title?: string
   name?: string
   backdrop_path: string
@@ -290,4 +291,9 @@ export interface NetworkTypes {
   logo_path: string
   name: string
   origin_country: string
+}
+
+export interface ContentRatingsTypes {
+  iso_3166_1: string
+  rating: string
 }

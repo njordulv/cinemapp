@@ -5,6 +5,7 @@ import { LiaImdb } from 'react-icons/lia'
 import { BsCurrencyDollar } from 'react-icons/bs'
 import { HeroTypes } from '@/types/data'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
+import ContentRatings from '@/components/UI/ContentRatings'
 import ListRenderer from '@/components/UI/ListRenderer'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
@@ -15,6 +16,7 @@ import convertMinToHrs from '@/utils/formatRuntime'
 import styles from '@/styles/singleMovie.module.scss'
 
 export default function Hero({
+  id,
   title,
   name,
   backdrop_path,
@@ -71,6 +73,7 @@ export default function Hero({
                 </span>
               </h1>
               <div className={styles.singleHero_info}>
+                <ContentRatings id={id} />
                 <div className="uppercase">
                   {formatReleaseDateAlt(
                     isMovie ? release_date ?? '' : first_air_date ?? ''

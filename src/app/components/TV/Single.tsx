@@ -25,6 +25,7 @@ export default function Single({ params }: Props) {
   if (isLoading || !data) return <Loader />
 
   const {
+    id,
     name,
     genres,
     vote_average,
@@ -50,6 +51,7 @@ export default function Single({ params }: Props) {
   return (
     <>
       <Hero
+        id={id}
         name={name}
         genres={genres}
         vote_average={vote_average}
