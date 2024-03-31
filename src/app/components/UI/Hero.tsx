@@ -6,6 +6,7 @@ import { BsCurrencyDollar } from 'react-icons/bs'
 import { HeroTypes } from '@/types/data'
 import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
 import ContentRatings from '@/components/UI/ContentRatings'
+import Certification from '@/components/UI/Certification'
 import ListRenderer from '@/components/UI/ListRenderer'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
@@ -73,7 +74,11 @@ export default function Hero({
                 </span>
               </h1>
               <div className={styles.singleHero_info}>
-                <ContentRatings id={id} />
+                {isMovie ? (
+                  <Certification id={id} />
+                ) : (
+                  <ContentRatings id={id} />
+                )}
                 <div className="uppercase">
                   {formatReleaseDateAlt(
                     isMovie ? release_date ?? '' : first_air_date ?? ''

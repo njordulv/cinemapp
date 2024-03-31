@@ -297,3 +297,15 @@ export interface ContentRatingsTypes {
   iso_3166_1: string
   rating: string
 }
+
+export interface ReleaseDatesTypes {
+  certification: string
+  iso_639_1: string
+  note: string
+  release_date: string
+}
+
+export interface CertificationTypes {
+  iso_3166_1: string
+  release_dates: ReleaseDatesTypes[]
+}

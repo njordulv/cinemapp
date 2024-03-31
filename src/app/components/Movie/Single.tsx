@@ -22,6 +22,7 @@ export default function Single({ params }: Props) {
   if (isLoading || !data) return <Loader />
 
   const {
+    id,
     title,
     genres,
     vote_average,
@@ -35,12 +36,10 @@ export default function Single({ params }: Props) {
     homepage,
     imdb_id,
     runtime,
-    vote_count,
     spoken_languages,
     production_countries,
     production_companies,
     status,
-    popularity,
   } = data
 
   const isMovie = true
@@ -48,6 +47,7 @@ export default function Single({ params }: Props) {
   return (
     <>
       <Hero
+        id={id}
         title={title}
         genres={genres}
         vote_average={vote_average}
