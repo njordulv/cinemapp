@@ -1,7 +1,8 @@
+'use client'
+
+import { Spinner } from '@nextui-org/react'
 import { ReleaseDatesTypes, CertificationTypes } from '@/types/data'
 import useFetcher from '@/hooks/useFetcher'
-import Error from '@/components/UI/Error'
-import Loader from '@/components/UI/Loader'
 
 interface Props {
   id: number
@@ -12,20 +13,31 @@ export default function Certification({ id }: Props) {
     endpoint: `/api/movies?endpoint=movie/${id}/release_dates`,
   })
 
-  if (isError) return <Error errorText={isError.message} />
-  if (isLoading || !data) return <Loader />
+  const getMovieCertification = () => {
+    const usRelease = data?.results.find(
+      (item: CertificationTypes) => item.iso_3166_1 === 'US'
+    )
 
-  const getMovieCertification = data.results
-    ?.find((item: CertificationTypes) => item.iso_3166_1 === 'US')
-    ?.release_dates.find((date: ReleaseDatesTypes) => date.certification !== '')
+    if (!usRelease?.release_dates) return ''
+
+    const certification = usRelease.release_dates.find(
+      (name: ReleaseDatesTypes) => name.certification !== ''
+    )?.certification
+
+    return certification || ''
+  }
+
+  const certification = getMovieCertification()
 
   return (
-    <>
-      {getMovieCertification && (
-        <span className="flex items-center border-white/60 border-small px-1 text-sm">
-          {getMovieCertification.certification}
-        </span>
+    <span className="flex items-center border-white/60 border-small px-1 text-sm">
+      {isLoading ? (
+        <Spinner color="default" size="sm" />
+      ) : isError ? (
+        '-'
+      ) : (
+        certification
       )}
-    </>
+    </span>
   )
 }
