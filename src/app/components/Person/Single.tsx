@@ -123,7 +123,9 @@ export default function Single({ params }: { params: { id: string } }) {
                 </Link>
               </div>
             )}
-            <FamousWorks data={data.combined_credits} />
+            {data.combined_credits && (
+              <FamousWorks data={data.combined_credits} />
+            )}
           </div>
         </div>
         {data.combined_credits && <AllMovies data={data.combined_credits} />}

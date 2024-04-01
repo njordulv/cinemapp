@@ -5,6 +5,7 @@ import {
   CardFooter,
   Image,
 } from '@nextui-org/react'
+import { useRouter } from 'next/navigation'
 import { PersonMoviesTypes } from '@/types/data'
 
 const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
@@ -16,8 +17,9 @@ interface Props {
   }
 }
 
-export default function FamousWorks({ data }: Props) {
-  const sorted = data.cast
+const FamousWorks: React.FC<Props> = ({ data }) => {
+  const router = useRouter()
+  const sortedByPopularity = [...data.cast]
     .sort((a, b) => {
       if (a.media_type === 'movie' && b.media_type !== 'movie') return -1
       if (a.media_type !== 'movie' && b.media_type === 'movie') return 1
@@ -37,14 +39,20 @@ export default function FamousWorks({ data }: Props) {
         className="max-w-[810px] max-h-[300px]"
       >
         <div className="flex gap-3 w-[1060px]">
-          {sorted.map((item: PersonMoviesTypes) => (
+          {sortedByPopularity.map((item: PersonMoviesTypes) => (
             <Card
               shadow="none"
               radius="md"
               key={item.credit_id}
               isPressable
               className="bg-transparent max-w-[120px] self-baseline"
-              onPress={() => console.log('item pressed')}
+              onPress={() =>
+                router.push(
+                  `${item.media_type === 'movie' ? '/movie/' : '/tv/'}${
+                    item.id
+                  }`
+                )
+              }
             >
               <CardBody className="overflow-visible p-0">
                 <Image
@@ -72,3 +80,5 @@ export default function FamousWorks({ data }: Props) {
     </>
   )
 }
+
+export default FamousWorks
