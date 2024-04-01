@@ -11,7 +11,7 @@ const Creator: React.FC<CreatorProps> = ({ created_by }) => {
       {created_by && created_by.length > 0 && (
         <div className="flex flex-col">
           <span>Created by&nbsp;</span>
-          <ul className="flex flex-row">
+          <ul className="flex flex-row flex-wrap">
             {created_by.map((creator, index) => (
               <li key={index}>
                 <Link

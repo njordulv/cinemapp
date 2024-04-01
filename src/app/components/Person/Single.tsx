@@ -5,6 +5,7 @@ import { Image, Link } from '@nextui-org/react'
 import { LiaImdb } from 'react-icons/lia'
 import { formatReleaseDate } from '@/utils/formatDate'
 import calculateAge from '@/utils/calculateAge'
+import FamousWorks from '@/components/Person/FamousWorks'
 import AllMovies from '@/components/Person/AllMovies'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
@@ -122,6 +123,7 @@ export default function Single({ params }: { params: { id: string } }) {
                 </Link>
               </div>
             )}
+            <FamousWorks data={data.combined_credits} />
           </div>
         </div>
         {data.combined_credits && <AllMovies data={data.combined_credits} />}

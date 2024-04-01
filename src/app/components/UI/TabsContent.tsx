@@ -38,7 +38,7 @@ export default function TabsContent({ id, data, isMovie }: DataMovie) {
       <Tab key={`${pageType} crew`} title="Crew">
         <Card className="bg-blueDark">
           <CardBody>
-            <ScrollShadow className="h-[318px]" isEnabled={false}>
+            <ScrollShadow className="h-[352px]" isEnabled={false}>
               {data.credits.crew && <Crew crew={data.credits.crew} />}
             </ScrollShadow>
           </CardBody>

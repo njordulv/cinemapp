@@ -73,7 +73,7 @@ export default function Single({ params }: Props) {
             <h2 className="flex py-2 px-3 mb-3 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-transpLight border-1">
               Information
             </h2>
-            <div className="flex flex-col gap-4 p-5 rounded-xl bg-blueDark">
+            <div className={stylesAside.aside_container}>
               <div className={stylesAside.aside_item}>
                 <b>Status:</b>
                 <div>{status}</div>

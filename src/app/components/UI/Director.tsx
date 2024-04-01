@@ -11,7 +11,7 @@ const Director: React.FC<DirectorProps> = ({ directed_by }) => {
       {directed_by && directed_by.length > 0 && (
         <div className="flex flex-col">
           <span>Directed by&nbsp;</span>
-          <ul className="flex flex-row">
+          <ul className="flex flex-row flex-wrap">
             {directed_by
               .filter((item: CrewTypes) => item.job === 'Director')
               .map((filtered: CrewTypes, index: number) => (
