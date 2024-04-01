@@ -12,8 +12,6 @@ import {
   Link,
 } from '@nextui-org/react'
 import { IoStarSharp } from 'react-icons/io5'
-import { Spinner } from '@nextui-org/react'
-import useFetcher from '@/hooks/useFetcher'
 import { formatReleaseYear } from '@/utils/formatDate'
 import { PersonMoviesTypes } from '@/types/data'
 
@@ -21,17 +19,12 @@ const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
 const NO_IMAGE = '/no-image.svg'
 
 interface Props {
-  id: number
+  data: {
+    cast: PersonMoviesTypes[]
+  }
 }
 
-export default function AllMovies({ id }: Props) {
-  const { data, isError, isLoading } = useFetcher({
-    endpoint: `/api/movies?endpoint=person/${id}/combined_credits`,
-  })
-
-  if (isLoading) return <Spinner color="default" />
-  if (isError) return <div>Error loading data...</div>
-
+export default function AllMovies({ data }: Props) {
   return (
     <>
       <h2 className="flex py-2 px-3 my-5 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-transpLight border-1">
@@ -41,7 +34,7 @@ export default function AllMovies({ id }: Props) {
         isHeaderSticky
         hideHeader
         radius="sm"
-        aria-label="Crew table"
+        aria-label="All person movies"
         classNames={{
           base: 'max-h-[525px] overflow-scroll',
           table: 'min-h-[420px]',
