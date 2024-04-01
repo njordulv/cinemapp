@@ -1,0 +1,64 @@
+.person {
+  &__container {
+    margin-bottom: 32px;
+    grid-template-columns: 1fr;
+    max-width: 1170px;
+    width: 100%;
+    margin: auto;
+    padding: 20px 6px;
+
+    @media (min-width: 1024px) {
+      margin-bottom: 0;
+      text-align: left;
+    }
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2.5rem;
+    align-items: start;
+
+    @media (max-width: 1023px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__image {
+    object-fit: cover;
+    min-width: 270px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__name {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 0;
+    align-self: start;
+  }
+
+  &__detail {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+  }
+
+  &__link {
+    display: inline-block;
+    color: white;
+    padding: 0;
+
+    &:hover {
+      color: #d1d5db;
+    }
+  }
+}

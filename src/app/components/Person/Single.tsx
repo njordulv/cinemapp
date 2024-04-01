@@ -9,9 +9,10 @@ import FamousWorks from '@/components/Person/FamousWorks'
 import AllMovies from '@/components/Person/AllMovies'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
+import styles from '@/styles/singlePerson.module.scss'
 
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
-const NO_IMAGE = '/no-image.svg'
+const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
+const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
 export default function Single({ params }: { params: { id: string } }) {
   const { data, isError, isLoading } = useFetcher({
@@ -36,11 +37,11 @@ export default function Single({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className="mb-32 grid lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto py-20 px-6">
-        <div className={`grid lg:grid-cols-[1fr_3fr] gap-10 items-start`}>
+      <div className={styles.person__container}>
+        <div className={styles.person__details}>
           <Image
             shadow="md"
-            className="object-cover"
+            className={styles.person__image}
             src={
               profile_path ? `${BASE_IMAGE_URL}w300${profile_path}` : NO_IMAGE
             }
@@ -49,17 +50,15 @@ export default function Single({ params }: { params: { id: string } }) {
             fallbackSrc={NO_IMAGE}
             alt={name}
           />
-          <div className="flex flex-col gap-3">
-            <h1 className="flex self-start font-medium text-4xl mb-0">
-              {name}
-            </h1>
+          <div className={styles.person__info}>
+            <h1 className={styles.person__name}>{name}</h1>
             {biography && (
-              <div className="flex gap-1 items-center">
+              <div className={styles.person__detail}>
                 <div>{biography}</div>
               </div>
             )}
             {birthday && (
-              <div className="flex gap-1 items-center">
+              <div className={styles.person__detail}>
                 <b>Birthday:</b>
                 <div>
                   {formatReleaseDate(birthday)} (
@@ -72,31 +71,31 @@ export default function Single({ params }: { params: { id: string } }) {
               </div>
             )}
             {place_of_birth && (
-              <div className="flex gap-1 items-center">
+              <div className={styles.person__detail}>
                 <b>Place of Birth:</b>
                 <div>{place_of_birth}</div>
               </div>
             )}
             {deathday && (
-              <div className="flex gap-1 items-center">
+              <div className={styles.person__detail}>
                 <b>Day of Death:</b>
                 {formatReleaseDate(deathday)}
               </div>
             )}
             {known_for_department && (
-              <div className="flex gap-1 items-center">
+              <div className={styles.person__detail}>
                 <b>Known For:</b>
                 <div>{known_for_department}</div>
               </div>
             )}
             {popularity && (
-              <div className="flex gap-1 items-center">
+              <div className={styles.person__detail}>
                 <b>Popularity:</b>
                 <div>{popularity.toFixed(0)}</div>
               </div>
             )}
             {homepage && (
-              <div className="flex gap-1 items-center">
+              <div className={styles.person__detail}>
                 <b>Wesite:</b>
                 <Link
                   isBlock
@@ -110,7 +109,7 @@ export default function Single({ params }: { params: { id: string } }) {
               </div>
             )}
             {imdb_id && (
-              <div className="flex gap-1 items-center">
+              <div className={styles.person__detail}>
                 <b>IMBd:</b>
                 <Link
                   isBlock

@@ -1,5 +1,3 @@
-'use client'
-
 import {
   Table,
   TableHeader,
@@ -12,11 +10,11 @@ import {
   Link,
 } from '@nextui-org/react'
 import { IoStarSharp } from 'react-icons/io5'
-import { formatReleaseYear } from '@/utils/formatDate'
 import { PersonMoviesTypes } from '@/types/data'
+import { formatReleaseYear } from '@/utils/formatDate'
 
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
-const NO_IMAGE = '/no-image.svg'
+const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
+const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
 interface Props {
   data: {

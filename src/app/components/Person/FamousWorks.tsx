@@ -8,8 +8,8 @@ import {
 import { useRouter } from 'next/navigation'
 import { PersonMoviesTypes } from '@/types/data'
 
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/'
-const NO_IMAGE = '/no-image.svg'
+const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
+const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
 interface Props {
   data: {
@@ -34,18 +34,15 @@ const FamousWorks: React.FC<Props> = ({ data }) => {
       <h2 className="flex py-2 px-3 my-5 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-transpLight border-1">
         Known for
       </h2>
-      <ScrollShadow
-        orientation="horizontal"
-        className="max-w-[810px] max-h-[300px]"
-      >
-        <div className="flex gap-3 w-[1060px]">
+      <ScrollShadow orientation="horizontal" className="w-full">
+        <div className="flex w-max space-x-3">
           {sortedByPopularity.map((item: PersonMoviesTypes) => (
             <Card
               shadow="none"
               radius="md"
               key={item.credit_id}
               isPressable
-              className="bg-transparent max-w-[120px] self-baseline"
+              className="bg-transparent max-w-[120px] self-start"
               onPress={() =>
                 router.push(
                   `${item.media_type === 'movie' ? '/movie/' : '/tv/'}${
@@ -70,8 +67,10 @@ const FamousWorks: React.FC<Props> = ({ data }) => {
                   fallbackSrc={NO_IMAGE}
                 />
               </CardBody>
-              <CardFooter className="text-small items-center justify-center">
-                <p className="text-default-200 text-[14px]">{item.title}</p>
+              <CardFooter className="text-small items-center justify-center px-0">
+                <p className="text-default-200 text-sm leading-5">
+                  {item.title}
+                </p>
               </CardFooter>
             </Card>
           ))}
