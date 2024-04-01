@@ -4,6 +4,7 @@ import useFetcher from '@/hooks/useFetcher'
 import Hero from '@/components/UI/Hero'
 import TabsContent from '@/components/UI/TabsContent'
 import ListRenderer from '@/components/UI/ListRenderer'
+import Recommendations from '@/components/UI/Recommendations'
 import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 import styles from '@/styles/singleMovie.module.scss'
@@ -64,7 +65,7 @@ export default function Single({ params }: Props) {
         isMovie={isMovie}
         directed_by={data.credits.crew}
       />
-      <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-4 m-auto px-6 py-10">
+      <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-6 m-auto px-6 py-10">
         <div className="grid lg:grid-cols-[8fr_3fr] gap-3">
           <section className="flex w-full flex-col relative overflow-hidden">
             <TabsContent id={params.id} data={data} isMovie={isMovie} />
@@ -102,6 +103,7 @@ export default function Single({ params }: Props) {
             </div>
           </aside>
         </div>
+        <div>{data && <Recommendations id={id} isMovie={isMovie} />}</div>
       </div>
     </>
   )
