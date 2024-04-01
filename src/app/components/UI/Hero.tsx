@@ -4,7 +4,7 @@ import { TbWorldWww } from 'react-icons/tb'
 import { LiaImdb } from 'react-icons/lia'
 import { BsCurrencyDollar } from 'react-icons/bs'
 import { HeroTypes } from '@/types/data'
-import { formatReleaseDateAlt, formatReleaseYear } from '@/utils/formatDate'
+import { formatReleaseDate, formatReleaseYear } from '@/utils/formatDate'
 import ContentRatings from '@/components/UI/ContentRatings'
 import Certification from '@/components/UI/Certification'
 import ListRenderer from '@/components/UI/ListRenderer'
@@ -79,8 +79,8 @@ export default function Hero({
                 ) : (
                   <ContentRatings id={id} />
                 )}
-                <div className="uppercase">
-                  {formatReleaseDateAlt(
+                <div>
+                  {formatReleaseDate(
                     isMovie ? release_date ?? '' : first_air_date ?? ''
                   )}
                 </div>

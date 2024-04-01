@@ -5,6 +5,7 @@ import { LiaImdb } from 'react-icons/lia'
 import useFetcher from '@/hooks/useFetcher'
 import { formatReleaseDate } from '@/utils/formatDate'
 import calculateAge from '@/utils/calculateAge'
+import AllMovies from '@/components/Person/AllMovies'
 import Error from '@/components/UI/Error'
 import Loader from '@/components/UI/Loader'
 
@@ -20,6 +21,7 @@ export default function Post({ params }: { params: { id: string } }) {
   if (isLoading || !data) return <Loader />
 
   const {
+    id,
     name,
     biography,
     birthday,
@@ -122,6 +124,9 @@ export default function Post({ params }: { params: { id: string } }) {
               </div>
             )}
           </div>
+        </div>
+        <div>
+          <AllMovies id={id} />
         </div>
       </div>
     </>
