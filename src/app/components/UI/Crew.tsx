@@ -27,11 +27,12 @@ const Crew: React.FC<CrewProps> = ({ crew }) => {
       <TableBody>
         {crew &&
           crew.map((member: CrewTypes, index: number) => (
-            <TableRow key={`${member.id}${index}`}>
+            <TableRow key={`${index}`}>
               <TableCell className="flex">
                 <User
                   name={member.name}
                   description={member.job}
+                  className="text-default-800"
                   avatarProps={{
                     radius: 'md',
                     src: member.profile_path
@@ -40,8 +41,12 @@ const Crew: React.FC<CrewProps> = ({ crew }) => {
                   }}
                 />
               </TableCell>
-              <TableCell>{member.department}</TableCell>
-              <TableCell>{member.known_for_department}</TableCell>
+              <TableCell className="text-default-500">
+                {member.department}
+              </TableCell>
+              <TableCell className="text-default-500">
+                {member.known_for_department}
+              </TableCell>
             </TableRow>
           ))}
       </TableBody>

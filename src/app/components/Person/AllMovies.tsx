@@ -36,7 +36,7 @@ const AllMovies: React.FC<Props> = ({ data }) => {
 
   return (
     <>
-      <h2 className="flex py-2 px-3 my-5 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-transpLight border-1">
+      <h2 className="flex py-2 px-3 my-5 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-600 border-1">
         All Movies
       </h2>
       <Table
@@ -46,7 +46,6 @@ const AllMovies: React.FC<Props> = ({ data }) => {
         aria-label="All person movies"
         classNames={{
           base: 'max-h-[525px] overflow-scroll',
-          table: 'min-h-[420px]',
           wrapper: 'bg-default-900 rounded-medium',
         }}
       >
