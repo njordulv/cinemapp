@@ -63,7 +63,7 @@ export default function Single({ params }: Props) {
         imdb_id={imdb_id}
         runtime={runtime}
         isMovie={isMovie}
-        directed_by={data.credits.crew}
+        filmMaker={data.credits.crew}
       />
       <div className="relative overflow-hidden mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-6 m-auto px-4 py-10">
         <div className="grid lg:grid-cols-[8fr_3fr] gap-3">

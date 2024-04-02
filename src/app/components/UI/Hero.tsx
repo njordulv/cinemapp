@@ -10,8 +10,7 @@ import Certification from '@/components/UI/Certification'
 import ListRenderer from '@/components/UI/ListRenderer'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
-import Creator from '@/components/UI/Creator'
-import Director from '@/components/UI/Director'
+import FilmMakers from '@/components/UI/FilmMakers'
 import formatBudget from '@/utils/formatBudget'
 import convertMinToHrs from '@/utils/formatRuntime'
 import styles from '@/styles/singleMovie.module.scss'
@@ -35,7 +34,7 @@ export default function Hero({
   first_air_date,
   isMovie,
   created_by,
-  directed_by,
+  filmMaker,
 }: HeroTypes) {
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
@@ -145,7 +144,7 @@ export default function Hero({
               </div>
             )}
             {homepage && (
-              <div>
+              <div className="flex flex-row">
                 <Link
                   href={homepage}
                   target="
@@ -168,11 +167,27 @@ export default function Hero({
                 </Link>
               </div>
             )}
-            {isMovie ? (
-              <Director directed_by={directed_by} />
-            ) : (
-              <Creator created_by={created_by} />
-            )}
+            <div className="flex flex-row gap-10 lg:gap-24">
+              {isMovie ? (
+                <FilmMakers
+                  filmMaker={filmMaker}
+                  position={filmMaker && 'Directed by'}
+                  job="Director"
+                />
+              ) : (
+                <FilmMakers
+                  filmMaker={created_by}
+                  position="Created by"
+                  isCreator={true}
+                  job="Original Music Composer"
+                />
+              )}
+              <FilmMakers
+                filmMaker={filmMaker}
+                position="Composer"
+                job="Original Music Composer"
+              />
+            </div>
           </div>
         </div>
       </div>

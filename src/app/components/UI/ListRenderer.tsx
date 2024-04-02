@@ -9,11 +9,12 @@ type Props = {
 const ListRenderer: React.FC<Props> = ({ items, keyName = 'name' }) => {
   return (
     <>
-      {items.map((item, index) => (
-        <Chip size="sm" key={item.id || index}>
-          {item[keyName]}
-        </Chip>
-      ))}
+      {items &&
+        items.map((item, index) => (
+          <Chip size="sm" key={item.id || index}>
+            {item[keyName]}
+          </Chip>
+        ))}
     </>
   )
 }

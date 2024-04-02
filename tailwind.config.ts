@@ -21,7 +21,7 @@ const config: Config = {
         lg: '0 8px 16px 1px rgba(0,0,0,.8)',
       },
       dropShadow: {
-        DEFAULT: '0px 0px 4px rgba(0,0,0,.65)',
+        DEFAULT: '0px 0px 5px rgba(255,255,255,.3)',
       },
       colors: {
         background: 'var(--background)',

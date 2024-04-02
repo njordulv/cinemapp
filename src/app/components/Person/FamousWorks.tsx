@@ -18,7 +18,9 @@ interface Props {
 
 const FamousWorks: React.FC<Props> = ({ data }) => {
   const router = useRouter()
-  const sortedAll = [...data.cast].sort((a, b) => b.popularity - a.popularity)
+  const sortedAll = [...(data.cast ?? [])].sort(
+    (a, b) => b.popularity - a.popularity
+  )
 
   const popularMovies = sortedAll
     .filter((item) => item.media_type === 'movie')
@@ -32,7 +34,7 @@ const FamousWorks: React.FC<Props> = ({ data }) => {
 
   return (
     <>
-      {data.cast.length !== 0 && (
+      {data && (data.cast?.length ?? 0) > 0 && (
         <>
           <h2 className="flex py-2 px-3 mt-5 mb-2 w-full font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-600 border-1">
             Known for

@@ -23,7 +23,7 @@ interface Props {
 }
 
 const AllMovies: React.FC<Props> = ({ data }) => {
-  const sortedByYear = [...data.cast].sort((a, b) => {
+  const sortedByYear = [...(data.cast ?? [])].sort((a, b) => {
     const date = new Date()
     const fallbackYear = date.getFullYear()
     const aDate = a.release_date || a.first_air_date

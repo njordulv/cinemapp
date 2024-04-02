@@ -43,7 +43,6 @@ export default function Single({ params }: Props) {
     production_companies,
     status,
     first_air_date,
-    created_by,
   } = data
 
   const isMovie = false
@@ -66,7 +65,8 @@ export default function Single({ params }: Props) {
         imdb_id={imdb_id}
         first_air_date={first_air_date}
         isMovie={isMovie}
-        created_by={created_by}
+        created_by={data.created_by}
+        filmMaker={data.credits.crew}
       />
       <div className="relative overflow-hidden mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-6 m-auto px-4 py-10">
         <div className="grid lg:grid-cols-[8fr_3fr] gap-3">
@@ -85,7 +85,7 @@ export default function Single({ params }: Props) {
                 <b>Status:</b>
                 <div>{status}</div>
               </div>
-              {data.networks.logo_path !== null && (
+              {(data?.networks?.length ?? 0) > 0 && (
                 <div className={stylesAside.aside_item}>
                   <b>Network:</b>
                   <div className={`${styles.singleHero_list}`}>

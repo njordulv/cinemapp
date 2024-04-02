@@ -26,6 +26,7 @@ export interface HeroTypes {
   isMovie: boolean
   created_by?: CreatedBy[]
   directed_by?: CrewTypes[]
+  filmMaker?: FilmMakerTypes[]
 }
 
 export interface GuestStars {
@@ -350,4 +351,15 @@ export interface RecommendationsTypes {
   video: boolean
   vote_average: number
   vote_count: number
+}
+
+export interface FilmMakerTypes {
+  id: number
+  name: string
+  created_by: CreatedBy[]
+  known_for_department?: string
+  profile_path?: string
+  credit_id?: number
+  department?: string
+  job?: string
 }
