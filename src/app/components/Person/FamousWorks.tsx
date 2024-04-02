@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation'
 import { PersonMoviesTypes } from '@/types/data'
 
 const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
-const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
 interface Props {
   data: {
@@ -62,9 +61,9 @@ const FamousWorks: React.FC<Props> = ({ data }) => {
                   src={
                     item.poster_path
                       ? `${BASE_IMAGE_URL}w154${item.poster_path}`
-                      : NO_IMAGE
+                      : '/no-image-120x180.svg'
                   }
-                  fallbackSrc={NO_IMAGE}
+                  fallbackSrc={'/no-image-120x180.svg'}
                 />
               </CardBody>
               <CardFooter className="text-small items-center justify-center px-0">

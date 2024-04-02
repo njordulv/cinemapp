@@ -57,10 +57,14 @@ export default function Hero({
           <Image
             shadow="lg"
             className="object-cover"
-            src={poster_path ? `${BASE_IMAGE_URL}w300${poster_path}` : NO_IMAGE}
+            src={
+              poster_path
+                ? `${BASE_IMAGE_URL}w300${poster_path}`
+                : '/no-image-300x450.svg'
+            }
             width={300}
             height={450}
-            fallbackSrc={NO_IMAGE}
+            fallbackSrc={'/no-image-300x450.svg'}
             alt={isMovie ? title : name}
           />
           <div className="flex flex-col gap-4">

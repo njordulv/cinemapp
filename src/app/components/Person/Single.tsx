@@ -12,7 +12,6 @@ import Error from '@/components/UI/Error'
 import styles from '@/styles/singlePerson.module.scss'
 
 const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
-const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
 export default function Single({ params }: { params: { id: string } }) {
   const { data, isError, isLoading } = useFetcher({
@@ -47,11 +46,11 @@ export default function Single({ params }: { params: { id: string } }) {
                 src={
                   profile_path
                     ? `${BASE_IMAGE_URL}w300${profile_path}`
-                    : NO_IMAGE
+                    : '/no-image-300x450.svg'
                 }
                 width={300}
                 height={450}
-                fallbackSrc={NO_IMAGE}
+                fallbackSrc={'/no-image-300x450.svg'}
                 alt={name}
               />
             )}

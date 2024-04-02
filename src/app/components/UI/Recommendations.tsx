@@ -13,7 +13,6 @@ import Error from '@/components/UI/Error'
 import Loader from '@/components/UI/Loader'
 
 const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
-const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
 interface Props {
   id: string
@@ -59,9 +58,9 @@ const Recommendations: React.FC<Props> = ({ id, isMovie }: Props) => {
                   src={
                     item.backdrop_path
                       ? `${BASE_IMAGE_URL}w300${item.backdrop_path}`
-                      : NO_IMAGE
+                      : '/no-image-250x140.svg'
                   }
-                  fallbackSrc={NO_IMAGE}
+                  fallbackSrc={'/no-image-250x140.svg'}
                 />
               </CardBody>
               <CardFooter className="items-center justify-between px-0 text-default-200 text-sm leading-5 font-normal">
