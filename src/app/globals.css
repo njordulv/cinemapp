@@ -69,10 +69,6 @@ a {
   transition: all 0.3s ease;
 }
 
-header {
-  max-width: 1170px !important;
-}
-
 input[type='search']::-webkit-search-decoration,
 input[type='search']::-webkit-search-cancel-button,
 input[type='search']::-webkit-search-results-button,

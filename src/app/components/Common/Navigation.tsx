@@ -33,6 +33,9 @@ export default function Navigation() {
       isBlurred={false}
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
+      classNames={{
+        wrapper: 'max-w-[1170px] px-4',
+      }}
     >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
@@ -42,7 +45,10 @@ export default function Navigation() {
       <NavbarBrand>
         <Logo />
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent
+        className="hidden sm:flex max-w-[1170px] gap-4"
+        justify="center"
+      >
         <Dropdown className="bg-black rounded-md">
           <NavbarItem>
             <DropdownTrigger>

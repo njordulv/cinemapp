@@ -39,23 +39,24 @@ export default function Single({ params }: { params: { id: string } }) {
     <>
       <div className={styles.person__container}>
         <div className={styles.person__details}>
-          <Image
-            shadow="md"
-            className={styles.person__image}
-            src={
-              profile_path ? `${BASE_IMAGE_URL}w300${profile_path}` : NO_IMAGE
-            }
-            width={300}
-            height={450}
-            fallbackSrc={NO_IMAGE}
-            alt={name}
-          />
           <div className={styles.person__info}>
-            <h1 className={styles.person__name}>{name}</h1>
-            {biography && (
-              <div className={styles.person__detail}>
-                <div>{biography}</div>
-              </div>
+            {profile_path && (
+              <Image
+                shadow="md"
+                className={styles.person__image}
+                src={
+                  profile_path
+                    ? `${BASE_IMAGE_URL}w300${profile_path}`
+                    : NO_IMAGE
+                }
+                width={300}
+                height={450}
+                fallbackSrc={NO_IMAGE}
+                alt={name}
+              />
+            )}
+            {name && (
+              <h1 className={`${styles.person__name} md:hidden`}>{name}</h1>
             )}
             {birthday && (
               <div className={styles.person__detail}>
@@ -120,6 +121,18 @@ export default function Single({ params }: { params: { id: string } }) {
                 >
                   <LiaImdb size={28} />
                 </Link>
+              </div>
+            )}
+          </div>
+          <div className={styles.person__info}>
+            {name && (
+              <h1 className={`${styles.person__name} hidden md:flex`}>
+                {name}
+              </h1>
+            )}
+            {biography && (
+              <div className={styles.person__detail}>
+                <div>{biography}</div>
               </div>
             )}
             {data.combined_credits && (
