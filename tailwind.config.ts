@@ -20,6 +20,9 @@ const config: Config = {
         DEFAULT: '0 2px 4px 1px rgba(0,0,0,.8)',
         lg: '0 8px 16px 1px rgba(0,0,0,.8)',
       },
+      dropShadow: {
+        DEFAULT: '0px 0px 4px rgba(0,0,0,.65)',
+      },
       colors: {
         background: 'var(--background)',
         special: 'var(--special)',

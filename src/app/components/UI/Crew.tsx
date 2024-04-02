@@ -18,7 +18,7 @@ const Crew: React.FC<CrewProps> = ({ crew }) => {
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   return (
-    <Table isCompact isStriped radius="sm" aria-label="Crew table">
+    <Table isCompact isStriped radius="md" aria-label="Crew table">
       <TableHeader>
         <TableColumn className="text-md">Name</TableColumn>
         <TableColumn className="text-md">Department</TableColumn>
@@ -27,14 +27,14 @@ const Crew: React.FC<CrewProps> = ({ crew }) => {
       <TableBody>
         {crew &&
           crew.map((member: CrewTypes, index: number) => (
-            <TableRow key={`${index}`}>
+            <TableRow key={index}>
               <TableCell className="flex">
                 <User
                   name={member.name}
                   description={member.job}
                   className="text-default-800"
                   avatarProps={{
-                    radius: 'md',
+                    radius: 'sm',
                     src: member.profile_path
                       ? `${BASE_IMAGE_URL}w92${member.profile_path}`
                       : NO_IMAGE,

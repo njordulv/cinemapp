@@ -18,7 +18,7 @@ export default function VoteDisabled({ card, size, strokeWidth, text }: Props) {
     <Card
       className={`${card} p-0 border-none bg-black bg-opacity-70 rounded-full`}
     >
-      <CardBody className="justify-center items-center">
+      <CardBody className="justify-center items-center p-0">
         <CircularProgress
           classNames={{
             svg: size,

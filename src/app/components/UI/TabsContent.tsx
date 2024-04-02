@@ -1,4 +1,4 @@
-import { Tabs, Tab, Card, CardBody, ScrollShadow } from '@nextui-org/react'
+import { Tabs, Tab, ScrollShadow } from '@nextui-org/react'
 import { Credits } from '@/types/data'
 import Cast from '@/components/UI/Cast'
 import Crew from '@/components/UI/Crew'

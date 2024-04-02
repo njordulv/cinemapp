@@ -16,7 +16,7 @@ const NetworkLogo: React.FC<Props> = ({ items }) => {
           key={item.id || index}
           shadow="none"
           radius="none"
-          className="object-cover max-h-[50px]"
+          className="object-cover max-h-[50px] drop-shadow"
           src={
             item.logo_path ? `${BASE_IMAGE_URL}w300${item.logo_path}` : NO_IMAGE
           }

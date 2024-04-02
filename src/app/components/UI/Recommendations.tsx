@@ -65,7 +65,7 @@ const Recommendations: React.FC<Props> = ({ id, isMovie }: Props) => {
                       fallbackSrc={'/no-image-250x140.svg'}
                     />
                   </CardBody>
-                  <CardFooter className="items-center justify-between px-0 text-default-200 text-sm leading-5 font-normal">
+                  <CardFooter className="items-center gap-2 text-left justify-between px-0 text-default-200 text-sm leading-5 font-normal">
                     <span>{item.title || item.name}</span>
                     <span className="text-default-400">
                       {formatReleaseYear(

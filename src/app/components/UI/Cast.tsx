@@ -37,7 +37,7 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
               shadow="md"
               radius="md"
               key={index}
-              className="bg-grey max-w-[149px]"
+              className="bg-grey max-w-[154px]"
               onPress={() => router.push(`/person/${actor.id}`)}
             >
               <CardBody className="overflow-visible p-0">

@@ -20,7 +20,7 @@ const Season: React.FC<SeasonProps> = ({ id, seasons }) => {
       isPressable
       shadow="md"
       key={season.id || index}
-      className="bg-grey"
+      className="bg-grey max-w-[154px]"
       onPress={() => router.push(`/tv/${id}/season/${season.season_number}`)}
     >
       <CardBody className="overflow-visible p-0">
