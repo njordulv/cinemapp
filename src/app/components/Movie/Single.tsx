@@ -71,11 +71,11 @@ export default function Single({ params }: Props) {
             <TabsContent id={params.id} data={data} isMovie={isMovie} />
           </section>
           <aside className={stylesAside.aside}>
-            <h2 className="flex py-2 px-3 mb-3 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-600 border-1">
+            <h2 className="flex py-2 px-3 mb-3 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-200 border-1">
               Information
             </h2>
             <div
-              className={`${stylesAside.aside_container} border-default-600 border-1`}
+              className={`${stylesAside.aside_container} border-default-200 border-1`}
             >
               <div className={stylesAside.aside_item}>
                 <b>Status:</b>

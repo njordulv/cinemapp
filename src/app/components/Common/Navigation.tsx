@@ -54,7 +54,7 @@ export default function Navigation() {
             <DropdownTrigger>
               <Button
                 disableRipple
-                className="p-0 bg-transparent data-[hover=true]:bg-transparent text-white data-[hover=true]:text-special"
+                className="p-0 bg-transparent data-[hover=true]:bg-transparent text-white data-[hover=true]:text-red"
                 endContent={icons.chevron}
                 radius="sm"
                 variant="light"
@@ -71,13 +71,13 @@ export default function Navigation() {
           >
             <DropdownItem
               key="popular movies"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-special"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
               <Link href="/">Popular</Link>
             </DropdownItem>
             <DropdownItem
               key="top rated movies"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-special"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
               <Link href="/top-rated">Top Rated</Link>
             </DropdownItem>
@@ -88,7 +88,7 @@ export default function Navigation() {
             <DropdownTrigger>
               <Button
                 disableRipple
-                className="p-0 bg-transparent data-[hover=true]:bg-transparent text-white data-[hover=true]:text-special"
+                className="p-0 bg-transparent data-[hover=true]:bg-transparent text-white data-[hover=true]:text-red"
                 endContent={icons.chevron}
                 radius="sm"
                 variant="light"
@@ -105,19 +105,19 @@ export default function Navigation() {
           >
             <DropdownItem
               key="Popular TV Shows"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-special"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
               <Link href={`/tv`}>Popular</Link>
             </DropdownItem>
             <DropdownItem
               key="Top Rated"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-special"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
               <Link href={`/tv/top-rated`}>Top Rated</Link>
             </DropdownItem>
             <DropdownItem
               key="Airing Today"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-special"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
               <Link href={`/tv/airing-today`}>Airing Today</Link>
             </DropdownItem>
@@ -126,7 +126,7 @@ export default function Navigation() {
         <NavbarItem>
           <Link
             href="/person"
-            className="hover:text-special text-small font-normal"
+            className="hover:text-red text-small font-normal"
           >
             People
           </Link>

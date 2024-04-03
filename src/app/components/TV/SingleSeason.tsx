@@ -31,12 +31,12 @@ export default function SingleSeason({
         {data?.episodes?.map((episode: Episodes, index: number) => (
           <Card
             isBlurred
-            className="border-none bg-grey"
+            className="border-none bg-default-50"
             shadow="sm"
             key={episode.id || index}
           >
             <CardBody>
-              <div className="grid grid-flow-col lg:grid-cols-[3fr_9fr]   gap-6 md:gap-4 items-start justify-center">
+              <div className="grid grid-flow-col lg:grid-cols-[3fr_9fr] gap-6 md:gap-4 items-start justify-center">
                 <div className="relative max-w-[270px]">
                   <Image
                     className="object-cover"
@@ -57,7 +57,7 @@ export default function SingleSeason({
                   <div className="flex justify-between items-start">
                     <div className="flex flex-col gap-0">
                       <h3 className="font-semibold text-foreground/90 mb-2 pr-10">
-                        <span className="text-black/30 absolute right-3 top-3">
+                        <span className="text-default-600 absolute right-3 top-3">
                           {episode?.episode_number}&nbsp;
                         </span>
                         {episode?.name}

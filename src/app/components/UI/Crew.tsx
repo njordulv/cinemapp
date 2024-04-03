@@ -18,7 +18,16 @@ const Crew: React.FC<CrewProps> = ({ crew }) => {
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   return (
-    <Table isCompact isStriped radius="md" aria-label="Crew table">
+    <Table
+      isCompact
+      isStriped
+      hideHeader
+      radius="md"
+      aria-label="Crew table"
+      classNames={{
+        wrapper: 'rounded-medium',
+      }}
+    >
       <TableHeader>
         <TableColumn className="text-md">Name</TableColumn>
         <TableColumn className="text-md">Department</TableColumn>
@@ -27,12 +36,12 @@ const Crew: React.FC<CrewProps> = ({ crew }) => {
       <TableBody>
         {crew &&
           crew.map((member: CrewTypes, index: number) => (
-            <TableRow key={index}>
+            <TableRow key={index} className="table-row">
               <TableCell className="flex">
                 <User
                   name={member.name}
                   description={member.job}
-                  className="text-default-800"
+                  className="text-white"
                   avatarProps={{
                     radius: 'sm',
                     src: member.profile_path
@@ -41,10 +50,10 @@ const Crew: React.FC<CrewProps> = ({ crew }) => {
                   }}
                 />
               </TableCell>
-              <TableCell className="text-default-500">
+              <TableCell className="text-default-600">
                 {member.department}
               </TableCell>
-              <TableCell className="text-default-500">
+              <TableCell className="text-default-600">
                 {member.known_for_department}
               </TableCell>
             </TableRow>

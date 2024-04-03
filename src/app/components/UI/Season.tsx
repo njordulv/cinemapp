@@ -18,17 +18,17 @@ const Season: React.FC<SeasonProps> = ({ id, seasons }) => {
   return seasons.slice(0, 5).map((season: Seasons, index: number) => (
     <Card
       isPressable
-      shadow="md"
+      shadow="none"
       key={season.id || index}
-      className="bg-grey max-w-[154px]"
+      className="max-w-[154px] bg-transparent"
       onPress={() => router.push(`/tv/${id}/season/${season.season_number}`)}
     >
       <CardBody className="overflow-visible p-0">
         <Image
-          shadow="sm"
-          radius="md"
+          shadow="none"
+          radius="lg"
           width="100%"
-          className="w-full object-cover rounded-b-none"
+          className="w-full object-cover"
           src={
             season.poster_path
               ? `${BASE_IMAGE_URL}w300${season.poster_path}`
@@ -37,7 +37,7 @@ const Season: React.FC<SeasonProps> = ({ id, seasons }) => {
           alt={season.name || 'Unknown'}
         />
       </CardBody>
-      <CardFooter className="flex flex-col text-small items-stretch p-2">
+      <CardFooter className="flex flex-col text-small items-stretch px-2">
         <b className="text-[15px] text-left">{season.name}</b>
         <div className="flex justify-between gap-2">
           <span className="text-[14px] leading-[18px] text-left">

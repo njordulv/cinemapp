@@ -1,9 +1,9 @@
 'use client'
 
-import { Spinner } from '@nextui-org/react'
 import YouTube from 'react-youtube'
 import { VideoTypes } from '@/types/data'
 import useFetcher from '@/hooks/useFetcher'
+import SkeletonForTab from '@/components/Video/SkeletonForTab'
 
 const VideoTab: React.FC<VideoTypes> = ({ movieId, isMovie }: VideoTypes) => {
   const pageType = isMovie ? 'movie' : 'tv'
@@ -15,12 +15,16 @@ const VideoTab: React.FC<VideoTypes> = ({ movieId, isMovie }: VideoTypes) => {
 
   return (
     <div
-      className={`min-h-[280px] grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 ${
+      className={`grid text-center lg:max-w-[1170px] min-h-[150px] lg:w-full lg:mb-0 ${
         videos.length > 0 ? 'lg:grid-cols-2' : 'lg:grid-cols-1'
       } lg:text-left gap-4`}
     >
       {isLoading ? (
-        <Spinner color="default" size="lg" className="place-content-center" />
+        <>
+          {[...Array(2)].map((_, index) => (
+            <SkeletonForTab key={index} />
+          ))}
+        </>
       ) : isError ? (
         <div className="text-xl text-white">Error loading videos</div>
       ) : videos.length > 0 ? (

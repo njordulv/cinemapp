@@ -18,10 +18,10 @@ export default function SeasonsTabs({ id, data }: DataMovie) {
       aria-label="TV Seasons"
       classNames={{
         panel: 'p-0 p-0',
-        tabList: 'border-default-600 border-1',
+        tabList: 'border-1',
         cursor: '',
         tab: 'text-[17px] px-6 font-normal',
-        tabContent: 'text-soft',
+        tabContent: '',
       }}
     >
       <Tab key="seasons" title="Seasons">

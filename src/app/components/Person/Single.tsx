@@ -1,7 +1,7 @@
 'use client'
 
 import useFetcher from '@/hooks/useFetcher'
-import { Image, Link } from '@nextui-org/react'
+import { Image, Link, Spacer } from '@nextui-org/react'
 import { LiaImdb } from 'react-icons/lia'
 import { formatReleaseDate } from '@/utils/formatDate'
 import calculateAge from '@/utils/calculateAge'
@@ -40,19 +40,22 @@ export default function Single({ params }: { params: { id: string } }) {
         <div className={styles.person__details}>
           <div className={styles.person__info}>
             {profile_path && (
-              <Image
-                shadow="md"
-                className={styles.person__image}
-                src={
-                  profile_path
-                    ? `${BASE_IMAGE_URL}w300${profile_path}`
-                    : '/no-image-300x450.svg'
-                }
-                width={300}
-                height={450}
-                fallbackSrc={'/no-image-300x450.svg'}
-                alt={name}
-              />
+              <>
+                <Image
+                  shadow="md"
+                  className={styles.person__image}
+                  src={
+                    profile_path
+                      ? `${BASE_IMAGE_URL}w300${profile_path}`
+                      : '/no-image-300x450.svg'
+                  }
+                  width={300}
+                  height={450}
+                  fallbackSrc={'/no-image-300x450.svg'}
+                  alt={name}
+                />
+                <Spacer x={4} />
+              </>
             )}
             {name && (
               <h1 className={`${styles.person__name} md:hidden`}>{name}</h1>

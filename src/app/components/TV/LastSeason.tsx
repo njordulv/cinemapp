@@ -17,7 +17,7 @@ export default function LastSeason({ seasons, id }: SeasonProps) {
 
   return (
     <>
-      <Card isBlurred className="border-none bg-grey" shadow="sm">
+      <Card className="border-none bg-default-50" shadow="sm">
         <CardBody>
           <div className="grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-start justify-center">
             <div className="relative col-span-5 md:col-span-3">
@@ -40,9 +40,7 @@ export default function LastSeason({ seasons, id }: SeasonProps) {
             <div className="flex flex-col col-span-7 md:col-span-9">
               <div className="flex justify-between items-start">
                 <div className="flex flex-col gap-0">
-                  <h3 className="font-semibold text-foreground/90 mb-2">
-                    {lastSeason?.name}
-                  </h3>
+                  <h3 className="font-semibold mb-2">{lastSeason?.name}</h3>
                   <div className="flex items-center gap-2">
                     <Chip
                       startContent={<IoStarSharp size={16} />}

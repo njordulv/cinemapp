@@ -33,7 +33,7 @@ const Recommendations: React.FC<Props> = ({ id, isMovie }: Props) => {
     <>
       {data && (data.results?.length ?? 0) > 0 && (
         <>
-          <h2 className="flex py-2 px-3 my-5 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-600 border-1">
+          <h2 className="flex py-2 px-3 my-5 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-200 border-1">
             Recommendations
           </h2>
           <ScrollShadow orientation="horizontal" className="w-full">
@@ -44,7 +44,7 @@ const Recommendations: React.FC<Props> = ({ id, isMovie }: Props) => {
                   radius="md"
                   key={item.id}
                   isPressable
-                  className="bg-transparent max-w-[250px] self-start"
+                  className="bg-transparent max-w-[237px] self-start"
                   onPress={() =>
                     router.push(`${isMovie ? '/movie/' : '/tv/'}${item.id}`)
                   }
@@ -60,12 +60,12 @@ const Recommendations: React.FC<Props> = ({ id, isMovie }: Props) => {
                       src={
                         item.backdrop_path
                           ? `${BASE_IMAGE_URL}w300${item.backdrop_path}`
-                          : '/no-image-250x140.svg'
+                          : '/no-image-237x133.svg'
                       }
-                      fallbackSrc={'/no-image-250x140.svg'}
+                      fallbackSrc={'/no-image-237x133.svg'}
                     />
                   </CardBody>
-                  <CardFooter className="items-center gap-2 text-left justify-between px-0 text-default-200 text-sm leading-5 font-normal">
+                  <CardFooter className="items-center gap-2 text-left justify-between px-2 text-sm leading-5 font-normal">
                     <span>{item.title || item.name}</span>
                     <span className="text-default-400">
                       {formatReleaseYear(

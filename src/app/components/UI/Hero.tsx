@@ -149,7 +149,7 @@ export default function Hero({
                   href={homepage}
                   target="
                 _blank"
-                  className="inline-flex items-center gap-1 font-thin hover:text-cyan-500 text-shadow-sm"
+                  className="inline-flex items-center gap-1 font-thin hover:text-cyan text-shadow-sm"
                 >
                   <TbWorldWww size={24} /> {isMovie ? title : name}
                 </Link>
@@ -161,7 +161,7 @@ export default function Hero({
                   href={`https://www.imdb.com/title/${imdb_id}`}
                   target="
                 _blank"
-                  className="inline-flex items-center gap-1 font-thin hover:text-cyan-500 text-shadow-sm"
+                  className="inline-flex items-center gap-1 font-thin hover:text-cyan text-shadow-sm"
                 >
                   <LiaImdb size={24} /> IMDb
                 </Link>

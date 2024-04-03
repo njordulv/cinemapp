@@ -22,7 +22,7 @@ const Paginate: React.FC<PaginateProps> = ({
 
   return (
     <div className="mb-32 flex text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:text-left items-center justify-center gap-4 my-8">
-      <CustomButton color="primary" onClick={prevPage}>
+      <CustomButton color="special" onClick={prevPage}>
         Prev
       </CustomButton>
       <Pagination
@@ -33,11 +33,11 @@ const Paginate: React.FC<PaginateProps> = ({
         classNames={{
           base: 'px-0',
           wrapper: 'gap-1 overflow-visible h-8 rounded border border-divider',
-          item: 'w-9 h-9 text-small bg-blueDark rounded-lg text-white data-[hover]:text-black hover:bg-green',
-          cursor: 'bg-blue text-white font-bold shadow-none rounded-lg',
+          item: 'w-9 h-9 text-small bg-black rounded-lg text-white [&[data-hover=true]:not([data-active=true])]:bg-special',
+          cursor: 'bg-special text-white font-bold shadow-none rounded-lg',
         }}
       />
-      <CustomButton color="primary" onClick={nextPage}>
+      <CustomButton color="special" onClick={nextPage}>
         Next
       </CustomButton>
     </div>

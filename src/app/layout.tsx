@@ -16,7 +16,7 @@ type Props = {
 
 export default async function Layout({ children }: Props) {
   return (
-    <html lang="en" className="bg-background">
+    <html lang="en" className="dark bg-background">
       <body className={`${slabo.className}`}>
         <UIProvider>
           <Navigation />

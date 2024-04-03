@@ -12,7 +12,7 @@ const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 const SearchBar: React.FC = () => {
   const router = useRouter()
   const headingClasses =
-    'flex w-full sticky top-1 z-20 py-1.5 px-2 m-0 bg-default-800 shadow-small rounded-small text-grey uppercase'
+    'flex w-full sticky top-1 z-20 py-1.5 px-2 m-0 shadow-small bg-default-100 text-grey rounded-small uppercase'
 
   let list = useAsyncList<SearchTypes>({
     async load({ signal, filterText }) {
@@ -41,12 +41,12 @@ const SearchBar: React.FC = () => {
       classNames={{
         listboxWrapper: 'max-h-[304px]',
         selectorButton: 'text-white',
-        clearButton: 'text-default-200',
+        clearButton: 'text-default-400',
       }}
       inputProps={{
         classNames: {
           inputWrapper:
-            'h-[46px] border-1 border-default-600 data-[hover=true]:border-default-500 group-data-[focus=true]:border-default-400',
+            'h-[46px] border-1 border-default-200 data-[hover=true]:border-default-400 group-data-[focus=true]:border-default-300',
           label:
             'text-default-400 group-data-[filled-within=true]:text-default-400',
         },
@@ -59,8 +59,8 @@ const SearchBar: React.FC = () => {
             'text-grey',
             'transition-opacity',
             'data-[hover=true]:text-white',
-            'dark:data-[hover=true]:bg-default-600',
-            'data-[pressed=true]:opacity-50',
+            'dark:data-[hover=true]:bg-default-200',
+            'data-[pressed=true]:opacity-80',
             'data-[selectable=true]:focus:bg-default-800',
           ],
         },

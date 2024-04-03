@@ -22,18 +22,22 @@ export default function TabsContent({ id, data, isMovie }: DataMovie) {
       aria-label={`${pageType} options`}
       classNames={{
         panel: 'p-0 p-0',
-        tabList: 'border-default-600 border-1',
+        tabList: 'border-1',
         cursor: '',
         tab: 'text-[17px] px-6 font-normal',
-        tabContent: 'text-soft',
+        tabContent: '',
       }}
     >
       <Tab key={`${pageType} cast`} title="Cast">
-        {data.credits.cast && <Cast cast={data.credits.cast} />}
+        {(data.credits.cast?.length ?? 0) > 0 && (
+          <Cast cast={data.credits.cast} />
+        )}
       </Tab>
       <Tab key={`${pageType} crew`} title="Crew">
         <ScrollShadow className="h-[352px]" isEnabled={false}>
-          {data.credits.crew && <Crew crew={data.credits.crew} />}
+          {(data.credits.crew?.length ?? 0) > 0 && (
+            <Crew crew={data.credits.crew} />
+          )}
         </ScrollShadow>
       </Tab>
       <Tab key={`${pageType} trailers`} title="Trailers">

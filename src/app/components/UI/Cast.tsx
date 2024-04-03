@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
   ScrollShadow,
@@ -34,19 +35,19 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
           cast.map((actor: CastList, index: number) => (
             <Card
               isPressable
-              shadow="md"
+              shadow="none"
               radius="md"
               key={index}
-              className="bg-grey max-w-[154px]"
+              className="max-w-[154px] bg-transparent"
               onPress={() => router.push(`/person/${actor.id}`)}
             >
-              <CardBody className="overflow-visible p-0">
+              <CardBody className="overflow-visible p-0 flex-none">
                 <Image
-                  shadow="sm"
-                  radius="md"
+                  shadow="none"
+                  radius="lg"
                   width="100%"
                   height={223}
-                  className="w-full object-cover rounded-b-none"
+                  className="w-full object-cover"
                   src={
                     actor.profile_path
                       ? `${BASE_IMAGE_URL}w300${actor.profile_path}`
@@ -55,8 +56,13 @@ const Cast: React.FC<CastProps> = ({ cast }: CastProps) => {
                   alt={actor.name || 'Unknown'}
                 />
               </CardBody>
-              <CardFooter className="flex flex-col text-small items-start p-2">
-                <b className="text-[15px] text-left">{actor.name}</b>
+              <CardFooter className="flex flex-col text-small items-start px-2">
+                <Link
+                  href={`/person/${actor.id}`}
+                  className="text-[15px] text-left text-white font-normal hover:text-red"
+                >
+                  {actor.name}
+                </Link>
                 <p className="text-[14px] text-left leading-[18px]">
                   {actor.character}
                 </p>

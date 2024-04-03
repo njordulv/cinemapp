@@ -11,7 +11,12 @@ const ListRenderer: React.FC<Props> = ({ items, keyName = 'name' }) => {
     <>
       {items &&
         items.map((item, index) => (
-          <Chip size="sm" key={item.id || index}>
+          <Chip
+            size="sm"
+            radius="sm"
+            key={item.id || index}
+            className="bg-black bg-opacity-80"
+          >
             {item[keyName]}
           </Chip>
         ))}

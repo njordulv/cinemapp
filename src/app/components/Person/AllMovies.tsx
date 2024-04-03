@@ -36,17 +36,18 @@ const AllMovies: React.FC<Props> = ({ data }) => {
 
   return (
     <>
-      <h2 className="flex py-2 px-3 my-5 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-600 border-1">
+      <h2 className="flex py-2 px-3 mt-8 mb-3 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-200 border-1">
         All Movies
       </h2>
       <Table
         isHeaderSticky
         hideHeader
-        radius="sm"
+        isStriped
+        radius="md"
         aria-label="All person movies"
         classNames={{
           base: 'max-h-[525px] overflow-scroll',
-          wrapper: 'bg-default-900 rounded-medium',
+          wrapper: 'rounded-medium',
         }}
       >
         <TableHeader>
@@ -60,7 +61,7 @@ const AllMovies: React.FC<Props> = ({ data }) => {
         </TableHeader>
         <TableBody>
           {sortedByYear.map((movie: PersonMoviesTypes, index: number) => (
-            <TableRow key={movie.credit_id}>
+            <TableRow key={movie.credit_id} className="table-row">
               <TableCell>
                 <span className="text-white/70">{index + 1}</span>
               </TableCell>
@@ -69,7 +70,7 @@ const AllMovies: React.FC<Props> = ({ data }) => {
                   href={`${movie.media_type === 'movie' ? '/movie/' : '/tv/'}${
                     movie.id
                   }`}
-                  className="text-white"
+                  className="text-white hover:text-special transition-all"
                 >
                   <User
                     name={movie.title || movie.name}
@@ -93,7 +94,7 @@ const AllMovies: React.FC<Props> = ({ data }) => {
                 </div>
               </TableCell>
               <TableCell>
-                <span className="text-white/60">
+                <span className="text-white/60 justify-center flex text-center">
                   {movie.media_type === 'movie' ? 'Movie' : 'TV Show'}
                 </span>
               </TableCell>

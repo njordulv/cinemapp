@@ -25,9 +25,9 @@ export default function VoteAverage({
         <CircularProgress
           classNames={{
             svg: size,
-            indicator: 'stroke-cyan-600',
+            indicator: 'stroke-cyan',
             track: 'stroke-white/30',
-            value: `${text} font-semibold text-white letter-spacing-[-1px]`,
+            value: `${text} font-semibold text-white letter-spacing-[-1px] top-[1px]`,
           }}
           value={voteValue}
           strokeWidth={strokeWidth}
