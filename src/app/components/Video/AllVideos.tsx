@@ -22,7 +22,7 @@ export default function AllVideos({ params, contentType }: AllVideosProps) {
   if (isLoading) return <Loader />
 
   return (
-    <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-6 py-10">
+    <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-4 py-10">
       <h1 className="flex self-start font-medium mb-6 text-4xl">Videos</h1>
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left gap-4 m-auto">
         {data.results &&

@@ -32,7 +32,7 @@ const Paginate: React.FC<PaginateProps> = ({
         onChange={(page) => setCurrentPage(page)}
         classNames={{
           base: 'px-0',
-          wrapper: 'gap-1 overflow-visible h-8 rounded border border-divider',
+          wrapper: 'gap-1 overflow-visible h-8 rounded',
           item: 'w-9 h-9 text-small bg-black rounded-lg text-white [&[data-hover=true]:not([data-active=true])]:bg-special',
           cursor: 'bg-special text-white font-bold shadow-none rounded-lg',
         }}

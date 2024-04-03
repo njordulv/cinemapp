@@ -1,9 +1,10 @@
 'use client'
 
+import { Spinner } from '@nextui-org/react'
 import useFetcher from '@/hooks/useFetcher'
 import { Seasons } from '@/types/data'
+import SkeletonBox from '@/components/UI/SkeletonBox'
 import MainCard from '@/components/UI/MainCard'
-import Loader from '@/components/UI/Loader'
 import Error from '@/components/UI/Error'
 
 interface AllVideosProps {
@@ -16,24 +17,33 @@ export default function AllSeasons({ params }: AllVideosProps) {
   })
 
   if (isError) return <Error errorText={isError.message} />
-  if (isLoading) return <Loader />
 
   return (
-    <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-6 py-10">
-      <h1 className="flex self-start font-medium mb-6 text-4xl">{data.name}</h1>
+    <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-4 py-10">
+      <h1 className="flex self-start font-medium mb-6 text-4xl">
+        {data?.name || <Spinner color="default" size="lg" />}
+      </h1>
       <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-5 lg:text-left gap-4 m-auto">
-        {data.seasons.map((season: Seasons, index: number) => (
-          <MainCard
-            key={index}
-            type={'tv'}
-            id={params.id}
-            image={season.poster_path}
-            name={season.name}
-            dateAir={season.air_date}
-            vote_average={season.vote_average}
-            seasonNumber={season.season_number}
-          />
-        ))}
+        {isLoading ? (
+          <>
+            {[...Array(10)].map((_, index) => (
+              <SkeletonBox key={index} />
+            ))}
+          </>
+        ) : data && data.seasons ? (
+          data.seasons.map((season: Seasons, index: number) => (
+            <MainCard
+              key={index}
+              type={'tv'}
+              id={params.id}
+              image={season.poster_path}
+              name={season.name}
+              dateAir={season.air_date}
+              vote_average={season.vote_average}
+              seasonNumber={season.season_number}
+            />
+          ))
+        ) : null}
       </div>
     </main>
   )

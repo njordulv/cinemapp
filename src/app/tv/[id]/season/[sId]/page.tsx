@@ -5,5 +5,9 @@ interface Props {
 }
 
 export default function Page({ params }: Props) {
-  return <SingleSeason params={params} />
+  return (
+    <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-4 py-10">
+      <SingleSeason params={params} />
+    </main>
+  )
 }

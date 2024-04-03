@@ -8,6 +8,7 @@ const PersonCard: React.FC<CardTypes> = ({
   type,
   image,
   name,
+  vote_average,
   known_for,
 }: CardTypes) => {
   const router = useRouter()
@@ -20,7 +21,7 @@ const PersonCard: React.FC<CardTypes> = ({
   }
 
   return (
-    <Card shadow="md" className="bg-grey" isPressable onPress={pageHandler}>
+    <Card shadow="md" isPressable onPress={pageHandler}>
       <CardBody className="overflow-visible p-0 flex-none">
         <Image
           shadow="sm"
@@ -34,7 +35,8 @@ const PersonCard: React.FC<CardTypes> = ({
       </CardBody>
       <CardFooter className="flex flex-col text-small items-start gap-2 p-2">
         <b className="text-[15px]">{name}</b>
-        {known_for && <KnownFor items={known_for} />}
+        <p>{vote_average}</p>
+        {/* {known_for && <KnownFor items={known_for} />} */}
       </CardFooter>
     </Card>
   )

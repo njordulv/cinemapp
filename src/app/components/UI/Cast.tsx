@@ -9,8 +9,6 @@ import {
   CardBody,
   CardFooter,
 } from '@nextui-org/react'
-import '@/styles/slick.scss'
-import '@/styles/slick-theme.scss'
 
 interface CastList {
   id?: number
