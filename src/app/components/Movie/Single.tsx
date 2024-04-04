@@ -21,7 +21,7 @@ export default function Single({ params }: Props) {
   })
 
   if (isError) return <Error errorText={isError.message} />
-  if (isLoading || !data) return <Loader />
+  if (isLoading) return <Loader />
 
   const {
     id,
@@ -85,7 +85,7 @@ export default function Single({ params }: Props) {
               <div className={stylesAside.aside_item}>
                 <b>Production Companies:</b>
                 <div className={styles.singleHero_list}>
-                  <NetworkLogo items={data.production_companies} />
+                  <NetworkLogo items={production_companies} />
                 </div>
               </div>
               <div className={stylesAside.aside_item}>

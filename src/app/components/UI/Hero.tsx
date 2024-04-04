@@ -54,7 +54,7 @@ export default function Hero({
           className={`grid md:grid-cols-[1fr_3fr] gap-10 items-center ${styles.singleHero_wrapper}`}
         >
           <Image
-            shadow="lg"
+            shadow="md"
             className="object-cover"
             src={
               poster_path

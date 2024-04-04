@@ -14,7 +14,7 @@ export default function Certification({ id }: Props) {
   })
 
   const getMovieCertification = () => {
-    const usRelease = data?.results.find(
+    const usRelease = data?.results?.find(
       (item: CertificationTypes) => item.iso_3166_1 === 'US'
     )
 
@@ -36,7 +36,7 @@ export default function Certification({ id }: Props) {
       ) : isError ? (
         '-'
       ) : (
-        certification
+        certification && certification
       )}
     </span>
   )
