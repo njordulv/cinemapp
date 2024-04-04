@@ -4,22 +4,14 @@
 
   &__list {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
+    gap: 4px;
   }
 
   &__listItem {
     position: relative;
     display: flex;
     gap: 5px;
-
-    &:not(:first-child)::before {
-      content: ', ';
-    }
-  }
-
-  &__link {
-    font-weight: normal;
-    color: white;
   }
 }

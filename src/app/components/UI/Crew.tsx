@@ -6,6 +6,7 @@ import {
   TableRow,
   TableCell,
   User,
+  Link,
 } from '@nextui-org/react'
 import { CrewTypes } from '@/types/data'
 
@@ -38,17 +39,21 @@ const Crew: React.FC<CrewProps> = ({ crew }) => {
           crew.map((member: CrewTypes, index: number) => (
             <TableRow key={index} className="table-row">
               <TableCell className="flex">
-                <User
-                  name={member.name}
-                  description={member.job}
-                  className="text-white"
-                  avatarProps={{
-                    radius: 'sm',
-                    src: member.profile_path
-                      ? `${BASE_IMAGE_URL}w92${member.profile_path}`
-                      : NO_IMAGE,
-                  }}
-                />
+                <Link
+                  href={`/person/${member.id}`}
+                  className="text-white hover:text-special transition-all"
+                >
+                  <User
+                    name={member.name}
+                    description={member.job}
+                    avatarProps={{
+                      radius: 'sm',
+                      src: member.profile_path
+                        ? `${BASE_IMAGE_URL}w92${member.profile_path}`
+                        : NO_IMAGE,
+                    }}
+                  />
+                </Link>
               </TableCell>
               <TableCell className="text-default-600">
                 {member.department}

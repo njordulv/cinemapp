@@ -4,6 +4,7 @@ export interface CreatedBy {
   name: string
   gender: number
   profile_path: string
+  department: string
 }
 
 export interface HeroTypes {
