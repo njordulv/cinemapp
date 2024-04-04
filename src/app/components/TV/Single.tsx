@@ -3,12 +3,13 @@
 import useFetcher from '@/hooks/useFetcher'
 import Hero from '@/components/UI/Hero'
 import TabsContent from '@/components/UI/TabsContent'
-import SeasonsTabs from '@/components/TV/SeasonsTabs'
-import ListRenderer from '@/components/UI/ListRenderer'
 import NetworkLogo from '@/components/UI/NetworkLogo'
+import ListRenderer from '@/components/UI/ListRenderer'
 import Recommendations from '@/components/UI/Recommendations'
+import SeasonsTabs from '@/components/TV/SeasonsTabs'
 import Error from '@/components/UI/Error'
 import Loader from '@/components/UI/Loader'
+import Page404 from '@/src/app/404'
 import styles from '@/styles/singleMovie.module.scss'
 import stylesAside from '@/styles/aside.module.scss'
 
@@ -23,6 +24,8 @@ export default function Single({ params }: Props) {
 
   if (isError) return <Error errorText={isError.message} />
   if (isLoading || !data) return <Loader />
+  if (data && data.status_code === 34) return <Page404 />
+  if (!data) return <Page404 />
 
   const {
     id,

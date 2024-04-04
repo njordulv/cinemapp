@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { Roboto_Condensed } from 'next/font/google'
 import UIProvider from '@/providers/UIProvider'
-import Navigation from './components/Common/Navigation'
+import Navigation from '@/components/Common/Navigation'
 import './globals.css'
 
 const slabo = Roboto_Condensed({
