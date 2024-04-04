@@ -43,7 +43,7 @@ const FilmMakers: React.FC<FilmMakersProps> = ({
                 <Chip
                   radius="md"
                   variant="flat"
-                  className="bg-black/90 text-white hover:text-special transition-all"
+                  className="text-black bg-gray-300"
                   avatar={
                     <Avatar
                       radius="sm"

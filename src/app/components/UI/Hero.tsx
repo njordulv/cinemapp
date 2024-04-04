@@ -184,7 +184,7 @@ export default function Hero({
               )}
               <FilmMakers
                 filmMaker={filmMaker}
-                position="Composer"
+                position="Composed by"
                 job="Original Music Composer"
               />
             </div>
