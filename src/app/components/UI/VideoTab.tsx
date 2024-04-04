@@ -15,7 +15,7 @@ const VideoTab: React.FC<VideoTypes> = ({ movieId, isMovie }: VideoTypes) => {
 
   return (
     <div
-      className={`grid text-center lg:max-w-[1170px] min-h-[150px] lg:w-full lg:mb-0 ${
+      className={`grid text-center lg:max-w-[1170px] min-h-[225px] lg:w-full lg:mb-0 ${
         videos.length > 0 ? 'lg:grid-cols-2' : 'lg:grid-cols-1'
       } lg:text-left gap-4`}
     >

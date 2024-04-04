@@ -1,8 +1,7 @@
-import { Image, Chip } from '@nextui-org/react'
+import { Image, Chip, Tooltip } from '@nextui-org/react'
 import { NetworkTypes } from '@/types/data'
 
 const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
-const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
 type Props = {
   items: NetworkTypes[]
@@ -11,24 +10,34 @@ type Props = {
 const NetworkLogo: React.FC<Props> = ({ items }) => {
   return (
     <>
-      {items.map((item, index) => (
-        <Chip size="lg" radius="md" className="bg-white/90">
-          <Image
-            key={item.id || index}
-            shadow="none"
-            radius="none"
-            className="object-cover max-h-[20px]"
-            src={
-              item.logo_path
-                ? `${BASE_IMAGE_URL}w300${item.logo_path}`
-                : NO_IMAGE
-            }
-            width="auto"
-            height="50px"
-            fallbackSrc={NO_IMAGE}
-            alt={item.name}
-          />
-        </Chip>
+      {items.map((item, index: number) => (
+        <Tooltip
+          key={index}
+          placement="bottom"
+          showArrow={true}
+          content={item.name}
+        >
+          <Chip size="lg" radius="sm" className="text-black bg-gray-300 px-2">
+            {item.logo_path !== null ? (
+              <Image
+                shadow="none"
+                radius="none"
+                className="object-cover max-h-6"
+                src={
+                  item.logo_path
+                    ? `${BASE_IMAGE_URL}w300${item.logo_path}`
+                    : '/no-image-237x133.svg'
+                }
+                width="auto"
+                height="50px"
+                fallbackSrc={'/no-image-237x133.svg'}
+                alt={item.name}
+              />
+            ) : (
+              item.name
+            )}
+          </Chip>
+        </Tooltip>
       ))}
     </>
   )

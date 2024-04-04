@@ -5,7 +5,7 @@ export default function SeasonSkeleton() {
   return (
     <div className="w-full grid lg:grid-cols-[3fr_9fr] gap-5 bg-default-50 p-3 rounded-xl">
       <Skeleton className="rounded-lg">
-        <div className="w-[270px] h-[151px] rounded-lg bg-default-300"></div>
+        <div className="w-[270px] h-[226px] rounded-lg bg-default-300"></div>
       </Skeleton>
 
       <div className="w-full flex flex-col gap-4 relative">

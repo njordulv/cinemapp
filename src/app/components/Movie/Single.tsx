@@ -3,6 +3,7 @@
 import useFetcher from '@/hooks/useFetcher'
 import Hero from '@/components/UI/Hero'
 import TabsContent from '@/components/UI/TabsContent'
+import NetworkLogo from '@/components/UI/NetworkLogo'
 import ListRenderer from '@/components/UI/ListRenderer'
 import Recommendations from '@/components/UI/Recommendations'
 import Loader from '@/components/UI/Loader'
@@ -84,7 +85,7 @@ export default function Single({ params }: Props) {
               <div className={stylesAside.aside_item}>
                 <b>Production Companies:</b>
                 <div className={styles.singleHero_list}>
-                  <ListRenderer items={production_companies} keyName="name" />
+                  <NetworkLogo items={data.production_companies} />
                 </div>
               </div>
               <div className={stylesAside.aside_item}>
