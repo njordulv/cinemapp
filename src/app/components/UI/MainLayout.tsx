@@ -10,7 +10,13 @@ import Error from '@/components/UI/Error'
 
 interface PageProps {
   type: 'tv' | 'movie'
-  end: '/popular' | '/top_rated' | '/airing_today' | ''
+  end:
+    | '/popular'
+    | '/top_rated'
+    | '/airing_today'
+    | '/now_playing'
+    | '/upcoming'
+    | ''
 }
 
 export default function MainLayout({ type, end }: PageProps) {

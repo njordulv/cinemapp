@@ -76,10 +76,22 @@ export default function Navigation() {
               <Link href="/">Popular</Link>
             </DropdownItem>
             <DropdownItem
+              key="now playing movies"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
+            >
+              <Link href="/movie/now-playing">Now Playing</Link>
+            </DropdownItem>
+            <DropdownItem
+              key="upcoming movies"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
+            >
+              <Link href="/movie/upcoming">Upcoming</Link>
+            </DropdownItem>
+            <DropdownItem
               key="top rated movies"
               className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
-              <Link href="/top-rated">Top Rated</Link>
+              <Link href="/movie/top-rated">Top Rated</Link>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
