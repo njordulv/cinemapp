@@ -331,6 +331,7 @@ export interface PersonMoviesTypes {
   character: string
   credit_id: string
   order: number
+  job: string
   media_type: string
 }
 

@@ -12,6 +12,7 @@ import {
 import { IoStarSharp } from 'react-icons/io5'
 import { PersonMoviesTypes } from '@/types/data'
 import { formatReleaseYear } from '@/utils/formatDate'
+import { getDepartmentData } from '@/utils/getDepartmentData'
 
 const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
 const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
@@ -20,10 +21,12 @@ interface Props {
   data: {
     cast: PersonMoviesTypes[]
   }
+  knownFor: string
 }
 
-const AllMovies: React.FC<Props> = ({ data }) => {
-  const sortedByYear = [...(data.cast ?? [])].sort((a, b) => {
+const AllMovies: React.FC<Props> = ({ data, knownFor }) => {
+  const departmentData = getDepartmentData(data, knownFor)
+  const sortedByYear = [...departmentData].sort((a, b) => {
     const date = new Date()
     const fallbackYear = date.getFullYear()
     const aDate = a.release_date || a.first_air_date
@@ -89,7 +92,7 @@ const AllMovies: React.FC<Props> = ({ data }) => {
               <TableCell>
                 <div className="flex flex-col gap-1">
                   <span className="text-white">
-                    {movie.character || String.fromCharCode(9866)}
+                    {movie.character || movie.job}
                   </span>
                 </div>
               </TableCell>

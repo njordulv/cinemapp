@@ -7,19 +7,24 @@ import {
 } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { PersonMoviesTypes } from '@/types/data'
+import { getDepartmentData } from '@/utils/getDepartmentData'
 
 const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
 
 interface Props {
   data: {
     cast: PersonMoviesTypes[]
+    crew: PersonMoviesTypes[]
   }
+  knownFor: string
 }
 
-const FamousWorks: React.FC<Props> = ({ data }) => {
+const FamousWorks: React.FC<Props> = ({ data, knownFor }) => {
   const router = useRouter()
-  const sortedAll = [...(data.cast ?? [])].sort(
-    (a, b) => b.popularity - a.popularity
+  const departmentData = getDepartmentData(data, knownFor)
+
+  const sortedAll = [...departmentData].sort(
+    (a, b) => b.vote_count - a.vote_count
   )
 
   const popularMovies = sortedAll
