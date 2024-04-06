@@ -41,6 +41,7 @@ export default function UserCard({ movie, type }: UserProps) {
         alt={movie.title || movie.name}
         width={288}
         height={432}
+        className="object-cover"
         fallbackSrc={NO_IMAGE}
       />
       <div className={styles.card__footer}>

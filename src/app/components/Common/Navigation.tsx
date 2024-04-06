@@ -76,10 +76,10 @@ export default function Navigation() {
               <Link href="/">Popular</Link>
             </DropdownItem>
             <DropdownItem
-              key="now playing movies"
+              key="top rated movies"
               className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
-              <Link href="/movie/now-playing">Now Playing</Link>
+              <Link href="/movie/top-rated">Top Rated</Link>
             </DropdownItem>
             <DropdownItem
               key="upcoming movies"
@@ -88,10 +88,10 @@ export default function Navigation() {
               <Link href="/movie/upcoming">Upcoming</Link>
             </DropdownItem>
             <DropdownItem
-              key="top rated movies"
+              key="now playing movies"
               className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
-              <Link href="/movie/top-rated">Top Rated</Link>
+              <Link href="/movie/now-playing">Now Playing</Link>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -116,22 +116,28 @@ export default function Navigation() {
             }}
           >
             <DropdownItem
-              key="Popular TV Shows"
+              key="popular tv shows"
               className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
               <Link href={`/tv`}>Popular</Link>
             </DropdownItem>
             <DropdownItem
-              key="Top Rated"
+              key="top rated"
               className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
               <Link href={`/tv/top-rated`}>Top Rated</Link>
             </DropdownItem>
             <DropdownItem
-              key="Airing Today"
+              key="airing today"
               className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
               <Link href={`/tv/airing-today`}>Airing Today</Link>
+            </DropdownItem>
+            <DropdownItem
+              key="on tv"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
+            >
+              <Link href={`/tv/on-the-air`}>On TV</Link>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
