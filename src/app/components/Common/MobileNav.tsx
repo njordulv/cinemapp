@@ -14,7 +14,7 @@ export default function MobileNav() {
         <NavbarMenuItem key="Popular Movies">
           <Link href="/">Popular Movies</Link>
         </NavbarMenuItem>
-        <NavbarMenuItem key="Popular Movies">
+        <NavbarMenuItem key="Top Rated Movies">
           <Link href="/movies/top-rated">Top Rated</Link>
         </NavbarMenuItem>
         <NavbarMenuItem key="Upcoming Movies">
