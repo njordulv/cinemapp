@@ -8,8 +8,6 @@ import {
   NavbarContent,
   NavbarItem,
   NavbarMenuToggle,
-  NavbarMenuItem,
-  NavbarMenu,
   Button,
   DropdownItem,
   DropdownTrigger,
@@ -17,6 +15,7 @@ import {
   DropdownMenu,
 } from '@nextui-org/react'
 import { IoIosArrowDown } from 'react-icons/io'
+import MobileNav from './MobileNav'
 import SearchBar from '@/components/Search/SearchBar'
 import Logo from '@/components/Common/Logo'
 
@@ -37,11 +36,6 @@ export default function Navigation() {
         wrapper: 'max-w-[1170px] px-4',
       }}
     >
-      <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-        />
-      </NavbarContent>
       <NavbarBrand>
         <Logo />
       </NavbarBrand>
@@ -150,21 +144,15 @@ export default function Navigation() {
           </Link>
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className="hidden sm:flex">
         <SearchBar />
       </NavbarContent>
-
-      <NavbarMenu>
-        <NavbarMenuItem key="Popular Movies">
-          <Link href="/">Popular Movies</Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem key="Popular TV Shows">
-          <Link href="/tv">Popular TV Shows</Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem key="People">
-          <Link href="/person">People</Link>
-        </NavbarMenuItem>
-      </NavbarMenu>
+      <NavbarContent className="sm:hidden" justify="end">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+        />
+      </NavbarContent>
+      <MobileNav />
     </Navbar>
   )
 }

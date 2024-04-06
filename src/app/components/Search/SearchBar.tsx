@@ -29,7 +29,7 @@ const SearchBar: React.FC = () => {
 
   return (
     <Autocomplete
-      className="max-w-[302px]"
+      className="md:max-w-[302px] max-w-full"
       inputValue={list.filterText}
       isLoading={list.isLoading}
       items={list.items || []}
