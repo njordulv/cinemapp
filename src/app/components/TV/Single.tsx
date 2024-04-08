@@ -43,7 +43,6 @@ export default function Single({ params }: Props) {
     imdb_id,
     spoken_languages,
     production_countries,
-    production_companies,
     status,
     first_air_date,
   } = data

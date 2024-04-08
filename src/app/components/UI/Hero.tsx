@@ -43,6 +43,7 @@ export default function Hero({
     <section className={styles.singleHero}>
       <div
         style={{
+          backgroundAttachment: 'fixed',
           backgroundImage: backdrop_path
             ? `url(${BASE_IMAGE_URL}original${backdrop_path})`
             : `url(${NO_IMAGE})`,
