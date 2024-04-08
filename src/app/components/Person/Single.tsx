@@ -1,9 +1,10 @@
 'use client'
 
-import useFetcher from '@/hooks/useFetcher'
 import { Image, Link, Spacer } from '@nextui-org/react'
 import { LiaImdb } from 'react-icons/lia'
 import { formatReleaseDate } from '@/utils/formatDate'
+import ShowMoreText from 'react-show-more-text'
+import useFetcher from '@/hooks/useFetcher'
 import calculateAge from '@/utils/calculateAge'
 import FamousWorks from '@/components/Person/FamousWorks'
 import AllMovies from '@/components/Person/AllMovies'
@@ -134,7 +135,17 @@ export default function Single({ params }: { params: { id: string } }) {
             )}
             {biography && (
               <div className={styles.person__detail}>
-                <div>{biography}</div>
+                <ShowMoreText
+                  lines={9}
+                  more="Show more"
+                  less="Show less"
+                  anchorClass="text-special transition-all hover:text-white cursor-pointer"
+                  onClick={() => {}}
+                  expanded={false}
+                  truncatedEndingComponent={'... '}
+                >
+                  {biography}
+                </ShowMoreText>
               </div>
             )}
             {data.combined_credits && (
