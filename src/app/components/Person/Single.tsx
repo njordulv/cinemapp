@@ -134,19 +134,24 @@ export default function Single({ params }: { params: { id: string } }) {
               </h1>
             )}
             {biography && (
-              <div className={styles.person__detail}>
-                <ShowMoreText
-                  lines={9}
-                  more="Show more"
-                  less="Show less"
-                  anchorClass="text-special transition-all hover:text-white cursor-pointer"
-                  onClick={() => {}}
-                  expanded={false}
-                  truncatedEndingComponent={'... '}
-                >
-                  {biography}
-                </ShowMoreText>
-              </div>
+              <>
+                <h2 className="flex py-2 px-3 mt-3 w-full font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-200 border-1">
+                  Biography
+                </h2>
+                <div className={styles.person__detail}>
+                  <ShowMoreText
+                    lines={8}
+                    more="Show more"
+                    less="Show less"
+                    anchorClass="text-special transition-all hover:text-white cursor-pointer"
+                    onClick={() => {}}
+                    expanded={false}
+                    truncatedEndingComponent={'... '}
+                  >
+                    {biography}
+                  </ShowMoreText>
+                </div>
+              </>
             )}
             {data.combined_credits && (
               <FamousWorks

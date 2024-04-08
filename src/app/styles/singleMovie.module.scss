@@ -4,15 +4,6 @@
   width: 100%;
   margin-bottom: 30px;
 
-  &_back {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    filter: brightness(0.55) opacity(0.9);
-  }
   &_wrapper {
     z-index: 1;
   }
