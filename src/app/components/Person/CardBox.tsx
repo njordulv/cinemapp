@@ -1,5 +1,5 @@
 import { CardTypes } from '@/types/data'
-import PersonCard from '@/components/UI/PersonCard'
+import PersonCard from '@/src/app/components/Person/PersonCard'
 
 export default function CardBox({ id, name, image, known_for }: CardTypes) {
   return (

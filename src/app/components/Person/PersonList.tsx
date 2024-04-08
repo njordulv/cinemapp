@@ -3,32 +3,32 @@
 import { useState } from 'react'
 import { Button } from '@nextui-org/react'
 import { getAPIData } from '@/actions/getAPIData'
-import { Movie } from '@/types/data'
-import MovieCard from '@/components/UI/MovieCard'
+import { Person } from '@/types/data'
+import PersonCard from '@/components/Person/PersonCard'
 
-type MovieListProps = {
-  initialMovies: Movie[]
+type PersonListProps = {
+  initialPersons: Person[]
   type: string
   category: string
   heading: string
 }
 
-const NUMB_OF_MOVIES_TO_FETCH = 20
+const NUMB_OF_PERSONS_TO_FETCH = 20
 
-export default function MovieList({
-  initialMovies,
+export default function PersonList({
+  initialPersons,
   type,
   category,
   heading,
-}: MovieListProps) {
-  const [offset, setOffset] = useState(NUMB_OF_MOVIES_TO_FETCH)
-  const [movies, setMovies] = useState<Movie[]>(initialMovies)
+}: PersonListProps) {
+  const [offset, setOffset] = useState(NUMB_OF_PERSONS_TO_FETCH)
+  const [persons, setPersons] = useState<Person[]>(initialPersons)
 
   const loadMore = async () => {
     try {
-      const apiMovies = await getAPIData<Movie>(offset, type, category)
-      setMovies([...movies, ...apiMovies])
-      setOffset(offset + NUMB_OF_MOVIES_TO_FETCH)
+      const apiPersons = await getAPIData<Person>(offset, type, category)
+      setPersons([...persons, ...apiPersons])
+      setOffset(offset + NUMB_OF_PERSONS_TO_FETCH)
     } catch (e) {
       console.error('Error fetching data:', e)
     }
@@ -38,11 +38,11 @@ export default function MovieList({
     <>
       <h1 className="flex self-start font-medium text-4xl">{heading}</h1>
       <div className="grid lg:max-w-[1170px] w-full lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4 justify-items-center mb-0">
-        {movies?.length > 0 &&
-          movies.map((movie: Movie) => (
-            <MovieCard
-              key={movie.id}
-              movie={movie}
+        {persons?.length > 0 &&
+          persons.map((person: Person) => (
+            <PersonCard
+              key={person.id}
+              person={person}
               type={type}
               category={category}
             />

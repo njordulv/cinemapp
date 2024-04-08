@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation'
 import { Card, Image } from '@nextui-org/react'
-import { Movie } from '@/types/Movie'
+import { Movie } from '@/types/data'
 import { formatReleaseDate } from '@/utils/formatDate'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
@@ -12,7 +12,7 @@ type UserProps = {
   category: string
 }
 
-export default function UserCard({ movie, type }: UserProps) {
+export default function MovieCard({ movie, type }: UserProps) {
   const router = useRouter()
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE

@@ -109,6 +109,15 @@ export interface Movie {
   type: string
 }
 
+export interface MovieAPIResponse {
+  page: number
+  type: string
+  limit: 20
+  total_pages: number
+  total_results: number
+  results: Movie[]
+}
+
 export interface Known {
   adult: boolean
   backdrop_path: string
@@ -144,6 +153,13 @@ export interface Person {
   deathday: null
   homepage: string
   imdb_id: string
+}
+
+export interface PersonAPIResponse {
+  page: number
+  results: Person[]
+  total_pages: number
+  total_results: number
 }
 
 export interface Seasons {

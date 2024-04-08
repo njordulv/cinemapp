@@ -1,12 +1,22 @@
-import Layout from '@/components/Person/Layout'
+import { getAPIData } from '@/actions/getAPIData'
+import { Person } from '@/types/data'
+import PersonList from '@/components/Person/PersonList'
 
-export default function Page() {
+export default async function Page() {
+  const page = 1
+  const type = 'person'
+  const category = 'popular'
+  const heading = 'Popular People'
+  const initialPersons = await getAPIData<Person>(page, type, category)
+
   return (
-    <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-4 py-10">
-      <h1 className="flex self-start font-medium mb-6 text-4xl">
-        Popular People
-      </h1>
-      <Layout />
+    <main className="flex flex-col items-center min-h-96 w-full max-w-[1170px] m-auto px-4 py-10 gap-5">
+      <PersonList
+        initialPersons={initialPersons}
+        type={type}
+        category={category}
+        heading={heading}
+      />
     </main>
   )
 }

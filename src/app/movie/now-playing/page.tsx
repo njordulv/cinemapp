@@ -1,4 +1,5 @@
-import { getMovies } from '@/actions/getMovies'
+import { getAPIData } from '@/actions/getAPIData'
+import { Movie } from '@/types/data'
 import MovieList from '@/components/UI/MovieList'
 
 export default async function Page() {
@@ -6,7 +7,7 @@ export default async function Page() {
   const type = 'movie'
   const category = 'now_playing'
   const heading = 'Now Playing Movies'
-  const initialMovies = await getMovies(page, type, category)
+  const initialMovies = await getAPIData<Movie>(page, type, category)
 
   return (
     <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-4 py-10 gap-5">
