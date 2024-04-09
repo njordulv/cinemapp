@@ -24,7 +24,6 @@ export default function MovieCard({ movie, type }: UserProps) {
 
   return (
     <Card
-      isFooterBlurred
       isPressable
       radius="lg"
       shadow="none"

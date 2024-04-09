@@ -1,4 +1,4 @@
-import { Card, CardFooter, Image } from '@nextui-org/react'
+import { Card, Image } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { CardTypes } from '@/types/data'
 import { formatReleaseDate } from '@/utils/formatDate'
@@ -32,12 +32,12 @@ const MainCard: React.FC<CardTypes> = ({
 
   return (
     <Card
-      isFooterBlurred
       isPressable
       radius="lg"
+      shadow="none"
       className={styles.card}
       onPress={pageHandler}
-      aria-label={`${type === 'movie' ? title : name}`}
+      aria-label={`${title || name}`}
     >
       <Image
         className={styles.card__image}
@@ -47,12 +47,14 @@ const MainCard: React.FC<CardTypes> = ({
         height={330}
         fallbackSrc={NO_IMAGE}
       />
-      <CardFooter className={styles.card__footer}>
-        <div className={styles.card__title}>
-          {type === 'movie' ? title : name}
-        </div>
-        <div className={styles.card__date}>
-          {formatReleaseDate(type === 'movie' ? date ?? '' : dateAir ?? '')}
+      <div className={styles.card__footer}>
+        <div>
+          <div className={styles.card__title}>
+            {type === 'movie' ? title : name}
+          </div>
+          <div className={styles.card__date}>
+            {formatReleaseDate(type === 'movie' ? date ?? '' : dateAir ?? '')}
+          </div>
         </div>
         <div className={styles.card__vote}>
           {vote_average ? (
@@ -72,7 +74,7 @@ const MainCard: React.FC<CardTypes> = ({
             />
           )}
         </div>
-      </CardFooter>
+      </div>
     </Card>
   )
 }

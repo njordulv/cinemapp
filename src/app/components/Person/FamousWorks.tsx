@@ -27,10 +27,16 @@ const FamousWorks: React.FC<Props> = ({ data, knownFor }) => {
     (a, b) => b.vote_count - a.vote_count
   )
 
-  const popularMovies = sortedAll
+  const removeDuplicates = sortedAll.filter(
+    (value, index, self) =>
+      index ===
+      self.findIndex((t) => t.id === value.id && t.name === value.name)
+  )
+
+  const popularMovies = removeDuplicates
     .filter((item) => item.media_type === 'movie')
     .slice(0, 8)
-  const popularTVShows = sortedAll
+  const popularTVShows = removeDuplicates
     .filter((item) => item.media_type === 'tv')
     .slice(0, 8)
 
