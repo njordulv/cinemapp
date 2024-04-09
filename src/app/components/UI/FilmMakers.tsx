@@ -35,7 +35,7 @@ const FilmMakers: React.FC<FilmMakersProps> = ({
   return (
     <>
       <div className={styles.item}>
-        <span>{position}</span>
+        <span className="text-shadow-sm">{position}</span>
         <ul className={styles.items__list}>
           {relevantFilmMakers.map((person, index: number) => (
             <li key={index} className={styles.items__listItem}>

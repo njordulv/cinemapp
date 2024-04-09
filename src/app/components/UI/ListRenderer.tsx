@@ -15,7 +15,7 @@ const ListRenderer: React.FC<Props> = ({ items, keyName = 'name' }) => {
             size="sm"
             radius="sm"
             key={item.id || index}
-            className="text-black bg-gray-300"
+            className="text-black bg-gray-300 border-default-400/10 border-1"
           >
             {item[keyName]}
           </Chip>

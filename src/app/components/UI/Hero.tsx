@@ -86,7 +86,7 @@ export default function Hero({
                   ) : (
                     <ContentRatings id={id} />
                   )}
-                  <div>
+                  <div className="text-shadow-sm">
                     {formatReleaseDate(
                       isMovie ? release_date ?? '' : first_air_date ?? ''
                     )}
@@ -94,7 +94,11 @@ export default function Hero({
                   <div className={styles.singleHero_list}>
                     <ListRenderer items={genres} keyName="name" />
                   </div>
-                  {runtime && <div>{convertMinToHrs(runtime)}</div>}
+                  {runtime && (
+                    <div className="text-shadow-sm">
+                      {convertMinToHrs(runtime)}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex gap-5 items-center">
@@ -137,7 +141,7 @@ export default function Hero({
                 )}
               </div>
               {tagline && (
-                <div className="italic font-thin text-[18px] text-shadow-sm opacity-80">
+                <div className="italic font-thin text-[18px] text-shadow-sm">
                   {tagline}
                 </div>
               )}

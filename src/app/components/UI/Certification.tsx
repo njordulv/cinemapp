@@ -30,7 +30,7 @@ export default function Certification({ id }: Props) {
   const certification = getMovieCertification()
 
   return (
-    <span className="flex items-center border-white/60 border-small px-1 text-sm">
+    <span className="flex items-center border-white/70 border-small bg-slate-400/20 text-shadow-sm px-1 text-sm shadow-md">
       {isLoading ? (
         <Spinner color="default" size="sm" />
       ) : isError ? (
