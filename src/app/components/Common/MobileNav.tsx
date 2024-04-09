@@ -11,6 +11,9 @@ export default function MobileNav() {
         <NavbarMenuItem key="Search Bar" className="pb-4">
           <SearchBar />
         </NavbarMenuItem>
+        <NavbarMenuItem key="Trending Movies">
+          <Link href="/movies/trending">Trending</Link>
+        </NavbarMenuItem>
         <NavbarMenuItem key="Popular Movies">
           <Link href="/">Popular Movies</Link>
         </NavbarMenuItem>
@@ -22,6 +25,9 @@ export default function MobileNav() {
         </NavbarMenuItem>
         <NavbarMenuItem key="Now Playing Movies">
           <Link href="/movies/upcoming">Now Playing</Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem key="Trending TV Shows">
+          <Link href="/tv/trending">Trending Shows</Link>
         </NavbarMenuItem>
         <NavbarMenuItem key="Popular TV Shows">
           <Link href="/tv">Popular TV Shows</Link>

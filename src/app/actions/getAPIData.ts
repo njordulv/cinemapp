@@ -15,10 +15,17 @@ type APIResponse<T> = T extends Person ? PersonAPIResponse : MovieAPIResponse
 export const getAPIData = async <T extends Person | Movie>(
   page: number,
   type: string,
-  category: string
+  category: 'popular' | 'top_rated' | 'trending',
+  timeWindow: 'day' | 'week' = 'day'
 ): Promise<T[]> => {
   try {
-    const url = `${BASE_URL}/${type}/${category}?api_key=${API_KEY}&page=${page}`
+    let url
+    if (category === 'trending') {
+      url = `${BASE_URL}/trending/${type}/${timeWindow}?api_key=${API_KEY}&page=${page}`
+    } else {
+      url = `${BASE_URL}/${type}/${category}?api_key=${API_KEY}&page=${page}`
+    }
+
     const response = await fetch(url)
     const data = (await response.json()) as APIResponse<T>
     return data.results as T[]

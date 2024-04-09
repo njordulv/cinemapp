@@ -64,6 +64,12 @@ export default function Navigation() {
             }}
           >
             <DropdownItem
+              key="trending movies"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
+            >
+              <Link href={`/movie/trending`}>Trending</Link>
+            </DropdownItem>
+            <DropdownItem
               key="popular movies"
               className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
             >
@@ -109,6 +115,12 @@ export default function Navigation() {
               base: 'gap-2',
             }}
           >
+            <DropdownItem
+              key="trending tv shows"
+              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
+            >
+              <Link href={`/tv/trending`}>Trending</Link>
+            </DropdownItem>
             <DropdownItem
               key="popular tv shows"
               className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
