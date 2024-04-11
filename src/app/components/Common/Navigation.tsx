@@ -18,6 +18,7 @@ import { IoIosArrowDown } from 'react-icons/io'
 import MobileNav from './MobileNav'
 import SearchBar from '@/components/Search/SearchBar'
 import Logo from '@/components/Common/Logo'
+import { movieItems, tvItems } from '@/utils/menuItems'
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -63,36 +64,14 @@ export default function Navigation() {
               base: 'gap-2',
             }}
           >
-            <DropdownItem
-              key="trending movies"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-            >
-              <Link href={`/movie/trending`}>Trending</Link>
-            </DropdownItem>
-            <DropdownItem
-              key="popular movies"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-            >
-              <Link href="/">Popular</Link>
-            </DropdownItem>
-            <DropdownItem
-              key="top rated movies"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-            >
-              <Link href="/movie/top-rated">Top Rated</Link>
-            </DropdownItem>
-            <DropdownItem
-              key="upcoming movies"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-            >
-              <Link href="/movie/upcoming">Upcoming</Link>
-            </DropdownItem>
-            <DropdownItem
-              key="now playing movies"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-            >
-              <Link href="/movie/now-playing">Now Playing</Link>
-            </DropdownItem>
+            {movieItems.map((item) => (
+              <DropdownItem
+                key={item.key}
+                className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
+              >
+                <Link href={item.link}>{item.name}</Link>
+              </DropdownItem>
+            ))}
           </DropdownMenu>
         </Dropdown>
         <Dropdown className="bg-black rounded-md">
@@ -115,36 +94,14 @@ export default function Navigation() {
               base: 'gap-2',
             }}
           >
-            <DropdownItem
-              key="trending tv shows"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-            >
-              <Link href={`/tv/trending`}>Trending</Link>
-            </DropdownItem>
-            <DropdownItem
-              key="popular tv shows"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-            >
-              <Link href={`/tv`}>Popular</Link>
-            </DropdownItem>
-            <DropdownItem
-              key="top rated"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-            >
-              <Link href={`/tv/top-rated`}>Top Rated</Link>
-            </DropdownItem>
-            <DropdownItem
-              key="airing today"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-            >
-              <Link href={`/tv/airing-today`}>Airing Today</Link>
-            </DropdownItem>
-            <DropdownItem
-              key="on tv"
-              className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-            >
-              <Link href={`/tv/on-the-air`}>On TV</Link>
-            </DropdownItem>
+            {tvItems.map((item) => (
+              <DropdownItem
+                key={item.key}
+                className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
+              >
+                <Link href={item.link}>{item.name}</Link>
+              </DropdownItem>
+            ))}
           </DropdownMenu>
         </Dropdown>
         <NavbarItem>
