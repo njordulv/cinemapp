@@ -1,9 +1,6 @@
-import { useRouter } from 'next/navigation'
-import { Image, Button } from '@nextui-org/react'
+import { Image, Button, Link } from '@nextui-org/react'
 
 const Error404 = () => {
-  const router = useRouter()
-
   return (
     <>
       <Image
@@ -12,7 +9,6 @@ const Error404 = () => {
         height={688}
         shadow="none"
         src={'/404.png'}
-        fallbackSrc={'/no-image.svg'}
         alt={'404'}
       />
 
@@ -22,12 +18,7 @@ const Error404 = () => {
           Looks like we took a wrong turn... <br />
           again!
         </h2>
-        <Button
-          color="default"
-          variant="bordered"
-          size="lg"
-          onClick={() => router.push('/')}
-        >
+        <Button color="default" variant="bordered" size="lg" as={Link} href="/">
           Go Back
         </Button>
       </div>
