@@ -36,6 +36,7 @@ export default function Hero({
   isMovie,
   created_by,
   filmMaker,
+  production_countries,
 }: HeroTypes) {
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
@@ -82,9 +83,15 @@ export default function Hero({
                 </h1>
                 <div className={styles.singleHero_info}>
                   {isMovie ? (
-                    <Certification id={id} />
+                    <Certification
+                      id={id}
+                      production_countries={production_countries}
+                    />
                   ) : (
-                    <ContentRatings id={id} />
+                    <ContentRatings
+                      id={id}
+                      production_countries={production_countries}
+                    />
                   )}
                   <div className="text-shadow-sm">
                     {formatReleaseDate(

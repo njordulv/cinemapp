@@ -6,25 +6,30 @@ import useFetcher from '@/hooks/useFetcher'
 
 interface Props {
   id: number
+  production_countries?: { iso_3166_1: string }[]
 }
 
-export default function Certification({ id }: Props) {
+export default function Certification({ id, production_countries }: Props) {
   const { data, isError, isLoading } = useFetcher({
     endpoint: `/api/movies?endpoint=movie/${id}/release_dates`,
   })
 
   const getMovieCertification = () => {
+    const countryCode = production_countries?.[0]?.iso_3166_1
+
+    if (!countryCode) return ''
+
     const usRelease = data?.results?.find(
-      (item: CertificationTypes) => item.iso_3166_1 === 'US'
+      (item: CertificationTypes) => item.iso_3166_1 === countryCode
     )
 
-    if (!usRelease?.release_dates) return ''
+    if (!usRelease?.release_dates) return countryCode
 
     const certification = usRelease.release_dates.find(
       (name: ReleaseDatesTypes) => name.certification !== ''
     )?.certification
 
-    return certification || ''
+    return certification || countryCode
   }
 
   const certification = getMovieCertification()

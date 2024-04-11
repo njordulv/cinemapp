@@ -28,6 +28,7 @@ export interface HeroTypes {
   created_by?: CreatedBy[]
   directed_by?: CrewTypes[]
   filmMaker?: FilmMakerTypes[]
+  production_countries?: ProductionCountry[]
 }
 
 export interface GuestStars {
@@ -314,6 +315,7 @@ export interface NetworkTypes {
 export interface ContentRatingsTypes {
   iso_3166_1: string
   rating: string
+  production_countries?: ProductionCountry[]
 }
 
 export interface ReleaseDatesTypes {
@@ -326,6 +328,7 @@ export interface ReleaseDatesTypes {
 export interface CertificationTypes {
   iso_3166_1: string
   release_dates: ReleaseDatesTypes[]
+  production_countries: ProductionCountry[]
 }
 
 export interface PersonMoviesTypes {

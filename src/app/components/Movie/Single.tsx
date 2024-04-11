@@ -68,6 +68,7 @@ export default function Single({ params }: Props) {
         runtime={runtime}
         isMovie={isMovie}
         filmMaker={data.credits.crew}
+        production_countries={production_countries}
       />
       <div className="relative overflow-hidden mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left gap-6 m-auto px-4 py-10">
         <div className="grid lg:grid-cols-[8fr_3fr] gap-3">
