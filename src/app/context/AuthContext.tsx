@@ -38,8 +38,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       } else {
         setUser({ email: null, uid: null })
       }
+      setLoading(false)
     })
-    setLoading(false)
 
     return () => unsubscribe()
   }, [])

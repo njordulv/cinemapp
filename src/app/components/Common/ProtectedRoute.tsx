@@ -1,6 +1,7 @@
 import { useEffect, ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
+import Loader from '@/components/UI/Loader'
 
 type Props = {
   children: ReactNode
@@ -8,15 +9,17 @@ type Props = {
 
 const ProtectedRoute = ({ children }: Props) => {
   const router = useRouter()
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
 
   useEffect(() => {
-    if (!user.uid || Object.keys(user.uid).length === 0) {
+    if (!loading && !user?.uid) {
       router.push('/login')
     }
-  }, [router, user])
+  }, [router, user, loading])
 
-  return <div>{user.uid ? children : null}</div>
+  if (loading) return <Loader />
+
+  return <div>{children}</div>
 }
 
 export default ProtectedRoute
