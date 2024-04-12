@@ -54,6 +54,19 @@ export const tvItems = [
   },
 ]
 
+export const authItems = [
+  {
+    key: 'Login',
+    name: 'Login',
+    link: '/login',
+  },
+  {
+    key: 'Sign Up',
+    name: 'Sign Up',
+    link: '/signup',
+  },
+]
+
 export const mobileItems = [
   {
     key: 'Trending Movies',

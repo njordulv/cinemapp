@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react'
+import { useEffect, ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '@/context/AuthContext'
 
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+type Props = {
+  children: ReactNode
+}
+
+const ProtectedRoute = ({ children }: Props) => {
   const router = useRouter()
   const { user } = useAuth()
 
@@ -11,6 +15,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
       router.push('/login')
     }
   }, [router, user])
+
   return <div>{user ? children : null}</div>
 }
 

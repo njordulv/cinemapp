@@ -1,6 +1,12 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from 'react'
 import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
@@ -18,11 +24,7 @@ const AuthContext = createContext({})
 
 export const useAuth = () => useContext<any>(AuthContext)
 
-export const AuthContextProvider = ({
-  children,
-}: {
-  children: React.ReactNode
-}) => {
+export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserType>({ email: null, uid: null })
   const [loading, setLoading] = useState<boolean>(true)
 

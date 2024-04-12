@@ -21,6 +21,7 @@
       "@/*": ["./*"],
       "@/components/*": ["./src/app/components/*"],
       "@/providers/*": ["./src/app/lib/providers/*"],
+      "@/context/*": ["./src/app/context/*"],
       "@/redux/*": ["./src/app/lib/redux/*"],
       "@/actions/*": ["./src/app/actions/*"],
       "@/utils/*": ["./src/app/utils/*"],
