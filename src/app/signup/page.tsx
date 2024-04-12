@@ -1,14 +1,14 @@
 'use client'
 
-import React from 'react'
+import { Input, Card, CardBody, Button, Link } from '@nextui-org/react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '@/context/AuthContext'
 
 interface SignupType {
   email: string
   password: string
-  password_confirm: string
+  name: string
 }
 const SignupPage = () => {
   const methods = useForm<SignupType>({ mode: 'onBlur' })
@@ -32,77 +32,86 @@ const SignupPage = () => {
   }
 
   return (
-    <div className="sign-up-form container mx-auto w-96 mt-12 border-2 border-gray-400">
-      <h2 className="px-12 mt-8 text-center text-2xl font-semibold text-blue-900">
-        Sign Up
-      </h2>
-      <FormProvider {...methods}>
-        <form
-          action=""
-          className="w-80 mx-auto pb-12 px-4"
-          onSubmit={handleSubmit(onSubmit)}
+    <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-4 py-10 gap-5">
+      <div className="flex flex-col w-full items-center">
+        <Card
+          className="max-w-full w-[380px] h-[400px] p-4 bg-transparent"
+          shadow="none"
         >
-          <div className="mt-8">
-            <div className="flex items-center justify-between">
-              <label htmlFor="" className="block mb-3 font-sans text-blue-900">
-                Email
-              </label>
-            </div>
-
-            <input
-              type="email"
-              {...register('email', { required: 'Email is required' })}
-              className={`border border-solid rounded-lg ring:0 focus:ring-0 focus:outline-none border-gray-400 text-gray-500 text-normal py-3 h-12 px-6 text-lg w-full flex items-center`}
-            />
-            {errors.email && (
-              <p className="text-red-400">{errors.email.message}</p>
-            )}
-          </div>
-          <div className="mt-8">
-            <div className="flex items-center justify-between">
-              <label htmlFor="" className="block mb-3 font-sans text-blue-900">
-                Password
-              </label>
-            </div>
-
-            <input
-              type="password"
-              {...register('password', { required: 'Password is required' })}
-              className={`border border-solid rounded-lg ring:0 focus:ring-0 focus:outline-none border-gray-400 text-gray-500 text-normal py-3 h-12 px-6 text-lg w-full flex items-center`}
-            />
-            {errors.password && (
-              <p className="text-red-400">{errors.password.message}</p>
-            )}
-          </div>
-          <div className="mt-8">
-            <div className="flex items-center justify-between">
-              <label htmlFor="" className="block mb-3 font-sans text-blue-900">
-                Confirm Password
-              </label>
-            </div>
-
-            <input
-              type="password"
-              {...register('password_confirm', {
-                required: 'Verify your password',
-              })}
-              className={`border border-solid rounded-lg ring:0 focus:ring-0 focus:outline-none border-gray-400 text-gray-500 text-normal py-3 h-12 px-6 text-lg w-full flex items-center`}
-            />
-            {errors.password_confirm && (
-              <p className="text-red-400">{errors.password_confirm.message}</p>
-            )}
-          </div>
-          <div className="flex justify-center pt-8">
-            <button
-              type="submit"
-              className={`h-12 text-center w-2/3 bg-blue-900 border-2 rounded-md hover:shadow-lg hover:bg-blue-800 text-lg transition`}
-            >
-              <p className="capitalize text-white font-normal">submit</p>
-            </button>
-          </div>
-        </form>
-      </FormProvider>
-    </div>
+          <CardBody className="overflow-hidden">
+            <h1 className="flex self-start font-medium text-3xl mb-5">
+              Sign Up
+            </h1>
+            <FormProvider {...methods}>
+              <form
+                action=""
+                className="flex flex-col gap-5"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <div className="relative">
+                  <Input
+                    size="sm"
+                    radius="md"
+                    variant="bordered"
+                    type="text"
+                    label="Name"
+                    classNames={{
+                      inputWrapper: 'border-1',
+                      helperWrapper: 'absolute bottom-[-22px]',
+                    }}
+                    errorMessage={errors.name && errors.name.message}
+                    {...register('name')}
+                  />
+                </div>
+                <div className="relative">
+                  <Input
+                    size="sm"
+                    radius="md"
+                    variant="bordered"
+                    type="email"
+                    label="Email"
+                    classNames={{
+                      inputWrapper: 'border-1',
+                      helperWrapper: 'absolute bottom-[-22px]',
+                    }}
+                    errorMessage={errors.email && errors.email.message}
+                    {...register('email', { required: 'Email is required' })}
+                  />
+                </div>
+                <div className="flex gap-1 flex-col relative">
+                  <Input
+                    size="sm"
+                    radius="md"
+                    variant="bordered"
+                    label="Password"
+                    type="password"
+                    classNames={{
+                      inputWrapper: 'border-1',
+                      helperWrapper: 'absolute bottom-[-22px]',
+                    }}
+                    errorMessage={errors.password && errors.password.message}
+                    {...register('password', {
+                      required: 'Password is required',
+                    })}
+                  />
+                </div>
+                <p className="text-center text-small">
+                  Already have an account?{' '}
+                  <Link size="sm" href="/login">
+                    Login
+                  </Link>
+                </p>
+                <div>
+                  <Button fullWidth color="primary" type="submit" size="lg">
+                    Submit
+                  </Button>
+                </div>
+              </form>
+            </FormProvider>
+          </CardBody>
+        </Card>
+      </div>
+    </main>
   )
 }
 

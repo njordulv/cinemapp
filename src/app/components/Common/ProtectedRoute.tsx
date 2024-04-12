@@ -11,12 +11,12 @@ const ProtectedRoute = ({ children }: Props) => {
   const { user } = useAuth()
 
   useEffect(() => {
-    if (!user.uid) {
+    if (!user.uid || Object.keys(user.uid).length === 0) {
       router.push('/login')
     }
   }, [router, user])
 
-  return <div>{user ? children : null}</div>
+  return <div>{user.uid ? children : null}</div>
 }
 
 export default ProtectedRoute

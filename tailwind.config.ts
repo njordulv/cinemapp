@@ -27,7 +27,6 @@ const config: Config = {
       colors: {
         background: 'var(--background)',
         special: 'var(--special)',
-        primary: 'var(--special)',
         cyan: 'var(--cyan)',
         red: 'var(--red)',
         yellow: 'var(--yellow)',
@@ -41,6 +40,8 @@ const config: Config = {
         grey: 'var(--grey)',
         transp: 'var(--transparent)',
         transpLight: 'var(--transparentLight)',
+        primary: 'var(--special)',
+        secondary: 'var(--cyan)',
       },
     },
   },
