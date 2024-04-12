@@ -1,33 +1,49 @@
 'use client'
 
 import { useState } from 'react'
-import { Input, Card, CardBody, Button, Link } from '@nextui-org/react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { Input, Card, CardBody, Button, Link } from '@nextui-org/react'
 import { useAuth } from '@/context/AuthContext'
+import {
+  patternEmail,
+  patternPass,
+  emailValidation,
+  passValidation,
+} from '@/utils/authValidation'
+import { useInputValidation } from '@/hooks/useInputValidation'
+import styles from '@/styles/authForm.module.scss'
 
 interface SignupType {
   email: string
   password: string
   name: string
 }
+
 const SignupPage = () => {
-  const methods = useForm<SignupType>({ mode: 'onBlur' })
-  const [isError, setIsError] = useState('')
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = methods
-
   const { signUp } = useAuth()
   const router = useRouter()
+  const [isError, setIsError] = useState('')
+  const methods = useForm<SignupType>({ mode: 'onBlur' })
+  const { register, handleSubmit } = methods
+
+  const { error: emailError, handleInputChange: handleEmailChange } =
+    useInputValidation({
+      pattern: patternEmail,
+      message: 'Invalid email format',
+    })
+
+  const { error: passwordError, handleInputChange: handlePassChange } =
+    useInputValidation({
+      pattern: patternPass,
+      message: 'Password must include at least one letter and one number',
+    })
 
   const onSubmit = async (data: SignupType) => {
     try {
       await signUp(data.email, data.password)
       router.push('/dashboard')
+      setIsError('')
     } catch (error: any) {
       let errorMessage = 'Failed to create your account. Please try again.'
       if (error.code === 'auth/email-already-in-use') {
@@ -46,20 +62,18 @@ const SignupPage = () => {
   }
 
   return (
-    <main className="flex flex-col items-center place-content-center min-h-96 w-full max-w-[1170px] m-auto px-4 py-10 gap-5">
-      <div className="flex flex-col w-full items-center">
-        <Card className="max-w-full w-[380px] p-0 bg-transparent" shadow="none">
-          <CardBody className="overflow-hidden p-0">
-            <h1 className="flex self-start font-medium text-3xl mb-5">
-              Sign Up
-            </h1>
+    <main className={styles.authForm}>
+      <div className={styles.authForm__container}>
+        <Card className={`${styles.authForm__card} max-w-full w-[380px]`}>
+          <CardBody className={styles.authForm__cardBody}>
+            <h1 className={styles.authForm__title}>Sign Up</h1>
             <FormProvider {...methods}>
               <form
                 action=""
-                className="flex flex-col gap-5"
+                className={styles.authForm__form}
                 onSubmit={handleSubmit(onSubmit)}
               >
-                <div className="relative">
+                <div className={styles.authForm__inputContainer}>
                   <Input
                     size="sm"
                     radius="md"
@@ -70,11 +84,10 @@ const SignupPage = () => {
                       inputWrapper: 'border-1',
                       helperWrapper: 'absolute bottom-[-22px]',
                     }}
-                    errorMessage={errors.name && errors.name.message}
                     {...register('name')}
                   />
                 </div>
-                <div className="relative">
+                <div className={styles.authForm__inputContainer}>
                   <Input
                     size="sm"
                     radius="md"
@@ -82,42 +95,49 @@ const SignupPage = () => {
                     type="email"
                     label="Email"
                     classNames={{
-                      inputWrapper: 'border-1',
+                      inputWrapper:
+                        'border-1 border-default-200 data-[hover=true]:border-default-400 group-data-[focus=true]:border-default-500',
                       helperWrapper: 'absolute bottom-[-22px]',
                     }}
-                    errorMessage={errors.email && errors.email.message}
-                    {...register('email', { required: 'Email is required' })}
+                    {...register('email', emailValidation)}
+                    onChange={(e) => handleEmailChange(e.target.value)}
+                    errorMessage={emailError}
                   />
                 </div>
-                <div className="flex gap-1 flex-col relative">
+                <div className={styles.authForm__inputContainer}>
                   <Input
                     size="sm"
                     radius="md"
                     variant="bordered"
-                    label="Password"
                     type="password"
+                    label="Password"
                     classNames={{
-                      inputWrapper: 'border-1',
+                      inputWrapper:
+                        'border-1 border-default-200 data-[hover=true]:border-default-400 group-data-[focus=true]:border-default-500',
                       helperWrapper: 'absolute bottom-[-22px]',
                     }}
-                    errorMessage={errors.password && errors.password.message}
-                    {...register('password', {
-                      required: 'Password is required',
-                    })}
+                    {...register('password', passValidation)}
+                    onChange={(e) => handlePassChange(e.target.value)}
+                    errorMessage={passwordError}
                   />
                 </div>
-                <p className="text-center text-small">
+                <p className={styles.authForm__link}>
                   Already have an account?{' '}
-                  <Link size="sm" href="/login">
+                  <Link
+                    size="sm"
+                    href="/login"
+                    color="warning"
+                    underline="always"
+                  >
                     Login
                   </Link>
                 </p>
                 <div>
-                  <Button fullWidth color="primary" type="submit" size="lg">
+                  <Button fullWidth variant="bordered" type="submit" size="lg">
                     Submit
                   </Button>
                 </div>
-                <p className="text-center text-small">{isError}</p>
+                <p className={styles.authForm__error}>{isError}</p>
               </form>
             </FormProvider>
           </CardBody>

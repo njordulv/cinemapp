@@ -42,6 +42,7 @@ const config: Config = {
         transpLight: 'var(--transparentLight)',
         primary: 'var(--special)',
         secondary: 'var(--cyan)',
+        warning: 'var(--grey)',
       },
     },
   },

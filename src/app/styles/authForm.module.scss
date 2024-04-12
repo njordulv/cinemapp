@@ -1,0 +1,64 @@
+.authForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 96vh;
+  width: 100%;
+  max-width: 1170px;
+  margin: auto;
+  padding: 1rem;
+  gap: 1.25rem;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__card {
+    max-width: 380px;
+    width: 100%;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &__cardBody {
+    overflow: hidden;
+    padding: 0;
+  }
+
+  &__title {
+    font-size: 1.875rem; /* 30px */
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    align-self: flex-start;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-bottom: 2.5rem;
+  }
+
+  &__inputContainer {
+    position: relative;
+  }
+
+  &__link {
+    text-align: center;
+    font-size: 0.875rem; /* 14px */
+  }
+
+  &__error {
+    text-align: center;
+    font-size: 0.875rem; /* 14px */
+    color: #f31260;
+    position: absolute;
+    bottom: 0.75rem;
+    align-self: center;
+  }
+}
