@@ -41,7 +41,7 @@ const SignupPage = () => {
 
   const onSubmit = async (data: SignupType) => {
     try {
-      await signUp(data.email, data.password)
+      await signUp(data.email, data.password, data.name)
       router.push('/dashboard')
       setIsError('')
     } catch (error: any) {

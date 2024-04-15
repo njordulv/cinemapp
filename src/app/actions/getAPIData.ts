@@ -15,7 +15,7 @@ type APIResponse<T> = T extends Person ? PersonAPIResponse : MovieAPIResponse
 export const getAPIData = async <T extends Person | Movie>(
   page: number,
   type: string,
-  category: 'popular' | 'top_rated' | 'trending',
+  category: string,
   timeWindow: 'day' | 'week' = 'day'
 ): Promise<T[]> => {
   try {

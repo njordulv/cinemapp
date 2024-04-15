@@ -89,9 +89,8 @@ const LoginPage = () => {
                         'border-1 border-default-200 data-[hover=true]:border-default-400 group-data-[focus=true]:border-default-500',
                       helperWrapper: 'absolute bottom-[-22px]',
                     }}
-                    {...register('password', passValidation)}
+                    {...register('password')}
                     onChange={(e) => handlePassChange(e.target.value)}
-                    errorMessage={passwordError}
                   />
                 </div>
                 <p className={styles.authForm__link}>

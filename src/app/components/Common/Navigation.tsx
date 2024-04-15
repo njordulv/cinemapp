@@ -30,6 +30,14 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
   }
 
   const { user, logOut } = useAuth()
+  const { name, email } = user
+  const firstLetter =
+    name && name.length > 0
+      ? name.substring(0, 1)
+      : email && email.length > 0
+      ? email.substring(0, 1)
+      : ''
+
   const router = useRouter()
 
   const handleLogout = async () => {
@@ -61,7 +69,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
             className="hidden sm:flex max-w-[1170px] gap-4"
             justify="start"
           >
-            <Dropdown className="bg-black rounded-md">
+            <Dropdown className="bg-black rounded-md" backdrop="blur">
               <NavbarItem>
                 <DropdownTrigger>
                   <Button
@@ -75,23 +83,15 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
                   </Button>
                 </DropdownTrigger>
               </NavbarItem>
-              <DropdownMenu
-                aria-label="Cinemapp popular movies"
-                itemClasses={{
-                  base: 'gap-2',
-                }}
-              >
+              <DropdownMenu aria-label="Cinemapp popular movies" variant="flat">
                 {movieItems.map((item) => (
-                  <DropdownItem
-                    key={item.key}
-                    className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-                  >
+                  <DropdownItem key={item.key}>
                     <Link href={item.link}>{item.name}</Link>
                   </DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Dropdown className="bg-black rounded-md">
+            <Dropdown className="bg-black rounded-md" backdrop="blur">
               <NavbarItem>
                 <DropdownTrigger>
                   <Button
@@ -107,15 +107,10 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
               </NavbarItem>
               <DropdownMenu
                 aria-label="Cinemapp popular TV shows"
-                itemClasses={{
-                  base: 'gap-2',
-                }}
+                variant="flat"
               >
                 {tvItems.map((item) => (
-                  <DropdownItem
-                    key={item.key}
-                    className="data-[hover=true]:bg-transparent data-[hover=true]:text-red"
-                  >
+                  <DropdownItem key={item.key}>
                     <Link href={item.link}>{item.name}</Link>
                   </DropdownItem>
                 ))}
@@ -145,22 +140,24 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
             ))
           ) : (
             <>
-              <Dropdown placement="bottom-end" backdrop="blur">
+              <Dropdown
+                placement="bottom-end"
+                className="bg-black rounded-md"
+                backdrop="blur"
+              >
                 <DropdownTrigger>
                   <Avatar
                     isBordered
                     as="button"
-                    className="transition-transform"
+                    className="transition-transform text-md capitalize"
                     color="default"
-                    name="Jason Hughes"
+                    name={firstLetter}
                     size="sm"
-                    src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
                   />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat">
-                  <DropdownItem key="profile" className="h-14 gap-2">
-                    <p className="font-semibold">Signed in as</p>
-                    <p className="font-semibold">zoey@example.com</p>
+                  <DropdownItem key="profile">
+                    Signed in as {name ? name : email}
                   </DropdownItem>
                   <DropdownItem key="dashboard" href="/dashboard">
                     Dashboard

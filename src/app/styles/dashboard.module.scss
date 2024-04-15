@@ -1,0 +1,10 @@
+.dashboard {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 30px;
+
+  &_wrapper {
+    z-index: 1;
+  }
+}
