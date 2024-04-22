@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { Spinner } from '@nextui-org/react'
+import { Image } from '@nextui-org/react'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { getFirestore, doc, updateDoc } from 'firebase/firestore'
 import { auth, storage } from '@/config/firebase'
 
 export default function ChangeAvatar() {
-  const [uploading, setUploading] = useState(false)
   const [avatarURL, setAvatarURL] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
@@ -14,6 +13,9 @@ export default function ChangeAvatar() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     event.preventDefault()
+    setError('')
+    setSuccess('')
+
     if (!auth.currentUser) {
       setError('User is not authenticated')
       return
@@ -26,7 +28,6 @@ export default function ChangeAvatar() {
     }
 
     if (file) {
-      setUploading(true)
       const userId = auth.currentUser.uid
       const storageRef = ref(
         storage,
@@ -46,24 +47,19 @@ export default function ChangeAvatar() {
       } catch (error) {
         setError(`Error uploading file: ${error}`)
       }
-
-      setUploading(false)
     }
   }
 
   return (
-    <div>
-      <div className="flex flex-col items-start gap-2">
-        <div>
-          <input type="file" onChange={handleFileUpload} disabled={uploading} />
-          {error && <div className="warning">{error}</div>}
-          {success && <div className="secondary">{success}</div>}
-        </div>
-        {uploading && <Spinner size="sm" color="default" />}
+    <>
+      <div className="flex flex-col items-start gap-3">
+        <input type="file" onChange={handleFileUpload} />
+        {error && <div className="text-red text-tiny">{error}</div>}
+        {success && <div className="text-secondary text-tiny">{success}</div>}
         {avatarURL && (
-          <img src={avatarURL} alt="User Avatar" width={100} height={100} />
+          <Image src={avatarURL} radius="md" alt="User Avatar" width={120} />
         )}
       </div>
-    </div>
+    </>
   )
 }

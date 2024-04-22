@@ -2,11 +2,11 @@
 
 import { Avatar } from '@nextui-org/react'
 import { Parallax } from 'react-parallax'
-import ProtectedRoute from '@/components/Common/ProtectedRoute'
 import { useAuth } from '@/context/AuthContext'
 import { formatReleaseDate } from '@/utils/formatDate'
+import ProtectedRoute from '@/components/Common/ProtectedRoute'
+import ChangeAvatar from '@/components/Profile/ChangeAvatar'
 import styles from '@/styles/dashboard.module.scss'
-import ChangeAvatar from '@/src/app/components/Profile/ChangeAvatar'
 
 const DashboardPage = () => {
   const { user } = useAuth()
@@ -30,6 +30,7 @@ const DashboardPage = () => {
                 className="transition-transform text-5xl w-48 h-48 capitalize"
                 color="default"
                 name={name.substring(0, 1)}
+                // src={avatarURL}
               />
               <div className="flex flex-col gap-3 text-shadow-sm">
                 <div className="text-3xl font-normal">
