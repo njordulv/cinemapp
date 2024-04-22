@@ -6,6 +6,7 @@ import ProtectedRoute from '@/components/Common/ProtectedRoute'
 import { useAuth } from '@/context/AuthContext'
 import { formatReleaseDate } from '@/utils/formatDate'
 import styles from '@/styles/dashboard.module.scss'
+import ChangeAvatar from '@/src/app/components/Profile/ChangeAvatar'
 
 const DashboardPage = () => {
   const { user } = useAuth()
@@ -41,6 +42,11 @@ const DashboardPage = () => {
             </div>
           </div>
         </Parallax>
+      </section>
+      <section>
+        <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 md:grid-cols-1 lg:text-left gap-4 m-auto py-20 px-6">
+          <ChangeAvatar />
+        </div>
       </section>
     </ProtectedRoute>
   )

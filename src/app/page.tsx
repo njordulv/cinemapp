@@ -1,4 +1,4 @@
-import { getAPIData } from '@/actions/getAPIData'
+import { getAPIData } from '@/utils/getAPIData'
 import { Movie } from '@/types/data'
 import MovieList from '@/components/UI/MovieList'
 

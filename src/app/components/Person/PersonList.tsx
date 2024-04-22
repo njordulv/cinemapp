@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@nextui-org/react'
-import { getAPIData } from '@/actions/getAPIData'
+import { getAPIData } from '@/utils/getAPIData'
 import { Person } from '@/types/data'
 import PersonCard from '@/components/Person/PersonCard'
 

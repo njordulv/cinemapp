@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@nextui-org/react'
-import { getAPIData } from '@/actions/getAPIData'
+import { getAPIData } from '@/utils/getAPIData'
 import { Movie } from '@/types/data'
 import MovieCard from '@/components/UI/MovieCard'
 

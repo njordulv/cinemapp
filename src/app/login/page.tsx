@@ -9,7 +9,6 @@ import {
   patternEmail,
   patternPass,
   emailValidation,
-  passValidation,
 } from '@/utils/authValidation'
 import { useInputValidation } from '@/hooks/useInputValidation'
 import styles from '@/styles/authForm.module.scss'
