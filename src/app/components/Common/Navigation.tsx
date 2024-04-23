@@ -18,38 +18,38 @@ import {
 import { IoIosArrowDown } from 'react-icons/io'
 import { movieItems, tvItems, authItems } from '@/utils/menuItems'
 import { useRouter } from 'next/navigation'
-import { useDispatch, useSelector, AppDispatch } from '@/redux/store'
-import { selectUser, logOut } from '@/redux/slices/authSlice'
+// import { useDispatch, useSelector, AppDispatch } from '@/redux/store'
+// import { selectUser, logOut } from '@/redux/slices/authSlice'
 import MobileNav from './MobileNav'
 import SearchBar from '@/components/Search/SearchBar'
 import Logo from '@/components/Common/Logo'
 
 const Navigation = ({ children }: { children: React.ReactNode }) => {
-  const dispatch: AppDispatch = useDispatch()
+  // const dispatch: AppDispatch = useDispatch()
   const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const icons = {
     chevron: <IoIosArrowDown fill="currentColor" size={16} />,
   }
-  const user = useSelector(selectUser)
-  const name = user ? user.displayName : ''
-  const email = user ? user.email : ''
+  // const user = useSelector(selectUser)
+  // const name = user ? user.displayName : ''
+  // const email = user ? user.email : ''
 
-  const firstLetter =
-    name && name.length > 0
-      ? name.substring(0, 1)
-      : email && email.length > 0
-      ? email.substring(0, 1)
-      : ''
+  // const firstLetter =
+  //   name && name.length > 0
+  //     ? name.substring(0, 1)
+  //     : email && email.length > 0
+  //     ? email.substring(0, 1)
+  //     : ''
 
-  const handleLogout = async () => {
-    try {
-      await dispatch(logOut())
-      router.push('/login')
-    } catch (error: any) {
-      console.log(error.message)
-    }
-  }
+  // const handleLogout = async () => {
+  //   try {
+  //     await dispatch(logOut())
+  //     router.push('/login')
+  //   } catch (error: any) {
+  //     console.log(error.message)
+  //   }
+  // }
 
   return (
     <>
@@ -129,52 +129,40 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
           </NavbarContent>
         </NavbarContent>
         <NavbarContent justify="end" className="hidden sm:flex">
-          {!user ? (
-            authItems.map((item) => (
-              <NavbarItem key={item.key}>
-                <Link
-                  href={item?.link}
-                  className="hover:text-red text-small font-normal"
+          <>
+            <Dropdown
+              placement="bottom-end"
+              className="bg-black rounded-md"
+              backdrop="blur"
+            >
+              <DropdownTrigger>
+                <Avatar
+                  isBordered
+                  as="button"
+                  className="transition-transform text-md capitalize"
+                  color="default"
+                  // name={firstLetter}
+                  size="sm"
+                />
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownItem key="profile">
+                  {/* Signed in as {user.displayName || user.email} */}
+                </DropdownItem>
+                <DropdownItem key="dashboard" href="/dashboard">
+                  Dashboard
+                </DropdownItem>
+                <DropdownItem
+                  key="logout"
+                  color="danger"
+                  // onClick={handleLogout}
                 >
-                  {item?.name}
-                </Link>
-              </NavbarItem>
-            ))
-          ) : (
-            <>
-              <Dropdown
-                placement="bottom-end"
-                className="bg-black rounded-md"
-                backdrop="blur"
-              >
-                <DropdownTrigger>
-                  <Avatar
-                    isBordered
-                    as="button"
-                    className="transition-transform text-md capitalize"
-                    color="default"
-                    name={firstLetter}
-                    size="sm"
-                  />
-                </DropdownTrigger>
-                <DropdownMenu aria-label="Profile Actions" variant="flat">
-                  <DropdownItem key="profile">
-                    Signed in as {user.displayName || user.email}
-                  </DropdownItem>
-                  <DropdownItem key="dashboard" href="/dashboard">
-                    Dashboard
-                  </DropdownItem>
-                  <DropdownItem
-                    key="logout"
-                    color="danger"
-                    onClick={handleLogout}
-                  >
-                    Log Out
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </>
-          )}
+                  Log Out
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </>
+          {/* )} */}
           <SearchBar />
         </NavbarContent>
         <NavbarContent className="sm:hidden" justify="end">

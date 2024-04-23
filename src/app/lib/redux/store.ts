@@ -1,21 +1,61 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import {
-  useSelector as useReduxSelector,
-  useDispatch as useReduxDispatch,
-} from 'react-redux'
-import authReducer from '@/redux/slices/authSlice'
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
+import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
+import userReducer from './slices/userSlice'
 
 const rootReducer = combineReducers({
-  auth: authReducer,
+  user: userReducer,
 })
 
-export const reduxStore = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+const createNoopStorage = () => {
+  return {
+    getItem(_key: string) {
+      return Promise.resolve(null)
+    },
+    setItem(_key: string, value: any) {
+      return Promise.resolve(value)
+    },
+    removeItem(_key: string) {
+      return Promise.resolve()
+    },
+  }
+}
+
+const storage =
+  typeof window !== 'undefined'
+    ? createWebStorage('local')
+    : createNoopStorage()
+
+export default storage
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 })
 
-export type RootState = ReturnType<typeof rootReducer>
-export type AppDispatch = typeof reduxStore.dispatch
+const persistor = persistStore(store)
 
-export const useDispatch = () => useReduxDispatch()
-export const useSelector = useReduxSelector
+export { store, persistor }
+export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>
