@@ -2,15 +2,18 @@
 
 import { Avatar } from '@nextui-org/react'
 import { Parallax } from 'react-parallax'
-import { useAuth } from '@/context/AuthContext'
+import { useSelector } from '@/redux/store'
+import { selectUser } from '@/redux/slices/authSlice'
 import { formatReleaseDate } from '@/utils/formatDate'
 import ProtectedRoute from '@/components/Common/ProtectedRoute'
 import ChangeAvatar from '@/components/Profile/ChangeAvatar'
 import styles from '@/styles/dashboard.module.scss'
 
 const DashboardPage = () => {
-  const { user } = useAuth()
-  const { name, email, creationTime } = user
+  const user = useSelector(selectUser)
+  const name = user?.displayName ?? ''
+  const email = user?.email ?? ''
+  const creationTime = user?.metadata?.creationTime ?? ''
 
   return (
     <ProtectedRoute>
@@ -30,7 +33,6 @@ const DashboardPage = () => {
                 className="transition-transform text-5xl w-48 h-48 capitalize"
                 color="default"
                 name={name.substring(0, 1)}
-                // src={avatarURL}
               />
               <div className="flex flex-col gap-3 text-shadow-sm">
                 <div className="text-3xl font-normal">

@@ -16,21 +16,25 @@ import {
   Avatar,
 } from '@nextui-org/react'
 import { IoIosArrowDown } from 'react-icons/io'
+import { movieItems, tvItems, authItems } from '@/utils/menuItems'
+import { useRouter } from 'next/navigation'
+import { useDispatch, useSelector, AppDispatch } from '@/redux/store'
+import { selectUser, logOut } from '@/redux/slices/authSlice'
 import MobileNav from './MobileNav'
 import SearchBar from '@/components/Search/SearchBar'
 import Logo from '@/components/Common/Logo'
-import { movieItems, tvItems, authItems } from '@/utils/menuItems'
-import { useRouter } from 'next/navigation'
-import { useAuth } from '@/context/AuthContext'
 
 const Navigation = ({ children }: { children: React.ReactNode }) => {
+  const dispatch: AppDispatch = useDispatch()
+  const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const icons = {
     chevron: <IoIosArrowDown fill="currentColor" size={16} />,
   }
+  const user = useSelector(selectUser)
+  const name = user ? user.displayName : ''
+  const email = user ? user.email : ''
 
-  const { user, logOut } = useAuth()
-  const { name, email } = user
   const firstLetter =
     name && name.length > 0
       ? name.substring(0, 1)
@@ -38,11 +42,9 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
       ? email.substring(0, 1)
       : ''
 
-  const router = useRouter()
-
   const handleLogout = async () => {
     try {
-      await logOut()
+      await dispatch(logOut())
       router.push('/login')
     } catch (error: any) {
       console.log(error.message)
@@ -127,7 +129,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
           </NavbarContent>
         </NavbarContent>
         <NavbarContent justify="end" className="hidden sm:flex">
-          {!user.uid ? (
+          {!user ? (
             authItems.map((item) => (
               <NavbarItem key={item.key}>
                 <Link
@@ -157,7 +159,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat">
                   <DropdownItem key="profile">
-                    Signed in as {name ? name : email}
+                    Signed in as {user.displayName || user.email}
                   </DropdownItem>
                   <DropdownItem key="dashboard" href="/dashboard">
                     Dashboard

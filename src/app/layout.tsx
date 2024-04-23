@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 import { Roboto_Condensed } from 'next/font/google'
 import UIProvider from '@/providers/UIProvider'
+import StoreProvider from '@/providers/StoreProvider'
 import Navigation from '@/components/Common/Navigation'
-import { AuthContextProvider } from '@/context/AuthContext'
 import './globals.css'
 
 const slabo = Roboto_Condensed({
@@ -20,9 +20,9 @@ export default async function Layout({ children }: Props) {
     <html lang="en" className="dark bg-background">
       <body className={`${slabo.className}`}>
         <UIProvider>
-          <AuthContextProvider>
+          <StoreProvider>
             <Navigation>{children}</Navigation>
-          </AuthContextProvider>
+          </StoreProvider>
         </UIProvider>
       </body>
     </html>

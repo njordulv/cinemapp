@@ -4,12 +4,9 @@ import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { Input, Card, CardBody, Button, Link } from '@nextui-org/react'
-import { useAuth } from '@/context/AuthContext'
-import {
-  patternEmail,
-  patternPass,
-  emailValidation,
-} from '@/utils/authValidation'
+import { useDispatch, AppDispatch } from '@/redux/store'
+import { logIn } from '@/redux/slices/authSlice'
+import { patternEmail, emailValidation } from '@/utils/authValidation'
 import { useInputValidation } from '@/hooks/useInputValidation'
 import styles from '@/styles/authForm.module.scss'
 
@@ -19,7 +16,7 @@ interface LoginType {
 }
 
 const LoginPage = () => {
-  const { logIn } = useAuth()
+  const dispatch: AppDispatch = useDispatch()
   const router = useRouter()
   const [isError, setIsError] = useState('')
   const methods = useForm<LoginType>({ mode: 'onBlur' })
@@ -31,15 +28,9 @@ const LoginPage = () => {
       message: 'Invalid email format',
     })
 
-  const { error: passwordError, handleInputChange: handlePassChange } =
-    useInputValidation({
-      pattern: patternPass,
-      message: 'Password must include at least one letter and one number',
-    })
-
   const onSubmit = async (data: LoginType) => {
     try {
-      await logIn(data.email, data.password)
+      await dispatch(logIn(data.email, data.password))
       router.push('/dashboard')
       setIsError('')
     } catch (error: any) {
@@ -89,7 +80,6 @@ const LoginPage = () => {
                       helperWrapper: 'absolute bottom-[-22px]',
                     }}
                     {...register('password')}
-                    onChange={(e) => handlePassChange(e.target.value)}
                   />
                 </div>
                 <p className={styles.authForm__link}>

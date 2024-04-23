@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { Input, Card, CardBody, Button, Link } from '@nextui-org/react'
-import { useAuth } from '@/context/AuthContext'
+import { useDispatch, AppDispatch } from '@/redux/store'
+import { signUp } from '@/redux/slices/authSlice'
 import {
   patternEmail,
   patternPass,
@@ -21,7 +22,7 @@ interface SignupType {
 }
 
 const SignupPage = () => {
-  const { signUp } = useAuth()
+  const dispatch: AppDispatch = useDispatch()
   const router = useRouter()
   const [isError, setIsError] = useState('')
   const methods = useForm<SignupType>({ mode: 'onBlur' })
@@ -41,7 +42,7 @@ const SignupPage = () => {
 
   const onSubmit = async (data: SignupType) => {
     try {
-      await signUp(data.email, data.password, data.name)
+      await dispatch(signUp(data.email, data.password, data.name))
       router.push('/dashboard')
       setIsError('')
     } catch (error: any) {
