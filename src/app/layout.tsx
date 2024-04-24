@@ -5,7 +5,7 @@ import StoreProvider from '@/providers/StoreProvider'
 import Navigation from '@/components/Common/Navigation'
 import './globals.css'
 
-const slabo = Roboto_Condensed({
+const roboto = Roboto_Condensed({
   weight: ['100', '300', '400', '600'],
   subsets: ['latin'],
   display: 'swap',
@@ -18,7 +18,7 @@ type Props = {
 export default async function Layout({ children }: Props) {
   return (
     <html lang="en" className="dark bg-background">
-      <body className={`${slabo.className}`}>
+      <body className={`${roboto.className}`}>
         <UIProvider>
           <StoreProvider>
             <Navigation>{children}</Navigation>

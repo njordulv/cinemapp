@@ -3,12 +3,12 @@ import { Link } from '@nextui-org/react'
 
 const LoginPage = () => {
   return (
-    <>
+    <main className="flex flex-col items-center place-content-center min-h-96 h-[100vh] w-full max-w-[1170px] m-auto px-4 py-10 gap-5">
       <Login />
-      <p>
-        Or <Link href="/register">register</Link>
-      </p>
-    </>
+      <div className="text-medium">
+        or <Link href="/register">register</Link>
+      </div>
+    </main>
   )
 }
 

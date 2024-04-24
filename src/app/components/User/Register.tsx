@@ -1,17 +1,17 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
 import { setUser } from '@/redux/slices/userSlice'
-import { useAppDispatch } from '@/hooks/reduxHooks'
+import { selectErrorMessage, setError } from '@/redux/slices/errorSlice'
 import { auth } from '@/config/firebase'
 import Form from '@/components/User/Form'
 
 const Register = () => {
   const dispatch = useAppDispatch()
   const router = useRouter()
-  const [error, setError] = useState('')
+  const error = useAppSelector(selectErrorMessage)
 
   const handleRegister = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -28,7 +28,7 @@ const Register = () => {
       .catch((error) => {
         const errorMessage =
           error.message || 'An error occurred during register.'
-        setError(errorMessage)
+        dispatch(setError(errorMessage))
       })
   }
 

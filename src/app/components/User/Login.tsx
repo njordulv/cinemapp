@@ -1,17 +1,17 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
 import { setUser } from '@/redux/slices/userSlice'
-import { useAppDispatch } from '@/hooks/reduxHooks'
+import { selectErrorMessage, setError } from '@/redux/slices/errorSlice'
 import { auth } from '@/config/firebase'
 import Form from './Form'
 
 const Login = () => {
   const dispatch = useAppDispatch()
   const router = useRouter()
-  const [error, setError] = useState('')
+  const error = useAppSelector(selectErrorMessage)
 
   const handleLogin = (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -27,7 +27,7 @@ const Login = () => {
       })
       .catch((error) => {
         const errorMessage = error.message || 'An error occurred during login.'
-        setError(errorMessage)
+        dispatch(setError(errorMessage))
       })
   }
 
