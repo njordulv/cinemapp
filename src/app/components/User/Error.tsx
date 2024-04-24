@@ -12,14 +12,14 @@ const Error = () => {
     if (errorMessage) {
       toast.error(errorMessage, {
         position: 'bottom-right',
-        autoClose: 24000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
         theme: 'dark',
-        className: 'text-sm bg-background',
+        className: 'text-sm',
       })
       dispatch(clearError())
     }

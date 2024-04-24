@@ -125,7 +125,18 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
         </NavbarContent>
         <NavbarContent justify="end" className="hidden sm:flex">
           <>
-            {isAuth && (
+            {!isAuth ? (
+              authItems.map((item) => (
+                <NavbarItem key={item.key}>
+                  <Link
+                    href={item?.link}
+                    className="hover:text-red text-small font-normal"
+                  >
+                    {item?.name}
+                  </Link>
+                </NavbarItem>
+              ))
+            ) : (
               <Dropdown
                 placement="bottom-end"
                 className="bg-black rounded-md"

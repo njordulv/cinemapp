@@ -6,7 +6,7 @@ const LoginPage = () => {
     <main className="flex flex-col items-center place-content-center min-h-96 h-[100vh] w-full max-w-[1170px] m-auto px-4 py-10 gap-5">
       <Login />
       <div className="text-medium">
-        or <Link href="/register">register</Link>
+        Or <Link href="/register">Register</Link>
       </div>
     </main>
   )

@@ -61,9 +61,9 @@ export const authItems = [
     link: '/login',
   },
   {
-    key: 'Sign Up',
-    name: 'Sign Up',
-    link: '/signup',
+    key: 'Register',
+    name: 'Register',
+    link: '/register',
   },
 ]
 
