@@ -2,14 +2,16 @@
 
 import { Parallax } from 'react-parallax'
 import { Avatar, Button } from '@nextui-org/react'
-import { useAppDispatch } from '@/hooks/reduxHooks'
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
 import { removeUser } from '@/redux/slices/userSlice'
 import { useAuth } from '@/hooks/useAuth'
+import { selectAvatar } from '@/redux/slices/avatarSlice'
 import styles from '@/styles/dashboard.module.scss'
 
 const UserHero = () => {
   const dispatch = useAppDispatch()
   const { email } = useAuth()
+  const avatar = useAppSelector(selectAvatar)
 
   return (
     <section className={styles.singleHero}>
@@ -27,6 +29,7 @@ const UserHero = () => {
             <Avatar
               className="transition-transform text-5xl w-48 h-48 capitalize"
               color="default"
+              src={avatar.avatarUrl || './no-image.svg'}
             />
             <div className="flex flex-col gap-3 text-shadow-sm">
               <h1>Welcome</h1>

@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { Image } from '@nextui-org/react'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { getFirestore, doc, updateDoc } from 'firebase/firestore'
 import { auth, storage } from '@/config/firebase'
+import { setAvatar } from '@/redux/slices/avatarSlice'
+import { useAppDispatch } from '@/hooks/reduxHooks'
 
 export default function ChangeAvatar() {
-  const [avatarURL, setAvatarURL] = useState('')
+  const dispatch = useAppDispatch()
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
 
@@ -37,7 +38,7 @@ export default function ChangeAvatar() {
       try {
         await uploadBytes(storageRef, file)
         const downloadURL = await getDownloadURL(storageRef)
-        setAvatarURL(downloadURL)
+        dispatch(setAvatar(downloadURL))
 
         const firestore = getFirestore()
         const userDoc = doc(firestore, 'users', userId)
@@ -53,12 +54,12 @@ export default function ChangeAvatar() {
   return (
     <>
       <div className="flex flex-col items-start gap-3">
-        <input type="file" onChange={handleFileUpload} />
+        <div>
+          <span>Change avatar </span>
+          <input type="file" onChange={handleFileUpload} />
+        </div>
         {error && <div className="text-red text-tiny">{error}</div>}
         {success && <div className="text-secondary text-tiny">{success}</div>}
-        {avatarURL && (
-          <Image src={avatarURL} radius="md" alt="User Avatar" width={120} />
-        )}
       </div>
     </>
   )

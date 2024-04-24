@@ -17,28 +17,21 @@ import {
 } from '@nextui-org/react'
 import { IoIosArrowDown } from 'react-icons/io'
 import { movieItems, tvItems, authItems } from '@/utils/menuItems'
-import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
-import { useAppDispatch } from '@/hooks/reduxHooks'
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
 import { removeUser } from '@/redux/slices/userSlice'
-import MobileNav from './MobileNav'
+import { selectAvatar } from '@/redux/slices/avatarSlice'
+import MobileNav from '@/components/Common/MobileNav'
 import SearchBar from '@/components/Search/SearchBar'
 import Logo from '@/components/Common/Logo'
 
 const Navigation = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch()
-  const router = useRouter()
+  const avatar = useAppSelector(selectAvatar)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const icons = {
     chevron: <IoIosArrowDown fill="currentColor" size={16} />,
   }
-
-  // const firstLetter =
-  //   name && name.length > 0
-  //     ? name.substring(0, 1)
-  //     : email && email.length > 0
-  //     ? email.substring(0, 1)
-  //     : ''
 
   const { isAuth, email } = useAuth()
 
@@ -149,6 +142,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
                     className="transition-transform text-md capitalize"
                     color="default"
                     size="sm"
+                    src={avatar.avatarUrl || './no-image.svg'}
                   />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat">

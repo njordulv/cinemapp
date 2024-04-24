@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
 import { setUser } from '@/redux/slices/userSlice'
 import { selectErrorMessage, setError } from '@/redux/slices/errorSlice'
 import { auth } from '@/config/firebase'
-import Form from './Form'
+import Form from '@/components/User/Form'
 
 const Login = () => {
   const dispatch = useAppDispatch()
