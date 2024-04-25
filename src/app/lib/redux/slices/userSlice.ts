@@ -6,6 +6,7 @@ interface UserState {
   id: string | null
   createdAt: null
   name: string | null
+  avatarUrl: string | null
 }
 
 const initialState: UserState = {
@@ -14,6 +15,7 @@ const initialState: UserState = {
   id: null,
   createdAt: null,
   name: null,
+  avatarUrl: null,
 }
 
 const userSlice = createSlice({
@@ -26,6 +28,10 @@ const userSlice = createSlice({
       state.id = action.payload.id
       state.createdAt = action.payload.createdAt
       state.name = action.payload.name
+      state.avatarUrl = action.payload.avatarUrl
+    },
+    setAvatar(state, action) {
+      state.avatarUrl = action.payload
     },
     removeUser(state) {
       state.email = null
@@ -33,10 +39,15 @@ const userSlice = createSlice({
       state.id = null
       state.createdAt = null
       state.name = null
+      state.avatarUrl = null
+    },
+    removeAvatar(state) {
+      state.avatarUrl = null
     },
   },
 })
 
-export const { setUser, removeUser } = userSlice.actions
+export const { setUser, removeUser, setAvatar, removeAvatar } =
+  userSlice.actions
 
 export default userSlice.reducer

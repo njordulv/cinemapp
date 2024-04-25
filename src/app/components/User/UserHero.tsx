@@ -3,15 +3,12 @@
 import { Parallax } from 'react-parallax'
 import { Avatar } from '@nextui-org/react'
 import { SlUser } from 'react-icons/sl'
-import { useAppSelector } from '@/hooks/reduxHooks'
 import { useAuth } from '@/hooks/useAuth'
-import { selectAvatar } from '@/redux/slices/avatarSlice'
 import { formatReleaseDate } from '@/utils/formatDate'
 import styles from '@/styles/dashboard.module.scss'
 
 const UserHero = () => {
-  const { email, createdAt, name } = useAuth()
-  const avatar = useAppSelector(selectAvatar)
+  const { email, createdAt, avatarUrl, name } = useAuth()
 
   return (
     <section className={styles.singleHero}>
@@ -27,7 +24,7 @@ const UserHero = () => {
           >
             <Avatar
               showFallback
-              src={avatar.avatarUrl || ''}
+              src={avatarUrl || ''}
               className="transition-transform w-48 h-48"
               fallback={
                 <SlUser

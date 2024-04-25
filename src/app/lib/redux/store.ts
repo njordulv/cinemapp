@@ -12,12 +12,10 @@ import {
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
 import userReducer from '@/redux/slices/userSlice'
 import errorReducer from '@/redux/slices/errorSlice'
-import avatarReducer from '@/redux/slices/avatarSlice'
 
 const rootReducer = combineReducers({
   user: userReducer,
   error: errorReducer,
-  avatar: avatarReducer,
 })
 
 const createNoopStorage = () => {

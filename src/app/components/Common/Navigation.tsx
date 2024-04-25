@@ -19,22 +19,20 @@ import { IoIosArrowDown } from 'react-icons/io'
 import { SlUser } from 'react-icons/sl'
 import { movieItems, tvItems, authItems } from '@/utils/menuItems'
 import { useAuth } from '@/hooks/useAuth'
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
+import { useAppDispatch } from '@/hooks/reduxHooks'
 import { removeUser } from '@/redux/slices/userSlice'
-import { selectAvatar } from '@/redux/slices/avatarSlice'
 import MobileNav from '@/components/Common/MobileNav'
 import SearchBar from '@/components/Search/SearchBar'
 import Logo from '@/components/Common/Logo'
 
 const Navigation = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch()
-  const avatar = useAppSelector(selectAvatar)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const icons = {
     chevron: <IoIosArrowDown fill="currentColor" size={16} />,
   }
 
-  const { isAuth, email } = useAuth()
+  const { isAuth, email, avatarUrl } = useAuth()
 
   const handleLogout = () => {
     dispatch(removeUser())
@@ -143,7 +141,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
                     color="default"
                     size="sm"
                     showFallback
-                    src={avatar.avatarUrl || ''}
+                    src={avatarUrl || ''}
                     className="transition-transform text-md capitalize"
                     fallback={
                       <SlUser

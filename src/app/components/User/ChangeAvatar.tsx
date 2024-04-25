@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { getFirestore, doc, updateDoc } from 'firebase/firestore'
 import { auth, storage } from '@/config/firebase'
-import { setAvatar } from '@/redux/slices/avatarSlice'
+import { setAvatar } from '@/redux/slices/userSlice'
 import { useAppDispatch } from '@/hooks/reduxHooks'
 
 export default function ChangeAvatar() {
