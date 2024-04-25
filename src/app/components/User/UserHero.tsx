@@ -2,6 +2,7 @@
 
 import { Parallax } from 'react-parallax'
 import { Avatar } from '@nextui-org/react'
+import { SlUser } from 'react-icons/sl'
 import { useAppSelector } from '@/hooks/reduxHooks'
 import { useAuth } from '@/hooks/useAuth'
 import { selectAvatar } from '@/redux/slices/avatarSlice'
@@ -9,13 +10,12 @@ import { formatReleaseDate } from '@/utils/formatDate'
 import styles from '@/styles/dashboard.module.scss'
 
 const UserHero = () => {
-  const { email, createdAt } = useAuth()
+  const { email, createdAt, name } = useAuth()
   const avatar = useAppSelector(selectAvatar)
 
   return (
     <section className={styles.singleHero}>
       <Parallax
-        blur={2}
         bgImageStyle={{ filter: 'brightness(0.55) opacity(0.8)' }}
         bgImage={'/dashboard-bg.jpg'}
         bgImageAlt="dashboard back"
@@ -26,13 +26,20 @@ const UserHero = () => {
             className={`grid md:grid-cols-[1fr_4fr] gap-10 items-center ${styles.singleHero_wrapper}`}
           >
             <Avatar
-              className="transition-transform text-5xl w-48 h-48 capitalize"
-              color="default"
-              src={avatar.avatarUrl || './no-image.svg'}
+              showFallback
+              src={avatar.avatarUrl || ''}
+              className="transition-transform w-48 h-48"
+              fallback={
+                <SlUser
+                  className="text-default-500"
+                  fill="currentColor"
+                  size={90}
+                />
+              }
             />
             <div className="flex flex-col gap-3 text-shadow-sm">
-              <h1>Welcome</h1>
-              <div className="text-3xl font-normal">{email}</div>
+              <h1>{name ? name : email}</h1>
+
               <div className="text-default-800">
                 {createdAt
                   ? `Member since ${formatReleaseDate(createdAt)}`

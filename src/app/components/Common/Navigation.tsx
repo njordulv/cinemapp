@@ -16,6 +16,7 @@ import {
   Avatar,
 } from '@nextui-org/react'
 import { IoIosArrowDown } from 'react-icons/io'
+import { SlUser } from 'react-icons/sl'
 import { movieItems, tvItems, authItems } from '@/utils/menuItems'
 import { useAuth } from '@/hooks/useAuth'
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
@@ -139,10 +140,18 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
                   <Avatar
                     isBordered
                     as="button"
-                    className="transition-transform text-md capitalize"
                     color="default"
                     size="sm"
-                    src={avatar.avatarUrl || './no-image.svg'}
+                    showFallback
+                    src={avatar.avatarUrl || ''}
+                    className="transition-transform text-md capitalize"
+                    fallback={
+                      <SlUser
+                        className="text-default-500"
+                        fill="currentColor"
+                        size={18}
+                      />
+                    }
                   />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat">
