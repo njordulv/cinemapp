@@ -1,16 +1,15 @@
 'use client'
 
 import { Parallax } from 'react-parallax'
-import { Avatar, Button } from '@nextui-org/react'
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
-import { removeUser } from '@/redux/slices/userSlice'
+import { Avatar } from '@nextui-org/react'
+import { useAppSelector } from '@/hooks/reduxHooks'
 import { useAuth } from '@/hooks/useAuth'
 import { selectAvatar } from '@/redux/slices/avatarSlice'
+import { formatReleaseDate } from '@/utils/formatDate'
 import styles from '@/styles/dashboard.module.scss'
 
 const UserHero = () => {
-  const dispatch = useAppDispatch()
-  const { email } = useAuth()
+  const { email, createdAt } = useAuth()
   const avatar = useAppSelector(selectAvatar)
 
   return (
@@ -35,10 +34,9 @@ const UserHero = () => {
               <h1>Welcome</h1>
               <div className="text-3xl font-normal">{email}</div>
               <div className="text-default-800">
-                {/* Member since {formatReleaseDate(creationTime)} */}
-              </div>
-              <div>
-                <Button onClick={() => dispatch(removeUser())}>Log out</Button>
+                {createdAt
+                  ? `Member since ${formatReleaseDate(createdAt)}`
+                  : 'Member since unknown date'}
               </div>
             </div>
           </div>
