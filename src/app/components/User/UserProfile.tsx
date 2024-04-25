@@ -1,7 +1,7 @@
 import UserHero from '@/components/User/UserHero'
 import ChangeAvatar from '@/components/User/ChangeAvatar'
 
-const Dashboard = () => {
+const UserProfile = () => {
   return (
     <>
       <UserHero />
@@ -12,4 +12,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default UserProfile

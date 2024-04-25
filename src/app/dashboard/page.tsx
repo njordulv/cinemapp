@@ -1,14 +1,12 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { useAuth } from '@/hooks/useAuth'
-import Dashboard from '@/components/User/Dashboard'
+import useAuthRedirect from '@/hooks/useAuthRedirect'
+import UserProfile from '@/src/app/components/User/UserProfile'
 
 const DashboardPage = () => {
-  const router = useRouter()
-  const { isAuth } = useAuth()
+  useAuthRedirect('/login', false)
 
-  return isAuth ? <Dashboard /> : router.push('/login')
+  return <UserProfile />
 }
 
 export default DashboardPage

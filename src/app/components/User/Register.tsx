@@ -21,8 +21,6 @@ const Register = () => {
             email: user.email,
             id: user.uid,
             token: user.refreshToken,
-            createdAt: user.metadata.creationTime,
-            name: user.displayName,
           })
         )
         router.push('/dashboard')
