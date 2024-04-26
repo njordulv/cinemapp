@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from '@/redux/store'
 
 interface UserState {
   email: string | null
@@ -49,5 +50,6 @@ const userSlice = createSlice({
 
 export const { setUser, removeUser, setAvatar, removeAvatar } =
   userSlice.actions
+export const selectUserName = (state: RootState) => state.user.name
 
 export default userSlice.reducer
