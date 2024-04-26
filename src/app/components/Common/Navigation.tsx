@@ -32,7 +32,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
     chevron: <IoIosArrowDown fill="currentColor" size={16} />,
   }
 
-  const { isAuth, email, avatarUrl } = useAuth()
+  const { isAuth, email, photoURL } = useAuth()
 
   const handleLogout = () => {
     dispatch(removeUser())
@@ -141,7 +141,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
                     color="default"
                     size="sm"
                     showFallback
-                    src={avatarUrl || ''}
+                    src={photoURL || ''}
                     className="transition-transform text-md capitalize"
                     fallback={
                       <SlUser

@@ -8,7 +8,7 @@ import { formatReleaseDate } from '@/utils/formatDate'
 import styles from '@/styles/dashboard.module.scss'
 
 const UserHero = () => {
-  const { email, createdAt, avatarUrl, name } = useAuth()
+  const { email, createdAt, photoURL, name } = useAuth()
 
   return (
     <section className={styles.singleHero}>
@@ -24,7 +24,7 @@ const UserHero = () => {
           >
             <Avatar
               showFallback
-              src={avatarUrl || ''}
+              src={photoURL || ''}
               className="transition-transform w-48 h-48"
               fallback={
                 <SlUser

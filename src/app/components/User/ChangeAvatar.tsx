@@ -30,10 +30,7 @@ export default function ChangeAvatar() {
 
     if (file) {
       const userId = auth.currentUser.uid
-      const storageRef = ref(
-        storage,
-        `user_avatars/${auth.currentUser?.uid}.jpg`
-      )
+      const storageRef = ref(storage, `user_avatars/${userId}.jpg`)
 
       try {
         await uploadBytes(storageRef, file)
@@ -42,7 +39,7 @@ export default function ChangeAvatar() {
 
         const firestore = getFirestore()
         const userDoc = doc(firestore, 'users', userId)
-        await updateDoc(userDoc, { avatarURL: downloadURL })
+        await updateDoc(userDoc, { photoURL: downloadURL })
 
         setSuccess('File uploaded successfully!')
       } catch (error) {
