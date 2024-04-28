@@ -1,9 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
-import { Input } from '@nextui-org/react'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { Input, Button } from '@nextui-org/react'
+import {
+  deleteObject,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from 'firebase/storage'
 import { getFirestore, doc, updateDoc } from 'firebase/firestore'
 import { auth, storage } from '@/config/firebase'
-import { setAvatar } from '@/redux/slices/userSlice'
+import { setAvatar, removeAvatar } from '@/redux/slices/userSlice'
 import { useAppDispatch } from '@/hooks/reduxHooks'
 
 export default function ChangeAvatar() {
@@ -73,9 +78,39 @@ export default function ChangeAvatar() {
     }
   }
 
+  const handleFileRemove = async () => {
+    if (!auth.currentUser) {
+      setError('User is not authenticated')
+      return
+    }
+
+    const userId = auth.currentUser.uid
+    const storageRef = ref(storage, `user_avatars/${userId}.jpg`)
+
+    try {
+      // Удаление файла из Firebase Storage
+      await deleteObject(storageRef)
+
+      const firestore = getFirestore()
+      const userDocRef = doc(firestore, 'users', userId)
+
+      // Удаление `photoURL` из Firestore
+      await updateDoc(userDocRef, { photoURL: null })
+
+      // Обновление Redux-состояния
+      dispatch(removeAvatar())
+
+      setSuccess('Avatar deleted successfully!')
+      successTimeoutRef.current = setTimeout(() => setSuccess(''), 3000)
+    } catch (error) {
+      setError(`Error deleting avatar: ${error}`)
+      errorTimeoutRef.current = setTimeout(() => setError(''), 3000)
+    }
+  }
+
   return (
     <>
-      <div className="flex flex-col gap-3 relative pb-5">
+      <div className="flex gap-3 items-end relative pb-5">
         <Input
           type="file"
           size="md"
@@ -87,6 +122,7 @@ export default function ChangeAvatar() {
           }}
           onChange={handleFileUpload}
         />
+        <Button onClick={handleFileRemove}>Remove</Button>
         <div className="absolute bottom-0 text-red text-tiny">
           {error && <span className="text-red">{error}</span>}
           {success && <span className="text-secondary">{success}</span>}

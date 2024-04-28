@@ -4,7 +4,7 @@ import useAuthRedirect from '@/hooks/useAuthRedirect'
 import Register from '@/components/User/Register'
 import { Link } from '@nextui-org/react'
 
-const RegisterPage = () => {
+export default async function RegisterPage() {
   useAuthRedirect('/dashboard', true)
 
   return (
@@ -16,5 +16,3 @@ const RegisterPage = () => {
     </main>
   )
 }
-
-export default RegisterPage

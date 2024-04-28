@@ -3,10 +3,8 @@
 import useAuthRedirect from '@/hooks/useAuthRedirect'
 import UserProfile from '@/src/app/components/User/UserProfile'
 
-const DashboardPage = () => {
+export default async function DashboardPage() {
   useAuthRedirect('/login', false)
 
   return <UserProfile />
 }
-
-export default DashboardPage
