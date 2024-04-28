@@ -3,6 +3,7 @@ import { Roboto_Condensed } from 'next/font/google'
 import UIProvider from '@/providers/UIProvider'
 import StoreProvider from '@/providers/StoreProvider'
 import Navigation from '@/components/Common/Navigation'
+import TermsOfUse from '@/components/UI/TermsOfUse'
 import './globals.css'
 
 const roboto = Roboto_Condensed({
@@ -21,7 +22,10 @@ export default async function Layout({ children }: Props) {
       <body className={`${roboto.className}`}>
         <UIProvider>
           <StoreProvider>
-            <Navigation>{children}</Navigation>
+            <Navigation>
+              {children}
+              <TermsOfUse />
+            </Navigation>
           </StoreProvider>
         </UIProvider>
       </body>
