@@ -33,7 +33,7 @@ const Recommendations: React.FC<Props> = ({ id, isMovie }: Props) => {
     <>
       {data && (data.results?.length ?? 0) > 0 && (
         <>
-          <h2 className="flex py-2 px-3 my-5 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-200 border-1">
+          <h2 className="flex py-2 px-3 my-5 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-50 bg-opacity-20 shadow-sm rounded-medium border-default-200 border-1">
             Recommendations
           </h2>
           <ScrollShadow orientation="horizontal" className="w-full">

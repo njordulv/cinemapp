@@ -45,7 +45,10 @@ export default function Hero({
     <section className={styles.singleHero}>
       <Parallax
         blur={0}
-        bgImageStyle={{ filter: 'brightness(0.55) opacity(0.9)' }}
+        bgImageStyle={{
+          filter: 'brightness(0.55) opacity(0.85)',
+          objectFit: 'cover',
+        }}
         bgImage={
           backdrop_path
             ? `${BASE_IMAGE_URL}original${backdrop_path}`
@@ -54,7 +57,7 @@ export default function Hero({
         bgImageAlt={`${isMovie ? title : name} poster image`}
         strength={400}
       >
-        <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 md:grid-cols-1 lg:text-left gap-4 m-auto py-20 px-6">
+        <div className="grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 md:grid-cols-1 lg:text-left gap-4 m-auto sm:py-20 py-8 px-6">
           <div
             className={`grid md:grid-cols-[1fr_3fr] gap-10 items-center ${styles.singleHero_wrapper}`}
           >
@@ -71,7 +74,7 @@ export default function Hero({
               fallbackSrc={'/no-image-300x450.svg'}
               alt={isMovie ? title : name}
             />
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 text-left">
               <div>
                 <h1 className="mb-1 text-shadow-sm inline-block">
                   {isMovie ? title : name}
@@ -162,8 +165,7 @@ export default function Hero({
                 <div className="flex flex-row">
                   <Link
                     href={homepage}
-                    target="
-                _blank"
+                    target="_blank"
                     className="inline-flex items-center gap-1 font-thin hover:text-cyan text-shadow-sm"
                   >
                     <TbWorldWww size={24} /> {isMovie ? title : name}
@@ -174,15 +176,14 @@ export default function Hero({
                 <div className="flex flex-row">
                   <Link
                     href={`https://www.imdb.com/title/${imdb_id}`}
-                    target="
-                _blank"
+                    target="_blank"
                     className="inline-flex items-center gap-1 font-thin hover:text-cyan text-shadow-sm"
                   >
                     <LiaImdb size={24} /> IMDb
                   </Link>
                 </div>
               )}
-              <div className="flex flex-row gap-10 lg:gap-24">
+              <div className="flex sm:flex-row sm:gap-10 lg:gap-24 text-left flex-col gap-4">
                 {isMovie ? (
                   <FilmMakers
                     filmMaker={filmMaker}

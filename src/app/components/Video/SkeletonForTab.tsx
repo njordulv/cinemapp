@@ -5,7 +5,7 @@ export default function SkeletonForTab() {
   return (
     <Card className="w-full" radius="lg">
       <Skeleton className="rounded-lg">
-        <div className="h-[225px] rounded-lg bg-default-300"></div>
+        <div className="h-[225px] rounded-lg bg-default-100"></div>
       </Skeleton>
     </Card>
   )

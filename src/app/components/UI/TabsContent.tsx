@@ -21,8 +21,9 @@ export default function TabsContent({ id, data, isMovie }: DataMovie) {
       variant="bordered"
       aria-label={`${pageType} options`}
       classNames={{
+        base: 'bg-default-50 bg-opacity-20 rounded-xl',
         panel: 'p-0 p-0',
-        tabList: 'border-1',
+        tabList: 'border-1 w-full',
         cursor: '',
         tab: 'text-[17px] px-6 font-normal',
         tabContent: '',

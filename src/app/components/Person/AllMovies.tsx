@@ -39,7 +39,7 @@ const AllMovies: React.FC<Props> = ({ data, knownFor }) => {
 
   return (
     <>
-      <h2 className="flex py-2 px-3 mt-8 mb-3 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-200 border-1">
+      <h2 className="flex py-2 px-3 mt-8 mb-3 font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-50 bg-opacity-20 shadow-sm rounded-medium border-default-200 border-1">
         All Movies
       </h2>
       <Table
@@ -85,6 +85,7 @@ const AllMovies: React.FC<Props> = ({ data, knownFor }) => {
                       src: movie.poster_path
                         ? `${BASE_IMAGE_URL}w92${movie.poster_path}`
                         : NO_IMAGE,
+                      className: 'min-w-10',
                     }}
                   />
                 </Link>

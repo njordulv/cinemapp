@@ -1,6 +1,7 @@
 .aside {
   overflow: hidden;
   border-radius: 0 0 0.75rem 0.75rem;
+  min-width: 290px;
 
   &_container {
     display: flex;

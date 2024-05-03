@@ -135,7 +135,7 @@ export default function Single({ params }: { params: { id: string } }) {
             )}
             {biography && (
               <>
-                <h2 className="flex py-2 px-3 mt-3 w-full font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent shadow-sm rounded-medium border-default-200 border-1">
+                <h2 className="flex py-2 px-3 mt-3 w-full font-medium text-[17px] leading-6 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-50 bg-opacity-20 shadow-sm rounded-medium border-default-200 border-1">
                   Biography
                 </h2>
                 <div className={styles.person__detail}>

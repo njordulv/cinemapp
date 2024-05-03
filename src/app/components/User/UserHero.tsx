@@ -13,7 +13,10 @@ const UserHero = () => {
   return (
     <section className={styles.singleHero}>
       <Parallax
-        bgImageStyle={{ filter: 'brightness(0.55) opacity(0.8)' }}
+        bgImageStyle={{
+          filter: 'brightness(0.55) opacity(0.9)',
+          objectFit: 'cover',
+        }}
         bgImage={'/dashboard-bg.jpg'}
         bgImageAlt="dashboard back"
         strength={400}
