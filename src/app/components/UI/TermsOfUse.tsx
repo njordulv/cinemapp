@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import {
   Modal,
   ModalContent,
-  ModalHeader,
   ModalBody,
   ModalFooter,
   Button,
@@ -14,27 +13,27 @@ import {
 
 export default function TermsOfUse() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isModalSeen, setIsModalSeen] = useState(
-    localStorage.getItem('tmbdModalSeen') === 'true'
+  const [isModal, setIsModal] = useState(
+    localStorage.getItem('tmbdTOU') === 'true'
   )
 
   useEffect(() => {
-    if (!isModalSeen) {
+    if (!isModal) {
       setTimeout(() => onOpen(), 1000)
     }
-  }, [isModalSeen, onOpen])
+  }, [isModal, onOpen])
 
   const handleClose = () => {
     setTimeout(() => {
-      setIsModalSeen(true)
-      localStorage.setItem('tmbdModalSeen', 'true')
+      setIsModal(true)
+      localStorage.setItem('tmbdTOU', 'true')
     }, 1000)
     onClose()
   }
 
   return (
     <>
-      {!isModalSeen && (
+      {!isModal && (
         <Modal
           isOpen={isOpen}
           backdrop="blur"

@@ -1,10 +1,5 @@
-'use client'
+import DashboardPage from '@/components/Client/DashboardPage'
 
-import useAuthRedirect from '@/hooks/useAuthRedirect'
-import UserProfile from '@/src/app/components/User/UserProfile'
-
-export default async function DashboardPage() {
-  useAuthRedirect('/login', false)
-
-  return <UserProfile />
+export default async function Page() {
+  return <DashboardPage />
 }
