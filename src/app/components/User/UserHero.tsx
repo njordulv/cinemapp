@@ -18,9 +18,9 @@ const UserHero = () => {
         bgImageAlt="dashboard back"
         strength={400}
       >
-        <div className="mb-32 grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 md:grid-cols-1 lg:text-left gap-4 m-auto py-20 px-6">
+        <div className="grid lg:max-w-[1170px] w-full sm:grid-cols-1 text-center sm:text-left gap-4 m-auto py-20 px-6">
           <div
-            className={`grid md:grid-cols-[1fr_4fr] gap-10 items-center ${styles.singleHero_wrapper}`}
+            className={`grid sm:grid-cols-[1fr_4fr] gap-10 items-center justify-center ${styles.singleHero_wrapper}`}
           >
             <Avatar
               showFallback
