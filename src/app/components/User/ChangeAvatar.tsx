@@ -88,16 +88,13 @@ export default function ChangeAvatar() {
     const storageRef = ref(storage, `user_avatars/${userId}.jpg`)
 
     try {
-      // Удаление файла из Firebase Storage
       await deleteObject(storageRef)
 
       const firestore = getFirestore()
       const userDocRef = doc(firestore, 'users', userId)
 
-      // Удаление `photoURL` из Firestore
       await updateDoc(userDocRef, { photoURL: null })
 
-      // Обновление Redux-состояния
       dispatch(removeAvatar())
 
       setSuccess('Avatar deleted successfully!')

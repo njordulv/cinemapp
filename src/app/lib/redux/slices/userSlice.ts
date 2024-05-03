@@ -34,6 +34,9 @@ const userSlice = createSlice({
     setAvatar(state, action) {
       state.photoURL = action.payload
     },
+    setUserName(state, action) {
+      state.name = action.payload
+    },
     removeUser(state) {
       state.email = null
       state.token = null
@@ -48,7 +51,7 @@ const userSlice = createSlice({
   },
 })
 
-export const { setUser, removeUser, setAvatar, removeAvatar } =
+export const { setUser, removeUser, setAvatar, removeAvatar, setUserName } =
   userSlice.actions
 export const selectUserName = (state: RootState) => state.user.name
 

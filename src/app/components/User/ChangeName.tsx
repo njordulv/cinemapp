@@ -1,16 +1,16 @@
 import { Button, Input } from '@nextui-org/react'
 import { getFirestore, doc, updateDoc } from 'firebase/firestore'
 import { auth } from '@/config/firebase'
-import { useAppSelector } from '@/hooks/reduxHooks'
-import { selectUserName } from '@/redux/slices/userSlice'
-import { useState } from 'react'
+import { useAppSelector, useAppDispatch } from '@/hooks/reduxHooks'
+import { setUserName, selectUserName } from '@/redux/slices/userSlice'
 
 export default function ChangeName() {
+  const dispatch = useAppDispatch()
   const userName = useAppSelector(selectUserName) || ''
-  const [inputValue, setInputValue] = useState(userName)
 
   const handleInputName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value)
+    const value = event.target.value
+    dispatch(setUserName(value))
   }
 
   const handleSaveName = async () => {
@@ -20,7 +20,8 @@ export default function ChangeName() {
       const userId = user.uid
       const firestore = getFirestore()
       const userDocRef = doc(firestore, 'users', userId)
-      await updateDoc(userDocRef, { name: inputValue })
+      await updateDoc(userDocRef, { name: userName })
+      dispatch(setUserName(userName))
     }
   }
 
@@ -32,7 +33,7 @@ export default function ChangeName() {
         label="Change your name"
         labelPlacement="outside"
         placeholder="Name"
-        value={inputValue}
+        value={userName}
         onChange={handleInputName}
       />
       <Button size="md" onClick={handleSaveName}>

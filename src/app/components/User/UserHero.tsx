@@ -1,31 +1,14 @@
 'use client'
+
 import { Parallax } from 'react-parallax'
 import { Avatar } from '@nextui-org/react'
 import { SlUser } from 'react-icons/sl'
 import { useAuth } from '@/hooks/useAuth'
-import { useEffect, useState } from 'react'
-import { getFirestore, doc, getDoc } from 'firebase/firestore'
 import { formatReleaseDate } from '@/utils/formatDate'
 import styles from '@/styles/dashboard.module.scss'
 
 const UserHero = () => {
-  const { email, createdAt, photoURL, id } = useAuth()
-  const [userName, setUserName] = useState('')
-
-  useEffect(() => {
-    const fetchUserName = async () => {
-      if (id) {
-        const firestore = getFirestore()
-        const userDocRef = doc(firestore, 'users', id)
-        const userDoc = await getDoc(userDocRef)
-        if (userDoc.exists() && userDoc.data()?.name) {
-          setUserName(userDoc.data().name)
-        }
-      }
-    }
-
-    fetchUserName()
-  }, [id])
+  const { email, createdAt, photoURL, name } = useAuth()
 
   return (
     <section className={styles.singleHero}>
@@ -52,7 +35,7 @@ const UserHero = () => {
               }
             />
             <div className="flex flex-col gap-3 text-shadow-sm">
-              {userName && <h1>{userName}</h1>}
+              <h1>{name ? name : 'Welcome Guest!'}</h1>
               <h2 className="text-xl font-medium">{email}</h2>
               <div className="text-default-800">
                 {createdAt

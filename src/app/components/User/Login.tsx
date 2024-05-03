@@ -18,7 +18,8 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(async ({ user }) => {
         const userId = auth.currentUser?.uid
-        let avatar
+        let avatar = null
+        let name = null
 
         if (userId) {
           try {
@@ -28,7 +29,10 @@ const Login = () => {
 
             if (userSnapshot.exists()) {
               const userData = userSnapshot.data()
-              avatar = userData.photoURL
+              avatar = userData.photoURL || null
+              name = userData.name || null
+            } else {
+              console.warn('User document does not exist in Firestore')
             }
           } catch (error) {
             console.error('Error fetching avatar URL:', error)
@@ -41,7 +45,7 @@ const Login = () => {
             id: user.uid,
             token: user.refreshToken,
             createdAt: user.metadata.creationTime,
-            name: user.displayName,
+            name,
             photoURL: avatar,
           })
         )
