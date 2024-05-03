@@ -8,6 +8,7 @@ interface UserState {
   createdAt: null
   name: string | null
   photoURL: string | null
+  accentColor: string | null
 }
 
 const initialState: UserState = {
@@ -17,6 +18,7 @@ const initialState: UserState = {
   createdAt: null,
   name: null,
   photoURL: null,
+  accentColor: null,
 }
 
 const userSlice = createSlice({
@@ -30,12 +32,16 @@ const userSlice = createSlice({
       state.createdAt = action.payload.createdAt
       state.name = action.payload.name
       state.photoURL = action.payload.photoURL
+      state.accentColor = action.payload.accentColor
     },
     setAvatar(state, action) {
       state.photoURL = action.payload
     },
     setUserName(state, action) {
       state.name = action.payload
+    },
+    setAccentColor(state, action) {
+      state.accentColor = action.payload
     },
     removeUser(state) {
       state.email = null
@@ -44,6 +50,7 @@ const userSlice = createSlice({
       state.createdAt = null
       state.name = null
       state.photoURL = null
+      state.accentColor = null
     },
     removeAvatar(state) {
       state.photoURL = null
@@ -51,8 +58,15 @@ const userSlice = createSlice({
   },
 })
 
-export const { setUser, removeUser, setAvatar, removeAvatar, setUserName } =
-  userSlice.actions
+export const {
+  setUser,
+  removeUser,
+  setAvatar,
+  removeAvatar,
+  setUserName,
+  setAccentColor,
+} = userSlice.actions
 export const selectUserName = (state: RootState) => state.user.name
+export const selectAccentColor = (state: RootState) => state.user.accentColor
 
 export default userSlice.reducer

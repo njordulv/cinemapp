@@ -20,6 +20,7 @@ const Login = () => {
         const userId = auth.currentUser?.uid
         let avatar = null
         let name = null
+        let color = null
 
         if (userId) {
           try {
@@ -31,6 +32,7 @@ const Login = () => {
               const userData = userSnapshot.data()
               avatar = userData.photoURL || null
               name = userData.name || null
+              color = userData.accentColor || null
             } else {
               console.warn('User document does not exist in Firestore')
             }
@@ -47,6 +49,7 @@ const Login = () => {
             createdAt: user.metadata.creationTime,
             name,
             photoURL: avatar,
+            accentColor: color,
           })
         )
 
