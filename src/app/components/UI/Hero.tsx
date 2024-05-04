@@ -46,7 +46,8 @@ export default function Hero({
       <Parallax
         blur={0}
         bgImageStyle={{
-          filter: 'brightness(0.55) opacity(0.85)',
+          filter: 'brightness(0.55)',
+          opacity: 0.6,
           objectFit: 'cover',
         }}
         bgImage={

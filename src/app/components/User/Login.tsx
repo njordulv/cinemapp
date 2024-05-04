@@ -20,7 +20,7 @@ const Login = () => {
         const userId = auth.currentUser?.uid
         let avatar = null
         let name = null
-        let color = null
+        let wishlist = []
 
         if (userId) {
           try {
@@ -32,7 +32,7 @@ const Login = () => {
               const userData = userSnapshot.data()
               avatar = userData.photoURL || null
               name = userData.name || null
-              color = userData.accentColor || null
+              wishlist = userData.wishlist || []
             } else {
               console.warn('User document does not exist in Firestore')
             }
@@ -49,7 +49,7 @@ const Login = () => {
             createdAt: user.metadata.creationTime,
             name,
             photoURL: avatar,
-            accentColor: color,
+            wishlist,
           })
         )
 

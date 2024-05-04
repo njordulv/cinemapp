@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '@/redux/store'
 
 interface UserState {
@@ -8,7 +8,7 @@ interface UserState {
   createdAt: null
   name: string | null
   photoURL: string | null
-  accentColor: string | null
+  wishlist: number[]
 }
 
 const initialState: UserState = {
@@ -18,7 +18,7 @@ const initialState: UserState = {
   createdAt: null,
   name: null,
   photoURL: null,
-  accentColor: null,
+  wishlist: [],
 }
 
 const userSlice = createSlice({
@@ -32,7 +32,6 @@ const userSlice = createSlice({
       state.createdAt = action.payload.createdAt
       state.name = action.payload.name
       state.photoURL = action.payload.photoURL
-      state.accentColor = action.payload.accentColor
     },
     setAvatar(state, action) {
       state.photoURL = action.payload
@@ -40,8 +39,19 @@ const userSlice = createSlice({
     setUserName(state, action) {
       state.name = action.payload
     },
-    setAccentColor(state, action) {
-      state.accentColor = action.payload
+    addToWishlist: (state, action: PayloadAction<number>) => {
+      if (Array.isArray(state.wishlist)) {
+        state.wishlist = [...state.wishlist, action.payload]
+      } else {
+        state.wishlist = [action.payload]
+      }
+    },
+    removeFromWishlist: (state, action: PayloadAction<number>) => {
+      if (Array.isArray(state.wishlist)) {
+        state.wishlist = state.wishlist.filter((id) => id !== action.payload)
+      } else {
+        state.wishlist = []
+      }
     },
     removeUser(state) {
       state.email = null
@@ -50,7 +60,6 @@ const userSlice = createSlice({
       state.createdAt = null
       state.name = null
       state.photoURL = null
-      state.accentColor = null
     },
     removeAvatar(state) {
       state.photoURL = null
@@ -64,9 +73,10 @@ export const {
   setAvatar,
   removeAvatar,
   setUserName,
-  setAccentColor,
+  addToWishlist,
+  removeFromWishlist,
 } = userSlice.actions
 export const selectUserName = (state: RootState) => state.user.name
-export const selectAccentColor = (state: RootState) => state.user.accentColor
+export const selectWishlist = (state: RootState) => state.user.wishlist || []
 
 export default userSlice.reducer
