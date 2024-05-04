@@ -11,21 +11,21 @@ import { auth } from '@/config/firebase'
 import { Movie } from '@/types/data'
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHooks'
 import {
-  addToWishlist,
-  removeFromWishlist,
-  selectWishlist,
+  addTowatchlist,
+  removeFromwatchlist,
+  selectwatchlist,
 } from '@/redux/slices/userSlice'
 
 interface MovieProps {
   movie: Movie
 }
 
-const WishlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
+const watchlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
   const dispatch = useAppDispatch()
-  const wishlist = useAppSelector(selectWishlist) || []
-  const isInWishlist = wishlist.includes(movie.id)
+  const watchlist = useAppSelector(selectwatchlist) || []
+  const isInwatchlist = watchlist.includes(movie.id)
 
-  const handleWishlistClick = async () => {
+  const handlewatchlistClick = async () => {
     const user = auth.currentUser
 
     if (user) {
@@ -33,12 +33,12 @@ const WishlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
       const firestore = getFirestore()
       const userDocRef = doc(firestore, 'users', userId)
 
-      if (isInWishlist) {
-        await updateDoc(userDocRef, { wishlist: arrayRemove(movie.id) })
-        dispatch(removeFromWishlist(movie.id))
+      if (isInwatchlist) {
+        await updateDoc(userDocRef, { watchlist: arrayRemove(movie.id) })
+        dispatch(removeFromwatchlist(movie.id))
       } else {
-        await updateDoc(userDocRef, { wishlist: arrayUnion(movie.id) })
-        dispatch(addToWishlist(movie.id))
+        await updateDoc(userDocRef, { watchlist: arrayUnion(movie.id) })
+        dispatch(addTowatchlist(movie.id))
       }
     }
   }
@@ -51,11 +51,11 @@ const WishlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
       size="sm"
       aria-label="Like"
       className="absolute right-1 top-1 z-20 text-lg"
-      onClick={handleWishlistClick}
+      onClick={handlewatchlistClick}
     >
-      {isInWishlist ? <MdFavorite /> : <MdFavoriteBorder />}
+      {isInwatchlist ? <MdFavorite /> : <MdFavoriteBorder />}
     </Button>
   )
 }
 
-export default WishlistBtn
+export default watchlistBtn

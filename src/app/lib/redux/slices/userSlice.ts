@@ -8,7 +8,7 @@ interface UserState {
   createdAt: null
   name: string | null
   photoURL: string | null
-  wishlist: number[]
+  watchlist: number[]
 }
 
 const initialState: UserState = {
@@ -18,7 +18,7 @@ const initialState: UserState = {
   createdAt: null,
   name: null,
   photoURL: null,
-  wishlist: [],
+  watchlist: [],
 }
 
 const userSlice = createSlice({
@@ -39,22 +39,22 @@ const userSlice = createSlice({
     setUserName(state, action) {
       state.name = action.payload
     },
-    addToWishlist: (state, action: PayloadAction<number>) => {
-      if (Array.isArray(state.wishlist)) {
-        state.wishlist = [...state.wishlist, action.payload]
+    addTowatchlist: (state, action: PayloadAction<number>) => {
+      if (Array.isArray(state.watchlist)) {
+        state.watchlist = [...state.watchlist, action.payload]
       } else {
-        state.wishlist = [action.payload]
+        state.watchlist = [action.payload]
       }
     },
-    removeFromWishlist: (state, action: PayloadAction<number>) => {
-      if (Array.isArray(state.wishlist)) {
-        state.wishlist = state.wishlist.filter((id) => id !== action.payload)
+    removeFromwatchlist: (state, action: PayloadAction<number>) => {
+      if (Array.isArray(state.watchlist)) {
+        state.watchlist = state.watchlist.filter((id) => id !== action.payload)
       } else {
-        state.wishlist = []
+        state.watchlist = []
       }
     },
-    updateWishlist: (state, action: PayloadAction<number[]>) => {
-      state.wishlist = action.payload
+    updatewatchlist: (state, action: PayloadAction<number[]>) => {
+      state.watchlist = action.payload
     },
     logoutUser(state) {
       state.email = null
@@ -63,7 +63,7 @@ const userSlice = createSlice({
       state.createdAt = null
       state.name = null
       state.photoURL = null
-      state.wishlist = []
+      state.watchlist = []
     },
     removeAvatar(state) {
       state.photoURL = null
@@ -77,11 +77,11 @@ export const {
   setAvatar,
   removeAvatar,
   setUserName,
-  addToWishlist,
-  removeFromWishlist,
-  updateWishlist,
+  addTowatchlist,
+  removeFromwatchlist,
+  updatewatchlist,
 } = userSlice.actions
 export const selectUserName = (state: RootState) => state.user.name
-export const selectWishlist = (state: RootState) => state.user.wishlist || []
+export const selectwatchlist = (state: RootState) => state.user.watchlist || []
 
 export default userSlice.reducer
