@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
 import { auth } from '@/config/firebase'
-import { setUser } from '@/redux/slices/userSlice'
+import { setUser, updateWishlist } from '@/redux/slices/userSlice'
 import { selectErrorMessage, setError } from '@/redux/slices/errorSlice'
 import Form from '@/components/User/Form'
 
@@ -49,9 +49,9 @@ const Login = () => {
             createdAt: user.metadata.creationTime,
             name,
             photoURL: avatar,
-            wishlist,
           })
         )
+        dispatch(updateWishlist(wishlist))
 
         router.push('/dashboard')
       })

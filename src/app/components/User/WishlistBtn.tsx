@@ -16,17 +16,18 @@ import {
   selectWishlist,
 } from '@/redux/slices/userSlice'
 
-interface UserProps {
+interface MovieProps {
   movie: Movie
 }
 
-const WishlistBtn: React.FC<UserProps> = ({ movie }: UserProps) => {
+const WishlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
   const dispatch = useAppDispatch()
   const wishlist = useAppSelector(selectWishlist) || []
   const isInWishlist = wishlist.includes(movie.id)
 
   const handleWishlistClick = async () => {
     const user = auth.currentUser
+
     if (user) {
       const userId = user.uid
       const firestore = getFirestore()

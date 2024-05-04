@@ -53,13 +53,17 @@ const userSlice = createSlice({
         state.wishlist = []
       }
     },
-    removeUser(state) {
+    updateWishlist: (state, action: PayloadAction<number[]>) => {
+      state.wishlist = action.payload
+    },
+    logoutUser(state) {
       state.email = null
       state.token = null
       state.id = null
       state.createdAt = null
       state.name = null
       state.photoURL = null
+      state.wishlist = []
     },
     removeAvatar(state) {
       state.photoURL = null
@@ -69,12 +73,13 @@ const userSlice = createSlice({
 
 export const {
   setUser,
-  removeUser,
+  logoutUser,
   setAvatar,
   removeAvatar,
   setUserName,
   addToWishlist,
   removeFromWishlist,
+  updateWishlist,
 } = userSlice.actions
 export const selectUserName = (state: RootState) => state.user.name
 export const selectWishlist = (state: RootState) => state.user.wishlist || []

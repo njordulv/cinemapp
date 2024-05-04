@@ -13,14 +13,14 @@ import { SlUser } from 'react-icons/sl'
 import { useAuth } from '@/hooks/useAuth'
 import { authItems } from '@/utils/menuItems'
 import { useAppDispatch } from '@/hooks/reduxHooks'
-import { removeUser } from '@/redux/slices/userSlice'
+import { logoutUser } from '@/redux/slices/userSlice'
 
 export default function AuthNav() {
   const dispatch = useAppDispatch()
   const { isAuth, email, photoURL } = useAuth()
 
   const handleLogout = () => {
-    dispatch(removeUser())
+    dispatch(logoutUser())
   }
 
   return (
