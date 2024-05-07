@@ -10,7 +10,7 @@ import styles from '@/styles/mainCard.module.scss'
 
 interface UserProps {
   movie: Movie
-  type: string
+  type: 'movie' | 'tv'
   category: string
 }
 
@@ -21,13 +21,12 @@ export default function MovieCard({ movie, type }: UserProps) {
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
   const pageHandler = () => {
-    const basePath = `/${type}/${movie.id}`
-    router.push(basePath)
+    router.push(`/${type}/${movie.id}`)
   }
 
   return (
     <div className={styles.card}>
-      {isAuth && <WatchlistToggle movie={movie} />}
+      {isAuth && <WatchlistToggle movie={movie} type={type} />}
       <Card
         isPressable
         radius="lg"

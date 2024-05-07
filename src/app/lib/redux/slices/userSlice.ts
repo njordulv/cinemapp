@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '@/redux/store'
 
+interface WatchlistItem {
+  id: number
+  type: 'movie' | 'tv'
+}
+
 interface UserState {
   email: string | null
   token: string | null
@@ -8,7 +13,7 @@ interface UserState {
   createdAt: null
   name: string | null
   photoURL: string | null
-  watchlist: number[]
+  watchlist: WatchlistItem[]
 }
 
 const initialState: UserState = {
@@ -39,21 +44,25 @@ const userSlice = createSlice({
     setUserName(state, action) {
       state.name = action.payload
     },
-    addToWatchlist: (state, action: PayloadAction<number>) => {
-      if (Array.isArray(state.watchlist)) {
-        state.watchlist = [...state.watchlist, action.payload]
-      } else {
-        state.watchlist = [action.payload]
-      }
+    addToWatchlist: (
+      state,
+      action: PayloadAction<{ id: number; type: 'movie' | 'tv' }>
+    ) => {
+      state.watchlist.push(action.payload)
     },
-    removeFromWatchlist: (state, action: PayloadAction<number>) => {
-      if (Array.isArray(state.watchlist)) {
-        state.watchlist = state.watchlist.filter((id) => id !== action.payload)
-      } else {
-        state.watchlist = []
-      }
+    removeFromWatchlist: (
+      state,
+      action: PayloadAction<{ id: number; type: 'movie' | 'tv' }>
+    ) => {
+      state.watchlist = state.watchlist.filter(
+        (item) =>
+          item.id !== action.payload.id || item.type !== action.payload.type
+      )
     },
-    updateWatchlist: (state, action: PayloadAction<number[]>) => {
+    updateWatchlist: (
+      state,
+      action: PayloadAction<{ id: number; type: 'movie' | 'tv' }[]>
+    ) => {
       state.watchlist = action.payload
     },
     logoutUser(state) {
@@ -82,6 +91,7 @@ export const {
   updateWatchlist,
 } = userSlice.actions
 export const selectUserName = (state: RootState) => state.user.name
-export const selectWatchlist = (state: RootState) => state.user.watchlist || []
+export const selectWatchlist = (state: RootState) =>
+  state.user.watchlist.map(({ id, type }) => ({ id, type }))
 
 export default userSlice.reducer

@@ -107,7 +107,7 @@ export interface Movie {
   poster_path?: string
   image?: string
   vote_average?: number
-  type: string
+  type: 'movie' | 'tv'
 }
 
 export interface MovieAPIResponse {

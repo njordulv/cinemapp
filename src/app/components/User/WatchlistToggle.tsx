@@ -19,14 +19,16 @@ import { useEffect, useState } from 'react'
 
 interface MovieProps {
   movie: Movie
+  type: 'movie' | 'tv'
 }
 
-const WatchlistToggle: React.FC<MovieProps> = ({ movie }: MovieProps) => {
+const WatchlistToggle: React.FC<MovieProps> = ({ movie, type }: MovieProps) => {
   const dispatch = useAppDispatch()
   const watchlist = useAppSelector(selectWatchlist) || []
-  const isInWatchlist = watchlist.includes(movie.id)
+  const isInWatchlist = watchlist.some(
+    (item) => item.id === movie.id && item.type === type
+  )
   const [tooltipText, setTooltipText] = useState('')
-  const [watchlistIcon, setWatchlistIcon] = useState(<MdFavoriteBorder />)
 
   const handleToggleWatchlist = async () => {
     const user = auth.currentUser
@@ -37,24 +39,22 @@ const WatchlistToggle: React.FC<MovieProps> = ({ movie }: MovieProps) => {
       const userDocRef = doc(firestore, 'users', userId)
 
       if (isInWatchlist) {
-        await updateDoc(userDocRef, { watchlist: arrayRemove(movie.id) })
-        dispatch(removeFromWatchlist(movie.id))
+        await updateDoc(userDocRef, {
+          watchlist: arrayRemove({ id: movie.id, type }),
+        })
+        dispatch(removeFromWatchlist({ id: movie.id, type }))
       } else {
-        await updateDoc(userDocRef, { watchlist: arrayUnion(movie.id) })
-        dispatch(addToWatchlist(movie.id))
+        await updateDoc(userDocRef, {
+          watchlist: arrayUnion({ id: movie.id, type }),
+        })
+        dispatch(addToWatchlist({ id: movie.id, type }))
       }
     }
   }
 
   useEffect(() => {
-    if (isInWatchlist) {
-      setTooltipText('Remove from watchlist')
-      setWatchlistIcon(<MdFavorite />)
-    } else {
-      setTooltipText('Add to watchlist')
-      setWatchlistIcon(<MdFavoriteBorder />)
-    }
-  }, [])
+    setTooltipText(isInWatchlist ? 'Remove from watchlist' : 'Add to watchlist')
+  }, [isInWatchlist])
 
   return (
     <Tooltip size="sm" content={tooltipText}>
@@ -63,11 +63,13 @@ const WatchlistToggle: React.FC<MovieProps> = ({ movie }: MovieProps) => {
         color="default"
         variant="flat"
         size="sm"
-        aria-label="Like"
+        aria-label={
+          isInWatchlist ? 'Remove from watchlist' : 'Add to watchlist'
+        }
         className="absolute right-1 top-1 z-20 text-lg"
         onClick={handleToggleWatchlist}
       >
-        {watchlistIcon}
+        {isInWatchlist ? <MdFavorite /> : <MdFavoriteBorder />}
       </Button>
     </Tooltip>
   )
