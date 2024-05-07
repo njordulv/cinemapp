@@ -6,6 +6,7 @@ import { useAuth } from '@/hooks/useAuth'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import WatchlistToggle from '@/components/User/WatchlistToggle'
+import FavoritesToggle from '@/components/User/FavoritesToggle'
 import styles from '@/styles/mainCard.module.scss'
 
 interface UserProps {
@@ -26,7 +27,12 @@ export default function MovieCard({ movie, type }: UserProps) {
 
   return (
     <div className={styles.card}>
-      {isAuth && <WatchlistToggle movie={movie} type={type} />}
+      {isAuth && (
+        <div className="absolute right-1 top-1 z-20 flex flex-col gap-1">
+          <WatchlistToggle movie={movie} type={type} />
+          <FavoritesToggle movie={movie} type={type} />
+        </div>
+      )}
       <Card
         isPressable
         radius="lg"

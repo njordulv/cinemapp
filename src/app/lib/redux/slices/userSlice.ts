@@ -14,6 +14,7 @@ interface UserState {
   name: string | null
   photoURL: string | null
   watchlist: WatchlistItem[]
+  favorites: WatchlistItem[]
 }
 
 const initialState: UserState = {
@@ -24,6 +25,7 @@ const initialState: UserState = {
   name: null,
   photoURL: null,
   watchlist: [],
+  favorites: [],
 }
 
 const userSlice = createSlice({
@@ -65,6 +67,27 @@ const userSlice = createSlice({
     ) => {
       state.watchlist = action.payload
     },
+    addToFavorites: (
+      state,
+      action: PayloadAction<{ id: number; type: 'movie' | 'tv' }>
+    ) => {
+      state.favorites.push(action.payload)
+    },
+    removeFromFavorites: (
+      state,
+      action: PayloadAction<{ id: number; type: 'movie' | 'tv' }>
+    ) => {
+      state.favorites = state.favorites.filter(
+        (item) =>
+          item.id !== action.payload.id || item.type !== action.payload.type
+      )
+    },
+    updateFavorites: (
+      state,
+      action: PayloadAction<{ id: number; type: 'movie' | 'tv' }[]>
+    ) => {
+      state.favorites = action.payload
+    },
     logoutUser(state) {
       state.email = null
       state.token = null
@@ -73,6 +96,7 @@ const userSlice = createSlice({
       state.name = null
       state.photoURL = null
       state.watchlist = []
+      state.favorites = []
     },
     removeAvatar(state) {
       state.photoURL = null
@@ -89,9 +113,14 @@ export const {
   addToWatchlist,
   removeFromWatchlist,
   updateWatchlist,
+  addToFavorites,
+  removeFromFavorites,
+  updateFavorites,
 } = userSlice.actions
 export const selectUserName = (state: RootState) => state.user.name
 export const selectWatchlist = (state: RootState) =>
   state.user.watchlist.map(({ id, type }) => ({ id, type }))
+export const selectFavorites = (state: RootState) =>
+  state.user.favorites.map(({ id, type }) => ({ id, type }))
 
 export default userSlice.reducer

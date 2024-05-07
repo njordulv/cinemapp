@@ -1,4 +1,4 @@
-import { MdOutlineBookmarkBorder, MdOutlineBookmark } from 'react-icons/md'
+import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { Button, Tooltip } from '@nextui-org/react'
 import {
   getFirestore,
@@ -11,9 +11,9 @@ import { auth } from '@/config/firebase'
 import { Movie } from '@/types/data'
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHooks'
 import {
-  addToWatchlist,
-  removeFromWatchlist,
-  selectWatchlist,
+  addToFavorites,
+  removeFromFavorites,
+  selectFavorites,
 } from '@/redux/slices/userSlice'
 import { useEffect, useState } from 'react'
 
@@ -22,15 +22,15 @@ interface MovieProps {
   type: 'movie' | 'tv'
 }
 
-const WatchlistToggle: React.FC<MovieProps> = ({ movie, type }: MovieProps) => {
+const FavoritesToggle: React.FC<MovieProps> = ({ movie, type }: MovieProps) => {
   const dispatch = useAppDispatch()
-  const watchlist = useAppSelector(selectWatchlist) || []
-  const isInWatchlist = watchlist.some(
+  const favorites = useAppSelector(selectFavorites) || []
+  const isInFavorites = favorites.some(
     (item) => item.id === movie.id && item.type === type
   )
   const [tooltipText, setTooltipText] = useState('')
 
-  const handleToggleWatchlist = async () => {
+  const handleToggleFavorite = async () => {
     const user = auth.currentUser
 
     if (user) {
@@ -38,23 +38,23 @@ const WatchlistToggle: React.FC<MovieProps> = ({ movie, type }: MovieProps) => {
       const firestore = getFirestore()
       const userDocRef = doc(firestore, 'users', userId)
 
-      if (isInWatchlist) {
+      if (isInFavorites) {
         await updateDoc(userDocRef, {
-          watchlist: arrayRemove({ id: movie.id, type }),
+          favorites: arrayRemove({ id: movie.id, type }),
         })
-        dispatch(removeFromWatchlist({ id: movie.id, type }))
+        dispatch(removeFromFavorites({ id: movie.id, type }))
       } else {
         await updateDoc(userDocRef, {
-          watchlist: arrayUnion({ id: movie.id, type }),
+          favorites: arrayUnion({ id: movie.id, type }),
         })
-        dispatch(addToWatchlist({ id: movie.id, type }))
+        dispatch(addToFavorites({ id: movie.id, type }))
       }
     }
   }
 
   useEffect(() => {
-    setTooltipText(isInWatchlist ? 'Remove from watchlist' : 'Add to watchlist')
-  }, [isInWatchlist])
+    setTooltipText(isInFavorites ? 'Remove from favorites' : 'Add to favorites')
+  }, [isInFavorites])
 
   return (
     <Tooltip size="sm" content={tooltipText}>
@@ -64,15 +64,15 @@ const WatchlistToggle: React.FC<MovieProps> = ({ movie, type }: MovieProps) => {
         variant="flat"
         size="sm"
         aria-label={
-          isInWatchlist ? 'Remove from watchlist' : 'Add to watchlist'
+          isInFavorites ? 'Remove from favorites' : 'Add to favorites'
         }
         className="text-lg"
-        onClick={handleToggleWatchlist}
+        onClick={handleToggleFavorite}
       >
-        {isInWatchlist ? <MdOutlineBookmark /> : <MdOutlineBookmarkBorder />}
+        {isInFavorites ? <MdFavorite /> : <MdFavoriteBorder />}
       </Button>
     </Tooltip>
   )
 }
 
-export default WatchlistToggle
+export default FavoritesToggle

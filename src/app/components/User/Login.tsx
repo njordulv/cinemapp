@@ -5,7 +5,11 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
 import { auth } from '@/config/firebase'
-import { setUser, updateWatchlist } from '@/redux/slices/userSlice'
+import {
+  setUser,
+  updateWatchlist,
+  updateFavorites,
+} from '@/redux/slices/userSlice'
 import { selectErrorMessage, setError } from '@/redux/slices/errorSlice'
 import Form from '@/components/User/Form'
 
@@ -21,6 +25,7 @@ const Login = () => {
         let avatar = null
         let name = null
         let watchlist = []
+        let favorite = []
 
         if (userId) {
           try {
@@ -33,6 +38,7 @@ const Login = () => {
               avatar = userData.photoURL || null
               name = userData.name || null
               watchlist = userData.watchlist || []
+              favorite = userData.favorite || []
             } else {
               console.warn('User document does not exist in Firestore')
             }
@@ -52,6 +58,7 @@ const Login = () => {
           })
         )
         dispatch(updateWatchlist(watchlist))
+        dispatch(updateFavorites(favorite))
 
         router.push('/dashboard')
       })
