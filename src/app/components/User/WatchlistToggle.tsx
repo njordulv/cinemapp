@@ -1,5 +1,5 @@
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
-import { Button } from '@nextui-org/react'
+import { Button, Tooltip } from '@nextui-org/react'
 import {
   getFirestore,
   doc,
@@ -15,15 +15,18 @@ import {
   removeFromWatchlist,
   selectWatchlist,
 } from '@/redux/slices/userSlice'
+import { useEffect, useState } from 'react'
 
 interface MovieProps {
   movie: Movie
 }
 
-const watchlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
+const WatchlistToggle: React.FC<MovieProps> = ({ movie }: MovieProps) => {
   const dispatch = useAppDispatch()
   const watchlist = useAppSelector(selectWatchlist) || []
-  const isInwatchlist = watchlist.includes(movie.id)
+  const isInWatchlist = watchlist.includes(movie.id)
+  const [tooltipText, setTooltipText] = useState('')
+  const [watchlistIcon, setWatchlistIcon] = useState(<MdFavoriteBorder />)
 
   const handleToggleWatchlist = async () => {
     const user = auth.currentUser
@@ -33,7 +36,7 @@ const watchlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
       const firestore = getFirestore()
       const userDocRef = doc(firestore, 'users', userId)
 
-      if (isInwatchlist) {
+      if (isInWatchlist) {
         await updateDoc(userDocRef, { watchlist: arrayRemove(movie.id) })
         dispatch(removeFromWatchlist(movie.id))
       } else {
@@ -43,19 +46,31 @@ const watchlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
     }
   }
 
+  useEffect(() => {
+    if (isInWatchlist) {
+      setTooltipText('Remove from watchlist')
+      setWatchlistIcon(<MdFavorite />)
+    } else {
+      setTooltipText('Add to watchlist')
+      setWatchlistIcon(<MdFavoriteBorder />)
+    }
+  }, [])
+
   return (
-    <Button
-      isIconOnly
-      color="default"
-      variant="flat"
-      size="sm"
-      aria-label="Like"
-      className="absolute right-1 top-1 z-20 text-lg"
-      onClick={handleToggleWatchlist}
-    >
-      {isInwatchlist ? <MdFavorite /> : <MdFavoriteBorder />}
-    </Button>
+    <Tooltip size="sm" content={tooltipText}>
+      <Button
+        isIconOnly
+        color="default"
+        variant="flat"
+        size="sm"
+        aria-label="Like"
+        className="absolute right-1 top-1 z-20 text-lg"
+        onClick={handleToggleWatchlist}
+      >
+        {watchlistIcon}
+      </Button>
+    </Tooltip>
   )
 }
 
-export default watchlistBtn
+export default WatchlistToggle

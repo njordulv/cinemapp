@@ -19,10 +19,12 @@ export default function UserTabs() {
       }}
     >
       <Tab key="watchlist tab" title="Watchlist">
-        <UserWatchlist />
+        <div className="flex justify-center items-center min-h-72">
+          <UserWatchlist />
+        </div>
       </Tab>
       <Tab key="edit tab" title="Edit Profile">
-        <div className="p-8 border border-default-200 bg-gradient-to-br dark:from-default-50 dark:to-black rounded-lg flex flex-col gap-6">
+        <div className="flex justify-center max-w-[560px] flex-col gap-6 w-full">
           <ChangeAvatar />
           <ChangeName />
         </div>

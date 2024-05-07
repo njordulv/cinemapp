@@ -33,25 +33,23 @@ export default function UserWatchlist() {
     fetchMovies()
   }, [wishlist])
 
-  if (loading)
-    return (
-      <div className="flex place-content-center min-h-72">
-        <Spinner color="default" />
-      </div>
-    )
-  if (error)
-    return <div className="flex place-content-center min-h-72">{error}</div>
+  if (loading) return <Spinner color="default" />
+  if (error) return <> {error} </>
 
   return (
-    <div className="flex gap-3">
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          type={type}
-          category={category}
-        />
-      ))}
+    <div className="grid text-center lg:max-w-[1170px] lg:w-full lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-1 justify-center gap-4 m-auto">
+      {movies.length > 0 ? (
+        movies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            type={type}
+            category={category}
+          />
+        ))
+      ) : (
+        <p>There no movies in your watchlist</p>
+      )}
     </div>
   )
 }

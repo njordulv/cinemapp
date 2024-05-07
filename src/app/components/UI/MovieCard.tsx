@@ -5,7 +5,7 @@ import { formatReleaseDate } from '@/utils/formatDate'
 import { useAuth } from '@/hooks/useAuth'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
-import WatchlistBtn from '@/components/User/WatchlistBtn'
+import WatchlistToggle from '@/components/User/WatchlistToggle'
 import styles from '@/styles/mainCard.module.scss'
 
 interface UserProps {
@@ -27,7 +27,7 @@ export default function MovieCard({ movie, type }: UserProps) {
 
   return (
     <div className={styles.card}>
-      {isAuth && <WatchlistBtn movie={movie} />}
+      {isAuth && <WatchlistToggle movie={movie} />}
       <Card
         isPressable
         radius="lg"
