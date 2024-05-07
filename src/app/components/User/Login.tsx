@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
 import { auth } from '@/config/firebase'
-import { setUser, updatewatchlist } from '@/redux/slices/userSlice'
+import { setUser, updateWatchlist } from '@/redux/slices/userSlice'
 import { selectErrorMessage, setError } from '@/redux/slices/errorSlice'
 import Form from '@/components/User/Form'
 
@@ -51,7 +51,7 @@ const Login = () => {
             photoURL: avatar,
           })
         )
-        dispatch(updatewatchlist(watchlist))
+        dispatch(updateWatchlist(watchlist))
 
         router.push('/dashboard')
       })

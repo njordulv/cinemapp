@@ -11,9 +11,9 @@ import { auth } from '@/config/firebase'
 import { Movie } from '@/types/data'
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHooks'
 import {
-  addTowatchlist,
-  removeFromwatchlist,
-  selectwatchlist,
+  addToWatchlist,
+  removeFromWatchlist,
+  selectWatchlist,
 } from '@/redux/slices/userSlice'
 
 interface MovieProps {
@@ -22,10 +22,10 @@ interface MovieProps {
 
 const watchlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
   const dispatch = useAppDispatch()
-  const watchlist = useAppSelector(selectwatchlist) || []
+  const watchlist = useAppSelector(selectWatchlist) || []
   const isInwatchlist = watchlist.includes(movie.id)
 
-  const handlewatchlistClick = async () => {
+  const handleToggleWatchlist = async () => {
     const user = auth.currentUser
 
     if (user) {
@@ -35,10 +35,10 @@ const watchlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
 
       if (isInwatchlist) {
         await updateDoc(userDocRef, { watchlist: arrayRemove(movie.id) })
-        dispatch(removeFromwatchlist(movie.id))
+        dispatch(removeFromWatchlist(movie.id))
       } else {
         await updateDoc(userDocRef, { watchlist: arrayUnion(movie.id) })
-        dispatch(addTowatchlist(movie.id))
+        dispatch(addToWatchlist(movie.id))
       }
     }
   }
@@ -51,7 +51,7 @@ const watchlistBtn: React.FC<MovieProps> = ({ movie }: MovieProps) => {
       size="sm"
       aria-label="Like"
       className="absolute right-1 top-1 z-20 text-lg"
-      onClick={handlewatchlistClick}
+      onClick={handleToggleWatchlist}
     >
       {isInwatchlist ? <MdFavorite /> : <MdFavoriteBorder />}
     </Button>

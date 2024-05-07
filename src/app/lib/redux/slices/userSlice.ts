@@ -39,21 +39,21 @@ const userSlice = createSlice({
     setUserName(state, action) {
       state.name = action.payload
     },
-    addTowatchlist: (state, action: PayloadAction<number>) => {
+    addToWatchlist: (state, action: PayloadAction<number>) => {
       if (Array.isArray(state.watchlist)) {
         state.watchlist = [...state.watchlist, action.payload]
       } else {
         state.watchlist = [action.payload]
       }
     },
-    removeFromwatchlist: (state, action: PayloadAction<number>) => {
+    removeFromWatchlist: (state, action: PayloadAction<number>) => {
       if (Array.isArray(state.watchlist)) {
         state.watchlist = state.watchlist.filter((id) => id !== action.payload)
       } else {
         state.watchlist = []
       }
     },
-    updatewatchlist: (state, action: PayloadAction<number[]>) => {
+    updateWatchlist: (state, action: PayloadAction<number[]>) => {
       state.watchlist = action.payload
     },
     logoutUser(state) {
@@ -77,11 +77,11 @@ export const {
   setAvatar,
   removeAvatar,
   setUserName,
-  addTowatchlist,
-  removeFromwatchlist,
-  updatewatchlist,
+  addToWatchlist,
+  removeFromWatchlist,
+  updateWatchlist,
 } = userSlice.actions
 export const selectUserName = (state: RootState) => state.user.name
-export const selectwatchlist = (state: RootState) => state.user.watchlist || []
+export const selectWatchlist = (state: RootState) => state.user.watchlist || []
 
 export default userSlice.reducer
