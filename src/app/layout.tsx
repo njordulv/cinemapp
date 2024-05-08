@@ -4,6 +4,7 @@ import UIProvider from '@/providers/UIProvider'
 import StoreProvider from '@/providers/StoreProvider'
 import Navigation from '@/components/Common/Navigation'
 import TermsOfUse from '@/components/UI/TermsOfUse'
+import Footer from '@/components/Common/Footer'
 import './globals.css'
 
 const roboto = Roboto_Condensed({
@@ -26,6 +27,7 @@ export default async function Layout({ children }: Props) {
               {children}
               <TermsOfUse />
             </Navigation>
+            <Footer />
           </StoreProvider>
         </UIProvider>
       </body>
