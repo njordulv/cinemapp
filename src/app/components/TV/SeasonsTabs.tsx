@@ -1,4 +1,4 @@
-import { Tabs, Tab } from '@nextui-org/react'
+import { Tabs, Tab, ScrollShadow } from '@nextui-org/react'
 import { Seasons } from '@/types/data'
 import Season from '@/components/UI/Season'
 import LastSeason from '@/components/TV/LastSeason'
@@ -26,9 +26,11 @@ export default function SeasonsTabs({ id, data }: DataMovie) {
       }}
     >
       <Tab key="seasons" title="Seasons">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {data.seasons && <Season id={id} seasons={data.seasons} />}
-        </div>
+        <ScrollShadow orientation="horizontal" className="w-full">
+          <div className="flex w-max space-x-3 pb-3">
+            {data.seasons && <Season id={id} seasons={data.seasons} />}
+          </div>
+        </ScrollShadow>
       </Tab>
       <Tab key="last" title="Last Season">
         {data.seasons && <LastSeason id={id} seasons={data.seasons} />}

@@ -67,7 +67,7 @@ b {
 }
 
 a {
-  transition: all 0.3s ease;
+  transition: all 0.3.1s ease;
 }
 
 input[type='search']::-webkit-search-decoration,
@@ -85,4 +85,67 @@ input[type='search']::-webkit-search-results-decoration {
 .favoritesTab .watchlistButton,
 .watchlistTab .favoritesButton {
   display: none;
+}
+
+#letterFade {
+  opacity: 0.81;
+  color: var(--white);
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3), 0 0px 15px white,
+    0 0 10px #38eefa, 0 0 50px #38eefa;
+  -webkit-animation: fade 3.1s infinite alternate;
+  animation: fade 3.1s infinite alternate;
+}
+#letterBlink {
+  -webkit-animation: blink 0.01s infinite alternate;
+  animation: blink 0.01s infinite alternate;
+}
+
+#letterEnd {
+  -webkit-animation: blink 0.03s infinite alternate;
+  animation: blink 0.03s infinite alternate;
+}
+@-webkit-keyframes blink {
+  45% {
+    opacity: 0.5;
+  }
+}
+@keyframes blink {
+  70% {
+    opacity: 0.7;
+  }
+}
+@-webkit-keyframes fade {
+  40% {
+    opacity: 0.8;
+  }
+  42% {
+    opacity: 0.1;
+  }
+  43% {
+    opacity: 0.8;
+  }
+  45% {
+    opacity: 0.1;
+  }
+  46% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade {
+  40% {
+    opacity: 0.8;
+  }
+  42% {
+    opacity: 0.1;
+  }
+  43% {
+    opacity: 0.8;
+  }
+  45% {
+    opacity: 0.1;
+  }
+  46% {
+    opacity: 0.8;
+  }
 }

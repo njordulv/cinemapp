@@ -1,15 +1,20 @@
 .logo {
-  color: var(--cyan);
   position: relative;
-  display: flex;
   align-items: center;
+  display: flex;
   font-weight: 100;
-  overflow: hidden;
   font-size: 30px;
   line-height: 26px;
   letter-spacing: -1px;
-  background: -webkit-linear-gradient(-110deg, var(--red) 35%, var(--cyan) 60%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+  &__one {
+    color: white;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3), 0 0px 15px white,
+      0 0 10px var(--cyan), 0 0 50px var(--cyan);
+  }
+  &__two {
+    color: #fafafa;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5), 0 0 20px white,
+      0 0 10px var(--soft), 0 0 50px var(--soft);
+  }
 }
