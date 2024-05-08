@@ -1,8 +1,7 @@
 import { Tabs, Tab } from '@nextui-org/react'
 import ChangeAvatar from '@/components/User/ChangeAvatar'
 import ChangeName from '@/components/User/ChangeName'
-import UserWatchlist from '@/components/User/UserWatchlist'
-import UserFavorites from '@/components/User/UserFavorites'
+import UserList from '@/components/User/UserList'
 
 export default function UserTabs() {
   return (
@@ -20,10 +19,10 @@ export default function UserTabs() {
       }}
     >
       <Tab key="Watchlist tab" title="Watchlist" className="watchlistTab">
-        <UserWatchlist />
+        <UserList isWatchlist />
       </Tab>
       <Tab key="Favorites tab" title="Favorites" className="favoritesTab">
-        <UserFavorites />
+        <UserList />
       </Tab>
       <Tab key="Edit tab" title="Edit Profile">
         <div className=" max-w-[560px] gap-6 w-full">

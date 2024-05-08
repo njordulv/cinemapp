@@ -89,7 +89,7 @@ const ToggleButton: React.FC<ToggleProps> = ({
         size="sm"
         aria-label={tooltipText}
         className={`text-lg ${
-          isWatchlist ? 'wishlistButton' : 'favoritesButton'
+          isWatchlist ? 'watchlistButton' : 'favoritesButton'
         }`}
         onClick={handleToggleWatchlist}
       >

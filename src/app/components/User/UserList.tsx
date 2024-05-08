@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Spinner } from '@nextui-org/react'
 import { useAppSelector } from '@/hooks/reduxHooks'
-import { selectWatchlist } from '@/redux/slices/userSlice'
+import { selectWatchlist, selectFavorites } from '@/redux/slices/userSlice'
 import { Movie } from '@/types/data'
 import MovieCard from '@/components/UI/MovieCard'
 
-export default function UserWatchlist() {
-  const watchlist = useAppSelector(selectWatchlist) || []
+interface ListProps {
+  isWatchlist?: boolean
+}
+
+const UserList: React.FC<ListProps> = ({ isWatchlist = false }) => {
+  const list =
+    useAppSelector(isWatchlist ? selectWatchlist : selectFavorites) || []
   const [movies, setMovies] = useState<Movie[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -15,7 +20,7 @@ export default function UserWatchlist() {
     const fetchMovies = async () => {
       setLoading(true)
       try {
-        const moviePromises = watchlist.map((item) =>
+        const moviePromises = list.map((item) =>
           fetch(`/api/movies/?endpoint=${item.type}/${item.id}`).then((res) =>
             res.json()
           )
@@ -30,7 +35,7 @@ export default function UserWatchlist() {
     }
 
     fetchMovies()
-  }, [watchlist])
+  }, [list])
 
   if (loading) return <Spinner color="default" />
   if (error) return <> {error} </>
@@ -49,8 +54,12 @@ export default function UserWatchlist() {
           ))}
         </div>
       ) : (
-        <p>There no movies in your watchlist</p>
+        <p>{`There no movies in your ${
+          isWatchlist ? 'watchlist' : 'favorites'
+        }`}</p>
       )}
     </>
   )
 }
+
+export default UserList

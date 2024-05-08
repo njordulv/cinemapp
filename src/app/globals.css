@@ -82,7 +82,7 @@ input[type='search']::-webkit-search-results-decoration {
   padding-bottom: 5px;
 }
 
-.favoritesTab .favoritesButton,
-.watchlistTab .watchlistButton {
+.favoritesTab .watchlistButton,
+.watchlistTab .favoritesButton {
   display: none;
 }
