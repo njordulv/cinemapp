@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSelector } from 'reselect'
 import { RootState } from '@/redux/store'
 
-interface WatchlistItem {
+interface ListItem {
   id: number
   type: 'movie' | 'tv'
 }
@@ -13,8 +14,8 @@ interface UserState {
   createdAt: null
   name: string | null
   photoURL: string | null
-  watchlist: WatchlistItem[]
-  favorites: WatchlistItem[]
+  watchlist: ListItem[]
+  favorites: ListItem[]
 }
 
 const initialState: UserState = {
@@ -118,9 +119,17 @@ export const {
   updateFavorites,
 } = userSlice.actions
 export const selectUserName = (state: RootState) => state.user.name
-export const selectWatchlist = (state: RootState) =>
-  state.user.watchlist.map(({ id, type }) => ({ id, type }))
-export const selectFavorites = (state: RootState) =>
-  state.user.favorites.map(({ id, type }) => ({ id, type }))
+
+const selectFavoritesData = (state: RootState) => state.user.favorites
+export const selectFavorites = createSelector(
+  selectFavoritesData,
+  (favorites) => favorites.map(({ id, type }) => ({ id, type }))
+)
+
+const selectWatchlistData = (state: RootState) => state.user.watchlist
+export const selectWatchlist = createSelector(
+  selectWatchlistData,
+  (watchlist) => watchlist.map(({ id, type }) => ({ id, type }))
+)
 
 export default userSlice.reducer
