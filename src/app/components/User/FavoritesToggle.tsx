@@ -66,7 +66,7 @@ const FavoritesToggle: React.FC<MovieProps> = ({ movie, type }: MovieProps) => {
         aria-label={
           isInFavorites ? 'Remove from favorites' : 'Add to favorites'
         }
-        className="text-lg"
+        className="text-lg watchlistButton"
         onClick={handleToggleFavorite}
       >
         {isInFavorites ? <MdFavorite /> : <MdFavoriteBorder />}

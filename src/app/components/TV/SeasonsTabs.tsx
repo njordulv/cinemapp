@@ -21,12 +21,12 @@ export default function SeasonsTabs({ id, data }: DataMovie) {
         panel: 'p-0 p-0',
         tabList: 'border-1 w-full',
         cursor: '',
-        tab: 'text-[17px] px-6 font-normal',
+        tab: 'text-md sm:text-[17px] px-6 font-normal px-3',
         tabContent: '',
       }}
     >
       <Tab key="seasons" title="Seasons">
-        <div className="grid grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {data.seasons && <Season id={id} seasons={data.seasons} />}
         </div>
       </Tab>

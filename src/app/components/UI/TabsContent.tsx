@@ -25,7 +25,7 @@ export default function TabsContent({ id, data, isMovie }: DataMovie) {
         panel: 'p-0 p-0',
         tabList: 'border-1 w-full',
         cursor: '',
-        tab: 'text-[17px] px-6 font-normal',
+        tab: 'text-md sm:text-[17px] px-6 font-normal px-3',
         tabContent: '',
       }}
     >
@@ -35,7 +35,7 @@ export default function TabsContent({ id, data, isMovie }: DataMovie) {
         )}
       </Tab>
       <Tab key={`${pageType} crew`} title="Crew">
-        <ScrollShadow className="h-[352px]" isEnabled={false}>
+        <ScrollShadow className="h-[352px] rounded-xl" isEnabled={false}>
           {(data.credits.crew?.length ?? 0) > 0 && (
             <Crew crew={data.credits.crew} />
           )}

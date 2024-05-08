@@ -12,25 +12,21 @@ export default function UserTabs() {
       aria-label="User Profile tabs"
       classNames={{
         base: 'bg-default-50 bg-opacity-20 rounded-xl',
-        panel: 'p-0 p-0',
+        panel: 'p-0 p-0 flex justify-center items-center min-h-72',
         tabList: 'border-1 w-full',
         cursor: '',
-        tab: 'text-[17px] px-6 font-normal',
+        tab: 'text-md sm:text-[17px] px-6 font-normal px-3',
         tabContent: '',
       }}
     >
-      <Tab key="watchlist tab" title="Watchlist">
-        <div className="flex justify-center items-center min-h-72">
-          <UserWatchlist />
-        </div>
+      <Tab key="Watchlist tab" title="Watchlist" className="watchlistTab">
+        <UserWatchlist />
       </Tab>
-      <Tab key="favorites tab" title="Favorites">
-        <div className="flex justify-center items-center min-h-72">
-          <UserFavorites />
-        </div>
+      <Tab key="Favorites tab" title="Favorites" className="favoritesTab">
+        <UserFavorites />
       </Tab>
-      <Tab key="edit tab" title="Edit Profile">
-        <div className="flex justify-center max-w-[560px] flex-col gap-6 w-full">
+      <Tab key="Edit tab" title="Edit Profile">
+        <div className=" max-w-[560px] gap-6 w-full">
           <ChangeAvatar />
           <ChangeName />
         </div>

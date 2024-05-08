@@ -43,8 +43,8 @@ export default function SingleSeason({
               key={episode.id || index}
             >
               <CardBody>
-                <div className="grid grid-flow-col lg:grid-cols-[3fr_9fr] gap-6 md:gap-4 items-start justify-center">
-                  <div className="relative max-w-[270px]">
+                <div className="grid grid-cols-1 sm:grid-cols-[5fr_9fr] md:grid-cols-[3fr_9fr] gap-6 md:gap-4 items-start justify-center">
+                  <div className="relative sm:max-w-[270px]">
                     <Image
                       className="object-cover"
                       height="100%"
@@ -62,9 +62,9 @@ export default function SingleSeason({
 
                   <div className="flex flex-col">
                     <div className="flex justify-between items-start">
-                      <div className="flex flex-col gap-2">
-                        <h3 className="font-semibold m-0 pr-10">
-                          <span className="text-special absolute right-3 top-3">
+                      <div className="flex flex-col gap-2 w-full">
+                        <h3 className="font-semibold m-0 pr-10 relative">
+                          <span className="text-special absolute right-0 top-0">
                             {episode?.episode_number}&nbsp;
                           </span>
                           {episode?.name}

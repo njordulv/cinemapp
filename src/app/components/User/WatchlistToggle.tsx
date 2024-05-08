@@ -66,7 +66,7 @@ const WatchlistToggle: React.FC<MovieProps> = ({ movie, type }: MovieProps) => {
         aria-label={
           isInWatchlist ? 'Remove from watchlist' : 'Add to watchlist'
         }
-        className="text-lg"
+        className="text-lg favoritesButton"
         onClick={handleToggleWatchlist}
       >
         {isInWatchlist ? <MdOutlineBookmark /> : <MdOutlineBookmarkBorder />}

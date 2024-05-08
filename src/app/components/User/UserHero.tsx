@@ -21,7 +21,7 @@ const UserHero = () => {
         bgImageAlt="dashboard back"
         strength={400}
       >
-        <div className="grid lg:max-w-[1170px] w-full sm:grid-cols-1 text-center sm:text-left gap-4 m-auto py-20 px-6">
+        <div className="grid lg:max-w-[1170px] w-full sm:grid-cols-1 text-center sm:text-left gap-4 m-auto sm:py-20 py-9 px-6">
           <div
             className={`grid sm:grid-cols-[1fr_4fr] gap-10 items-center justify-center ${styles.singleHero_wrapper}`}
           >

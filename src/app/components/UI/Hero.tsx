@@ -60,7 +60,7 @@ export default function Hero({
       >
         <div className="grid text-center lg:max-w-[1170px] lg:w-full lg:mb-0 md:grid-cols-1 lg:text-left gap-4 m-auto sm:py-20 py-8 px-6">
           <div
-            className={`grid md:grid-cols-[1fr_3fr] gap-10 items-center ${styles.singleHero_wrapper}`}
+            className={`grid md:grid-cols-[3fr_7fr] lg:grid-cols-[1fr_3fr] gap-6 lg:gap-10 items-center ${styles.singleHero_wrapper}`}
           >
             <Image
               shadow="md"
