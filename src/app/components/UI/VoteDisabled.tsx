@@ -16,7 +16,7 @@ type Props = {
 export default function VoteDisabled({ card, size, strokeWidth, text }: Props) {
   return (
     <Card
-      className={`${card} p-0 border-none bg-black bg-opacity-70 rounded-full min-w-[63px]`}
+      className={`${card} p-0 border-none bg-black bg-opacity-70 rounded-full`}
     >
       <CardBody className="justify-center items-center p-0">
         <CircularProgress

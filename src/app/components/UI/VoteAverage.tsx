@@ -19,7 +19,7 @@ export default function VoteAverage({
 
   return (
     <Card
-      className={`${card} p-0 border-none bg-black bg-opacity-70 rounded-full tracking-[-0.5px] min-w-[63px]`}
+      className={`${card} p-0 border-none bg-black bg-opacity-70 rounded-full tracking-[-0.5px]`}
     >
       <CardBody className="justify-center items-center p-0">
         <CircularProgress
