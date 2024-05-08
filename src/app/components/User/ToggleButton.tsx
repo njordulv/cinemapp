@@ -8,6 +8,7 @@ import {
   arrayRemove,
 } from 'firebase/firestore'
 import { auth } from '@/config/firebase'
+import { useAuth } from '@/hooks/useAuth'
 import { Movie } from '@/types/data'
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHooks'
 import {
@@ -39,6 +40,7 @@ const ToggleButton: React.FC<ToggleProps> = ({
     (item) => item.id === movie.id && item.type === type
   )
   const [tooltipText, setTooltipText] = useState('')
+  const { isAuth } = useAuth()
 
   const handleToggleWatchlist = async () => {
     const user = auth.currentUser
@@ -79,6 +81,8 @@ const ToggleButton: React.FC<ToggleProps> = ({
         : `Add to ${isWatchlist ? 'watchlist' : 'favorites'}`
     )
   }, [isInList, isWatchlist])
+
+  if (!isAuth) return null
 
   return (
     <Tooltip size="sm" showArrow={true} offset={-1} content={tooltipText}>

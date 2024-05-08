@@ -2,7 +2,6 @@ import { useRouter } from 'next/navigation'
 import { Card, Image } from '@nextui-org/react'
 import { Movie } from '@/types/data'
 import { formatReleaseDate } from '@/utils/formatDate'
-import { useAuth } from '@/hooks/useAuth'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
 import ToggleWatchlist from '@/components/User/ToggleWatchlist'
@@ -17,7 +16,6 @@ interface UserProps {
 
 export default function MovieCard({ movie, type }: UserProps) {
   const router = useRouter()
-  const { isAuth } = useAuth()
   const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL
   const NO_IMAGE = process.env.NEXT_PUBLIC_NO_IMAGE
 
@@ -27,12 +25,10 @@ export default function MovieCard({ movie, type }: UserProps) {
 
   return (
     <div className={styles.card}>
-      {isAuth && (
-        <div className="absolute right-1 top-1 z-20 flex flex-col gap-1">
-          <ToggleWatchlist movie={movie} type={type} />
-          <ToggleFavorites movie={movie} type={type} />
-        </div>
-      )}
+      <div className="absolute right-1 top-1 z-20 flex flex-col gap-1">
+        <ToggleWatchlist movie={movie} type={type} />
+        <ToggleFavorites movie={movie} type={type} />
+      </div>
       <Card
         isPressable
         radius="lg"

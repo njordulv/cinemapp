@@ -25,7 +25,7 @@ const Login = () => {
         let avatar = null
         let name = null
         let watchlist = []
-        let favorite = []
+        let favorites = []
 
         if (userId) {
           try {
@@ -38,7 +38,7 @@ const Login = () => {
               avatar = userData.photoURL || null
               name = userData.name || null
               watchlist = userData.watchlist || []
-              favorite = userData.favorite || []
+              favorites = userData.favorites || []
             } else {
               console.warn('User document does not exist in Firestore')
             }
@@ -58,7 +58,7 @@ const Login = () => {
           })
         )
         dispatch(updateWatchlist(watchlist))
-        dispatch(updateFavorites(favorite))
+        dispatch(updateFavorites(favorites))
 
         router.push('/dashboard')
       })
