@@ -107,7 +107,7 @@ export default function ChangeAvatar() {
 
   return (
     <>
-      <div className="flex gap-3 items-end relative pb-5">
+      <div className="flex gap-3 items-end relative pb-10">
         <Input
           type="file"
           size="md"
@@ -120,7 +120,7 @@ export default function ChangeAvatar() {
           onChange={handleFileUpload}
         />
         <Button onClick={handleFileRemove}>Remove</Button>
-        <div className="absolute bottom-0 text-red text-tiny">
+        <div className="absolute top-[68px] text-red text-tiny">
           {error && <span className="text-red">{error}</span>}
           {success && <span className="text-secondary">{success}</span>}
         </div>

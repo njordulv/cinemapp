@@ -26,7 +26,7 @@ export default function ChangeName() {
   }
 
   return (
-    <div className="flex gap-3 items-end relative pb-5">
+    <div className="flex gap-3 items-end relative pb-10">
       <Input
         type="text"
         size="md"
