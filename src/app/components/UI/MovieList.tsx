@@ -8,7 +8,7 @@ import MovieCard from '@/components/UI/MovieCard'
 
 type MovieListProps = {
   initialMovies: Movie[]
-  type: string
+  type: 'movie' | 'tv'
   category: string
   heading: string
 }

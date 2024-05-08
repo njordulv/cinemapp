@@ -3,15 +3,15 @@ import { Movie } from '@/types/data'
 import ToggleButton from '@/components/User/ToggleButton'
 
 interface MovieProps {
-  movie: Movie
+  id: number
   type: 'movie' | 'tv'
 }
 
 const WatchlistIcon: React.FC<{ isActive: boolean }> = ({ isActive }) =>
   isActive ? <MdOutlineBookmark /> : <MdOutlineBookmarkBorder />
 
-const ToggleWatchlist: React.FC<MovieProps> = ({ movie, type }) => (
-  <ToggleButton movie={movie} type={type} isWatchlist Icon={WatchlistIcon} />
+const ToggleWatchlist: React.FC<MovieProps> = ({ id, type }) => (
+  <ToggleButton id={id} type={type} isWatchlist Icon={WatchlistIcon} />
 )
 
 export default ToggleWatchlist

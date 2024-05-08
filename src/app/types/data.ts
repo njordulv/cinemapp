@@ -29,6 +29,7 @@ export interface HeroTypes {
   directed_by?: CrewTypes[]
   filmMaker?: FilmMakerTypes[]
   production_countries?: ProductionCountry[]
+  type?: 'movie' | 'tv'
 }
 
 export interface GuestStars {

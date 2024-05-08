@@ -11,6 +11,8 @@ import Certification from '@/components/UI/Certification'
 import ListRenderer from '@/components/UI/ListRenderer'
 import VoteAverage from '@/components/UI/VoteAverage'
 import VoteDisabled from '@/components/UI/VoteDisabled'
+import ToggleWatchlist from '@/components/User/ToggleWatchlist'
+import ToggleFavorites from '@/components/User/ToggleFavorites'
 import FilmMakers from '@/components/UI/FilmMakers'
 import formatBudget from '@/utils/formatBudget'
 import convertMinToHrs from '@/utils/formatRuntime'
@@ -34,6 +36,7 @@ export default function Hero({
   imdb_id,
   first_air_date,
   isMovie,
+  type,
   created_by,
   filmMaker,
   production_countries,
@@ -150,6 +153,10 @@ export default function Hero({
                     </div>
                   </div>
                 )}
+                <div className="flex gap-2">
+                  <ToggleWatchlist id={id} type={isMovie ? 'movie' : 'tv'} />
+                  <ToggleFavorites id={id} type={isMovie ? 'movie' : 'tv'} />
+                </div>
               </div>
               {tagline && (
                 <div className="italic font-thin text-[18px] text-shadow-sm">

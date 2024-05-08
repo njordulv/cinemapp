@@ -9,7 +9,6 @@ import {
 } from 'firebase/firestore'
 import { auth } from '@/config/firebase'
 import { useAuth } from '@/hooks/useAuth'
-import { Movie } from '@/types/data'
 import { useAppSelector, useAppDispatch } from '@/hooks/reduxHooks'
 import {
   addToWatchlist,
@@ -21,14 +20,14 @@ import {
 } from '@/redux/slices/userSlice'
 
 interface ToggleProps {
-  movie: Movie
+  id: number
   type: 'movie' | 'tv'
   isWatchlist?: boolean
   Icon: React.FC<{ isActive: boolean }>
 }
 
 const ToggleButton: React.FC<ToggleProps> = ({
-  movie,
+  id,
   type,
   isWatchlist = false,
   Icon,
@@ -36,9 +35,7 @@ const ToggleButton: React.FC<ToggleProps> = ({
   const dispatch = useAppDispatch()
   const list =
     useAppSelector(isWatchlist ? selectWatchlist : selectFavorites) || []
-  const isInList = list.some(
-    (item) => item.id === movie.id && item.type === type
-  )
+  const isInList = list.some((item) => item.id === id && item.type === type)
   const [tooltipText, setTooltipText] = useState('')
   const { isAuth } = useAuth()
 
@@ -53,23 +50,23 @@ const ToggleButton: React.FC<ToggleProps> = ({
       if (isInList) {
         await updateDoc(userDocRef, {
           [isWatchlist ? 'watchlist' : 'favorites']: arrayRemove({
-            id: movie.id,
+            id,
             type,
           }),
         })
         isWatchlist
-          ? dispatch(removeFromWatchlist({ id: movie.id, type }))
-          : dispatch(removeFromFavorites({ id: movie.id, type }))
+          ? dispatch(removeFromWatchlist({ id, type }))
+          : dispatch(removeFromFavorites({ id, type }))
       } else {
         await updateDoc(userDocRef, {
           [isWatchlist ? 'watchlist' : 'favorites']: arrayUnion({
-            id: movie.id,
+            id,
             type,
           }),
         })
         isWatchlist
-          ? dispatch(addToWatchlist({ id: movie.id, type }))
-          : dispatch(addToFavorites({ id: movie.id, type }))
+          ? dispatch(addToWatchlist({ id, type }))
+          : dispatch(addToFavorites({ id, type }))
       }
     }
   }

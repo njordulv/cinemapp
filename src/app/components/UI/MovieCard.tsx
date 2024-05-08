@@ -26,8 +26,8 @@ export default function MovieCard({ movie, type }: UserProps) {
   return (
     <div className={styles.card}>
       <div className="absolute right-1 top-1 z-20 flex flex-col gap-1">
-        <ToggleWatchlist movie={movie} type={type} />
-        <ToggleFavorites movie={movie} type={type} />
+        <ToggleWatchlist id={movie.id} type={type} />
+        <ToggleFavorites id={movie.id} type={type} />
       </div>
       <Card
         isPressable

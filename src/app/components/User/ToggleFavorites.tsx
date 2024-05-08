@@ -3,15 +3,15 @@ import { Movie } from '@/types/data'
 import ToggleButton from '@/components/User/ToggleButton'
 
 interface MovieProps {
-  movie: Movie
+  id: number
   type: 'movie' | 'tv'
 }
 
 const FavoritesIcon: React.FC<{ isActive: boolean }> = ({ isActive }) =>
   isActive ? <MdFavorite /> : <MdFavoriteBorder />
 
-const ToggleFavorites: React.FC<MovieProps> = ({ movie, type }) => (
-  <ToggleButton movie={movie} type={type} Icon={FavoritesIcon} />
+const ToggleFavorites: React.FC<MovieProps> = ({ id, type }) => (
+  <ToggleButton id={id} type={type} Icon={FavoritesIcon} />
 )
 
 export default ToggleFavorites
