@@ -92,8 +92,8 @@ input[type='search']::-webkit-search-results-decoration {
   color: var(--white);
   text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3), 0 0px 15px white,
     0 0 10px #38eefa, 0 0 50px #38eefa;
-  -webkit-animation: fade 3.1s infinite alternate;
-  animation: fade 3.1s infinite alternate;
+  -webkit-animation: fade 3.4s infinite alternate;
+  animation: fade 3.4s infinite alternate;
 }
 #letterBlink {
   -webkit-animation: blink 0.01s infinite alternate;
@@ -101,12 +101,12 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 #letterEnd {
-  -webkit-animation: blink 0.03s infinite alternate;
-  animation: blink 0.03s infinite alternate;
+  -webkit-animation: fade2 5s infinite alternate;
+  animation: fade2 5s infinite alternate;
 }
 @-webkit-keyframes blink {
   45% {
-    opacity: 0.5;
+    opacity: 0.4;
   }
 }
 @keyframes blink {
@@ -147,5 +147,23 @@ input[type='search']::-webkit-search-results-decoration {
   }
   46% {
     opacity: 0.8;
+  }
+}
+
+@keyframes fade2 {
+  40% {
+    opacity: 0.9;
+  }
+  42% {
+    opacity: 0;
+  }
+  43% {
+    opacity: 0.1;
+  }
+  45% {
+    opacity: 0.1;
+  }
+  46% {
+    opacity: 0.9;
   }
 }
