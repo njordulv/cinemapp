@@ -33,7 +33,7 @@ The application is deployed on Vercel and can be accessed at [https://cinemapp-m
 - Сloud Database: Firestore SDK
 - Movie Database: TMDB API
 - Languages: TypeScript
-- Add Libraries: @nextui-org, firebase, framer-motion, lodash, react-parallax, react-show-more-text, react-toastify, react-youtube, reselect, swr
+- Add Libraries: @nextui-org, firebase, framer-motion, react-parallax, react-show-more-text, react-toastify, react-youtube, reselect, swr
 
 ### Installation
 
