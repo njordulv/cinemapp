@@ -1,6 +1,12 @@
+import { Metadata } from 'next'
 import { getAPIData } from '@/utils/getAPIData'
 import { Movie } from '@/types/data'
 import MovieList from '@/components/UI/MovieList'
+
+export const metadata: Metadata = {
+  title: 'Cinemapp',
+  description: 'An Application for Movie Enthusiasts',
+}
 
 export default async function Page() {
   const page = 1

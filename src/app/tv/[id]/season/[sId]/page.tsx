@@ -1,7 +1,13 @@
+import { Metadata } from 'next'
 import SingleSeason from '@/components/TV/SingleSeason'
 
 interface Props {
   params: { id: string; sId: number }
+}
+
+export const metadata: Metadata = {
+  title: `CinemApp`,
+  description: 'An Application for Movie Enthusiasts',
 }
 
 export default function Page({ params }: Props) {

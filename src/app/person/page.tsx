@@ -1,6 +1,12 @@
+import { Metadata } from 'next'
 import { getAPIData } from '@/utils/getAPIData'
 import { Person } from '@/types/data'
 import PersonList from '@/components/Person/PersonList'
+
+export const metadata: Metadata = {
+  title: 'Popular People - CinemApp',
+  description: 'An Application for Movie Enthusiasts',
+}
 
 export default async function Page() {
   const page = 1
