@@ -48,8 +48,8 @@ export default function TermsOfUse() {
               <Image
                 shadow="none"
                 radius="none"
-                width="112px"
-                height="auto"
+                width="112"
+                height="80.74"
                 className="object-cover min-w-[112px]"
                 src={'/tmdb-logo.svg'}
                 fallbackSrc="/no-image.svg"

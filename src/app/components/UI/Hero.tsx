@@ -49,13 +49,12 @@ export default function Hero({
       <Parallax
         blur={0}
         bgImageStyle={{
-          filter: 'brightness(0.55)',
-          opacity: 0.6,
+          filter: 'brightness(0.5)',
           objectFit: 'cover',
         }}
         bgImage={
           backdrop_path
-            ? `${BASE_IMAGE_URL}original${backdrop_path}`
+            ? `${BASE_IMAGE_URL}w1920_and_h800_multi_faces${backdrop_path}`
             : `${NO_IMAGE}`
         }
         bgImageAlt={`${isMovie ? title : name} poster image`}
