@@ -43,14 +43,14 @@ export default function TermsOfUse() {
           hideCloseButton
           onClose={handleClose}
         >
-          <ModalContent className="flex flex-col p-6 gap-6">
-            <ModalBody className="p-0 flex flex-row gap-6">
+          <ModalContent className="flex flex-col p-6 gap-6 m-5">
+            <ModalBody className="p-0 flex sm:flex-row flex-col gap-6">
               <Image
                 shadow="none"
                 radius="none"
-                width="100%"
+                width="112px"
                 height="auto"
-                className="object-cover"
+                className="object-cover min-w-[112px]"
                 src={'/tmdb-logo.svg'}
                 fallbackSrc="/no-image.svg"
                 alt="TMDB official logo"

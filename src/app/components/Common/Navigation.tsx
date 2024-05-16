@@ -44,7 +44,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           />
         </NavbarContent>
-        <MobileNav />
+        <MobileNav setIsMenuOpen={setIsMenuOpen} />
       </Navbar>
       {children}
     </>

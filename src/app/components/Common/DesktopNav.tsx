@@ -29,7 +29,6 @@ export default function DesktopNav() {
                 disableRipple
                 className="bg-transparent data-[hover=true]:bg-transparent text-white data-[hover=true]:text-red p-0 gap-1 justify-end"
                 endContent={icons.chevron}
-                radius="sm"
                 variant="light"
               >
                 Movies
@@ -38,8 +37,8 @@ export default function DesktopNav() {
           </NavbarItem>
           <DropdownMenu aria-label="Cinemapp popular movies" variant="flat">
             {movieItems.map((item) => (
-              <DropdownItem key={item.key}>
-                <Link href={item.link}>{item.name}</Link>
+              <DropdownItem key={item.key} href={item.link}>
+                {item.name}
               </DropdownItem>
             ))}
           </DropdownMenu>
@@ -51,7 +50,6 @@ export default function DesktopNav() {
                 disableRipple
                 className="bg-transparent data-[hover=true]:bg-transparent text-white data-[hover=true]:text-red p-0 gap-1"
                 endContent={icons.chevron}
-                radius="sm"
                 variant="light"
               >
                 TV Shows
@@ -60,8 +58,8 @@ export default function DesktopNav() {
           </NavbarItem>
           <DropdownMenu aria-label="Cinemapp popular TV-Shows" variant="flat">
             {tvItems.map((item) => (
-              <DropdownItem key={item.key}>
-                <Link href={item.link}>{item.name}</Link>
+              <DropdownItem key={item.key} href={item.link}>
+                {item.name}
               </DropdownItem>
             ))}
           </DropdownMenu>
@@ -69,7 +67,7 @@ export default function DesktopNav() {
         <NavbarItem>
           <Link
             href="/person"
-            className="hover:text-red text-small font-normal"
+            className="hover:text-red text-small font-normal transition-all"
           >
             People
           </Link>

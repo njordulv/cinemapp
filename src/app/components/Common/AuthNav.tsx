@@ -30,7 +30,7 @@ export default function AuthNav() {
           <NavbarItem key={item.key}>
             <Link
               href={item?.link}
-              className="hover:text-red text-small font-normal"
+              className="hover:text-red text-small font-normal transition-all"
             >
               {item?.name}
             </Link>

@@ -70,7 +70,7 @@ export const authItems = [
 export const mobileItems = [
   {
     key: 'Trending Movies',
-    link: '/movies/trending',
+    link: '/movie/trending',
     name: 'Trending',
   },
   {
@@ -80,17 +80,17 @@ export const mobileItems = [
   },
   {
     key: 'Top Rated Movies',
-    link: '/movies/top-rated',
+    link: '/movie/top-rated',
     name: 'Top Rated',
   },
   {
     key: 'Upcoming Movies',
-    link: '/movies/upcoming',
+    link: '/movie/upcoming',
     name: 'Upcoming',
   },
   {
     key: 'Now Playing Movies',
-    link: '/movies/upcoming',
+    link: '/movie/upcoming',
     name: 'Now Playing',
   },
   {
