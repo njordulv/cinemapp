@@ -29,7 +29,7 @@ export default function ContentRatings({ id, production_countries }: Props) {
   const contentRating = getContentRating()
 
   return (
-    <span className="flex items-center justify-center min-w-12 border-white/80 border-small px-1 text-sm text-shadow-sm">
+    <span className="flex items-center justify-center min-w-max border-white/80 border-small px-1 text-sm text-shadow-sm">
       {isLoading ? (
         <Spinner color="default" size="sm" />
       ) : isError || !contentRating ? (

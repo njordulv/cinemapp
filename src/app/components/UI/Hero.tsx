@@ -62,7 +62,7 @@ export default function Hero({
       >
         <div className="grid text-center lg:max-w-[1170px] lg:w-full sm:grid-cols-1 lg:text-left gap-4 m-auto sm:py-20 py-10 px-6">
           <div
-            className={`grid sm:grid-cols-[2fr_3fr] md:grid-cols-[3fr_7fr] lg:grid-cols-[1fr_3fr] gap-6 lg:gap-10 items-start ${styles.singleHero_wrapper}`}
+            className={`grid sm:grid-cols-[2fr_3fr] md:grid-cols-[3fr_7fr] lg:grid-cols-[1fr_3fr] gap-6 lg:gap-10 items-start justify-items-center ${styles.singleHero_wrapper}`}
           >
             <Image
               shadow="md"
@@ -99,7 +99,7 @@ export default function Hero({
                       production_countries={production_countries}
                     />
                   )}
-                  <div className="text-shadow-sm">
+                  <div className="text-shadow-sm min-w-max">
                     {formatReleaseDate(
                       isMovie ? release_date ?? '' : first_air_date ?? ''
                     )}
@@ -108,26 +108,26 @@ export default function Hero({
                     <ListRenderer items={genres} keyName="name" />
                   </div>
                   {runtime && (
-                    <div className="text-shadow-sm min-w-11">
+                    <div className="text-shadow-sm min-w-12">
                       {convertMinToHrs(runtime)}
                     </div>
                   )}
                 </div>
               </div>
-              <div className="flex gap-3 flex-col sm:flex-row sm:gap-5">
+              <div className="flex gap-2 flex-col sm:flex-row md:gap-5">
                 <div className="flex gap-3 items-center sm:gap-5">
                   <div className={styles.singleHero_average}>
                     {vote_average ? (
                       <VoteAverage
                         vote={vote_average}
-                        card="w-[63px] h-[63px]"
+                        card="min-w-[63px] min-h-[63px]"
                         size="w-14 h-14 drop-shadow-md"
                         strokeWidth={2}
                         text="text-[19px]"
                       />
                     ) : (
                       <VoteDisabled
-                        card="w-[63px] h-[63px]"
+                        card="min-w-[63px] min-h-[63px]"
                         size="w-14 h-14 drop-shadow-md"
                         strokeWidth={2}
                         text="text-[19px] top-[3px] relative"
