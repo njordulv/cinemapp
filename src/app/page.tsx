@@ -4,8 +4,24 @@ import { Movie } from '@/types/data'
 import MovieList from '@/components/UI/MovieList'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://cinemapp-movie.vercel.app/'),
   title: 'Cinemapp',
   description: 'An Application for Movie Enthusiasts',
+  openGraph: {
+    title: 'Cinemapp',
+    description: 'An Application for Movie Enthusiasts',
+    siteName: 'Cinemapp',
+    type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: 'https://cinemapp-movie.vercel.app/opengraph-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Open Graph Image Alt',
+      },
+    ],
+  },
 }
 
 export default async function Page() {
