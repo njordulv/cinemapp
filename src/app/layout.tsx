@@ -20,6 +20,9 @@ type Props = {
 export default async function Layout({ children }: Props) {
   return (
     <html lang="en" className="dark bg-background">
+      <head>
+        <meta name="robots" content="index, follow" />
+      </head>
       <body className={`${roboto.className}`}>
         <UIProvider>
           <StoreProvider>
