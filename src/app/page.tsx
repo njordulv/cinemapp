@@ -4,15 +4,14 @@ import { Movie } from '@/types/data'
 import MovieList from '@/components/UI/MovieList'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cinemapp-movie.vercel.app/'),
+  metadataBase: new URL('https://cinemapp-movie.vercel.app'),
   title: 'Cinemapp',
   description: 'An Application for Movie Enthusiasts',
   openGraph: {
     title: 'Cinemapp',
     description: 'An Application for Movie Enthusiasts',
+    url: 'https://cinemapp-movie.vercel.app',
     siteName: 'Cinemapp',
-    type: 'website',
-    locale: 'en_US',
     images: [
       {
         url: 'https://cinemapp-movie.vercel.app/opengraph-image.jpg',
@@ -21,6 +20,8 @@ export const metadata: Metadata = {
         alt: 'Open Graph Image Alt',
       },
     ],
+    locale: 'en_US',
+    type: 'website',
   },
 }
 

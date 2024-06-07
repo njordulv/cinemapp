@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import type { Metadata } from 'next'
 import { Roboto_Condensed } from 'next/font/google'
 import UIProvider from '@/providers/UIProvider'
 import StoreProvider from '@/providers/StoreProvider'
@@ -17,12 +18,25 @@ type Props = {
   children: ReactNode
 }
 
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+}
+
 export default async function Layout({ children }: Props) {
   return (
     <html lang="en" className="dark bg-background">
-      <head>
-        <meta name="robots" content="index, follow" />
-      </head>
       <body className={`${roboto.className}`}>
         <UIProvider>
           <StoreProvider>
