@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { Roboto_Condensed } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 import UIProvider from '@/providers/UIProvider'
 import StoreProvider from '@/providers/StoreProvider'
 import Navigation from '@/components/Common/Navigation'
@@ -19,6 +20,23 @@ type Props = {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://cinemapp-movie.vercel.app'),
+  openGraph: {
+    title: 'Cinemapp',
+    description: 'An Application for Movie Enthusiasts',
+    url: 'https://cinemapp-movie.vercel.app',
+    siteName: 'Cinemapp',
+    images: [
+      {
+        url: 'https://cinemapp-movie.vercel.app/opengraph-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Open Graph Image Alt',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
   robots: {
     index: true,
     follow: true,
@@ -42,6 +60,7 @@ export default async function Layout({ children }: Props) {
           <StoreProvider>
             <Navigation>
               {children}
+              <Analytics />
               <TermsOfUse />
             </Navigation>
             <Footer />
