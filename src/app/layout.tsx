@@ -32,6 +32,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'google-site-verification': 'CKZEIyhW_ONY0GW_0cwSOI45FdbqWReqFdXOUW8eAEk',
+  },
 }
 
 export default async function Layout({ children }: Props) {
