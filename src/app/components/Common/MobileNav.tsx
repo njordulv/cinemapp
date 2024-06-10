@@ -16,8 +16,8 @@ export default function MobileNav({ setIsMenuOpen }: MenuProps) {
   }
 
   return (
-    <NavbarMenu className="px-4">
-      <NavbarMenuItem key="Search Bar" className="pb-4">
+    <NavbarMenu className="px-4 max-h-full">
+      <NavbarMenuItem key="Search Bar">
         <SearchBar />
       </NavbarMenuItem>
       {mobileItems.map((item) => (
@@ -26,6 +26,7 @@ export default function MobileNav({ setIsMenuOpen }: MenuProps) {
             size="lg"
             color="default"
             variant="ghost"
+            className="border-1 max-h-[44px]"
             fullWidth
             onClick={() => menuHandler(item.link)}
           >
