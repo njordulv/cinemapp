@@ -16,7 +16,7 @@ export default async function Page() {
   const initialMovies = await getAPIData<Movie>(page, type, category)
 
   return (
-    <main className="flex flex-col items-center min-h-96 w-full max-w-[1170px] m-auto px-4 py-10 gap-5">
+    <main className="flex flex-col items-center w-full max-w-[1170px] m-auto px-4 py-10 gap-5">
       <MovieList
         initialMovies={initialMovies}
         type={type}

@@ -67,10 +67,10 @@ export default async function Layout({ children }: Props) {
           <StoreProvider>
             <Navigation>
               {children}
-              <Analytics />
               <TermsOfUse />
             </Navigation>
             <Footer />
+            <Analytics />
           </StoreProvider>
         </UIProvider>
       </body>

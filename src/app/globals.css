@@ -43,6 +43,10 @@ body {
   font-weight: 300;
 }
 
+main {
+  min-height: calc(100vh - 130px);
+}
+
 h1 {
   font-size: 40px;
   line-height: 48px;

@@ -70,7 +70,7 @@ export default function Single({ params }: Props) {
         filmMaker={data.credits.crew}
         production_countries={production_countries}
       />
-      <div className="relative overflow-hidden grid lg:max-w-[1170px] w-full grid-cols-1 text-left gap-6 m-auto px-4 py-10">
+      <main className="relative overflow-hidden grid lg:max-w-[1170px] w-full grid-cols-1 text-left gap-6 m-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-[8fr_3fr] gap-3">
           <section className="flex w-full flex-col relative overflow-hidden gap-3">
             <TabsContent id={params.id} data={data} isMovie={isMovie} />
@@ -111,7 +111,7 @@ export default function Single({ params }: Props) {
           </aside>
         </div>
         <div>{data && <Recommendations id={id} isMovie={isMovie} />}</div>
-      </div>
+      </main>
     </>
   )
 }
