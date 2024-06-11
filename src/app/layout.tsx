@@ -7,7 +7,7 @@ import StoreProvider from '@/providers/StoreProvider'
 import Navigation from '@/components/Common/Navigation'
 import TermsOfUse from '@/components/UI/TermsOfUse'
 import Footer from '@/components/Common/Footer'
-import './globals.css'
+import '@/styles/globals.css'
 
 const roboto = Roboto_Condensed({
   weight: ['100', '300', '400', '600'],
