@@ -1,17 +1,16 @@
 import { useRouter } from 'next/navigation'
 import { NavbarMenuItem, NavbarMenu, Button } from '@nextui-org/react'
 import { mobileItems } from '@/utils/menuItems'
+import { useAppDispatch } from '@/hooks/reduxHooks'
+import { setIsMenuOpen } from '@/redux/slices/menuSlice'
 import SearchBar from '@/components/Search/SearchBar'
 
-interface MenuProps {
-  setIsMenuOpen: (isOpen: boolean) => void
-}
-
-export default function MobileNav({ setIsMenuOpen }: MenuProps) {
+export default function MobileNav() {
   const router = useRouter()
+  const dispatch = useAppDispatch()
 
   const menuHandler = (link: string) => {
-    setIsMenuOpen(false)
+    dispatch(setIsMenuOpen(false))
     router.push(link)
   }
 

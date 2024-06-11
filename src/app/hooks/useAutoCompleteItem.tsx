@@ -1,5 +1,7 @@
 import { AutocompleteItem, Avatar } from '@nextui-org/react'
 import { formatReleaseYear } from '@/utils/formatDate'
+import { useAppDispatch } from '@/hooks/reduxHooks'
+import { setIsMenuOpen } from '@/redux/slices/menuSlice'
 
 interface AutocompleteProps {
   items: any[]
@@ -16,6 +18,8 @@ export const useAutoCompleteItem = ({
   BASE_IMAGE_URL,
   NO_IMAGE,
 }: AutocompleteProps) => {
+  const dispatch = useAppDispatch()
+
   return items
     ?.filter((item) => item.media_type === type)
     .map((item) => (
@@ -23,6 +27,7 @@ export const useAutoCompleteItem = ({
         key={item.id}
         onClick={() => {
           router.push(`/${item.media_type}/${item.id}`)
+          dispatch(setIsMenuOpen(false))
         }}
         textValue={item.title || item.name}
         startContent={

@@ -31,7 +31,6 @@ const SearchBar: React.FC = () => {
     <Autocomplete
       className="md:max-w-[302px] max-w-full"
       inputValue={list.filterText}
-      // isLoading={list.isLoading}
       items={list.items || []}
       label="Type to search..."
       variant="bordered"

@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarMenuToggle,
 } from '@nextui-org/react'
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks'
+import { setIsMenuOpen, menuSelector } from '@/redux/slices/menuSlice'
 import Logo from '@/components/Common/Logo'
 import DesktopNav from '@/components/Common/DesktopNav'
 import MobileNav from '@/components/Common/MobileNav'
@@ -14,7 +15,12 @@ import AuthNav from '@/components/Common/AuthNav'
 import SearchBar from '@/components/Search/SearchBar'
 
 const Navigation = ({ children }: { children: React.ReactNode }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const dispatch = useAppDispatch()
+  const isMenuOpen = useAppSelector(menuSelector)
+
+  const handleMenuOpenChange = (isOpen: boolean) => {
+    dispatch(setIsMenuOpen(isOpen))
+  }
 
   return (
     <>
@@ -23,7 +29,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
         shouldHideOnScroll
         isBlurred={false}
         isMenuOpen={isMenuOpen}
-        onMenuOpenChange={setIsMenuOpen}
+        onMenuOpenChange={handleMenuOpenChange}
         classNames={{
           wrapper: 'max-w-[1170px] px-4',
         }}
@@ -44,7 +50,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           />
         </NavbarContent>
-        <MobileNav setIsMenuOpen={setIsMenuOpen} />
+        <MobileNav />
       </Navbar>
       {children}
     </>
