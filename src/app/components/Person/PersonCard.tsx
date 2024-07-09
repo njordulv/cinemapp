@@ -26,7 +26,7 @@ export default function PersonCard({ person, type }: UserProps) {
       isPressable
       radius="lg"
       shadow="none"
-      className={styles.card}
+      className={`${styles.card} bg-transparent`}
       onPress={pageHandler}
       aria-label={person.name}
     >
