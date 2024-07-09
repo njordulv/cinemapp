@@ -19,13 +19,13 @@ interface Props {
 
 export default function Single({ params }: Props) {
   const { data, isError, isLoading } = useFetcher({
-    endpoint: `/api/movies?endpoint=tv/${params.id}&combinedEndpoints=tv/${params.id}/credits`,
+    endpoint: `/api/movies?endpoint=tv/127532&combinedEndpoints=tv/127532/credits`,
   })
 
   if (isError) return <Error errorText={isError.message} />
   if (isLoading) return <Loader />
+  if (!data || typeof data === 'string') return <Page404 />
   if (data && data.status_code === 34) return <Page404 />
-  if (!data) return <Page404 />
 
   const {
     id,
@@ -50,7 +50,7 @@ export default function Single({ params }: Props) {
   const isMovie = false
 
   return (
-    <>
+    <div>
       <Hero
         id={id}
         name={name}
@@ -128,6 +128,6 @@ export default function Single({ params }: Props) {
         </div>
         <div>{data && <Recommendations id={id} isMovie={isMovie} />}</div>
       </main>
-    </>
+    </div>
   )
 }

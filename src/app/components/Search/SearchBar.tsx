@@ -16,14 +16,27 @@ const SearchBar: React.FC = () => {
 
   let list = useAsyncList<SearchTypes>({
     async load({ signal, filterText }) {
-      const res = await fetch(
-        `/api/search?type=multi&query=${filterText}&searchType=multi`,
-        {
-          signal,
+      try {
+        const res = await fetch(
+          `/api/search?type=multi&query=${filterText}&searchType=multi`,
+          {
+            signal,
+          }
+        )
+        const json = await res.json()
+
+        console.log('Data received from API:', json)
+
+        if (!Array.isArray(json.results)) {
+          console.error('Expected json.results to be an array', json)
+          return { items: [] }
         }
-      )
-      const json = await res.json()
-      return { items: json.results }
+
+        return { items: json.results }
+      } catch (error) {
+        console.error('Error loading data:', error)
+        return { items: [] }
+      }
     },
   })
 
