@@ -19,7 +19,7 @@ interface Props {
 
 export default function Single({ params }: Props) {
   const { data, isError, isLoading } = useFetcher({
-    endpoint: `/api/movies?endpoint=tv/127532&combinedEndpoints=tv/127532/credits`,
+    endpoint: `/api/movies?endpoint=tv/${params.id}&combinedEndpoints=tv/${params.id}/credits`,
   })
 
   if (isError) return <Error errorText={isError.message} />
